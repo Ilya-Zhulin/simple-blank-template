@@ -2,8 +2,6 @@
 // no direct access
 defined('_JEXEC') or die;
 include JPATH_THEMES . '/' . $this->template . '/includes/config.php';
-//include JPATH_THEMES . '/' . $this->template . '/scripts/vars.php';
-//include JPATH_ROOT . '/jbdump/init.php';
 
 $gcf = function($a, $b = 60) use(&$gcf) {
 
@@ -84,7 +82,6 @@ if (isset($_POST['page_title'])) {
 						<aside id="sb-sidebar-a" class="sidebar-a uk-width-<?php echo $fraction($sb1_width); ?>@m" role="complementary">
 							<jdoc:include type="modules" name="sidebar-a" style=""/>
 							<?php
-//						JBDump($sections['sb-sidebar-a'], 0);
 							foreach ($sections['sb-sidebar-a'] as $sb_sidebar_a_position) {
 								if ($this->countModules($sb_sidebar_a_position['pos-name'])) {
 									echo _buildPosition($this, $sb_sidebar_a_position['pos-name'], $tplparams, $sections);
@@ -143,7 +140,6 @@ if (isset($_POST['page_title'])) {
 					<aside id="sb-sidebar-a" class="sidebar-a uk-width-<?php echo $fraction($sb1_width); ?>@m" role="complementary">
 						<jdoc:include type="modules" name="sidebar-a" style=""/>
 						<?php
-//						JBDump($sections['sb-sidebar-a'], 0);
 						foreach ($sections['sb-sidebar-a'] as $sb_sidebar_a_position) {
 							if ($this->countModules($sb_sidebar_a_position['pos-name'])) {
 								echo _buildPosition($this, $sb_sidebar_a_position['pos-name'], $tplparams, $sections);
@@ -159,7 +155,6 @@ if (isset($_POST['page_title'])) {
 					<aside id="sb-sidebar-b" class="sidebar-b uk-width-<?php echo $fraction($sb1_width); ?>@m" role="complementary">
 						<jdoc:include type="modules" name="sidebar-b" style=""/>
 						<?php
-//						JBDump($sections['sb-sidebar-a'], 0);
 						foreach ($sections['sb-sidebar-b'] as $sb_sidebar_b_position) {
 							if ($this->countModules($sb_sidebar_a_position['pos-name'])) {
 								echo _buildPosition($this, $sb_sidebar_a_position['pos-name'], $tplparams, $sections);
