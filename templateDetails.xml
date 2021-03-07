@@ -2,16 +2,17 @@
 <!DOCTYPE install PUBLIC "-//Joomla! 3.4//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/3.4/template-install.dtd">
 <extension version="3.4" type="template" client="site">
     <name>simple_blank</name>
-    <creationDate>14-10-2019</creationDate>
-    <author>Russian Sebloders</author>
-    <copyright>Copyright © 2019 www.sebloders.ru</copyright>
-    <authorEmail>info@sebloders.ru</authorEmail>
-    <authorUrl>http://www.sebloders.ru</authorUrl>
+    <creationDate>07.03.2021</creationDate>
+    <author>Ilya A.Zhulin</author>
+    <copyright>Copyright© 2021 www.zhulinia.ru</copyright>
+    <authorEmail>ilya.zhulin@hotmail.com</authorEmail>
+    <authorUrl>http://www.zhulinia.ru</authorUrl>
     <version>1.0.0</version>
     <description>
 		<![CDATA[
 			<h1>Simple Blank Template</h1>
-			<p>Created by <a href="http://www.sebloders.ru" target="_blank">Russian Sebloders</a>.</p>
+			<p>Created by <a href="http://www.zhulinia.ru" target="_blank">Ilya A.Zhulin</a> </br>
+			for <a href="http://www.sebloders.ru" target="_blank">Russian Sebloders</a>.</p>
 		]]>
     </description>
     <files>
@@ -27,7 +28,6 @@
         <folder>vendor</folder>
         <filename>component.php</filename>
         <filename>error.php</filename>
-        <filename>favicon.ico</filename>
         <filename>index.php</filename>
         <filename>offline.php</filename>
         <filename>template_preview.png</filename>
@@ -39,6 +39,8 @@
         <position>sb-top-b</position>
         <position>sb-top-c</position>
         <position>sb-main-top</position>
+        <position>sb-sidebar-a</position>
+        <position>sb-sidebar-b</position>
         <position>sb-main-bottom</position>
         <position>sb-bottom-a</position>
         <position>sb-bottom-b</position>
@@ -59,6 +61,8 @@
                 <field name="less_acompile" type="checkbox" label="TPL_SIMPLE_BLANK_LESS_AUTOCOMPILE_LABEL" description="TPL_SIMPLE_BLANK_LESS_AUTOCOMPILE_DESCRIPTION" />
                 <field name="less_custom_file" type="input" label="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_LABEL" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="template.less" />
                 <field name="less_compile button" type="button" label="TPL_SIMPLE_BLANK_LESS_COMPILE_BUTTON_LABEL" description="TPL_SIMPLE_BLANK_LESS_COMPILE_BUTTON_DESCRIPTION" default="COMPILE" class="btn btn-success btn-large hasTooltip" labelclass="hidden"/>
+                <field type="spacer" label="CSS" description="Настройки CSS" />
+                <field name="css_exclude_files" type="input" label="TPL_SIMPLE_BLANK_CSS_EXCLUDE_FILES" description="Файлы в папке /css шаблона, которые не нужно подключать автоматически" default="" />
             </fieldset>
             <fieldset name="sections" label="Секции">
                 <field type="spacer" label="TOP-A" description="Настройки секции TOP-A" />
@@ -220,6 +224,8 @@
                 </field>
                 <field name="addclasses_main" type="input" label="Дополнительные классы" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
                 <field name="addattr_main" type="input" label="Дополнительные атрибуты" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
+                <field name="addclasses_container_main" type="input" label="Дополнительные классы для контейнера" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
+                <field name="addattr_container_main" type="input" label="Дополнительные атрибуты для контейнера" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
                 <field type="spacer" label="MAIN-BOTTOM" description="Настройки секции MAIN-BOTTOM" />
                 <field name="color_main-bottom" type="radio" class="btn-group btn-group-yesno" default="default" label="Цвет" description="Цвет фона секции">
                     <option value="muted">Muted</option>
@@ -378,17 +384,17 @@
                     <option value="0">TPL_SIMPLE_BLANK_RIGHT</option>
                 </field>
                 <field name="sb1_width" type="list"  default="5" label="TPL_SIMPLE_BLANK_SIDEBAR_A_WIDTH_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR_A_WIDTH_DESCRIPTION">
-                    <option value="10">10%</option>
-                    <option value="12">20%</option>
-                    <option value="15">25%</option>
-                    <option value="20">33%</option>
-                    <option value="24">40%</option>
-                    <option value="30">50%</option>
-                    <option value="36">60%</option>
-                    <option value="40">66%</option>
-                    <option value="45">75%</option>
-                    <option value="48">80%</option>
-                    <option value="50">83%</option>
+                    <option value="10">17% (1/6)</option>
+                    <option value="12">20% (1/5)</option>
+                    <option value="15">25% (1/4)</option>
+                    <option value="20">33% (1/3)</option>
+                    <option value="24">40% (2/5)</option>
+                    <option value="30">50% (1/2)</option>
+                    <option value="36">60% (3/5)</option>
+                    <option value="40">66% (2/3)</option>
+                    <option value="45">75% (3/4)</option>
+                    <option value="48">80% (4/5)</option>
+                    <option value="50">83% (5/6)</option>
                 </field>
                 <field type="spacer" label="TPL_SIMPLE_BLANK_SIDEBAR_B_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR_B_DESCRIPTION" />
                 <field name="sb2_show" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SIDEBAR_B_SHOW_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR_B_SHOW_DESCRIPTION">
@@ -400,17 +406,17 @@
                     <option value="0">TPL_SIMPLE_BLANK_RIGHT</option>
                 </field>
                 <field name="sb2_width" type="list"  default="5" label="TPL_SIMPLE_BLANK_SIDEBAR_B_WIDTH_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR_B_WIDTH_DESCRIPTION">
-                    <option value="10">10%</option>
-                    <option value="12">20%</option>
-                    <option value="15">25%</option>
-                    <option value="20">33%</option>
-                    <option value="24">40%</option>
-                    <option value="30">50%</option>
-                    <option value="36">60%</option>
-                    <option value="40">66%</option>
-                    <option value="45">75%</option>
-                    <option value="48">80%</option>
-                    <option value="50">83%</option>
+                    <option value="10">17% (1/6)</option>
+                    <option value="12">20% (1/5)</option>
+                    <option value="15">25% (1/4)</option>
+                    <option value="20">33% (1/3)</option>
+                    <option value="24">40% (2/5)</option>
+                    <option value="30">50% (1/2)</option>
+                    <option value="36">60% (3/5)</option>
+                    <option value="40">66% (2/3)</option>
+                    <option value="45">75% (3/4)</option>
+                    <option value="48">80% (4/5)</option>
+                    <option value="50">83% (5/6)</option>
                 </field>
                 <field type="spacer"  label="TPL_SIMPLE_BLANK_OFFCANVAS_A_LABEL" description="TPL_SIMPLE_BLANK_OFFCANVAS_A_DESCRIPTION" />
                 <field name="offcanvas1_show" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_OFFCANVAS_A_SHOW_LABEL" description="TPL_SIMPLE_BLANK_OFFCANVAS_A_SHOW_DESCRIPTION">
@@ -489,6 +495,8 @@
                             <option value="sb-bottom-c">SB-BOTTOM-C</option>
                             <option value="sb-off-canvas-a">SB-OFF-CANVAS-A</option>
                             <option value="sb-off-canvas-b">SB-OFF-CANVAS-B</option>
+                            <option value="sb-sidebar-a">SB-SIDEBAR-A</option>
+                            <option value="sb-sidebar-b">SB-SIDEBAR-B</option>
                         </field>
                         <field type="spacer" label="Navbar" description="Модули в этой позиции будут окружены тегами компонента Navbar" />
                         <field name="pos-navbar" type="checkbox" label="Активен" description="Модули в этой позиции будут окружены тегами компонента Navbar" value="1" />
@@ -520,12 +528,14 @@
                         <field name="pos-grid-gap-h" type="list"  default="medium" label="Отступ по горизонтали" description="Настройка отступов по горизонтали (между столбцами сетки)" class="float-left">
                             <option value="collapse">Нет</option>
                             <option value="small">Маленький</option>
+                            <option value="default">Обычный</option>
                             <option value="medium">Средний</option>
                             <option value="large">Большой</option>
                         </field>
                         <field name="pos-grid-gap-v" type="list"  default="medium" label="Отступ по вертикали" description="Настройка отступов по вертикали (между строками сетки)">
                             <option value="collapse">Нет</option>
                             <option value="small">Маленький</option>
+                            <option value="default">Обычный</option>
                             <option value="medium">Средний</option>
                             <option value="large">Большой</option>
                         </field>

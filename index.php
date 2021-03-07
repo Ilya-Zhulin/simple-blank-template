@@ -2,7 +2,8 @@
 // no direct access
 defined('_JEXEC') or die;
 include JPATH_THEMES . '/' . $this->template . '/includes/config.php';
-include JPATH_THEMES . '/' . $this->template . '/scripts/vars.php';
+//include JPATH_THEMES . '/' . $this->template . '/scripts/vars.php';
+//include JPATH_ROOT . '/jbdump/init.php';
 
 $gcf = function($a, $b = 60) use(&$gcf) {
 
@@ -16,37 +17,15 @@ if (isset($_POST['page_title'])) {
 	$doc = JFactory::getDocument();
 	$doc->setTitle($_POST['page_title']);
 }
-
-
-
-/**
- * контроль доступа пользователя
- */
-$user = JCckUser::getUser();
-if ($user->guest == 0) {
-	switch ($user->user_status) {
-		case '1':  // Педагог
-			if (!in_array('10', $user->groups)) {
-				JUserHelper::setUserGroups($user->id, array(10));
-			}
-			$code = $user->user_secret_code;
-			JCckDatabase::doQuery("update #__teachers set userid=$user->id where code=$code");
-			break;
-		case '2':  // Студент
-			if (!in_array('11', $user->groups)) {
-				JUserHelper::setUserGroups($user->id, array(11));
-			}
-			break;
-	}
-}
 ?>
 
 <!DOCTYPE html>
-<html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>" class="">
+<html lang="<?php echo $this->language;
+?>" dir="<?php echo $this->direction; ?>" class="">
 
-    <head>
+	<head>
 		<?php include JPATH_THEMES . '/' . $this->template . '/includes/head.php'; ?>
-    <jdoc:include type="head" />
+	<jdoc:include type="head" />
 </head>
 
 <body class="<?php echo $pageclass; ?> sb-<?php echo $view; ?>" role="document">
@@ -68,10 +47,16 @@ if ($user->guest == 0) {
 		}
 		?>
 		<?php
-		if ($this->countModules('sidebar-a + sidebar-b') || $hidecomponent == 1) {
+		// Считаем позиции вo внутренних секциях
+		$inner_section_count = 0;
+		foreach ($sb_inner_sections_array as $sb_inner_sections_item) {
+			if ($this->countModules($sb_top_sections_item) || (isset($sections[$sb_top_sections_item]) && $sections[$sb_top_sections_item]['isExist'] > 0)) {
+				$inner_section_count += 1;
+			}
+		}
+		if ($inner_section_count > 0 || $hidecomponent == 1) {
 			?>
 			<section id="sb-main" <?php echo $addclasses_main . $addattr_main; ?>>
-
 				<?php
 				$out = '';
 				if (isset($container_main) && $container_main !== '0') {
@@ -86,31 +71,54 @@ if ($user->guest == 0) {
 							$out .= ' uk-container-' . $container_width_main;
 							break;
 					}
-					$out .= '">';
+					$out .= $addclasses_container_main;
+					$out .= '"';
+					$out .= $addattr_container_main;
+					$out .= '>';
 				}
 				echo $out;
-				if ($sb1_show == 1 && $this->countModules('sidebar-a') && $sb1_position == '1'):
+				if ($sb1_show == 1 && ($this->countModules('sb-sidebar-a') || (isset($sections['sb-sidebar-a']) && $sections['sb-sidebar-a']['isExist'] > 0))) {
 					$sb1_real_width = $sb1_width;
-					?>
-					<aside id="sb-sidebar-a" class="sidebar-a uk-width-medium-<?php echo $fraction($sb1_width); ?>" role="complementary">
-						<jdoc:include type="modules" name="sidebar-a" style=""/>
-					</aside>
-				<?php endif; ?>
-
-				<?php
-				if ($sb2_show == 1 && $this->countModules('sidebar-b') && $sb2_position == '1'):
+					if ($sb1_position == '1') {
+						?>
+						<aside id="sb-sidebar-a" class="sidebar-a uk-width-<?php echo $fraction($sb1_width); ?>@m" role="complementary">
+							<jdoc:include type="modules" name="sidebar-a" style=""/>
+							<?php
+//						JBDump($sections['sb-sidebar-a'], 0);
+							foreach ($sections['sb-sidebar-a'] as $sb_sidebar_a_position) {
+								if ($this->countModules($sb_sidebar_a_position['pos-name'])) {
+									echo _buildPosition($this, $sb_sidebar_a_position['pos-name'], $tplparams, $sections);
+								}
+							}
+							?>
+						</aside>
+						<?php
+					}
+				}
+				if ($sb2_show == 1 && ($this->countModules('sb-sidebar-b') || (isset($sections['sb-sidebar-b']) && $sections['sb-sidebar-b']['isExist'] > 0))) {
 					$sb2_real_width = $sb2_width;
-					?>
-					<aside id="sb-sidebar-b" class="sidebar-b uk-width-medium-<?php echo $fraction($sb2_width); ?>" role="complementary">
-						<jdoc:include type="modules" name="sidebar-b" style=""/>
-					</aside>
-				<?php endif; ?>
-
+					if ($sb2_position == '1') {
+						?>
+						<aside id="sb-sidebar-b" class="sidebar-b uk-width-<?php echo $fraction($sb1_width); ?>@m" role="complementary">
+							<jdoc:include type="modules" name="sidebar-b" style=""/>
+							<?php
+							foreach ($sections['sb-sidebar-b'] as $sb_sidebar_b_position) {
+								if ($this->countModules($sb_sidebar_a_position['pos-name'])) {
+									echo _buildPosition($this, $sb_sidebar_a_position['pos-name'], $tplparams, $sections);
+								}
+							}
+							?>
+						</aside>
+						<?php
+					}
+				}
+				?>
 				<?php
 				if ($hidecomponent == 1) {
-					$content_width		 = $fraction(60 - $sb2_real_width - $sb2_real_width);
+					$content_width		 = $fraction(60 - $sb1_real_width - $sb2_real_width);
+//					JBDump(60 - $sb1_width - $sb2_width, 0);
 					$content_width_array = explode('-', $content_width);
-					if ($content_width_array[1] > 10) {
+					if ($content_width_array[1] > 6) {
 						echo '<div class = "uk-width-1-1"><div class = "uk-alert uk-alert-warning"><i class = "uk-icon-exclamation-triangle uk-icon-small"></i> Sorry, content width class (uk-width-medium-' . $content_width . ') is not supported. Please change sidebar width to show correct grid.</div></div>';
 					} else {
 						?>
@@ -129,21 +137,38 @@ if ($user->guest == 0) {
 						<?php
 					}
 				}
-				?>
-
-
-				<?php if ($sb1_show == 1 && $this->countModules('sidebar-a') && $sb1_position == '0'): ?>
-					<aside id="sidebar-a" class="sidebar-a uk-width-medium-<?php echo $fraction($sb1_width); ?>" role="complementary">
+				if ($sb1_show == 1 && ($this->countModules('sb-sidebar-a') || (isset($sections['sb-sidebar-a']) && $sections['sb-sidebar-a']['isExist'] > 0)) && $sb1_position == '0') {
+					$sb1_real_width = $sb1_width;
+					?>
+					<aside id="sb-sidebar-a" class="sidebar-a uk-width-<?php echo $fraction($sb1_width); ?>@m" role="complementary">
 						<jdoc:include type="modules" name="sidebar-a" style=""/>
+						<?php
+//						JBDump($sections['sb-sidebar-a'], 0);
+						foreach ($sections['sb-sidebar-a'] as $sb_sidebar_a_position) {
+							if ($this->countModules($sb_sidebar_a_position['pos-name'])) {
+								echo _buildPosition($this, $sb_sidebar_a_position['pos-name'], $tplparams, $sections);
+							}
+						}
+						?>
 					</aside>
-				<?php endif; ?>
-
-				<?php if ($sb2_show == 1 && $this->countModules('sidebar-b') && $sb2_position == '0'): ?>
-					<aside id="sidebar-b" class="sidebar-b uk-width-medium-<?php echo $fraction($sb2_width); ?>" role="complementary">
+					<?php
+				}
+				if ($sb2_show == 1 && ($this->countModules('sb-sidebar-b') || (isset($sections['sb-sidebar-b']) && $sections['sb-sidebar-b']['isExist'] > 0)) && $sb2_position == '0') {
+					$sb2_real_width = $sb2_width;
+					?>
+					<aside id="sb-sidebar-b" class="sidebar-b uk-width-<?php echo $fraction($sb1_width); ?>@m" role="complementary">
 						<jdoc:include type="modules" name="sidebar-b" style=""/>
+						<?php
+//						JBDump($sections['sb-sidebar-a'], 0);
+						foreach ($sections['sb-sidebar-b'] as $sb_sidebar_b_position) {
+							if ($this->countModules($sb_sidebar_a_position['pos-name'])) {
+								echo _buildPosition($this, $sb_sidebar_a_position['pos-name'], $tplparams, $sections);
+							}
+						}
+						?>
 					</aside>
-				<?php endif; ?>
-				<?php
+					<?php
+				}
 				if (isset($tplparams['container_main']) && $tplparams['container_main'] !== '0') {
 					echo '</div>';
 				}
@@ -170,8 +195,10 @@ if ($user->guest == 0) {
 			}
 		}
 		?>
-
-        <jdoc:include type="modules" name="sb-debug" />
+		<?php
+		include JPATH_THEMES . '/' . $this->template . '/includes/footer.php';
+		?>
+		<jdoc:include type="modules" name="sb-debug" />
 
 		<?php
 		include JPATH_THEMES . '/' . $this->template . '/includes/analytics.php';

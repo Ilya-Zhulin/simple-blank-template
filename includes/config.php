@@ -2,7 +2,7 @@
 
 // no direct access
 defined('_JEXEC') or die;
-include_once JPATH_ROOT . '/jbdump/init.php';
+//include_once JPATH_ROOT . '/jbdump/init.php';
 /*
  * Если требуется вставить свою секцию в файл,
  * добавте имя позиции в этот массив.
@@ -12,23 +12,22 @@ include_once JPATH_ROOT . '/jbdump/init.php';
  */
 $sb_top_sections_array		 = ['sb-top-a', 'sb-top-b', 'sb-top-c'];
 $sb_bottom_sections_array	 = ['sb-bottom-a', 'sb-bottom-b', 'sb-bottom-c'];
-$sb_inner_sections_array	 = ['sb-main-top', 'sb-main-bottom'];
+$sb_inner_sections_array	 = ['sb-main-top', 'sb-main-bottom', 'sb-sidebar-a', 'sb-sidebar-b'];
 $sb_offcanvas_array			 = ['sb-off-canvas-a', 'sb-off-canvas-b'];
-
 // Variables
-$app			 = JFactory::getApplication();
-$doc			 = JFactory::getDocument();
-$user			 = JFactory::getUser();
-$view			 = JRequest::getString('view');
-$this->language	 = $doc->language;
-$this->direction = $doc->direction;
-$headdata		 = $doc->getHeadData();
-$menu			 = $app->getMenu();
-$active			 = $app->getMenu()->getActive();
-$params			 = $app->getParams();
-$pageclass		 = $params->get('pageclass_sfx');
-$tplpath		 = $this->baseurl . '/templates/' . $this->template;
-$tplparams		 = $this->params->toArray();
+$app						 = JFactory::getApplication();
+$doc						 = JFactory::getDocument();
+$user						 = JFactory::getUser();
+$view						 = JRequest::getString('view');
+$this->language				 = $doc->language;
+$this->direction			 = $doc->direction;
+$headdata					 = $doc->getHeadData();
+$menu						 = $app->getMenu();
+$active						 = $app->getMenu()->getActive();
+$params						 = $app->getParams();
+$pageclass					 = $params->get('pageclass_sfx');
+$tplpath					 = $this->baseurl . '/templates/' . $this->template;
+$tplparams					 = $this->params->toArray();
 
 // Parameters
 $hidecomponent		 = $this->params->get('hidecomponent', 0);
@@ -48,14 +47,16 @@ $container_main					 = $tplparams['container_main'];
 $container_width_main			 = $tplparams['container_width_main'];
 $addclasses_main				 = (strlen($tplparams['addclasses_main']) > 0) ? ' class="' . $tplparams['addclasses_main'] . '"' : '';
 $addattr_main					 = (strlen($tplparams['addattr_main']) > 0) ? ' ' . $tplparams['addattr_main'] : '';
+$addattr_container_main			 = (strlen($tplparams['addattr_container_main']) > 0) ? ' ' . $tplparams['addattr_container_main'] : '';
+$addclasses_container_main		 = (strlen($tplparams['addclasses_container_main']) > 0) ? ' ' . $tplparams['addclasses_container_main'] : '';
 $sections						 = [];
 $sections['sb-main']['isExist']	 = 1;
 $positions						 = $tplparams['positions-location'];
 foreach ($positions as $posid => $position) {
-	$sections[$position['pos-section']][]			 = $position;
-	$sections[$position['pos-section']]['isExist']	 = (isset($sections[$position['pos-section']]['isExist'])) ? $sections[$position['pos-section']]['isExist'] : 0;
+	$sections[strtolower($position['pos-section'])][]	 = $position;
+	$sections[$position['pos-section']]['isExist']		 = (isset($sections[$position['pos-section']]['isExist'])) ? $sections[$position['pos-section']]['isExist'] : 0;
 	if ((strlen($position['pos-name']) > 0 && $this->countModules($position['pos-name']) > 0) || (strlen($position['pos-name']) > 0 && $this->countModules($position['pos-name'] . '-left')) || (strlen($position['pos-name']) > 0 && $this->countModules($position['pos-name'] . '-right')) || (strlen($position['pos-name']) > 0 && $this->countModules($position['pos-name'] . '-center'))) {
-		$sections[$position['pos-section']]['isExist'] = 1;
+		$sections[strtolower($position['pos-section'])]['isExist'] = 1;
 	}
 }
 //layouts
@@ -74,9 +75,8 @@ $sb1_position	 = $tplparams['sb1_position'];
 $sb2_position	 = $tplparams['sb2_position'];
 $sb1_width		 = ($sb1_show) ? $tplparams['sb1_width'] : 0;
 $sb2_width		 = ($sb2_show) ? $tplparams['sb2_width'] : 0;
-$sb1_real_width	 = 0;
-$sb2_real_width	 = 0;
-
+$sb1_real_width	 = 0; // Учитывает ширину, только, если сайдбар заполнен
+$sb2_real_width	 = 0; // Учитывает ширину, только, если сайдбар заполнен
 // Off-canvases
 $offcanvas1_show		 = $tplparams['offcanvas1_show'];
 $offcanvas1_position	 = $tplparams['offcanvas1_position'];
@@ -124,7 +124,7 @@ if ($googlefont == 1) {
 $doc->addStyleSheet($tplpath . '/css/codemirror.css');
 $doc->addStyleSheet($tplpath . '/js/flatpickr/flatpickr.min.css');
 $doc->addStyleSheet($tplpath . '/js/flatpickr/ie.css');
-
+//$doc->addStyleSheet($tplpath . '/js/select/css/cs-skin-elastic.css');
 // Add JavaScripts
 if ($lazysizes == 1) {
 	$doc->addScript($tplpath . '/js/lazysizes.js');
@@ -137,6 +137,8 @@ $doc->addScript($tplpath . '/js/marked.js');
 $doc->addScript($tplpath . '/js/theme.js');
 $doc->addScript($tplpath . '/js/flatpickr/flatpickr.min.js');
 $doc->addScript($tplpath . '/js/flatpickr/ru.js');
+$doc->addScript($tplpath . '/js/select/js/classie.js');
+$doc->addScript($tplpath . '/js/select/js/selectFx.js');
 $doc->addScript('//aishek.github.io/jquery-animateNumber/javascripts/jquery.animateNumber.js');
 
 
@@ -153,6 +155,7 @@ if ($less_acompile == 1) {
 } else {
 	// CSS including
 	$css_path	 = JPATH_THEMES . '/' . $this->template . '/css/';
+	$excluded	 = explode(',', $tplparams['css_exclude_files']);
 	$template	 = 0;
 	if (is_dir($css_path)) {
 		if ($dh = opendir($css_path)) {
@@ -160,7 +163,7 @@ if ($less_acompile == 1) {
 				if (filetype($css_path . $file) === 'file') {
 					$ext = (explode('.', $file));
 					$ext = end($ext);
-					if ($ext === 'css' && $file !== 'template.css') {
+					if ($ext === 'css' && $file !== 'template.css' && !in_array($file, $excluded)) {
 						$doc->addStyleSheet($tplpath . '/css/' . $file);
 					} elseif ($file == 'template.css') {
 						$template = 1;
@@ -173,7 +176,7 @@ if ($less_acompile == 1) {
 								if (filetype($css_path . $file . '/' . $file1) === 'file') {
 									$ext1	 = (explode('.', $file1));
 									$ext1	 = end($ext1);
-									if ($ext1 === 'css') {
+									if ($ext1 === 'css' && !in_array($file1, $excluded)) {
 										$doc->addStyleSheet($tplpath . '/css/' . $file . '/' . $file1);
 									}
 								}
@@ -191,6 +194,7 @@ if ($less_acompile == 1) {
 }
 
 function _buildPosition($template, $posName, $params, $sections) {
+	$posName		 = strtolower($posName);
 	$suffix			 = str_replace('sb-', '', $posName);
 	$section_class	 = isset($params['addclasses_' . $suffix]) ? ' ' . $params['addclasses_' . $suffix] : '';
 	$section_class	 .= isset($params['color_' . $suffix]) ? ' uk-section-' . $params['color_' . $suffix] : '';
@@ -226,6 +230,7 @@ function _buildPosition($template, $posName, $params, $sections) {
 	if (isset($sections[$posName]) || isset($sections[$posName . '-left']) || isset($sections[$posName . '-right']) || isset($sections[$posName . '-center'])) {
 		foreach ($sections[$posName] as $section_item) {
 			if (is_array($section_item)) {
+				$pos_name = strtolower($section_item["pos-name"]);
 				if ($template->countModules($section_item["pos-name"]) ||
 						(
 						(isset($section_item['pos-navbar']) && ($template->countModules($section_item["pos-name"] . '-left') ||
@@ -234,14 +239,14 @@ function _buildPosition($template, $posName, $params, $sections) {
 						)
 				) {
 					if (isset($section_item['pos-sticky'])) {
-						$out .= '<div id="' . $section_item['pos-name'] . '-sticky" uk-sticky="' . $section_item['pos-sticky-params'] . '">';
+						$out .= '<div id="' . $pos_name . '-sticky" uk-sticky="' . $section_item['pos-sticky-params'] . '">';
 					}
 					if (isset($section_item['pos-dropdown']) && $section_item['pos-dropdown'] > 0) {
 						$out .= '<div id="' . $section_item['pos-name'] . '-dropdown" uk-dropdown="' . $section_item['pos-dropdown-params'] . '" class="' . $section_item['pos-dropdown-addclasses'] . '">';
 					}
 					if (isset($section_item['pos-navbar']) || isset($section_item['pos-grid'])) {
 						if (isset($section_item['pos-navbar'])) {
-							$out .= '<nav class="uk-navbar-container';
+							$out .= '<nav id="' . $pos_name . '-navbar" class="uk-navbar-container';
 							if (isset($section_item['pos-navbar-transparent'])) {
 								$out .= ' uk-navbar-transparent';
 							}
@@ -278,7 +283,7 @@ function _buildPosition($template, $posName, $params, $sections) {
 							$out .= '</div>';
 						}
 					}
-					$out .= '<jdoc:include type="modules" name="' . $section_item["pos-name"] . '" />';
+					$out .= '<jdoc:include type="modules" name="' . $pos_name . '" />';
 					if (isset($section_item['pos-grid']) && $section_item['pos-grid'] == '1') {
 						$out .= '</div>';
 					}

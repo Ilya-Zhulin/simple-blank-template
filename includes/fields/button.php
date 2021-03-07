@@ -33,8 +33,8 @@ class JFormFieldButton extends JFormField {
 		$class	 = $this->getAttribute('class');
 		$id		 = $this->id;
 		$onclick = ($this->onclick) ? ' onclick="' . $this->onclick . '"' : '';
-		$title	 = ' title="' . JText::_(TPL_SIMPLE_BLANK_LESS_COMPILE_BUTTON_DESCRIPTION) . '"';
-		$html	 = '<button type="button" id="' . $id . '" class="' . $class . '"' . $onclick . $title . ' data-extension-id="' . $ext_id . '">' . JText::_(TPL_SIMPLE_BLANK_LESS_COMPILE_BUTTON_CAPTION) . '</button>';
+		$title	 = ' title="' . JText::_('TPL_SIMPLE_BLANK_LESS_COMPILE_BUTTON_DESCRIPTION') . '"';
+		$html	 = '<button type="button" id="' . $id . '" class="' . $class . '"' . $onclick . $title . ' data-extension-id="' . $ext_id . '">' . JText::_('TPL_SIMPLE_BLANK_LESS_COMPILE_BUTTON_CAPTION') . '</button>';
 		return $html;
 	}
 
