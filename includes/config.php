@@ -39,57 +39,44 @@ $yandexid			 = $this->params->get('yandexid');
 $googleverification	 = $this->params->get('googleverification');
 $yandexverification	 = $this->params->get('yandexverification');
 $bingverification	 = $this->params->get('bingverification');
-$wrappersenabled	 = $tplparams['wrappersenable'];
-$wrappersenabled	 = $tplparams['wrappersenable'];
+$wrappersenable		 = $this->params->get('wrappersenable');
 
 // Sections
-$container_main					 = $tplparams['container_main'];
-$container_width_main			 = $tplparams['container_width_main'];
-$addclasses_main				 = (strlen($tplparams['addclasses_main']) > 0) ? ' class="' . $tplparams['addclasses_main'] . '"' : '';
-$addattr_main					 = (strlen($tplparams['addattr_main']) > 0) ? ' ' . $tplparams['addattr_main'] : '';
-$addattr_container_main			 = (strlen($tplparams['addattr_container_main']) > 0) ? ' ' . $tplparams['addattr_container_main'] : '';
-$addclasses_container_main		 = (strlen($tplparams['addclasses_container_main']) > 0) ? ' ' . $tplparams['addclasses_container_main'] : '';
+$container_main					 = $this->params->get('container_main');
+$container_width_main			 = $this->params->get('container_width_main');
+$addclasses_main				 = $this->params->get('addclasses_main');
+$addclasses_main				 = (strlen($addclasses_main) > 0) ? ' class="' . $addclasses_main . '"' : '';
+$addattr_main					 = $this->params->get('addattr_main');
+$addattr_main					 = (strlen($addattr_main) > 0) ? ' ' . $addattr_main : '';
+$addattr_container_main			 = $this->params->get('addattr_container_main');
+$addattr_container_main			 = (strlen($addattr_container_main) > 0) ? ' ' . $addattr_container_main : '';
+$addclasses_container_main		 = $this->params->get('addclasses_container_main');
+$addclasses_container_main		 = (strlen($addclasses_container_main) > 0) ? ' ' . $addclasses_container_main : '';
 $sections						 = [];
 $sections['sb-main']['isExist']	 = 1;
-$positions						 = $tplparams['positions-location'];
-foreach ($positions as $posid => $position) {
-	$sections[strtolower($position['pos-section'])][]	 = $position;
-	$sections[$position['pos-section']]['isExist']		 = (isset($sections[$position['pos-section']]['isExist'])) ? $sections[$position['pos-section']]['isExist'] : 0;
-	if ((strlen($position['pos-name']) > 0 && $this->countModules($position['pos-name']) > 0) || (strlen($position['pos-name']) > 0 && $this->countModules($position['pos-name'] . '-left')) || (strlen($position['pos-name']) > 0 && $this->countModules($position['pos-name'] . '-right')) || (strlen($position['pos-name']) > 0 && $this->countModules($position['pos-name'] . '-center'))) {
-		$sections[strtolower($position['pos-section'])]['isExist'] = 1;
-	}
-}
-//layouts
-//$layouts_top_a = $this->params->get('layouts_top-a');
-//$layouts_top_b = $this->params->get('layouts_top-b');
-//$layouts_top_c = $this->params->get('layouts_top-c');
-//$layouts_bottom_a = $this->params->get('layouts_bottom-a');
-//$layouts_bottom_b = $this->params->get('layouts_bottom-b');
-//$layouts_bottom_c = $this->params->get('layouts_bottom-c');
-//$layouts_main_top = $this->params->get('layouts_main-top');
-//$layouts_main_bottom = $this->params->get('layouts_main-bottom');
+$positions						 = $this->params->get('positions-location');
 //Sidebars
-$sb1_show		 = $tplparams['sb1_show'];
-$sb2_show		 = $tplparams['sb2_show'];
-$sb1_position	 = $tplparams['sb1_position'];
-$sb2_position	 = $tplparams['sb2_position'];
-$sb1_width		 = ($sb1_show) ? $tplparams['sb1_width'] : 0;
-$sb2_width		 = ($sb2_show) ? $tplparams['sb2_width'] : 0;
-$sb1_real_width	 = 0; // Учитывает ширину, только, если сайдбар заполнен
-$sb2_real_width	 = 0; // Учитывает ширину, только, если сайдбар заполнен
+$sb1_show						 = $this->params->get('sb1_show');
+$sb2_show						 = $this->params->get('sb2_show');
+$sb1_position					 = $this->params->get('sb1_position');
+$sb2_position					 = $this->params->get('sb2_position');
+$sb1_width						 = ($sb1_show) ? $this->params->get('sb1_width') : 0;
+$sb2_width						 = ($sb2_show) ? $this->params->get('sb2_width') : 0;
+$sb1_real_width					 = 0; // Учитывает ширину, только, если сайдбар заполнен
+$sb2_real_width					 = 0; // Учитывает ширину, только, если сайдбар заполнен
 // Off-canvases
-$offcanvas1_show		 = $tplparams['offcanvas1_show'];
-$offcanvas1_position	 = $tplparams['offcanvas1_position'];
-$offcanvas1_animation	 = $tplparams['offcanvas1_animation'];
-$offcanvas1_position	 = $tplparams['offcanvas2_position'];
-$offcanvas1_flip		 = ($offcanvas1_position == '1') ? 'false' : 'true';
-$offcanvas1_overlay		 = $tplparams['offcanvas1_overlay'];
-$offcanvas2_show		 = $tplparams['offcanvas2_show'];
-$offcanvas2_position	 = $tplparams['offcanvas2_position'];
-$offcanvas2_animation	 = $tplparams['offcanvas2_animation'];
-$offcanvas2_position	 = $tplparams['offcanvas2_position'];
-$offcanvas2_flip		 = ($offcanvas2_position == '1') ? 'false' : 'true';
-$offcanvas2_overlay		 = $tplparams['offcanvas2_overlay'];
+$offcanvas1_show				 = $this->params->get('offcanvas1_show');
+$offcanvas1_position			 = $this->params->get('offcanvas1_position');
+$offcanvas1_animation			 = $this->params->get('offcanvas1_animation');
+$offcanvas1_position			 = $this->params->get('offcanvas2_position');
+$offcanvas1_flip				 = ($offcanvas1_position == '1') ? 'false' : 'true';
+$offcanvas1_overlay				 = $this->params->get('offcanvas1_overlay');
+$offcanvas2_show				 = $this->params->get('offcanvas2_show');
+$offcanvas2_position			 = $this->params->get('offcanvas2_position');
+$offcanvas2_animation			 = $this->params->get('offcanvas2_animation');
+$offcanvas2_position			 = $this->params->get('offcanvas2_position');
+$offcanvas2_flip				 = ($offcanvas2_position == '1') ? 'false' : 'true';
+$offcanvas2_overlay				 = $this->params->get('offcanvas2_overlay');
 
 //Less
 $less_acompile	 = $this->params->get('less_acompile', 0);
@@ -100,6 +87,18 @@ if ($disable_bs == '1') {
 }
 // Remove generator tag
 $this->setGenerator(null);
+if (is_array($positions) && count($positions)) {
+
+	foreach ($positions as $posid => $position) {
+		$sections[strtolower($position['pos-section'])][]	 = $position;
+		$sections[$position['pos-section']]['isExist']		 = (isset($sections[$position['pos-section']]['isExist'])) ? $sections[$position['pos-section']]['isExist'] : 0;
+		if ((strlen($position['pos-name']) > 0 && $this->countModules($position['pos-name']) > 0) || (strlen($position['pos-name']) > 0 && $this->countModules($position['pos-name'] . '-left')) || (strlen($position['pos-name']) > 0 && $this->countModules($position['pos-name'] . '-right')) || (strlen($position['pos-name']) > 0 && $this->countModules($position['pos-name'] . '-center'))) {
+			$sections[strtolower($position['pos-section'])]['isExist'] = 1;
+		}
+	}
+}
+
+
 // Disable mootools
 // unset($doc->_scripts[$this->baseurl .'/media/system/js/mootools-core.js']);
 // unset($doc->_scripts[$this->baseurl .'/media/system/js/mootools-more.js']);
@@ -155,7 +154,7 @@ if ($less_acompile == 1) {
 } else {
 	// CSS including
 	$css_path	 = JPATH_THEMES . '/' . $this->template . '/css/';
-	$excluded	 = explode(',', $tplparams['css_exclude_files']);
+	$excluded	 = explode(',', $this->params->get('css_exclude_files'));
 	$template	 = 0;
 	if (is_dir($css_path)) {
 		if ($dh = opendir($css_path)) {

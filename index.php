@@ -28,7 +28,7 @@ if (isset($_POST['page_title'])) {
 
 <body class="<?php echo $pageclass; ?> sb-<?php echo $view; ?>" role="document">
 	<?php
-	if ($wrappersenabled > 0) {
+	if (isset($wrappersenabled) && $wrappersenabled > 0) {
 		for ($i = 1; $i <= $wrappersenabled; $i++) {
 			?>
 			<div id="sb-content-wrapper-<?php echo $i; ?>" class="sb-content-wrapper-<?php echo $i; ?>">
@@ -199,7 +199,7 @@ if (isset($_POST['page_title'])) {
 		include JPATH_THEMES . '/' . $this->template . '/includes/analytics.php';
 		?>
 		<?php
-		if ($wrappersenabled > 0) {
+		if (isset($wrappersenabled) && $wrappersenabled > 0) {
 			for ($i = 1; $i < $wrappersenabled; $i++) {
 				?>
 			</div>
