@@ -64,56 +64,56 @@
                 <field type="spacer" label="CSS" description="Настройки CSS" />
                 <field name="css_exclude_files" type="input" label="TPL_SIMPLE_BLANK_CSS_EXCLUDE_FILES" description="Файлы в папке /css шаблона, которые не нужно подключать автоматически" default="" />
             </fieldset>
-            <fieldset name="sections" label="Секции">
-                <field type="spacer" label="TOP-A" description="Настройки секции TOP-A" />
-                <field name="color_top-a" type="radio" class="btn-group btn-group-yesno" default="default" label="Цвет" description="Цвет фона секции">
+            <fieldset name="sections" label="TPL_SIMPLE_BLANK_SECTION_LABEL">
+                <field type="spacer" label="TOP-A" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_TOP_A" />
+                <field name="color_top-a" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
                     <option value="muted">Muted</option>
                     <option value="secondary">Secondary</option>
                     <option value="primary">Primary</option>
                     <option value="default">Default</option>
                 </field>
-                <field name="size_top-a" type="list" class="btn-group btn-group-yesno" default="default" label="Отступ" description="Размер внутреннего отступа секции">
-                    <option value="0">Нет</option>
-                    <option value="xsmall">Мелкий</option>
-                    <option value="small">Маленький</option>
-                    <option value="default">Обычный</option>
-                    <option value="large">Большой</option>
-                    <option value="xlarge">Огромный</option>
+                <field name="size_top-a" type="list" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_PADDING_LABEL" description="TPL_SIMPLE_BLANK_PADDING_DESCRIPTION">
+                    <option value="0">JNONE</option>
+                    <option value="xsmall">XSmall</option>
+                    <option value="small">Small</option>
+                    <option value="default">Default</option>
+                    <option value="large">Large</option>
+                    <option value="xlarge">XLarge</option>
                 </field>
-                <field name="overlap_top-a" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="">
+                <field name="overlap_top-a" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="Some UIkit themes use richer styles, including textured backgrounds and borders. In this case, you can add the .uk-section-overlap class, to apply a border image and a negative offset to the following section. Note that this only works in styles that implement the feature, if there are subsequent sections.">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
-                <field name="container_top-a" type="radio" class="btn-group btn-group-yesno" default="0" label="Контейнер" description="Определить контейнер в секции: положение, ширину">
-                    <option value="2">Слева</option>
-                    <option value="1">Центр</option>
-                    <option value="0">Нет</option>
+                <field name="container_top-a" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_CONTAINER_LABEL" description="TPL_SIMPLE_BLANK_SECTION_CONTAINER_DESCRIPTION">
+                    <option value="2">TPL_SIMPLE_BLANK_LEFT</option>
+                    <option value="1">TPL_SIMPLE_BLANK_CENTER</option>
+                    <option value="0">JNONE</option>
                 </field>
-                <field name="container_width_top-a" type="list"  default="5" label="" description="">
+                <field name="container_width_top-a" type="list"  default="max" label="" description="">
                     <option value="max">Max</option>
                     <option value="expand">Expand</option>
                     <option value="large">Large</option>
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
                 </field>
-                <field name="addclasses_top-a" type="input" label="Дополнительные классы" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="uk-padding-remove-top" />
-                <field name="addattr_top-a" type="input" label="Дополнительные атрибуты" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
-                <field type="spacer" label="TOP-B" description="Настройки секции TOP-B" />
-                <field name="color_top-b" type="radio" class="btn-group btn-group-yesno" default="default" label="Цвет" description="Цвет фона секции">
+                <field name="addclasses_top-a" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default="uk-padding-remove-top" />
+                <field name="addattr_top-a" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default="" />
+                <field type="spacer" label="TOP-B" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_TOP_B" />
+                <field name="color_top-b" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
                     <option value="muted">Muted</option>
                     <option value="secondary">Secondary</option>
                     <option value="primary">Primary</option>
                     <option value="default">Default</option>
                 </field>
-                <field name="size_top-b" type="list" class="btn-group btn-group-yesno" default="default" label="Отступ" description="Размер внутреннего отступа секции">
-                    <option value="0">Нет</option>
-                    <option value="xsmall">Мелкий</option>
-                    <option value="small">Маленький</option>
-                    <option value="default">Обычный</option>
-                    <option value="large">Большой</option>
-                    <option value="xlarge">Огромный</option>
+                <field name="size_top-b" type="list" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_PADDING_LABEL" description="TPL_SIMPLE_BLANK_PADDING_DESCRIPTION">
+                    <option value="0">JNONE</option>
+                    <option value="xsmall">XSmall</option>
+                    <option value="small">Small</option>
+                    <option value="default">Default</option>
+                    <option value="large">Large</option>
+                    <option value="xlarge">XLarge</option>
                 </field>
-                <field name="overlap_top-b" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="">
+                <field name="overlap_top-b" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="Some UIkit themes use richer styles, including textured backgrounds and borders. In this case, you can add the .uk-section-overlap class, to apply a border image and a negative offset to the following section. Note that this only works in styles that implement the feature, if there are subsequent sections.">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
@@ -121,10 +121,10 @@
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="container_top-b" type="radio" class="btn-group btn-group-yesno" default="1" label="Контейнер" description="Определить контейнер в секции: положение, ширину">
+                <field name="container_top-b" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_CONTAINER_LABEL" description="TPL_SIMPLE_BLANK_SECTION_CONTAINER_DESCRIPTION">
                     <option value="2">Полный</option>
-                    <option value="1">Центр</option>
-                    <option value="0">Нет</option>
+                    <option value="1">TPL_SIMPLE_BLANK_CENTER</option>
+                    <option value="0">JNONE</option>
                 </field>
                 <field name="container_width_top-b" type="list"  default="5" label="" description="">
                     <option value="max">Max</option>
@@ -133,22 +133,22 @@
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
                 </field>
-                <field name="addclasses_top-b" type="input" label="Дополнительные классы" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
-                <field name="addattr_top-и" type="input" label="Дополнительные атрибуты" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
-                <field type="spacer" label="TOP-C" description="Настройки секции TOP-C" />
-                <field name="color_top-c" type="radio" class="btn-group btn-group-yesno" default="default" label="Цвет" description="Цвет фона секции">
+                <field name="addclasses_top-b" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default="" />
+                <field name="addattr_top-и" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default="" />
+                <field type="spacer" label="TOP-C" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_TOP_C" />
+                <field name="color_top-c" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
                     <option value="muted">Muted</option>
                     <option value="secondary">Secondary</option>
                     <option value="primary">Primary</option>
                     <option value="default">Default</option>
                 </field>
-                <field name="size_top-c" type="list" class="btn-group btn-group-yesno" default="default" label="Отступ" description="Размер внутреннего отступа секции">
-                    <option value="0">Нет</option>
-                    <option value="xsmall">Мелкий</option>
-                    <option value="small">Маленький</option>
-                    <option value="default">Обычный</option>
-                    <option value="large">Большой</option>
-                    <option value="xlarge">Огромный</option>
+                <field name="size_top-c" type="list" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_PADDING_LABEL" description="TPL_SIMPLE_BLANK_PADDING_DESCRIPTION">
+                    <option value="0">JNONE</option>
+                    <option value="xsmall">XSmall</option>
+                    <option value="small">Small</option>
+                    <option value="default">Default</option>
+                    <option value="large">Large</option>
+                    <option value="xlarge">XLarge</option>
                 </field>
                 <field name="overlap_top-c" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="">
                     <option value="1">JYES</option>
@@ -158,10 +158,10 @@
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="container_top-c" type="radio" class="btn-group btn-group-yesno" default="1" label="Контейнер" description="Определить контейнер в секции: положение, ширину">
+                <field name="container_top-c" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_CONTAINER_LABEL" description="TPL_SIMPLE_BLANK_SECTION_CONTAINER_DESCRIPTION">
                     <option value="2">Полный</option>
-                    <option value="1">Центр</option>
-                    <option value="0">Нет</option>
+                    <option value="1">TPL_SIMPLE_BLANK_CENTER</option>
+                    <option value="0">JNONE</option>
                 </field>
                 <field name="container_width_top-c" type="list"  default="5" label="" description="">
                     <option value="max">Max</option>
@@ -170,22 +170,22 @@
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
                 </field>
-                <field name="addclasses_top-c" type="input" label="Дополнительные классы" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
-                <field name="addattr_top-c" type="input" label="Дополнительные атрибуты" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
-                <field type="spacer" label="MAIN-TOP" description="Настройки секции MAIN-TOP" />
-                <field name="color_main-top" type="radio" class="btn-group btn-group-yesno" default="default" label="Цвет" description="Цвет фона секции">
+                <field name="addclasses_top-c" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default="" />
+                <field name="addattr_top-c" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default="" />
+                <field type="spacer" label="MAIN-TOP" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_MAIN_TOP" />
+                <field name="color_main-top" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
                     <option value="muted">Muted</option>
                     <option value="secondary">Secondary</option>
                     <option value="primary">Primary</option>
                     <option value="default">Default</option>
                 </field>
-                <field name="size_main-top" type="list" class="btn-group btn-group-yesno" default="default" label="Отступ" description="Размер внутреннего отступа секции">
-                    <option value="0">Нет</option>
-                    <option value="xsmall">Мелкий</option>
-                    <option value="small">Маленький</option>
-                    <option value="default">Обычный</option>
-                    <option value="large">Большой</option>
-                    <option value="xlarge">Огромный</option>
+                <field name="size_main-top" type="list" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_PADDING_LABEL" description="TPL_SIMPLE_BLANK_PADDING_DESCRIPTION">
+                    <option value="0">JNONE</option>
+                    <option value="xsmall">XSmall</option>
+                    <option value="small">Small</option>
+                    <option value="default">Default</option>
+                    <option value="large">Large</option>
+                    <option value="xlarge">XLarge</option>
                 </field>
                 <field name="overlap_main-top" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="">
                     <option value="1">JYES</option>
@@ -195,10 +195,10 @@
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="container_main-top" type="radio" class="btn-group btn-group-yesno" default="1" label="Контейнер" description="Определить контейнер в секции: положение, ширину">
+                <field name="container_main-top" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_CONTAINER_LABEL" description="TPL_SIMPLE_BLANK_SECTION_CONTAINER_DESCRIPTION">
                     <option value="2">Полный</option>
-                    <option value="1">Центр</option>
-                    <option value="0">Нет</option>
+                    <option value="1">TPL_SIMPLE_BLANK_CENTER</option>
+                    <option value="0">JNONE</option>
                 </field>
                 <field name="container_width_main-top" type="list"  default="5" label="" description="">
                     <option value="max">Max</option>
@@ -207,39 +207,48 @@
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
                 </field>
-                <field name="addclasses_main-top" type="input" label="Дополнительные классы" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
-                <field name="addattr_main-top" type="input" label="Дополнительные атрибуты" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
+                <field name="addclasses_main-top" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default="" />
+                <field name="addattr_main-top" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default="" />
                 <field type="spacer" label="MAIN CONTENT" description="Настройки блока с основным контентом" />
-                <field name="container_main" type="radio" class="btn-group btn-group-yesno" default="1" label="Контейнер" description="Определить контейнер в секции: положение, ширину">
+                <field name="container_main" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_CONTAINER_LABEL" description="TPL_SIMPLE_BLANK_SECTION_CONTAINER_DESCRIPTION">
                     <option value="2">Полный</option>
-                    <option value="1">Центр</option>
-                    <option value="0">Нет</option>
+                    <option value="1">TPL_SIMPLE_BLANK_CENTER</option>
+                    <option value="0">JNONE</option>
                 </field>
-                <field name="container_width_main" type="list"  default="5" label="" description="">
+                <field name="container_width_main" type="list"  default="max" label="" description="">
                     <option value="max">Max</option>
                     <option value="expand">Expand</option>
                     <option value="large">Large</option>
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
                 </field>
-                <field name="addclasses_main" type="input" label="Дополнительные классы" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
-                <field name="addattr_main" type="input" label="Дополнительные атрибуты" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
-                <field name="addclasses_container_main" type="input" label="Дополнительные классы для контейнера" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
-                <field name="addattr_container_main" type="input" label="Дополнительные атрибуты для контейнера" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
-                <field type="spacer" label="MAIN-BOTTOM" description="Настройки секции MAIN-BOTTOM" />
-                <field name="color_main-bottom" type="radio" class="btn-group btn-group-yesno" default="default" label="Цвет" description="Цвет фона секции">
+                <field name="addclasses_container_main" type="input" label="TPL_SIMPLE_BLANK_CONTAINER_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
+                <field name="addattr_container_main" type="input" label="TPL_SIMPLE_BLANK_CONTAINER_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
+                <field name="grid_main" type="list" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_GRID_LABEL" description="TPL_SIMPLE_BLANK_GRID_DESCRIPTION">
+                    <option value="4">Small</option>
+                    <option value="3">Medium</option>
+                    <option value="2">Large</option>
+                    <option value="1">Collapse</option>
+                    <option value="0">JNONE</option>
+                </field>
+                <field name="gridclasses_main" type="input" label="TPL_SIMPLE_BLANK_GRID_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_GRID_ADD_CLASSES_DESCRIPTION" default="" />
+                <field name="gridattrs_main" type="input" label="TPL_SIMPLE_BLANK_GRID_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_GRID_ADD_ATTRIBUTES_DESCRIPTION" default="" />
+                <field name="addclasses_main" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default="" />
+                <field name="addattr_main" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default="" />
+                <field type="spacer" label="MAIN-BOTTOM" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_MAIN_BOTTOM" />
+                <field name="color_main-bottom" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
                     <option value="muted">Muted</option>
                     <option value="secondary">Secondary</option>
                     <option value="primary">Primary</option>
                     <option value="default">Default</option>
                 </field>
-                <field name="size_main-bottom" type="list" class="btn-group btn-group-yesno" default="default" label="Отступ" description="Размер внутреннего отступа секции">
-                    <option value="0">Нет</option>
-                    <option value="xsmall">Мелкий</option>
-                    <option value="small">Маленький</option>
-                    <option value="default">Обычный</option>
-                    <option value="large">Большой</option>
-                    <option value="xlarge">Огромный</option>
+                <field name="size_main-bottom" type="list" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_PADDING_LABEL" description="TPL_SIMPLE_BLANK_PADDING_DESCRIPTION">
+                    <option value="0">JNONE</option>
+                    <option value="xsmall">XSmall</option>
+                    <option value="small">Small</option>
+                    <option value="default">Default</option>
+                    <option value="large">Large</option>
+                    <option value="xlarge">XLarge</option>
                 </field>
                 <field name="overlap_main-bottom" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="">
                     <option value="1">JYES</option>
@@ -249,10 +258,10 @@
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="container_main-bottom" type="radio" class="btn-group btn-group-yesno" default="1" label="Контейнер" description="Определить контейнер в секции: положение, ширину">
+                <field name="container_main-bottom" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_CONTAINER_LABEL" description="TPL_SIMPLE_BLANK_SECTION_CONTAINER_DESCRIPTION">
                     <option value="2">Полный</option>
-                    <option value="1">Центр</option>
-                    <option value="0">Нет</option>
+                    <option value="1">TPL_SIMPLE_BLANK_CENTER</option>
+                    <option value="0">JNONE</option>
                 </field>
                 <field name="container_width_main-bottom" type="list"  default="5" label="" description="">
                     <option value="max">Max</option>
@@ -261,22 +270,22 @@
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
                 </field>
-                <field name="addclasses_main-bottom" type="input" label="Дополнительные классы" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
-                <field name="addattr_main-bottom" type="input" label="Дополнительные атрибуты" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
-                <field type="spacer" label="BOTTOM-A" description="Настройки секции BOTTOM-A" />
-                <field name="color_bottom-a" type="radio" class="btn-group btn-group-yesno" default="default" label="Цвет" description="Цвет фона секции">
+                <field name="addclasses_main-bottom" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default="" />
+                <field name="addattr_main-bottom" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default="" />
+                <field type="spacer" label="BOTTOM-A" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_BOTTOM_A" />
+                <field name="color_bottom-a" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
                     <option value="muted">Muted</option>
                     <option value="secondary">Secondary</option>
                     <option value="primary">Primary</option>
                     <option value="default">Default</option>
                 </field>
-                <field name="size_bottom-a" type="list" class="btn-group btn-group-yesno" default="default" label="Отступ" description="Размер внутреннего отступа секции">
-                    <option value="0">Нет</option>
-                    <option value="xsmall">Мелкий</option>
-                    <option value="small">Маленький</option>
-                    <option value="default">Обычный</option>
-                    <option value="large">Большой</option>
-                    <option value="xlarge">Огромный</option>
+                <field name="size_bottom-a" type="list" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_PADDING_LABEL" description="TPL_SIMPLE_BLANK_PADDING_DESCRIPTION">
+                    <option value="0">JNONE</option>
+                    <option value="xsmall">XSmall</option>
+                    <option value="small">Small</option>
+                    <option value="default">Default</option>
+                    <option value="large">Large</option>
+                    <option value="xlarge">XLarge</option>
                 </field>
                 <field name="overlap_bottom-a" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="">
                     <option value="1">JYES</option>
@@ -288,8 +297,8 @@
                 </field>
                 <field name="container_bottom-a" type="radio" class="btn-group btn-group-yesno" default="1" label="" description="">
                     <option value="2">Полный</option>
-                    <option value="1">Центр</option>
-                    <option value="0">Нет</option>
+                    <option value="1">TPL_SIMPLE_BLANK_CENTER</option>
+                    <option value="0">JNONE</option>
                 </field>
                 <field name="container_width_bottom-a" type="list"  default="5" label="" description="">
                     <option value="max">Max</option>
@@ -298,22 +307,22 @@
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
                 </field>
-                <field name="addclasses_bottom-a" type="input" label="Дополнительные классы" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
-                <field name="addattr_bottom-a" type="input" label="Дополнительные атрибуты" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
-                <field type="spacer" label="BOTTOM-B" description="Настройки секции BOTTOM-B" />
-                <field name="color_bottom-b" type="radio" class="btn-group btn-group-yesno" default="default" label="Цвет" description="Цвет фона секции">
+                <field name="addclasses_bottom-a" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default="" />
+                <field name="addattr_bottom-a" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default="" />
+                <field type="spacer" label="BOTTOM-B" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_BOTTOM_B" />
+                <field name="color_bottom-b" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
                     <option value="muted">Muted</option>
                     <option value="secondary">Secondary</option>
                     <option value="primary">Primary</option>
                     <option value="default">Default</option>
                 </field>
-                <field name="size_bottom-b" type="list" class="btn-group btn-group-yesno" default="default" label="Отступ" description="Размер внутреннего отступа секции">
-                    <option value="0">Нет</option>
-                    <option value="xsmall">Мелкий</option>
-                    <option value="small">Маленький</option>
-                    <option value="default">Обычный</option>
-                    <option value="large">Большой</option>
-                    <option value="xlarge">Огромный</option>
+                <field name="size_bottom-b" type="list" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_PADDING_LABEL" description="TPL_SIMPLE_BLANK_PADDING_DESCRIPTION">
+                    <option value="0">JNONE</option>
+                    <option value="xsmall">XSmall</option>
+                    <option value="small">Small</option>
+                    <option value="default">Default</option>
+                    <option value="large">Large</option>
+                    <option value="xlarge">XLarge</option>
                 </field>
                 <field name="overlap_bottom-b" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="">
                     <option value="1">JYES</option>
@@ -323,10 +332,10 @@
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="container_bottom-b" type="radio" class="btn-group btn-group-yesno" default="1" label="Контейнер" description="Определить контейнер в секции: положение, ширину">
+                <field name="container_bottom-b" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_CONTAINER_LABEL" description="TPL_SIMPLE_BLANK_SECTION_CONTAINER_DESCRIPTION">
                     <option value="2">Полный</option>
-                    <option value="1">Центр</option>
-                    <option value="0">Нет</option>
+                    <option value="1">TPL_SIMPLE_BLANK_CENTER</option>
+                    <option value="0">JNONE</option>
                 </field>
                 <field name="container_width_bottom-b" type="list"  default="5" label="" description="">
                     <option value="max">Max</option>
@@ -335,22 +344,22 @@
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
                 </field>
-                <field name="addclasses_bottom-b" type="input" label="Дополнительные классы" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
-                <field name="addattr_bottom-b" type="input" label="Дополнительные атрибуты" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
-                <field type="spacer" label="BOTTOM-C" description="Настройки секции BOTTOM-C" />
-                <field name="color_bottom-c" type="radio" class="btn-group btn-group-yesno" default="default" label="Цвет" description="Цвет фона секции">
+                <field name="addclasses_bottom-b" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default="" />
+                <field name="addattr_bottom-b" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default="" />
+                <field type="spacer" label="BOTTOM-C" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_BOTTOM_С" />
+                <field name="color_bottom-c" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
                     <option value="muted">Muted</option>
                     <option value="secondary">Secondary</option>
                     <option value="primary">Primary</option>
                     <option value="default">Default</option>
                 </field>
-                <field name="size_bottom-c" type="list" class="btn-group btn-group-yesno" default="default" label="Отступ" description="Размер внутреннего отступа секции">
-                    <option value="0">Нет</option>
-                    <option value="xsmall">Мелкий</option>
-                    <option value="small">Маленький</option>
-                    <option value="default">Обычный</option>
-                    <option value="large">Большой</option>
-                    <option value="xlarge">Огромный</option>
+                <field name="size_bottom-c" type="list" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_PADDING_LABEL" description="TPL_SIMPLE_BLANK_PADDING_DESCRIPTION">
+                    <option value="0">JNONE</option>
+                    <option value="xsmall">XSmall</option>
+                    <option value="small">Small</option>
+                    <option value="default">Default</option>
+                    <option value="large">Large</option>
+                    <option value="xlarge">XLarge</option>
                 </field>
                 <field name="overlap_bottom-c" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="">
                     <option value="1">JYES</option>
@@ -360,10 +369,10 @@
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="container_bottom-c" type="radio" class="btn-group btn-group-yesno" default="1" label="Контейнер" description="Определить контейнер в секции: положение, ширину">
+                <field name="container_bottom-c" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_CONTAINER_LABEL" description="TPL_SIMPLE_BLANK_SECTION_CONTAINER_DESCRIPTION">
                     <option value="2">Полный</option>
-                    <option value="1">Центр</option>
-                    <option value="0">Нет</option>
+                    <option value="1">TPL_SIMPLE_BLANK_CENTER</option>
+                    <option value="0">JNONE</option>
                 </field>
                 <field name="container_width_bottom-c" type="list"  default="5" label="" description="">
                     <option value="max">Max</option>
@@ -372,18 +381,18 @@
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
                 </field>
-                <field name="addclasses_bottom-c" type="input" label="Дополнительные классы" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
-                <field name="addattr_bottom-c" type="input" label="Дополнительные атрибуты" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
-                <field type="spacer" label="TPL_SIMPLE_BLANK_SIDEBAR_A_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR_A_DESCRIPTION" />
-                <field name="sb1_show" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SIDEBAR_A_SHOW_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR_A_SHOW_DESCRIPTION">
+                <field name="addclasses_bottom-c" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default="" />
+                <field name="addattr_bottom-c" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default="" />
+                <field type="spacer" label="TPL_SIMPLE_BLANK_SIDEBAR_A_LABEL" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_SIDEBAR_A" />
+                <field name="sb1_show" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SHOW_LABEL" description="TPL_SIMPLE_BLANK_SECTION_SHOW_DESCRIPTION">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="sb1_position" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SIDEBAR_A_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR_A_POSITION_DESCRIPTION">
+                <field name="sb1_position" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SECTION_POSITION_DESCRIPTION">
                     <option value="1">TPL_SIMPLE_BLANK_LEFT</option>
                     <option value="0">TPL_SIMPLE_BLANK_RIGHT</option>
                 </field>
-                <field name="sb1_width" type="list"  default="5" label="TPL_SIMPLE_BLANK_SIDEBAR_A_WIDTH_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR_A_WIDTH_DESCRIPTION">
+                <field name="sb1_width" type="list"  default="5" label="TPL_SIMPLE_BLANK_WIDTH_LABEL" description="TPL_SIMPLE_BLANK_WIDTH_DESCRIPTION">
                     <option value="10">17% (1/6)</option>
                     <option value="12">20% (1/5)</option>
                     <option value="15">25% (1/4)</option>
@@ -396,16 +405,16 @@
                     <option value="48">80% (4/5)</option>
                     <option value="50">83% (5/6)</option>
                 </field>
-                <field type="spacer" label="TPL_SIMPLE_BLANK_SIDEBAR_B_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR_B_DESCRIPTION" />
-                <field name="sb2_show" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SIDEBAR_B_SHOW_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR_B_SHOW_DESCRIPTION">
+                <field type="spacer" label="TPL_SIMPLE_BLANK_SIDEBAR_B_LABEL" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_SIDEBAR_B" />
+                <field name="sb2_show" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SHOW_LABEL" description="TPL_SIMPLE_BLANK_SECTION_SHOW_DESCRIPTION">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="sb2_position" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SIDEBAR_B_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR_B_POSITION_DESCRIPTION">
+                <field name="sb2_position" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SECTION_POSITION_DESCRIPTION">
                     <option value="1">TPL_SIMPLE_BLANK_LEFT</option>
                     <option value="0">TPL_SIMPLE_BLANK_RIGHT</option>
                 </field>
-                <field name="sb2_width" type="list"  default="5" label="TPL_SIMPLE_BLANK_SIDEBAR_B_WIDTH_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR_B_WIDTH_DESCRIPTION">
+                <field name="sb2_width" type="list"  default="5" label="TPL_SIMPLE_BLANK_WIDTH_LABEL" description="TPL_SIMPLE_BLANK_WIDTH_DESCRIPTION">
                     <option value="10">17% (1/6)</option>
                     <option value="12">20% (1/5)</option>
                     <option value="15">25% (1/4)</option>
@@ -418,52 +427,52 @@
                     <option value="48">80% (4/5)</option>
                     <option value="50">83% (5/6)</option>
                 </field>
-                <field type="spacer"  label="TPL_SIMPLE_BLANK_OFFCANVAS_A_LABEL" description="TPL_SIMPLE_BLANK_OFFCANVAS_A_DESCRIPTION" />
-                <field name="offcanvas1_show" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_OFFCANVAS_A_SHOW_LABEL" description="TPL_SIMPLE_BLANK_OFFCANVAS_A_SHOW_DESCRIPTION">
+                <field type="spacer"  label="TPL_SIMPLE_BLANK_OFFCANVAS_A_LABEL" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_OFFCANVAS_A" />
+                <field name="offcanvas1_show" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SHOW_LABEL" description="TPL_SIMPLE_BLANK_SECTION_SHOW_DESCRIPTION">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="offcanvas1_position" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SIDEBAR_B_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR_B_POSITION_DESCRIPTION">
+                <field name="offcanvas1_position" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SECTION_POSITION_DESCRIPTION">
                     <option value="1">TPL_SIMPLE_BLANK_LEFT</option>
                     <option value="0">TPL_SIMPLE_BLANK_RIGHT</option>
                 </field>
-                <field name="offcanvas1_overlay" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_OVERLAY_SHOW" description="TPL_SIMPLE_BLANK_SIDEBAR__OVERLAY_DESCRIPTION">
+                <field name="offcanvas1_overlay" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_OVERLAY_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR__OVERLAY_DESCRIPTION">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="offcanvas1_animation" type="list"  default="none" label="TPL_SIMPLE_BLANK_OFFCANVAS_A_ANIMATION_LABEL" description="TPL_SIMPLE_BLANK_OFFCANVAS_A_ANIMATION_DESCRIPTION">
-                    <option value="slide">TPL_SIMPLE_BLANK_SLIDE</option>
-                    <option value="push">TPL_SIMPLE_BLANK_PUSH</option>
-                    <option value="reveal">TPL_SIMPLE_BLANK_REVEAL</option>
-                    <option value="none">TPL_SIMPLE_BLANK_NONE</option>
+                <field name="offcanvas1_animation" type="list"  default="none" label="TPL_SIMPLE_BLANK_ANIMATION_LABEL" description="TPL_SIMPLE_BLANK_OFFCANVAS_A_ANIMATION_DESCRIPTION">
+                    <option value="slide">TPL_SIMPLE_BLANK_ANIMATION_SLIDE_LABEL</option>
+                    <option value="push">TPL_SIMPLE_BLANK_ANIMATION_PUSH_LABEL</option>
+                    <option value="reveal">TPL_SIMPLE_BLANK_ANIMATION_REVEAL_LABEL</option>
+                    <option value="none">JNONE</option>
                 </field>
-                <field name="addclasses_off-canvas-a" type="input" label="Дополнительные классы" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
-                <field name="addattr_off-canvas-a" type="input" label="Дополнительные атрибуты" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
-                <field type="spacer" label="TPL_SIMPLE_BLANK_OFFCANVAS_B_LABEL" description="TPL_SIMPLE_BLANK_OFFCANVAS_B_DESCRIPTION" />
-                <field name="offcanvas2_show" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_OFFCANVAS_B_SHOW_LABEL" description="TPL_SIMPLE_BLANK_OFFCANVAS_B_SHOW_DESCRIPTION">
+                <field name="addclasses_off-canvas-a" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default="" />
+                <field name="addattr_off-canvas-a" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default="" />
+                <field type="spacer" label="TPL_SIMPLE_BLANK_OFFCANVAS_B_LABEL" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_OFFCANVAS_B" />
+                <field name="offcanvas2_show" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SHOW_LABEL" description="TPL_SIMPLE_BLANK_SECTION_SHOW_DESCRIPTION">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="offcanvas2_position" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SIDEBAR_B_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR_B_POSITION_DESCRIPTION">
+                <field name="offcanvas2_position" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SECTION_POSITION_DESCRIPTION">
                     <option value="1">TPL_SIMPLE_BLANK_LEFT</option>
                     <option value="0">TPL_SIMPLE_BLANK_RIGHT</option>
                 </field>
-                <field name="offcanvas2_animation" type="list"  default="none" label="TPL_SIMPLE_BLANK_OFFCANVAS_B_ANIMATION_LABEL" description="TPL_SIMPLE_BLANK_OFFCANVAS_B_ANIMATION_DESCRIPTION">
-                    <option value="slide">TPL_SIMPLE_BLANK_SLIDE</option>
-                    <option value="push">TPL_SIMPLE_BLANK_PUSH</option>
-                    <option value="reveal">TPL_SIMPLE_BLANK_REVEAL</option>
-                    <option value="none">TPL_SIMPLE_BLANK_NONE</option>
+                <field name="offcanvas2_animation" type="list"  default="none" label="TPL_SIMPLE_BLANK_ANIMATION_LABEL" description="TPL_SIMPLE_BLANK_OFFCANVAS_B_ANIMATION_DESCRIPTION">
+                    <option value="slide">TPL_SIMPLE_BLANK_ANIMATION_SLIDE_LABEL</option>
+                    <option value="push">TPL_SIMPLE_BLANK_ANIMATION_PUSH_LABEL</option>
+                    <option value="reveal">TPL_SIMPLE_BLANK_ANIMATION_REVEAL_LABEL</option>
+                    <option value="none">JNONE</option>
                 </field>
-                <field name="offcanvas2_flip" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SIDEBAR_B_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR_B_POSITION_DESCRIPTION">
+                <field name="offcanvas2_flip" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SECTION_POSITION_DESCRIPTION">
                     <option value="1">TPL_SIMPLE_BLANK_LEFT</option>
                     <option value="0">TPL_SIMPLE_BLANK_RIGHT</option>
                 </field>
-                <field name="offcanvas2_overlay" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_OVERLAY_SHOW" description="TPL_SIMPLE_BLANK_SIDEBAR__OVERLAY_DESCRIPTION">
+                <field name="offcanvas2_overlay" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_OVERLAY_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR__OVERLAY_DESCRIPTION">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="addclasses_off-canvas-b" type="input" label="Дополнительные классы" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
-                <field name="addattr_off-canvas-b" type="input" label="Дополнительные атрибуты" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default="" />
+                <field name="addclasses_off-canvas-b" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default="" />
+                <field name="addattr_off-canvas-b" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default="" />
             </fieldset>
             <fieldset name="positions" addfieldpath="/templates/simple_blank/includes/fields" label="Позиции"
                       description="Сгенерируйте позиции шаблона и расставьте их в нужном порядке">
@@ -507,7 +516,7 @@
                             description="Параметры компонента Navbar"
                         />
                         <field name="pos-navbar-transparent" type="checkbox" label="Прозрачный" description="Прозрачный фон компонента Navbar" value="1" />
-                        <field name="pos-navbar-center" type="checkbox" label="Центровать" description="Располагать содержимое от центра" value="1" />
+                        <field name="pos-navbar-center" type="checkbox" label="TPL_SIMPLE_BLANK_CENTERовать" description="Располагать содержимое от центра" value="1" />
                         <field type="spacer" label="Sticky" description="Модули в этой позиции будут окружены тегами компонента Sticky" />
                         <field name="pos-sticky" type="checkbox" label="Активен" description="" value="1" />
                         <field
@@ -517,7 +526,7 @@
                             description="Параметры компонента Sticky"
                         />
                         <field type="spacer" label="Grid" description="Модули в этой позиции будут окружены тегами компонента Grid" />
-                        <field name="pos-grid" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_SIDEBAR_A_SHOW_LABEL" description="Модули в этой позиции будут окружены тегами компонента Grid">
+                        <field name="pos-grid" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_SHOW_LABEL" description="Модули в этой позиции будут окружены тегами компонента Grid">
                             <option value="1">JSHOW</option>
                             <option value="0">JHIDE</option>
                         </field>
@@ -526,14 +535,14 @@
                             <option value="0">JHIDE</option>
                         </field>
                         <field name="pos-grid-gap-h" type="list"  default="medium" label="Отступ по горизонтали" description="Настройка отступов по горизонтали (между столбцами сетки)" class="float-left">
-                            <option value="collapse">Нет</option>
+                            <option value="collapse">JNONE</option>
                             <option value="small">Маленький</option>
                             <option value="default">Обычный</option>
                             <option value="medium">Средний</option>
                             <option value="large">Большой</option>
                         </field>
                         <field name="pos-grid-gap-v" type="list"  default="medium" label="Отступ по вертикали" description="Настройка отступов по вертикали (между строками сетки)">
-                            <option value="collapse">Нет</option>
+                            <option value="collapse">JNONE</option>
                             <option value="small">Маленький</option>
                             <option value="default">Обычный</option>
                             <option value="medium">Средний</option>
@@ -549,16 +558,16 @@
                             name="pos-grid-addparams"
                             type="text"
                             label="Доп. атрибуты"
-                            description="Дополнительные атрибуты (типа uk-height-match и т.п.)"
+                            description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL (типа uk-height-match и т.п.)"
                         />
                         <field
                             name="pos-grid-addclasses"
                             type="text"
                             label="Доп. классы"
-                            description="Дополнительные классы"
+                            description="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL"
                         />
                         <field type="spacer" label="Dropdown" description="Модули в этой позиции будут расположены в общем Dropdown блоке" />
-                        <field name="pos-dropdown" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_SIDEBAR_A_SHOW_LABEL" description="Модули в этой позиции будут окружены тегами компонента Grid">
+                        <field name="pos-dropdown" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_SHOW_LABEL" description="Модули в этой позиции будут окружены тегами компонента Grid">
                             <option value="1">JSHOW</option>
                             <option value="0">JHIDE</option>
                         </field>
@@ -576,13 +585,13 @@
                             name="pos-dropdown-addparams"
                             type="text"
                             label="Доп. атрибуты"
-                            description="Дополнительные атрибуты (типа uk-height-match и т.п.)"
+                            description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL (типа uk-height-match и т.п.)"
                         />
                         <field
                             name="pos-dropdown-addclasses"
                             type="text"
                             label="Доп. классы"
-                            description="Дополнительные классы"
+                            description="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL"
                         />
                     </form>
                 </field>
