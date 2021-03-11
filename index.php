@@ -26,10 +26,10 @@ if (isset($_POST['page_title'])) {
 	<jdoc:include type="head" />
 </head>
 
-<body class="<?php echo $pageclass; ?> sb-<?php echo $view; ?>" role="document">
+<body class="sb-<?php echo $view; ?><?php echo ' ' . $pageclass; ?>" role="document"<?php echo $bodyfullheight; ?>>
 	<?php
-	if (isset($wrappersenabled) && $wrappersenabled > 0) {
-		for ($i = 1; $i <= $wrappersenabled; $i++) {
+	if (isset($wrappersenable) && $wrappersenable > 0) {
+		for ($i = 1; $i <= $wrappersenable; $i++) {
 			?>
 			<div id="sb-content-wrapper-<?php echo $i; ?>" class="sb-content-wrapper-<?php echo $i; ?>">
 				<?php
@@ -209,8 +209,8 @@ if (isset($_POST['page_title'])) {
 		include JPATH_THEMES . '/' . $this->template . '/includes/analytics.php';
 		?>
 		<?php
-		if (isset($wrappersenabled) && $wrappersenabled > 0) {
-			for ($i = 1; $i < $wrappersenabled; $i++) {
+		if (isset($wrappersenable) && $wrappersenable > 0) {
+			for ($i = 1; $i < $wrappersenable; $i++) {
 				?>
 			</div>
 			<?php

@@ -40,6 +40,7 @@ $googleverification	 = $this->params->get('googleverification');
 $yandexverification	 = $this->params->get('yandexverification');
 $bingverification	 = $this->params->get('bingverification');
 $wrappersenable		 = $this->params->get('wrappersenable');
+$bodyfullheight		 = ($this->params->get('bodyfullheight') > 0) ? ' uk-height-viewport' : '';
 
 // Sections
 $container_main			 = $this->params->get('container_main');
@@ -148,9 +149,6 @@ if ($googlefont == 1) {
 }
 
 $doc->addStyleSheet($tplpath . '/css/codemirror.css');
-$doc->addStyleSheet($tplpath . '/js/flatpickr/flatpickr.min.css');
-$doc->addStyleSheet($tplpath . '/js/flatpickr/ie.css');
-//$doc->addStyleSheet($tplpath . '/js/select/css/cs-skin-elastic.css');
 // Add JavaScripts
 if ($lazysizes == 1) {
 	$doc->addScript($tplpath . '/js/lazysizes.js');
@@ -161,11 +159,6 @@ $doc->addScript($tplpath . '/vendor/uikit/js/uikit-custom-icons.min.js');
 $doc->addScript($tplpath . '/js/codemirror.min.js');
 $doc->addScript($tplpath . '/js/marked.js');
 $doc->addScript($tplpath . '/js/theme.js');
-$doc->addScript($tplpath . '/js/flatpickr/flatpickr.min.js');
-$doc->addScript($tplpath . '/js/flatpickr/ru.js');
-$doc->addScript($tplpath . '/js/select/js/classie.js');
-$doc->addScript($tplpath . '/js/select/js/selectFx.js');
-$doc->addScript('//aishek.github.io/jquery-animateNumber/javascripts/jquery.animateNumber.js');
 
 
 // Add site verification (Google, Yandex, Bing)
