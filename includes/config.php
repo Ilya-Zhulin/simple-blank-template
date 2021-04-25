@@ -84,10 +84,13 @@ $positions						 = (array) $this->params->get('positions-location');
 if (is_array($positions) && count($positions) > 0) {
 
 	foreach ($positions as $posid => $position) {
-		$position											 = (array) $position;
+		$position = (array) $position;
+		if ($this->countModules($position['pos-section']) > 0) {
+			$position['pos-name'] = $position['pos-section'];
+		}
 		$sections[strtolower($position['pos-section'])][]	 = $position;
 		$sections[$position['pos-section']]['isExist']		 = (isset($sections[$position['pos-section']]['isExist'])) ? $sections[$position['pos-section']]['isExist'] : 0;
-		if ((strlen($position['pos-name']) > 0 && $this->countModules($position['pos-name']) > 0) || (strlen($position['pos-name']) > 0 && $this->countModules($position['pos-name'] . '-left')) || (strlen($position['pos-name']) > 0 && $this->countModules($position['pos-name'] . '-right')) || (strlen($position['pos-name']) > 0 && $this->countModules($position['pos-name'] . '-center'))) {
+		if ($this->countModules($position['pos-section']) > 0 || (strlen($position['pos-name']) > 0 && $this->countModules($position['pos-name']) > 0) || (strlen($position['pos-name']) > 0 && $this->countModules($position['pos-name'] . '-left')) || (strlen($position['pos-name']) > 0 && $this->countModules($position['pos-name'] . '-right')) || (strlen($position['pos-name']) > 0 && $this->countModules($position['pos-name'] . '-center'))) {
 			$sections[strtolower($position['pos-section'])]['isExist'] = 1;
 		}
 	}
@@ -125,8 +128,6 @@ if ($disable_bs == '1') {
 // Remove generator tag
 $this->setGenerator(null);
 
-
-
 // Disable mootools
 // unset($doc->_scripts[$this->baseurl .'/media/system/js/mootools-core.js']);
 // unset($doc->_scripts[$this->baseurl .'/media/system/js/mootools-more.js']);
@@ -159,7 +160,6 @@ $doc->addScript($tplpath . '/vendor/uikit/js/uikit-custom-icons.min.js');
 $doc->addScript($tplpath . '/js/codemirror.min.js');
 $doc->addScript($tplpath . '/js/marked.js');
 $doc->addScript($tplpath . '/js/theme.js');
-
 
 // Add site verification (Google, Yandex, Bing)
 $doc->setMetadata('google-site-verification', $googleverification);
@@ -271,7 +271,6 @@ function _buildPosition($template, $posName, $params, $sections) {
 							}
 							$out .= '" uk-navbar="' . $section_item['pos-navbar-params'] . '">';
 						}
-//                        JBDump($section_item);
 						if (isset($section_item['pos-grid']) && $section_item['pos-grid'] == '1') {
 							$grid_params	 = (isset($section_item['pos-grid-params']) && strlen($section_item['pos-grid-params']) > 0) ? $section_item['pos-grid-params'] : '';
 							$grid_addparams	 = (isset($section_item['pos-grid-addparams']) && strlen($section_item['pos-grid-addparams']) > 0) ? ' ' . $section_item['pos-grid-addparams'] : '';
