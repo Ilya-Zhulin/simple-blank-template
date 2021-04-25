@@ -30,7 +30,7 @@ $tplpath					 = $this->baseurl . '/templates/' . $this->template;
 $tplparams					 = $this->params->toArray();
 
 // Parameters
-$hidecomponent		 = $this->params->get('hidecomponent', 0);
+$hidecomponent		 = $this->params->get('hidecomponent', 1);
 $lazysizes			 = $this->params->get('lazysizes', 0);
 $googlefont			 = $this->params->get('googlefont', 0);
 $googlefontname		 = $this->params->get('googlefontname');
