@@ -23,7 +23,7 @@ $less_acompile = $this->params->get('less_acompile', 0);
 <meta name="msapplication-TileColor" content="#ada8a7">
 <meta name="msapplication-TileImage" content="/templates/<?php echo $this->template ?>/images/favicon/mstile-144x144.png">
 <meta name="theme-color" content="#ffffff">
-<script src="/tempates/simple_blank/js/quicklink.js"></script>
+<script src="/templates/simple_blank/js/quicklink.js"></script>
 <?php
 if ($less_acompile == 1) {
 	$less_path = '/templates/' . $this->template . '/less/';
