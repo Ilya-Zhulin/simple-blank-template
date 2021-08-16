@@ -615,6 +615,13 @@
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
+                <field name="addjquery" type="list" class="" default="0" label="Add jQuery" description="Add jQuery support">
+                    <option value="0">JNO</option>
+                    <option value="1">TPL_ADD_QUERY_FROM_JOOMLA</option>
+                    <option value="2">TPL_ADD_QUERY_LAST3</option>
+                    <option value="3">TPL_ADD_QUERY_LAST2</option>
+                    <option value="4">TPL_ADD_QUERY_LAST1</option>
+                </field>
                 <field name="googlefont" type="radio" class="btn-group btn-group-yesno" default="1" label="Enable Google Font" description="Google Font">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>

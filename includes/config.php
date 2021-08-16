@@ -14,20 +14,21 @@ $sb_top_sections_array		 = ['sb-top-a', 'sb-top-b', 'sb-top-c'];
 $sb_bottom_sections_array	 = ['sb-bottom-a', 'sb-bottom-b', 'sb-bottom-c'];
 $sb_inner_sections_array	 = ['sb-main-top', 'sb-main-bottom', 'sb-sidebar-a', 'sb-sidebar-b'];
 $sb_offcanvas_array			 = ['sb-off-canvas-a', 'sb-off-canvas-b'];
+
 // Variables
-$app						 = JFactory::getApplication();
-$doc						 = JFactory::getDocument();
-$user						 = JFactory::getUser();
-$view						 = JRequest::getString('view');
-$this->language				 = $doc->language;
-$this->direction			 = $doc->direction;
-$headdata					 = $doc->getHeadData();
-$menu						 = $app->getMenu();
-$active						 = $app->getMenu()->getActive();
-$params						 = $app->getParams();
-$pageclass					 = $params->get('pageclass_sfx');
-$tplpath					 = $this->baseurl . '/templates/' . $this->template;
-$tplparams					 = $this->params->toArray();
+$app			 = JFactory::getApplication();
+$doc			 = JFactory::getDocument();
+$user			 = JFactory::getUser();
+$view			 = JRequest::getString('view');
+$this->language	 = $doc->language;
+$this->direction = $doc->direction;
+$headdata		 = $doc->getHeadData();
+$menu			 = $app->getMenu();
+$active			 = $app->getMenu()->getActive();
+$params			 = $app->getParams();
+$pageclass		 = $params->get('pageclass_sfx');
+$tplpath		 = $this->baseurl . '/templates/' . $this->template;
+$tplparams		 = $this->params->toArray();
 
 // Parameters
 $hidecomponent		 = $this->params->get('hidecomponent', 1);
@@ -41,6 +42,8 @@ $yandexverification	 = $this->params->get('yandexverification');
 $bingverification	 = $this->params->get('bingverification');
 $wrappersenable		 = $this->params->get('wrappersenable');
 $bodyfullheight		 = ($this->params->get('bodyfullheight') > 0) ? ' uk-height-viewport' : '';
+$addjQuery			 = $this->params->get('addjquery');
+$jQueryURL			 = ($addjQuery > 1 ) ? _addjQuery($addjQuery) : '';
 
 // Sections
 $container_main			 = $this->params->get('container_main');
@@ -124,25 +127,14 @@ $less_acompile	 = $this->params->get('less_acompile', 0);
 $disable_bs		 = $this->params->get('killbootstrap', 1);
 if ($disable_bs == '1') {
 	unset($headdata['scripts']['/media/jui/js/bootstrap.min.js']);
+} else {
+	JHtml::_('bootstrap.framework');
 }
 // Remove generator tag
 $this->setGenerator(null);
-
-// Disable mootools
-// unset($doc->_scripts[$this->baseurl .'/media/system/js/mootools-core.js']);
-// unset($doc->_scripts[$this->baseurl .'/media/system/js/mootools-more.js']);
-// unset($doc->_scripts[$this->baseurl .'/media/system/js/caption.js']);
-// unset($doc->_scripts[$this->baseurl .'/media/system/js/core.js']);
-// unset($doc->_scripts[$this->baseurl .'/media/system/js/tabs-state.js']);
-// unset($doc->_scripts[$this->baseurl .'/media/system/js/validate.js']);
-// unset($doc->_scripts[$this->baseurl .'/media/com_finder/js/autocompleter.js']);
-// Remove deprecated meta-data (HTML5)
 unset($headdata['metaTags']['http-equiv']);
 
 $doc->setHeadData($headdata);
-
-// Load jQuery
-JHtml::_('jquery.framework');
 
 // Add StyleSheets
 if ($googlefont == 1) {
@@ -153,6 +145,13 @@ $doc->addStyleSheet($tplpath . '/css/codemirror.css');
 // Add JavaScripts
 if ($lazysizes == 1) {
 	$doc->addScript($tplpath . '/js/lazysizes.js');
+}
+//jbDump($jQueryURL);
+if (strlen($jQueryURL) > 0) {
+	$doc->addScript($jQueryURL);
+} elseif ($addjQuery == 1) {
+// Load jQuery
+	JHtml::_('jquery.framework');
 }
 $doc->addScript($tplpath . '/vendor/uikit/js/uikit.min.js');
 $doc->addScript($tplpath . '/vendor/uikit/js/uikit-icons.min.js');
@@ -328,4 +327,9 @@ function _buildPosition($template, $posName, $params, $sections) {
 	}
 	$out .= '</section>';
 	return $out;
+}
+
+function _addjQuery($jq_number = 0) {
+	$jquery_urls = ['/media/jui/js/jquery.min.js', 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js', 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js', 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'];
+	return $jquery_urls[$jq_number - 1];
 }
