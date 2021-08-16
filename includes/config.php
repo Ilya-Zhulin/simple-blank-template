@@ -329,7 +329,7 @@ function _buildPosition($template, $posName, $params, $sections) {
 	return $out;
 }
 
-function _addjQuery($jq_number = 0) {
+function _addjQuery($jq_number = 2) {
 	$jquery_urls = ['https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js', 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js', 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'];
 	return $jquery_urls[$jq_number - 2];
 }
