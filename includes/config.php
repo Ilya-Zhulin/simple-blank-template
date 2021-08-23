@@ -134,8 +134,6 @@ if ($disable_bs == '1') {
 $this->setGenerator(null);
 unset($headdata['metaTags']['http-equiv']);
 
-$doc->setHeadData($headdata);
-
 // Add StyleSheets
 if ($googlefont == 1) {
 	$doc->addStyleSheet('//fonts.googleapis.com/css?family=' . $googlefontname . '&subset=cyrillic,latin');
@@ -147,12 +145,17 @@ if ($lazysizes == 1) {
 	$doc->addScript($tplpath . '/js/lazysizes.js');
 }
 //jbDump($jQueryURL);
-if (strlen($jQueryURL) > 0) {
+if (strlen($jQueryURL) > 1) {
 	$doc->addScript($jQueryURL);
 } elseif ($addjQuery == 1) {
 // Load jQuery
 	JHtml::_('jquery.framework');
+} elseif ($addjQuery == 0) {
+	unset($headdata['scripts']['/media/jui/js/jquery-noconflict.js']);
+	unset($headdata['scripts']['/media/jui/js/jquery.min.js']);
+	unset($headdata['scripts']['/media/jui/js/jquery-migrate.min.js']);
 }
+$doc->setHeadData($headdata);
 $doc->addScript($tplpath . '/vendor/uikit/js/uikit.min.js');
 $doc->addScript($tplpath . '/vendor/uikit/js/uikit-icons.min.js');
 $doc->addScript($tplpath . '/vendor/uikit/js/uikit-custom-icons.min.js');
