@@ -64,6 +64,11 @@
                 <field type="spacer" label="CSS" description="Настройки CSS" />
                 <field name="css_exclude_files" type="input" label="TPL_SIMPLE_BLANK_CSS_EXCLUDE_FILES" description="Файлы в папке /css шаблона, которые не нужно подключать автоматически" default="" />
             </fieldset>
+            <fieldset name="themes">
+                <field name="theme_select" type="folderlist" label="TPL_SIMPLE_BLANK_THEME_SELECT_LABEL" description="TPL_SIMPLE_BLANK_THEME_SELECT_DESCRIPTION"  directory="/templates/simple_blank/less/themes" hide_default="true" hide_none="true" />
+                <field name="theme_name" type="themename" label="TPL_SIMPLE_BLANK_THEME_NAME_LABEL" description="TPL_SIMPLE_BLANK_THEME_NAME_DESCRIPTION" />
+                <field type="scripter" default="" />
+            </fieldset>
             <fieldset name="sections" label="TPL_SIMPLE_BLANK_SECTION_LABEL">
                 <field type="spacer" label="TOP-A" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_TOP_A" />
                 <field name="color_top-a" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
@@ -614,13 +619,6 @@
                 <field name="killbootstrap" type="radio" class="btn-group btn-group-yesno" default="1" label="Disable Bootstrap" description="Disable Bootstrap JS included in Joomla!">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
-                </field>
-                <field name="addjquery" type="list" class="" default="0" label="Add jQuery" description="Add jQuery support">
-                    <option value="0">JNO</option>
-                    <option value="1">TPL_ADD_QUERY_FROM_JOOMLA</option>
-                    <option value="2">TPL_ADD_QUERY_LAST3</option>
-                    <option value="3">TPL_ADD_QUERY_LAST2</option>
-                    <option value="4">TPL_ADD_QUERY_LAST1</option>
                 </field>
                 <field name="googlefont" type="radio" class="btn-group btn-group-yesno" default="1" label="Enable Google Font" description="Google Font">
                     <option value="1">JYES</option>
