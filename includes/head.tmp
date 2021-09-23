@@ -1,4 +1,5 @@
 <?php
+
 // no direct access
 defined('_JEXEC') or die;
 //Less
@@ -14,6 +15,11 @@ $less_acompile = $this->params->get('less_acompile', 0);
 <meta name="HandheldFriendly" content="true">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
+<?php
+if (file_exists(JPATH_ROOT . 'path_to_theme_file1')) {
+	include_once JPATH_ROOT . 'path_to_theme_file1';
+}
+?>
 <link rel="icon" href="/templates/<?php echo $this->template ?>/images/favicon/favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="/templates/<?php echo $this->template ?>/images/favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/templates/<?php echo $this->template ?>/images/favicon/favicon-32x32.png">
@@ -28,8 +34,13 @@ $less_acompile = $this->params->get('less_acompile', 0);
 if ($less_acompile == 1) {
 	$less_path = '/templates/' . $this->template . '/less/';
 	?>
-	<link rel="stylesheet/less" href="<?php echo $less_path; ?>template.less" />
-	<script src="templates/<?php echo $this->template ?>/vendor/LessJS/less.min.js" ></script>
+<link rel="stylesheet/less" href="<?php echo $less_path; ?>template.less" />
+<script src="templates/<?php echo $this->template ?>/vendor/LessJS/less.min.js" ></script>
 	<?php
+}
+?>
+<?php
+if (file_exists(JPATH_ROOT . 'path_to_theme_file2')) {
+	include_once JPATH_ROOT . 'path_to_theme_file2';
 }
 ?>
