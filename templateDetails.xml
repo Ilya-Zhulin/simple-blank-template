@@ -25,6 +25,7 @@
         <folder>language</folder>
         <folder>layouts</folder>
         <folder>less</folder>
+        <folder>themes</folder>
         <folder>vendor</folder>
         <filename>component.php</filename>
         <filename>error.php</filename>
@@ -65,7 +66,7 @@
                 <field name="css_exclude_files" type="input" label="TPL_SIMPLE_BLANK_CSS_EXCLUDE_FILES" description="Файлы в папке /css шаблона, которые не нужно подключать автоматически" default="" />
             </fieldset>
             <fieldset name="themes">
-                <field name="theme_select" type="folderlist" label="TPL_SIMPLE_BLANK_THEME_SELECT_LABEL" description="TPL_SIMPLE_BLANK_THEME_SELECT_DESCRIPTION"  directory="/templates/simple_blank/less/themes" hide_default="true" hide_none="true" />
+                <field name="theme_select" type="folderlist" label="TPL_SIMPLE_BLANK_THEME_SELECT_LABEL" description="TPL_SIMPLE_BLANK_THEME_SELECT_DESCRIPTION"  directory="/templates/simple_blank/themes" hide_default="true" hide_none="true" />
                 <field name="theme_name" type="themename" label="TPL_SIMPLE_BLANK_THEME_NAME_LABEL" description="TPL_SIMPLE_BLANK_THEME_NAME_DESCRIPTION" />
                 <field type="scripter" default="" />
             </fieldset>
