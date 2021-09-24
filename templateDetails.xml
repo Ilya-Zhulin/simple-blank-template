@@ -25,7 +25,6 @@
         <folder>language</folder>
         <folder>layouts</folder>
         <folder>less</folder>
-        <folder>themes</folder>
         <folder>vendor</folder>
         <filename>component.php</filename>
         <filename>error.php</filename>
@@ -64,11 +63,6 @@
                 <field name="less_compile button" type="button" label="TPL_SIMPLE_BLANK_LESS_COMPILE_BUTTON_LABEL" description="TPL_SIMPLE_BLANK_LESS_COMPILE_BUTTON_DESCRIPTION" default="COMPILE" class="btn btn-success btn-large hasTooltip" labelclass="hidden"/>
                 <field type="spacer" label="CSS" description="Настройки CSS" />
                 <field name="css_exclude_files" type="input" label="TPL_SIMPLE_BLANK_CSS_EXCLUDE_FILES" description="Файлы в папке /css шаблона, которые не нужно подключать автоматически" default="" />
-            </fieldset>
-            <fieldset name="themes">
-                <field name="theme_select" type="folderlist" label="TPL_SIMPLE_BLANK_THEME_SELECT_LABEL" description="TPL_SIMPLE_BLANK_THEME_SELECT_DESCRIPTION"  directory="/templates/simple_blank/themes" hide_default="true" hide_none="true" />
-                <field name="theme_name" type="themename" label="TPL_SIMPLE_BLANK_THEME_NAME_LABEL" description="TPL_SIMPLE_BLANK_THEME_NAME_DESCRIPTION" />
-                <field type="scripter" default="" />
             </fieldset>
             <fieldset name="sections" label="TPL_SIMPLE_BLANK_SECTION_LABEL">
                 <field type="spacer" label="TOP-A" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_TOP_A" />
@@ -605,13 +599,13 @@
             <fieldset name="advanced">
                 <field name="wrappersenable" type="number" class="" label="Добавить обёртки" description="Добавить блоки внутри body, оборачивающие остальной контент. Укажите количество обёрток." default="0" min="0">
                 </field>
+                <field name="alert_layout" type="list" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_ALERT_LAYOUT_LABEL" description="TPL_SIMPLE_BLANK_ALERT_LAYOUT_DESCRIPTION">
+                    <option value="1">TPL_SIMPLE_BLANK_ALERT_VIEW_NOTIFICATION</option>
+                    <option value="0">TPL_SIMPLE_BLANK_ALERT_VIEW_ALERT</option>
+                </field>
                 <field name="hidecomponent" type="radio" class="btn-group btn-group-yesno" default="1" label="System Component" description="System Component.">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
-                </field>
-                <field name="bodyfullheight" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_BODY_FULLHEIGHT_LABEL" description="TPL_SIMPLE_BLANK_BODY_FULLHEIGHT_DESCRIPTION">
-                    <option value="1">JYES</option>
-                    <option value="0">JNO</option>
                 </field>
                 <field name="lazysizes" type="radio" class="btn-group btn-group-yesno" default="0" label="Enable Lazysizes" description="Fast and self-initializing lazyloader for images (including responsive images picture/srcset), iframes, scripts/widgets and much more.">
                     <option value="1">JYES</option>
