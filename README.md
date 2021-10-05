@@ -1,3 +1,4 @@
+![Logo SB Template](https://github.com/Ilya-Zhulin/simple-blank-template/blob/master/template_thumbnail.png)  
 # simple-blank-template
 A simple blank template for Joomla using UIkit 3.x
 
