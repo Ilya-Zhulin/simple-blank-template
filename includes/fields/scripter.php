@@ -1,8 +1,8 @@
 <?php
 
 /*
- * File text.php is programmed
- * specially for mk-graphics by
+ * File scripter.php is programmed
+ * specially for Simple Blank Template by
  * Ilya A.Zhulin <ilya.zhulin@hotmail.com> 2021
  */
 
@@ -35,7 +35,7 @@ class JFormFieldScripter extends JFormFieldHidden {
 		$jinput	 = $app->input;
 		$styleid = $jinput->get('id');
 		$db		 = JFactory::getDbo();
-		$uri	 = JFactory::getURI();
+		$uri	 = JURI::getInstance();
 		$query	 = $db->getQuery(true);
 		$query->select($db->quoteName('params'))
 				->from($db->quoteName('#__template_styles'))
@@ -66,9 +66,8 @@ class JFormFieldScripter extends JFormFieldHidden {
 			}
 			$result			 = str_replace('"theme_name":"' . $params->theme_name . '",', "", $result); // Создаем и заполняем объект
 			$object			 = new stdClass();
-			$object->id		 = $styleid; // должен быть валидный первичный ключ
+			$object->id		 = $styleid;
 			$object->params	 = $result;
-// Обновляем данные, используя id в качестве первичного ключа
 			$result			 = JFactory::getDbo()->updateObject('#__template_styles', $object, 'id', true);
 			$app->enqueueMessage('Тема создана. Выберите её в меню', 'Message');
 			$app->redirect($uri->toString());
