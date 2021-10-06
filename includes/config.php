@@ -2,7 +2,6 @@
 
 // no direct access
 defined('_JEXEC') or die;
-//include_once JPATH_ROOT . '/jbdump/init.php';
 /*
  * Если требуется вставить свою секцию в файл,
  * добавте имя позиции в этот массив.
@@ -18,7 +17,7 @@ $sb_offcanvas_array			 = ['sb-off-canvas-a', 'sb-off-canvas-b'];
 $app						 = JFactory::getApplication();
 $doc						 = JFactory::getDocument();
 $user						 = JFactory::getUser();
-$view						 = JRequest::getString('view');
+$view						 = $app->input->get('view', '', 'string');
 $this->language				 = $doc->language;
 $this->direction			 = $doc->direction;
 $headdata					 = $doc->getHeadData();
