@@ -30,7 +30,7 @@ if (!JFile::exists(JPATH_ROOT . '/templates/simple_blank/images/favicon/favicon.
 	<meta name="msapplication-TileColor" content="#ada8a7">
 	<meta name="msapplication-TileImage" content="/templates/<?php echo $this->template ?>/images/template_favicon/mstile-144x144.png">
 	<meta name="theme-color" content="#ffffff">
-<?php }
+<?php } ?>
 <script src="/templates/simple_blank/js/quicklink.js"></script>
 <?php
 if ($less_acompile == 1) {
