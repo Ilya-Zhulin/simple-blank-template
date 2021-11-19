@@ -21,8 +21,8 @@ $twofactormethods = UsersHelper::getTwoFactorMethods();
 		<link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/simple_blank/css/template.css" type="text/css" />
 	</head>
 	<body class="uk-height-viewport uk-flex uk-flex-middle uk-flex-center">
-		<jdoc:include type="message" />
-		<div id="frame" class="outline">
+		<div id="frame" class="uk-width-auto">
+			<jdoc:include type="message" />
 			<?php if ($app->get('offline_image') && file_exists($app->get('offline_image'))) : ?>
 				<img src="<?php echo $app->get('offline_image'); ?>" alt="<?php echo htmlspecialchars($app->get('sitename')); ?>" />
 			<?php endif; ?>
@@ -60,7 +60,7 @@ $twofactormethods = UsersHelper::getTwoFactorMethods();
 							</div>
 						</div>
 					<?php endif; ?>
-					<input type="submit" name="Submit" class="uk-button login" value="<?php echo JText::_('JLOGIN'); ?>" />
+					<input type="submit" name="Submit" class="uk-button uk-button-default uk-width-1-1 login" value="<?php echo JText::_('JLOGIN'); ?>" />
 					<input type="hidden" name="option" value="com_users" />
 					<input type="hidden" name="task" value="user.login" />
 					<input type="hidden" name="return" value="<?php echo base64_encode(JUri::base()); ?>" />
