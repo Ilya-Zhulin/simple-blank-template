@@ -49,11 +49,6 @@ if ($favicon_mode == 0 && JFile::exists(JPATH_ROOT . '/templates/simple_blank/im
 if ($qlenable == 1) {
 	?>
 	<script src = "/templates/simple_blank/js/quicklink.js"></script>
-	<script>
-		window.addEventListener('load', () => {
-			quicklink.listen();
-		});
-	</script>
 	<?php
 }
 ?>
