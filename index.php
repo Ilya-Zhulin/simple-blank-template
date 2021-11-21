@@ -3,12 +3,12 @@
 defined('_JEXEC') or die;
 include JPATH_THEMES . '/' . $this->template . '/includes/config.php';
 
-$gcf = function($a, $b = 60) use(&$gcf) {
+$gcf = function ($a, $b = 60) use (&$gcf) {
 
 	return (int) ($b > 0 ? $gcf($b, $a % $b) : $a);
 };
 
-$fraction = function($nominator, $divider = 60) use(&$gcf) {
+$fraction = function ($nominator, $divider = 60) use (&$gcf) {
 	return $nominator / ($factor = $gcf($nominator, $divider)) . '-' . $divider / $factor;
 };
 if (isset($_POST['page_title'])) {
@@ -88,7 +88,7 @@ if (isset($_POST['page_title'])) {
 								<jdoc:include type="modules" name="sidebar-a" style=""/>
 								<?php
 								foreach ($sections['sb-sidebar-a'] as $sb_sidebar_a_position) {
-									if ($this->countModules($sb_sidebar_a_position['pos-name'])) {
+									if (strtolower($sb_sidebar_a_position['pos-name']) !== 'sidebar-a' && $this->countModules($sb_sidebar_a_position['pos-name'])) {
 										echo _buildPosition($this, $sb_sidebar_a_position['pos-name'], $tplparams, $sections);
 									}
 								}
@@ -104,7 +104,7 @@ if (isset($_POST['page_title'])) {
 							<aside id="sb-sidebar-b" class="sidebar-b uk-width-<?php echo $fraction($sb1_width); ?>@m" role="complementary">
 								<jdoc:include type="modules" name="sidebar-b" style=""/>
 								<?php
-								foreach ($sections['sb-sidebar-b'] as $sb_sidebar_b_position) {
+								foreach (strtolower($sb_sidebar_a_position['pos-name']) !== 'sidebar-b' && $sections['sb-sidebar-b'] as $sb_sidebar_b_position) {
 									if ($this->countModules($sb_sidebar_a_position['pos-name'])) {
 										echo _buildPosition($this, $sb_sidebar_a_position['pos-name'], $tplparams, $sections);
 									}
@@ -217,11 +217,17 @@ if (isset($_POST['page_title'])) {
 		}
 	}
 	?>
-	<script>
-		window.addEventListener('load', () =>{
-			quicklink.listen();
-		});
-	</script>
+	<?php
+	if ($qlenable == 1) {
+		?>
+		<script>
+	        window.addEventListener('load', () => {
+	            quicklink.listen();
+	        });
+		</script>
+		<?php
+	}
+	?>
 </body>
 
 </html>
