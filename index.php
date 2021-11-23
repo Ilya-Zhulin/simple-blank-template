@@ -84,7 +84,7 @@ if (isset($_POST['page_title'])) {
 						$sb1_real_width = $sb1_width;
 						if ($sb1_position == '1') {
 							?>
-							<aside id="sb-sidebar-a" class="sidebar-a uk-width-<?php echo $fraction($sb1_width); ?>@m" role="complementary">
+							<aside id="sb-sidebar-a" class="sidebar-a uk-width-<?php echo $fraction($sb1_width); ?>@m<?php echo $sb1_addClass; ?>" role="complementary"<?php echo $sb1_addAttr; ?>>
 								<jdoc:include type="modules" name="sidebar-a" style=""/>
 								<?php
 								foreach ($sections['sb-sidebar-a'] as $sb_sidebar_a_position) {
@@ -101,12 +101,12 @@ if (isset($_POST['page_title'])) {
 						$sb2_real_width = $sb2_width;
 						if ($sb2_position == '1') {
 							?>
-							<aside id="sb-sidebar-b" class="sidebar-b uk-width-<?php echo $fraction($sb1_width); ?>@m" role="complementary">
+							<aside id="sb-sidebar-b" class="sidebar-b uk-width-<?php echo $fraction($sb1_width); ?>@m<?php echo $sb1_addClass; ?>" role="complementary"<?php echo $sb1_addAttr; ?>>
 								<jdoc:include type="modules" name="sidebar-b" style=""/>
 								<?php
-								foreach (strtolower($sb_sidebar_a_position['pos-name']) !== 'sidebar-b' && $sections['sb-sidebar-b'] as $sb_sidebar_b_position) {
-									if ($this->countModules($sb_sidebar_a_position['pos-name'])) {
-										echo _buildPosition($this, $sb_sidebar_a_position['pos-name'], $tplparams, $sections);
+								foreach (strtolower($sb_sidebar_b_position['pos-name']) !== 'sidebar-b' && $sections['sb-sidebar-b'] as $sb_sidebar_b_position) {
+									if ($this->countModules($sb_sidebar_b_position['pos-name'])) {
+										echo _buildPosition($this, $sb_sidebar_b_position['pos-name'], $tplparams, $sections);
 									}
 								}
 								?>
@@ -142,7 +142,7 @@ if (isset($_POST['page_title'])) {
 					if ($sb1_show == 1 && ($this->countModules('sb-sidebar-a') || (isset($sections['sb-sidebar-a']) && $sections['sb-sidebar-a']['isExist'] > 0)) && $sb1_position == '0') {
 						$sb1_real_width = $sb1_width;
 						?>
-						<aside id="sb-sidebar-a" class="sidebar-a uk-width-<?php echo $fraction($sb1_width); ?>@m" role="complementary">
+						<aside id="sb-sidebar-a" class="sidebar-a uk-width-<?php echo $fraction($sb1_width); ?>@m<?php echo $sb1_addClass; ?>" role="complementary"<?php echo $sb1_addAttr; ?>>
 							<jdoc:include type="modules" name="sidebar-a" style=""/>
 							<?php
 							foreach ($sections['sb-sidebar-a'] as $sb_sidebar_a_position) {
@@ -157,7 +157,7 @@ if (isset($_POST['page_title'])) {
 					if ($sb2_show == 1 && ($this->countModules('sb-sidebar-b') || (isset($sections['sb-sidebar-b']) && $sections['sb-sidebar-b']['isExist'] > 0)) && $sb2_position == '0') {
 						$sb2_real_width = $sb2_width;
 						?>
-						<aside id="sb-sidebar-b" class="sidebar-b uk-width-<?php echo $fraction($sb1_width); ?>@m" role="complementary">
+						<aside id="sb-sidebar-b" class="sidebar-b uk-width-<?php echo $fraction($sb1_width); ?>@m<?php echo $sb2_addClass; ?>" role="complementary"<?php echo $sb2_addAttr; ?>>
 							<jdoc:include type="modules" name="sidebar-b" style=""/>
 							<?php
 							foreach ($sections['sb-sidebar-b'] as $sb_sidebar_b_position) {
@@ -221,9 +221,9 @@ if (isset($_POST['page_title'])) {
 	if ($qlenable == 1) {
 		?>
 		<script>
-	        window.addEventListener('load', () => {
-	            quicklink.listen();
-	        });
+			window.addEventListener('load', () => {
+				quicklink.listen();
+			});
 		</script>
 		<?php
 	}

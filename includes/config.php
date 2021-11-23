@@ -98,6 +98,10 @@ $sb1_position			 = $this->params->get('sb1_position');
 $sb2_position			 = $this->params->get('sb2_position');
 $sb1_width				 = ($sb1_show) ? $this->params->get('sb1_width') : 0;
 $sb2_width				 = ($sb2_show) ? $this->params->get('sb2_width') : 0;
+$sb1_addClass			 = ($sb1_show) ? ' ' . $this->params->get('addclasses_sb1') : '';
+$sb2_addClass			 = ($sb2_show) ? ' ' . $this->params->get('addclasses_sb2') : '';
+$sb1_addAttr			 = ($sb1_show) ? ' ' . $this->params->get('addattr_sb1') : '';
+$sb2_addAttr			 = ($sb2_show) ? ' ' . $this->params->get('addattr_sb2') : '';
 $sb1_real_width			 = 0; // Учитывает ширину, только, если сайдбар заполнен
 $sb2_real_width			 = 0; // Учитывает ширину, только, если сайдбар заполнен
 // Off-canvases
