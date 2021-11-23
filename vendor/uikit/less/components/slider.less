@@ -31,7 +31,7 @@
 .uk-slider {
     /* 1 */
     -webkit-tap-highlight-color: transparent;
-    .hook-slider;
+    .hook-slider();
 }
 
 
@@ -94,7 +94,6 @@
  *    `max-width` needed to keep image responsiveness and prevent content overflow
  * 3. Create position context
  * 4. Disable horizontal panning gestures in IE11 and Edge
- * 5. Suppress outline on focus
  */
 
 .uk-slider-items > * {
@@ -107,14 +106,11 @@
     touch-action: pan-y;
 }
 
-/* 5 */
-.uk-slider-items > :focus { outline: none; }
-
 
 // Hooks
 // ========================================================================
 
-.hook-slider-misc;
+.hook-slider-misc();
 
 .hook-slider() {}
 .hook-slider-misc() {}

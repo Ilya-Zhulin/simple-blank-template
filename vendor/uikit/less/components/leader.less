@@ -36,7 +36,7 @@
     content: attr(data-fill);
     /* 4 */
     white-space: nowrap;
-    .hook-leader;
+    .hook-leader();
 }
 
 /*
@@ -50,13 +50,13 @@
  */
 
 .uk-leader-fill-content::before { content: '@{leader-fill-content}'; }
-:root { --uk-leader-fill-content: @leader-fill-content; }
+:root { --uk-leader-fill-content: '@{leader-fill-content}'; }
 
 
 // Hooks
 // ========================================================================
 
-.hook-leader-misc;
+.hook-leader-misc();
 
 .hook-leader() {}
 .hook-leader-misc() {}
@@ -68,7 +68,7 @@
 .hook-inverse() {
 
     .uk-leader-fill::after {
-        .hook-inverse-leader;
+        .hook-inverse-leader();
     }
 
 }

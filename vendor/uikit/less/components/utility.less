@@ -49,8 +49,8 @@
 
 @logo-font-size:                                @global-large-font-size;
 @logo-font-family:                              @global-font-family;
-@logo-color:                                    @global-color;
-@logo-hover-color:                              @global-color;
+@logo-color:                                    @global-emphasis-color;
+@logo-hover-color:                              @global-emphasis-color;
 
 @dragover-box-shadow:                           0 0 20px rgba(100,100,100,0.3);
 
@@ -87,7 +87,7 @@
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     resize: both;
-    .hook-panel-scrollable;
+    .hook-panel-scrollable();
 }
 
 
@@ -287,7 +287,7 @@
  */
 
 @supports (filter: blur(0)) {
- 
+
     .uk-box-shadow-bottom {
         display: inline-block;
         position: relative;
@@ -311,7 +311,7 @@
         filter: blur(@box-shadow-bottom-blur);
         /* 3 */
         will-change: filter;
-        .hook-box-shadow-bottom;
+        .hook-box-shadow-bottom();
     }
 
 }
@@ -337,7 +337,7 @@
     float: left;
     font-size: @dropcap-font-size;
     line-height: 1;
-    .hook-dropcap;
+    .hook-dropcap();
 }
 
 /* 2 */
@@ -369,18 +369,18 @@
     color: @logo-color;
     /* 1 */
     text-decoration: none;
-    .hook-logo;
+    .hook-logo();
 }
 
-/* Hover + Focus */
-.uk-logo:hover,
-.uk-logo:focus {
+/* Hover */
+.uk-logo:hover {
     color: @logo-hover-color;
-    outline: none;
     /* 1 */
     text-decoration: none;
-    .hook-logo-hover;
+    .hook-logo-hover();
 }
+
+.uk-logo > :where(img, svg, video) { display: block; }
 
 .uk-logo-inverse { display: none; }
 
@@ -459,7 +459,7 @@
 // Hooks
 // ========================================================================
 
-.hook-utility-misc;
+.hook-utility-misc();
 
 .hook-panel-scrollable() {}
 .hook-box-shadow-bottom() {}
@@ -472,29 +472,28 @@
 // Inverse
 // ========================================================================
 
-@inverse-logo-color:                           @inverse-global-color;
-@inverse-logo-hover-color:                     @inverse-global-color;
+@inverse-logo-color:                           @inverse-global-emphasis-color;
+@inverse-logo-hover-color:                     @inverse-global-emphasis-color;
 
 .hook-inverse() {
 
     .uk-dropcap::first-letter,
     .uk-dropcap p:first-of-type::first-letter {
-        .hook-inverse-dropcap;
+        .hook-inverse-dropcap();
     }
 
     .uk-logo {
         color: @inverse-logo-color;
-        .hook-inverse-logo;
+        .hook-inverse-logo();
     }
 
-    .uk-logo:hover,
-    .uk-logo:focus {
+    .uk-logo:hover {
         color: @inverse-logo-hover-color;
-        .hook-inverse-logo-hover;
+        .hook-inverse-logo-hover();
     }
 
     .uk-logo > :not(.uk-logo-inverse):not(:only-of-type) { display: none; }
-    .uk-logo-inverse { display: inline; }
+    .uk-logo-inverse { display: block; }
 
 }
 
