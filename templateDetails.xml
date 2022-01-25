@@ -35,12 +35,14 @@
         <position>sb-top-b</position>
         <position>sb-top-c</position>
         <position>sb-main-top</position>
-        <position>sb-sidebar-a</position>
-        <position>sb-sidebar-b</position>
+        <position>sb-main-sidebar-a</position>
+        <position>sb-main-sidebar-b</position>
         <position>sb-main-bottom</position>
         <position>sb-bottom-a</position>
         <position>sb-bottom-b</position>
         <position>sb-bottom-c</position>
+        <position>sb-sidebar-a</position>
+        <position>sb-sidebar-b</position>
         <position>sb-debug</position>
     </positions>
     <languages folder="language">
@@ -277,6 +279,54 @@
                 </field>
                 <field name="addclasses_main-bottom" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
                 <field name="addattr_main-bottom" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+                <field type="spacer" label="TPL_SIMPLE_BLANK_MAIN_SIDEBAR_A_LABEL" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_MAIN_SIDEBAR_A"/>
+                <field name="sb1_main_show" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SHOW_LABEL" description="TPL_SIMPLE_BLANK_SECTION_SHOW_DESCRIPTION">
+                    <option value="1">JSHOW</option>
+                    <option value="0">JHIDE</option>
+                </field>
+                <field name="sb1_main_position" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SECTION_POSITION_DESCRIPTION">
+                    <option value="1">TPL_SIMPLE_BLANK_LEFT</option>
+                    <option value="0">TPL_SIMPLE_BLANK_RIGHT</option>
+                </field>
+                <field name="sb1_main_width" type="list" default="5" label="TPL_SIMPLE_BLANK_WIDTH_LABEL" description="TPL_SIMPLE_BLANK_WIDTH_DESCRIPTION">
+                    <option value="10">17% (1/6)</option>
+                    <option value="12">20% (1/5)</option>
+                    <option value="15">25% (1/4)</option>
+                    <option value="20">33% (1/3)</option>
+                    <option value="24">40% (2/5)</option>
+                    <option value="30">50% (1/2)</option>
+                    <option value="36">60% (3/5)</option>
+                    <option value="40">66% (2/3)</option>
+                    <option value="45">75% (3/4)</option>
+                    <option value="48">80% (4/5)</option>
+                    <option value="50">83% (5/6)</option>
+                </field>
+                <field name="addclasses_sb1_main" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
+                <field name="addattr_sb1_main" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+                <field type="spacer" label="TPL_SIMPLE_BLANK_MAIN_SIDEBAR_B_LABEL" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_MAIN_SIDEBAR_B"/>
+                <field name="sb2_main_show" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SHOW_LABEL" description="TPL_SIMPLE_BLANK_SECTION_SHOW_DESCRIPTION">
+                    <option value="1">JSHOW</option>
+                    <option value="0">JHIDE</option>
+                </field>
+                <field name="sb2_main_position" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SECTION_POSITION_DESCRIPTION">
+                    <option value="1">TPL_SIMPLE_BLANK_LEFT</option>
+                    <option value="0">TPL_SIMPLE_BLANK_RIGHT</option>
+                </field>
+                <field name="sb2_main_width" type="list" default="5" label="TPL_SIMPLE_BLANK_WIDTH_LABEL" description="TPL_SIMPLE_BLANK_WIDTH_DESCRIPTION">
+                    <option value="10">17% (1/6)</option>
+                    <option value="12">20% (1/5)</option>
+                    <option value="15">25% (1/4)</option>
+                    <option value="20">33% (1/3)</option>
+                    <option value="24">40% (2/5)</option>
+                    <option value="30">50% (1/2)</option>
+                    <option value="36">60% (3/5)</option>
+                    <option value="40">66% (2/3)</option>
+                    <option value="45">75% (3/4)</option>
+                    <option value="48">80% (4/5)</option>
+                    <option value="50">83% (5/6)</option>
+                </field>
+                <field name="addclasses_sb2_main" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
+                <field name="addattr_sb2_main" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
                 <field type="spacer" label="BOTTOM-A" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_BOTTOM_A"/>
                 <field name="color_bottom-a" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
                     <option value="muted">Muted</option>
