@@ -40,6 +40,7 @@ $yandexverification	 = $this->params->get('yandexverification');
 $bingverification	 = $this->params->get('bingverification');
 $wrappersenable		 = $this->params->get('wrappersenable');
 $bodyfullheight		 = ($this->params->get('bodyfullheight') > 0) ? ' uk-height-viewport' : '';
+$qlenable			 = $this->params->get('qlenable');
 
 // Sections
 $container_main			 = $this->params->get('container_main');
@@ -149,7 +150,6 @@ if ($googlefont == 1) {
 	$doc->addStyleSheet('//fonts.googleapis.com/css?family=' . $googlefontname . '&subset=cyrillic,latin');
 }
 
-$doc->addStyleSheet($tplpath . '/css/codemirror.css');
 // Add JavaScripts
 if ($lazysizes == 1) {
 	$doc->addScript($tplpath . '/js/lazysizes.js');
@@ -157,7 +157,6 @@ if ($lazysizes == 1) {
 $doc->addScript($tplpath . '/vendor/uikit/js/uikit.min.js');
 $doc->addScript($tplpath . '/vendor/uikit/js/uikit-icons.min.js');
 $doc->addScript($tplpath . '/vendor/uikit/js/uikit-custom-icons.min.js');
-$doc->addScript($tplpath . '/js/codemirror.min.js');
 $doc->addScript($tplpath . '/js/marked.js');
 $doc->addScript($tplpath . '/js/theme.js');
 
