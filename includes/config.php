@@ -11,7 +11,7 @@ defined('_JEXEC') or die;
  */
 $sb_top_sections_array		 = ['sb-top-a', 'sb-top-b', 'sb-top-c'];
 $sb_bottom_sections_array	 = ['sb-bottom-a', 'sb-bottom-b', 'sb-bottom-c'];
-$sb_inner_sections_array	 = ['sb-main-top', 'sb-main-bottom', 'sb-sidebar-a', 'sb-sidebar-b'];
+$sb_inner_sections_array	 = ['sb-main-top', 'sb-main-bottom', 'sb-sidebar-a', 'sb-sidebar-b', 'sb-main-sidebar-a', 'sb-main-sidebar-b',];
 $sb_offcanvas_array			 = ['sb-off-canvas-a', 'sb-off-canvas-b'];
 // Variables
 $app						 = JFactory::getApplication();
@@ -93,16 +93,28 @@ if (is_array($positions) && count($positions) > 0) {
 	}
 }
 //Sidebars
+$sb1_main_show			 = $this->params->get('sb1_main_show');
+$sb2_main_show			 = $this->params->get('sb2_main_show');
 $sb1_show				 = $this->params->get('sb1_show');
 $sb2_show				 = $this->params->get('sb2_show');
+$sb1_main_position		 = $this->params->get('sb1_main_position');
+$sb2_main_position		 = $this->params->get('sb2_main_position');
 $sb1_position			 = $this->params->get('sb1_position');
 $sb2_position			 = $this->params->get('sb2_position');
+$sb1_main_width			 = ($sb1_main_show) ? $this->params->get('sb1_main_width') : 0;
+$sb2_main_width			 = ($sb2_main_show) ? $this->params->get('sb2_main_width') : 0;
 $sb1_width				 = ($sb1_show) ? $this->params->get('sb1_width') : 0;
 $sb2_width				 = ($sb2_show) ? $this->params->get('sb2_width') : 0;
 $sb1_addClass			 = ($sb1_show) ? ' ' . $this->params->get('addclasses_sb1') : '';
+$sb2_main_addClass		 = ($sb2_show) ? ' ' . $this->params->get('addclasses_sb2_main') : '';
+$sb1_main_addClass		 = ($sb1_show) ? ' ' . $this->params->get('addclasses_sb1_main') : '';
 $sb2_addClass			 = ($sb2_show) ? ' ' . $this->params->get('addclasses_sb2') : '';
+$sb1_main_addAttr		 = ($sb1_show) ? ' ' . $this->params->get('addattr_sb1_main') : '';
+$sb2_main_addAttr		 = ($sb2_show) ? ' ' . $this->params->get('addattr_sb2_main') : '';
 $sb1_addAttr			 = ($sb1_show) ? ' ' . $this->params->get('addattr_sb1') : '';
 $sb2_addAttr			 = ($sb2_show) ? ' ' . $this->params->get('addattr_sb2') : '';
+$sb1_main_real_width	 = 0; // Учитывает ширину, только, если сайдбар заполнен
+$sb2_main_real_width	 = 0; // Учитывает ширину, только, если сайдбар заполнен
 $sb1_real_width			 = 0; // Учитывает ширину, только, если сайдбар заполнен
 $sb2_real_width			 = 0; // Учитывает ширину, только, если сайдбар заполнен
 // Off-canvases
