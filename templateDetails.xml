@@ -92,9 +92,9 @@
                     <option value="0">JNONE</option>
                 </field>
                 <field name="container_width_top-a" type="list" default="max" label="" description="">
-                    <option value="max">Max</option>
+                    <option value="max">Default</option>
                     <option value="expand">Expand</option>
-                    <option value="xlarge">Xlarge</option>
+                    <option value="xlarge">XLarge</option>
                     <option value="large">Large</option>
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
@@ -130,8 +130,9 @@
                     <option value="0">JNONE</option>
                 </field>
                 <field name="container_width_top-b" type="list" default="5" label="" description="">
-                    <option value="max">Max</option>
+                    <option value="max">Default</option>
                     <option value="expand">Expand</option>
+                    <option value="xlarge">XLarge</option>
                     <option value="large">Large</option>
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
@@ -167,9 +168,9 @@
                     <option value="0">JNONE</option>
                 </field>
                 <field name="container_width_top-c" type="list" default="5" label="" description="">
-                    <option value="max">Max</option>
+                    <option value="max">Default</option>
                     <option value="expand">Expand</option>
-                    <option value="xlarge">Xlarge</option>
+                    <option value="xlarge">XLarge</option>
                     <option value="large">Large</option>
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
@@ -205,9 +206,9 @@
                     <option value="0">JNONE</option>
                 </field>
                 <field name="container_width_main-top" type="list" default="5" label="" description="">
-                    <option value="max">Max</option>
+                    <option value="max">Default</option>
                     <option value="expand">Expand</option>
-                    <option value="xlarge">Xlarge</option>
+                    <option value="xlarge">XLarge</option>
                     <option value="large">Large</option>
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
@@ -221,9 +222,9 @@
                     <option value="0">JNONE</option>
                 </field>
                 <field name="container_width_main" type="list" default="max" label="" description="">
-                    <option value="max">Max</option>
+                    <option value="max">Default</option>
                     <option value="expand">Expand</option>
-                    <option value="xlarge">Xlarge</option>
+                    <option value="xlarge">XLarge</option>
                     <option value="large">Large</option>
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
@@ -270,9 +271,9 @@
                     <option value="0">JNONE</option>
                 </field>
                 <field name="container_width_main-bottom" type="list" default="5" label="" description="">
-                    <option value="max">Max</option>
+                    <option value="max">Default</option>
                     <option value="expand">Expand</option>
-                    <option value="xlarge">Xlarge</option>
+                    <option value="xlarge">XLarge</option>
                     <option value="large">Large</option>
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
@@ -356,8 +357,9 @@
                     <option value="0">JNONE</option>
                 </field>
                 <field name="container_width_bottom-a" type="list" default="5" label="" description="">
-                    <option value="max">Max</option>
+                    <option value="max">Default</option>
                     <option value="expand">Expand</option>
+                    <option value="xlarge">XLarge</option>
                     <option value="large">Large</option>
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
@@ -393,9 +395,9 @@
                     <option value="0">JNONE</option>
                 </field>
                 <field name="container_width_bottom-b" type="list" default="5" label="" description="">
-                    <option value="max">Max</option>
+                    <option value="max">Default</option>
                     <option value="expand">Expand</option>
-                    <option value="xlarge">Xlarge</option>
+                    <option value="xlarge">XLarge</option>
                     <option value="large">Large</option>
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
@@ -431,9 +433,9 @@
                     <option value="0">JNONE</option>
                 </field>
                 <field name="container_width_bottom-c" type="list" default="5" label="" description="">
-                    <option value="max">Max</option>
+                    <option value="max">Default</option>
                     <option value="expand">Expand</option>
-                    <option value="xlarge">Xlarge</option>
+                    <option value="xlarge">XLarge</option>
                     <option value="large">Large</option>
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
@@ -610,6 +612,10 @@
                     <option value="0">JHIDE</option>
                 </field>
                 <field name="bodyfullheight" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_BODY_FULLHEIGHT_LABEL" description="TPL_SIMPLE_BLANK_BODY_FULLHEIGHT_DESCRIPTION">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field name="bodyflex" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_BODY_FLEX_LABEL" description="TPL_SIMPLE_BLANK_BODY_FLEX_DESCRIPTION">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>

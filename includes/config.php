@@ -40,6 +40,7 @@ $yandexverification	 = $this->params->get('yandexverification');
 $bingverification	 = $this->params->get('bingverification');
 $wrappersenable		 = $this->params->get('wrappersenable');
 $bodyfullheight		 = ($this->params->get('bodyfullheight') > 0) ? ' uk-height-viewport' : '';
+$bodyflex			 = ($this->params->get('bodyflex') > 0) ? ' uk-flex uk-flex-column' : '';
 $qlenable			 = $this->params->get('qlenable');
 
 // Sections
@@ -280,7 +281,20 @@ function _buildPosition($template, $posName, $params, $sections) {
 							if (isset($section_item['pos-navbar-transparent'])) {
 								$out .= ' uk-navbar-transparent';
 							}
-							$out .= '" uk-navbar="' . $section_item['pos-navbar-params'] . '">';
+							if (isset($section_item['pos-navbar-addclasses'])) {
+								$out .= ' ' . $section_item['pos-navbar-addclasses'];
+							}
+							if (isset($section_item['pos-navbar-container']) && $section_item['pos-navbar-container'] !== 'none') {
+								$out .= '">';
+								$out .= '<div class="uk-container';
+								if ($section_item['pos-navbar-container'] !== 'default') {
+									$out .= ' uk-container-' . $section_item['pos-navbar-container'];
+								}
+								$out .= '">';
+								$out .= '<div uk-navbar="' . $section_item['pos-navbar-params'] . '">';
+							} else {
+								$out .= '" uk-navbar="' . $section_item['pos-navbar-params'] . '">';
+							}
 						}
 //                        JBDump($section_item);
 						if (isset($section_item['pos-grid']) && $section_item['pos-grid'] == '1') {
@@ -318,6 +332,10 @@ function _buildPosition($template, $posName, $params, $sections) {
 						$out .= '</div>';
 					}
 					if (isset($section_item['pos-navbar-center']) && $section_item['pos-navbar-center'] === '1') {
+						$out .= '</div>';
+					}
+					if (isset($section_item['pos-navbar-container']) && $section_item['pos-navbar-container'] !== 'none') {
+						$out .= '</div>';
 						$out .= '</div>';
 					}
 					if (isset($section_item['pos-navbar'])) {

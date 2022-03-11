@@ -26,7 +26,7 @@ if (isset($_POST['page_title'])) {
 	<jdoc:include type="head" />
 </head>
 
-<body class="sb-<?php echo $view; ?><?php echo ' ' . $pageclass; ?>" role="document"<?php echo $bodyfullheight; ?>>
+<body class="sb-<?php echo $view; ?><?php echo ' ' . $pageclass; ?><?php echo $bodyflex; ?>" role="document"<?php echo $bodyfullheight; ?>>
 	<?php
 	if (isset($wrappersenable) && $wrappersenable > 0) {
 		for ($i = 1; $i <= $wrappersenable; $i++) {
@@ -221,9 +221,9 @@ if (isset($_POST['page_title'])) {
 	if ($qlenable == 1) {
 		?>
 		<script>
-			window.addEventListener('load', () => {
-				quicklink.listen();
-			});
+	        window.addEventListener('load', () => {
+	            quicklink.listen();
+	        });
 		</script>
 		<?php
 	}
