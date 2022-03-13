@@ -560,7 +560,15 @@
                         <field name="pos-navbar" type="checkbox" label="Активен" description="Модули в этой позиции будут окружены тегами компонента Navbar" value="1"/>
                         <field name="pos-navbar-params" type="text" label="Параметры" description="Параметры компонента Navbar"/>
                         <field name="pos-navbar-transparent" type="checkbox" label="Прозрачный" description="Прозрачный фон компонента Navbar" value="1"/>
-                        <field name="pos-navbar-center" type="checkbox" label="TPL_SIMPLE_BLANK_CENTERовать" description="Располагать содержимое от центра" value="1"/>
+                        <field name="pos-navbar-container" type="list" default="none" label="Navbar Container" description="Контейнер Navbar">
+                            <option value="none">None</option>
+                            <option value="max">Default</option>
+                            <option value="expand">Expand</option>
+                            <option value="xlarge">XLarge</option>
+                            <option value="large">Large</option>
+                            <option value="small">Small</option>
+                            <option value="xsmall">XSmall</option>
+                        </field>
                         <field type="spacer" label="Sticky" description="Модули в этой позиции будут окружены тегами компонента Sticky"/>
                         <field name="pos-sticky" type="checkbox" label="Активен" description="" value="1"/>
                         <field name="pos-sticky-params" type="text" label="Параметры" description="Параметры компонента Sticky"/>
