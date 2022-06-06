@@ -5,6 +5,7 @@
 //
 // Sub-objects:     `uk-nav-header`
 //                  `uk-nav-divider`
+//                  `uk-nav-subtitle`
 //                  `uk-nav-sub`
 //
 // Modifiers:       `uk-nav-parent-icon`
@@ -48,6 +49,7 @@
 @nav-default-item-color:                        @global-muted-color;
 @nav-default-item-hover-color:                  @global-color;
 @nav-default-item-active-color:                 @global-emphasis-color;
+@nav-default-subtitle-font-size:                @global-small-font-size;
 @nav-default-header-color:                      @global-emphasis-color;
 @nav-default-divider-border-width:              @global-border-width;
 @nav-default-divider-border:                    @global-border;
@@ -60,6 +62,7 @@
 @nav-primary-item-color:                        @global-muted-color;
 @nav-primary-item-hover-color:                  @global-color;
 @nav-primary-item-active-color:                 @global-emphasis-color;
+@nav-primary-subtitle-font-size:                @global-medium-font-size;
 @nav-primary-header-color:                      @global-emphasis-color;
 @nav-primary-divider-border-width:              @global-border-width;
 @nav-primary-divider-border:                    @global-border;
@@ -94,7 +97,6 @@
 * 1. Center content vertically, e.g. an icon
 * 2. Imitate white space gap when using flexbox
 * 3. Reset link
-* 4. Space is allocated solely based on content dimensions: 0 0 auto
  */
 
 .uk-nav li > a {
@@ -106,9 +108,6 @@
     /* 3*/
     text-decoration: none;
 }
-
-/* 4 */
-.uk-nav li > a > * { flex: none; }
 
 /*
  * Items
@@ -177,7 +176,7 @@ ul.uk-nav-sub {
 /* Divider
  ========================================================================== */
 
-.uk-nav >.uk-nav-divider {
+.uk-nav .uk-nav-divider {
     margin: @nav-divider-margin-vertical @nav-divider-margin-horizontal;
     .hook-nav-divider();
 }
@@ -209,6 +208,15 @@ ul.uk-nav-sub {
 .uk-nav-default > li.uk-active > a {
     color: @nav-default-item-active-color;
     .hook-nav-default-item-active();
+}
+
+/*
+ * Subtitle
+ */
+
+.uk-nav-default .uk-nav-subtitle {
+    font-size: @nav-default-subtitle-font-size;
+    .hook-nav-default-subtitle();
 }
 
 /*
@@ -268,6 +276,15 @@ ul.uk-nav-sub {
 .uk-nav-primary > li.uk-active > a {
     color: @nav-primary-item-active-color;
     .hook-nav-primary-item-active();
+}
+
+/*
+ * Subtitle
+ */
+
+ .uk-nav-primary .uk-nav-subtitle {
+    font-size: @nav-primary-subtitle-font-size;
+    .hook-nav-primary-subtitle();
 }
 
 /*
@@ -344,12 +361,14 @@ ul.uk-nav-sub {
 .hook-nav-default-item() {}
 .hook-nav-default-item-hover() {}
 .hook-nav-default-item-active() {}
+.hook-nav-default-subtitle() {}
 .hook-nav-default-header() {}
 .hook-nav-default-divider() {}
 .hook-nav-primary() {}
 .hook-nav-primary-item() {}
 .hook-nav-primary-item-hover() {}
 .hook-nav-primary-item-active() {}
+.hook-nav-primary-subtitle() {}
 .hook-nav-primary-header() {}
 .hook-nav-primary-divider() {}
 .hook-nav-dividers() {}
