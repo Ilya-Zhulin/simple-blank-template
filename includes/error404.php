@@ -48,13 +48,16 @@ $doc->addScript($tplpath . '/vendor/uikit/js/uikit.min.js');
 		<meta name="msapplication-TileImage" content="/templates/<?php echo $this->template ?>/images/template_favicon/mstile-144x144.png">
 		<meta name="theme-color" content="#ffffff">
 		<script src="<?php echo $tplpath; ?>/vendor/uikit/js/uikit.min.js" ></script>
-		<link href="<?php echo $tplpath; ?>/css/simple-blank.css" rel="stylesheet">
+		<link href="<?php echo $tplpath; ?>/css/template.css" rel="stylesheet">
 	</head>
 	<body uk-height-viewport="expand: true" class="uk-flex uk-flex-center uk-flex-middle">
-		<div>
-			<img src="/templates/<?php echo $this->template ?>/images/template_thumbnail.svg" alt="Simple Blank Template Logo"  class="uk-width-1-1" />
-			<h1>
+		<div id="center-container" class="uk-text-center">
+			<img src="/templates/<?php echo $this->template ?>/images/template_thumbnail.svg" alt="Simple Blank Template Logo"  class="" />
+			<h1 style="margin: 0!important; margin-top: 50px!important; padding: 0!important;">
 				<?php echo $this->title; ?> - <?php echo htmlspecialchars($this->error->getMessage(), ENT_QUOTES, 'UTF-8'); ?>
 			</h1>
 		</div>
+		<script>
+            document.addEventListener("DOMContentLoaded",()=>{var a=1*document.body.style["min-height"].replace("px","");let b=document.body.getBoundingClientRect().height;a/=b;1>a&&(document.querySelector("#center-container img").style.height=.75*(a*document.querySelector("#center-container").getBoundingClientRect().height-document.querySelector("h1").getBoundingClientRect().height-50)+"px")});
+		</script>
 </html>
