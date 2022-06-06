@@ -14,7 +14,7 @@ $qlenable		 = $this->params->get('qlenable', 1);
 <meta http-equiv="cleartype" content="on">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="HandheldFriendly" content="true">
-<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <?php
 if (file_exists(JPATH_ROOT . '/templates/simple_blank/themes/lproject/head_top.php')) {
