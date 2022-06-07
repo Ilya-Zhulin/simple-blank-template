@@ -29,7 +29,9 @@ if (isset($_POST['page_title'])) {
 <body class="sb-<?php echo $view; ?><?php echo ' ' . $pageclass; ?><?php echo $bodyflex; ?>" role="document"<?php echo $bodyfullheight; ?>>
 	<?php
 	if (isset($wrappersenable) && $wrappersenable > 0) {
-		for ($i = 1; $i <= $wrappersenable; $i++) {
+		for ($i = 1;
+				$i <= $wrappersenable;
+				$i++) {
 			?>
 			<div id="sb-content-wrapper-<?php echo $i; ?>" class="sb-content-wrapper-<?php echo $i; ?>">
 				<?php
@@ -186,14 +188,28 @@ if (isset($_POST['page_title'])) {
 				echo _buildPosition($this, $sb_bottom_sections_item, $tplparams, $sections);
 			}
 		}
-		foreach ($sb_offcanvas_array as $sb_offcanvas_item) {
+		foreach ($sb_offcanvas_array as $i => $sb_offcanvas_item) {
 			if ($this->countModules($sb_offcanvas_item) || (isset($sections[$sb_offcanvas_item]) && $sections[$sb_offcanvas_item]['isExist'] > 0)) {
+//				jbdump(${"offcanvas" . ($i + 1) . "_animation"});
+//				jbdump($sections[$sb_offcanvas_item]);
 				?>
-				<div id="<?php echo $sb_offcanvas_item ?>-wrapper" uk-offcanvas="mode: <?php echo $offcanvas1_animation; ?>; overlay: true; flip: <?php echo $offcanvas1_flip; ?>">
+				<div id="<?php echo $sb_offcanvas_item ?>-wrapper" uk-offcanvas="mode: <?php echo ${"offcanvas" . ($i + 1) . "_animation"}; ?>; overlay: true; flip: <?php echo ${"offcanvas" . ($i + 1) . "_flip"}; ?>">
 					<div class="uk-offcanvas-bar">
 						<?php
-						echo _buildPosition($this, $sb_offcanvas_item, $tplparams, $sections);
-						?>
+						if ($offcanvas1_close > 0) {
+							?>
+							<button class="sb-offcanvas1-close uk-offcanvas-close
+									<?php
+									if ($offcanvas1_close_large > 0) {
+										echo " uk-close-large";
+									}
+									?>
+									" type = "button" uk-close></button>
+								<?php }
+								?>
+								<?php
+								echo _buildPosition($this, $sb_offcanvas_item, $tplparams, $sections);
+								?>
 					</div>
 				</div>
 				<?php
@@ -221,9 +237,9 @@ if (isset($_POST['page_title'])) {
 	if ($qlenable == 1) {
 		?>
 		<script>
-	        window.addEventListener('load', () => {
-	            quicklink.listen();
-	        });
+			window.addEventListener('load', () => {
+				quicklink.listen();
+			});
 		</script>
 		<?php
 	}
