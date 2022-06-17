@@ -51,6 +51,10 @@
         <language tag="ru-RU">ru-RU/ru-RU.tpl_simple_blank.ini</language>
         <language tag="ru-RU">ru-RU/ru-RU.tpl_simple_blank.sys.ini</language>
     </languages>
+    <changelogurl>https://www.zhulinia.ru/updates/simple_blank_cl.xml</changelogurl>
+    <updateservers>
+        <server type="extension" name="simple_blank" priority="1">https://www.zhulinia.ru/updates/simple_blank.xml</server>
+    </updateservers>
     <config>
         <fields name="params">
             <fieldset name="basic"/>
