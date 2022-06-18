@@ -1,15 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?><!DOCTYPE install PUBLIC "-//Joomla! 3.4//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/3.4/template-install.dtd"><extension version="3.1" type="template" client="site" method="upgrade">
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE install PUBLIC "-//Joomla! 3.4//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/3.4/template-install.dtd">
+<extension version="3.1" type="template" client="site" method="upgrade">
+
     <name>simple_blank</name>
-    <creationDate>07.03.2021</creationDate>
+    <creationDate>17.06.2022</creationDate>
     <author>Ilya A.Zhulin</author>
-    <copyright>Copyright© 2021 www.zhulinia.ru</copyright>
+    <copyright>Copyright© 2022 zhulinia.ru</copyright>
     <authorEmail>ilya.zhulin@hotmail.com</authorEmail>
-    <authorUrl>http://www.zhulinia.ru</authorUrl>
-    <version>1.0.0</version>
+    <authorUrl>https://www.zhulinia.ru</authorUrl>
+    <version>1.1.0</version>
     <description><![CDATA[
 			<h1>Simple Blank Template</h1>
-			<p>Created by <a href="http://www.zhulinia.ru" target="_blank">Ilya A.Zhulin</a> </br>
-			for <a href="http://www.sebloders.ru" target="_blank">Russian Sebloders</a>.</p>
+			<p>Created by <a href="https://www.zhulinia.ru" target="_blank">Ilya A.Zhulin</a> </br>
+			for <a href="https://www.sebloders.ru" target="_blank">Russian Sebloders</a>.</p>
 			<p>Do you have some troubles with settings? Read our <a href="https://github.com/Ilya-Zhulin/simple-blank-template/wiki" target="_blank">Wiki</a>.</p>
 		]]></description>
     <files>
