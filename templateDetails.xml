@@ -1,17 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?><!DOCTYPE install PUBLIC "-//Joomla! 3.4//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/3.4/template-install.dtd">
-<extension version="3.1" type="template" client="site" method="upgrade">
-
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE install PUBLIC "-//Joomla! 3.4//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/3.4/template-install.dtd"><extension version="3.1" type="template" client="site" method="upgrade">
     <name>simple_blank</name>
     <creationDate>17.06.2022</creationDate>
     <author>Ilya A.Zhulin</author>
-    <copyright>Copyright© 2022 zhulinia.ru</copyright>
+    <copyright>Copyright© 2021 www.zhulinia.ru</copyright>
     <authorEmail>ilya.zhulin@hotmail.com</authorEmail>
-    <authorUrl>https://www.zhulinia.ru</authorUrl>
+    <authorUrl>http://www.zhulinia.ru</authorUrl>
     <version>1.1.0</version>
     <description><![CDATA[
 			<h1>Simple Blank Template</h1>
-			<p>Created by <a href="https://www.zhulinia.ru" target="_blank">Ilya A.Zhulin</a> </br>
-			for <a href="https://www.sebloders.ru" target="_blank">Russian Sebloders</a>.</p>
+			<p>Created by <a href="http://www.zhulinia.ru" target="_blank">Ilya A.Zhulin</a> </br>
+			for <a href="http://www.sebloders.ru" target="_blank">Russian Sebloders</a>.</p>
 			<p>Do you have some troubles with settings? Read our <a href="https://github.com/Ilya-Zhulin/simple-blank-template/wiki" target="_blank">Wiki</a>.</p>
 		]]></description>
     <files>
@@ -579,7 +577,10 @@
                             <option value="sb-sidebar-b">SB-SIDEBAR-B</option>
                         </field>
                         <field type="spacer" label="Navbar" description="Модули в этой позиции будут окружены тегами компонента Navbar"/>
-                        <field name="pos-navbar" type="checkbox" label="Активен" description="Модули в этой позиции будут окружены тегами компонента Navbar" value="1"/>
+                        <field name="pos-navbar" type="radio" class="btn-group btn-group-yesno" default="0" label="" description="Модули в этой позиции будут окружены тегами компонента Navbar">
+                            <option value="1">JSHOW</option>
+                            <option value="0">JHIDE</option>
+                        </field>
                         <field name="pos-navbar-params" type="text" label="Параметры" description="Параметры компонента Navbar"/>
                         <field name="pos-navbar-transparent" type="checkbox" label="Прозрачный" description="Прозрачный фон компонента Navbar" value="1"/>
                         <field name="pos-navbar-container" type="list" default="none" label="Navbar Container" description="Контейнер Navbar">
@@ -591,6 +592,7 @@
                             <option value="small">Small</option>
                             <option value="xsmall">XSmall</option>
                         </field>
+                        <field name="note21" type="note" class="alert alert-info" label="Внимание" description="Будут также действительны позиции с суффиксами *-left, *-center и *-right для расположения в блоках слева по центру и справа соответственно" />
                         <field type="spacer" label="Sticky" description="Модули в этой позиции будут окружены тегами компонента Sticky"/>
                         <field name="pos-sticky" type="checkbox" label="Активен" description="" value="1"/>
                         <field name="pos-sticky-params" type="text" label="Параметры" description="Параметры компонента Sticky"/>
@@ -632,6 +634,41 @@
                         <field name="pos-dropdown-params" type="text" label="Параметры" description="Параметры сетки"/>
                         <field name="pos-dropdown-addparams" type="text" label="Доп. атрибуты" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL (типа uk-height-match и т.п.)"/>
                         <field name="pos-dropdown-addclasses" type="text" label="Доп. классы" description="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL"/>
+                        <field type="spacer" label="Modal" description="Модули в этой позиции будут расположены в общем модальном окне"/>
+                        <field name="pos-modal" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_SHOW_LABEL" description="Модули в этой позиции будут расположены в модальном окне">
+                            <option value="1">JSHOW</option>
+                            <option value="0">JHIDE</option>
+                        </field>
+                        <field name="pos-modal-close" type="radio" class="btn-group btn-group-yesno" default="1" label="Кнопка закрытия" description="Отображать кнопку закрытия">
+                            <option value="1">JSHOW</option>
+                            <option value="0">JHIDE</option>
+                        </field>
+                        <field name="pos-modal-close-tag" type="radio" class="btn-group btn-group-yesno" default="button" label="Тег кнопки" description="Каким тегом отображать кнопку">
+                            <option value="a">a</option>
+                            <option value="button">button</option>
+                        </field>
+                        <field name="pos-modal-close-pos" type="radio" class="btn-group btn-group-yesno" default="default" label="Позиция" description="Позиция кнопки закрытия">
+                            <option value="default">Внутри</option>
+                            <option value="outside">Снаружи</option>
+                        </field>
+                        <field name="pos-modal-close-size" type="radio" class="btn-group btn-group-yesno" default="default" label="Размер" description="Размер кнопки закрытия">
+                            <option value="default">Обычная</option>
+                            <option value="large">Большая</option>
+                        </field>
+                        <field name="pos-modal-center" type="radio" class="btn-group btn-group-yesno" default="1" label="Центровать" description="Модал по центру экрана">
+                            <option value="1">JSHOW</option>
+                            <option value="0">JHIDE</option>
+                        </field>
+                        <field name="pos-modal-size" type="list" default="default" label="Размер окна" description="Настройка размера модального окна">
+                            <option value="default">Default</option>
+                            <option value="container">По контейнеру</option>
+                            <option value="full">На весь экран</option>
+                        </field>
+                        <field name="pos-modal-params" type="text" label="Атрибуты" description="Атрибуты настройки модального окна"/>
+                        <field name="pos-modal-addparams-modal" type="text" label="Доп. атрибуты для uk-modal" description="Дополнительные атрибуты для внешнего блока uk-modal"/>
+                        <field name="pos-modal-addparams-dialog" type="text" label="Доп. атрибуты для modal-dialog" description="Дополнительные атрибуты для внутреннего блока .uk-modal-dialog"/>
+                        <field name="pos-modal-addclasses-modal" type="text" label="Доп. классы для uk-modal" description="Дополнительные классы для внешнего блока uk-modal"/>
+                        <field name="pos-modal-addclasses-dialog" default="uk-modal-dialog" type="text" label="Доп. классы для modal-dialog" description="Дополнительные классы для внутреннего блока .uk-modal-dialog"/>
                     </form>
                 </field>
             </fieldset>

@@ -229,6 +229,7 @@ function _buildPosition($template, $posName, $params, $sections) {
 	$suffix			 = str_replace('sb-', '', $posName);
 	$section_class	 = isset($params['addclasses_' . $suffix]) ? ' ' . $params['addclasses_' . $suffix] : '';
 	$section_class	 .= isset($params['color_' . $suffix]) ? ' uk-section-' . $params['color_' . $suffix] : '';
+	$section_attr	 = isset($params['addattr_' . $suffix]) ? ' ' . $params['addattr_' . $suffix] : '';
 	if (isset($params['size_' . $suffix])) {
 		switch ($params['size_' . $suffix]) {
 			case 'default':
@@ -242,7 +243,7 @@ function _buildPosition($template, $posName, $params, $sections) {
 		}
 	}
 	$section_class	 .= (isset($params['overlap_' . $suffix]) && $params['overlap_' . $suffix] == '1') ? ' uk-section-overlap' : '';
-	$out			 = '<section id="' . $posName . '" class="uk-section' . $section_class . '">';
+	$out			 = '<section id="' . $posName . '" class="uk-section' . $section_class . '"' . $section_attr . '>';
 
 	if (isset($params['container_' . $suffix]) && $params['container_' . $suffix] !== '0') {
 		$out .= '<div class="uk-container';
@@ -275,8 +276,25 @@ function _buildPosition($template, $posName, $params, $sections) {
 					if (isset($section_item['pos-dropdown']) && $section_item['pos-dropdown'] > 0) {
 						$out .= '<div id="' . $section_item['pos-name'] . '-dropdown" uk-dropdown="' . $section_item['pos-dropdown-params'] . '" class="' . $section_item['pos-dropdown-addclasses'] . '">';
 					}
+					if (isset($section_item['pos-modal']) && $section_item['pos-modal'] > 0) {
+						$modal_class = "";
+						$modal_class .= ($section_item['pos-modal-center'] > 0) ? "uk-flex-top" : "";
+						$modal_class .= (strlen($modal_class) > 0) ? " " : "";
+						$modal_class .= 'uk-modal-' . $section_item['pos-modal-size'];
+						$modal_class .= (strlen($modal_class) > 1) ? " " : "";
+						$modal_class .= $section_item['pos-modal-addclasses-modal'];
+						$out		 .= '<div id="' . $section_item['pos-name'] . '-modal" uk-modal="' . $section_item['pos-modal-params'] . '" class="' . $modal_class . '" ' . $section_item['pos-modal-addparams-modal'] . '>';
+						$out		 .= '<div class="' . $section_item['pos-modal-addclasses-dialog'] . '" ' . $section_item['pos-modal-addparams-dialog'] . '>';
+						if ($section_item['pos-modal-close'] > 0) {
+							$close_class = '';
+							$close_class .= "uk-modal-close-" . $section_item['pos-modal-close-pos'];
+							$close_class .= ($section_item['pos-modal-close-size'] != 'default') ? " uk-close-" . $section_item['pos-modal-close-size'] : "";
+							$close_tag	 = ($section_item['pos-modal-close-tag'] == 'a') ? 'a href=""' : 'button type="button"';
+							$out		 .= '<' . $close_tag . ' uk-close class="' . $close_class . '"></' . $section_item['pos-modal-close-tag'] . '>';
+						}
+					}
 					if (isset($section_item['pos-navbar']) || isset($section_item['pos-grid'])) {
-						if (isset($section_item['pos-navbar'])) {
+						if (isset($section_item['pos-navbar']) && $section_item['pos-navbar'] > 0) {
 							$out .= '<nav id="' . $pos_name . '-navbar" class="uk-navbar-container';
 							if (isset($section_item['pos-navbar-transparent'])) {
 								$out .= ' uk-navbar-transparent';
@@ -340,6 +358,10 @@ function _buildPosition($template, $posName, $params, $sections) {
 					}
 					if (isset($section_item['pos-navbar'])) {
 						$out .= '</nav>';
+					}
+					if (isset($section_item['pos-modal']) && $section_item['pos-modal'] > 0) {
+						$out .= '</div>';
+						$out .= '</div>';
 					}
 					if (isset($section_item['pos-dropdown']) && $section_item['pos-dropdown'] > 0) {
 						$out .= '</div>';
