@@ -196,7 +196,7 @@ if (isset($_POST['page_title'])) {
 				<div id="<?php echo $sb_offcanvas_item ?>-wrapper" uk-offcanvas="mode: <?php echo ${"offcanvas" . ($i + 1) . "_animation"}; ?>; overlay: true; flip: <?php echo ${"offcanvas" . ($i + 1) . "_flip"}; ?>">
 					<div class="uk-offcanvas-bar">
 						<?php
-						if ($offcanvas1_close > 0) {
+						if (isset($offcanvas1_close) && $offcanvas1_close > 0) {
 							?>
 							<button class="sb-offcanvas1-close uk-offcanvas-close
 									<?php
