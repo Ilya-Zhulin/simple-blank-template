@@ -9,9 +9,20 @@ defined('_JEXEC') or die;
  * if you want to place it between defaoult positions/
  *
  */
+
+
+$gcf = function ($a, $b = 60) use (&$gcf) {
+	return (int) ($b > 0 ? $gcf($b, $a % $b) : $a);
+};
+
+$fraction = function ($nominator, $divider = 60) use (&$gcf) {
+	return $nominator / ($factor = $gcf($nominator, $divider)) . '-' . $divider / $factor;
+};
+
 $sb_top_sections_array		 = ['sb-top-a', 'sb-top-b', 'sb-top-c'];
 $sb_bottom_sections_array	 = ['sb-bottom-a', 'sb-bottom-b', 'sb-bottom-c'];
-$sb_inner_sections_array	 = ['sb-main-top', 'sb-main-bottom', 'sb-sidebar-a', 'sb-sidebar-b', 'sb-main-sidebar-a', 'sb-main-sidebar-b',];
+$sb_sidebar_sections_array	 = ['sb-sidebar-a', 'sb-sidebar-b'];
+$sb_inner_sections_array	 = ['sb-main-top', 'sb-main-bottom', 'sb-main-sidebar-a', 'sb-main-sidebar-b'];
 $sb_offcanvas_array			 = ['sb-off-canvas-a', 'sb-off-canvas-b'];
 // Variables
 $app						 = JFactory::getApplication();
@@ -27,31 +38,31 @@ $params						 = $app->getParams();
 $pageclass					 = $params->get('pageclass_sfx');
 $tplpath					 = $this->baseurl . '/templates/' . $this->template;
 $tplparams					 = $this->params->toArray();
-
+$grid_prefix				 = ''; // For pattern including
 // Parameters
-$hidecomponent		 = $this->params->get('hidecomponent', 0);
-$lazysizes			 = $this->params->get('lazysizes', 0);
-$googlefont			 = $this->params->get('googlefont', 0);
-$googlefontname		 = $this->params->get('googlefontname');
-$googleid			 = $this->params->get('googleid');
-$yandexid			 = $this->params->get('yandexid');
-$googleverification	 = $this->params->get('googleverification');
-$yandexverification	 = $this->params->get('yandexverification');
-$bingverification	 = $this->params->get('bingverification');
-$wrappersenable		 = $this->params->get('wrappersenable');
-$bodyfullheight		 = ($this->params->get('bodyfullheight') > 0) ? ' uk-height-viewport' : '';
-$bodyflex			 = ($this->params->get('bodyflex') > 0) ? ' uk-flex uk-flex-column' : '';
-$qlenable			 = $this->params->get('qlenable');
+$hidecomponent				 = $this->params->get('hidecomponent', 0);
+$lazysizes					 = $this->params->get('lazysizes', 0);
+$googlefont					 = $this->params->get('googlefont', 0);
+$googlefontname				 = $this->params->get('googlefontname');
+$googleid					 = $this->params->get('googleid');
+$yandexid					 = $this->params->get('yandexid');
+$googleverification			 = $this->params->get('googleverification');
+$yandexverification			 = $this->params->get('yandexverification');
+$bingverification			 = $this->params->get('bingverification');
+$wrappersenable				 = $this->params->get('wrappersenable');
+$bodyfullheight				 = ($this->params->get('bodyfullheight') > 0) ? ' uk-height-viewport' : '';
+$bodyflex					 = ($this->params->get('bodyflex') > 0) ? ' uk-flex uk-flex-column' : '';
+$qlenable					 = $this->params->get('qlenable');
 
 // Sections
-$container_main			 = $this->params->get('container_main');
-$container_width_main	 = $this->params->get('container_width_main');
-$grid_main				 = $this->params->get('grid_main');
-$grid_classes_main		 = $this->params->get('gridclasses_main');
-switch ($grid_main) {
+$main_container			 = $this->params->get('main_container');
+$main_container_width	 = $this->params->get('main_container_width');
+$main_grid				 = $this->params->get('main_grid');
+$main_grid_classes		 = $this->params->get('main_gridclasses');
+switch ($main_grid) {
 	case '1';
-		$grid_classes_main	 = (strlen($grid_classes_main) > 0) ? $grid_classes_main . ' ' : '';
-		$grid_classes_main	 .= 'uk-grid-collapse';
+		$main_grid_classes	 = (strlen($main_grid_classes) > 0) ? $main_grid_classes . ' ' : '';
+		$main_grid_classes	 .= 'uk-grid-collapse';
 		break;
 	case '2';
 		$grid_classes_main	 = (strlen($grid_classes_main) > 0) ? $grid_classes_main . ' ' : '';
@@ -68,17 +79,17 @@ switch ($grid_main) {
 	default;
 		break;
 }
-$grid_classes_main				 = (strlen($grid_classes_main) > 0) ? ' class="' . $grid_classes_main . '"' : '';
-$grid_attr_main					 = $this->params->get('gridattrs_main');
-$grid_attr_main					 = (strlen($grid_attr_main) > 0) ? ' ' . $grid_attr_main : '';
-$addclasses_main				 = $this->params->get('addclasses_main');
-$addclasses_main				 = (strlen($addclasses_main) > 0) ? ' class="' . $addclasses_main . '"' : '';
-$addattr_main					 = $this->params->get('addattr_main');
-$addattr_main					 = (strlen($addattr_main) > 0) ? ' ' . $addattr_main : '';
-$addattr_container_main			 = $this->params->get('addattr_container_main');
-$addattr_container_main			 = (strlen($addattr_container_main) > 0) ? ' ' . $addattr_container_main : '';
-$addclasses_container_main		 = $this->params->get('addclasses_container_main');
-$addclasses_container_main		 = (strlen($addclasses_container_main) > 0) ? ' ' . $addclasses_container_main : '';
+$main_grid_classes				 = (strlen($main_grid_classes) > 0) ? ' class="' . $main_grid_classes . '"' : '';
+$main_grid_attr					 = $this->params->get('main_addattrs_grid');
+$main_grid_attr					 = (strlen($main_grid_attr) > 0) ? ' ' . $main_grid_attr : '';
+$main_addclasses				 = $this->params->get('main_addclasses');
+$main_addclasses				 = (strlen($main_addclasses) > 0) ? ' ' . $main_addclasses : '';
+$main_addattr					 = $this->params->get('main_addattr');
+$main_addattr					 = (strlen($main_addattr) > 0) ? ' ' . $main_addattr : '';
+$main_addattr_container			 = $this->params->get('main_addattr_container');
+$main_addattr_container			 = (strlen($main_addattr_container) > 0) ? ' ' . $main_addattr_container : '';
+$main_addclasses_container		 = $this->params->get('main_addclasses_container');
+$main_addclasses_container		 = (strlen($main_addclasses_container) > 0) ? ' ' . $main_addclasses_container : '';
 $sections						 = [];
 $sections['sb-main']['isExist']	 = 1;
 $positions						 = (array) $this->params->get('positions-location');
@@ -94,43 +105,54 @@ if (is_array($positions) && count($positions) > 0) {
 	}
 }
 //Sidebars
-$sb1_main_show			 = $this->params->get('sb1_main_show');
-$sb2_main_show			 = $this->params->get('sb2_main_show');
-$sb1_show				 = $this->params->get('sb1_show');
-$sb2_show				 = $this->params->get('sb2_show');
-$sb1_main_position		 = $this->params->get('sb1_main_position');
-$sb2_main_position		 = $this->params->get('sb2_main_position');
-$sb1_position			 = $this->params->get('sb1_position');
-$sb2_position			 = $this->params->get('sb2_position');
-$sb1_main_width			 = ($sb1_main_show) ? $this->params->get('sb1_main_width') : 0;
-$sb2_main_width			 = ($sb2_main_show) ? $this->params->get('sb2_main_width') : 0;
-$sb1_width				 = ($sb1_show) ? $this->params->get('sb1_width') : 0;
-$sb2_width				 = ($sb2_show) ? $this->params->get('sb2_width') : 0;
-$sb1_addClass			 = ($sb1_show) ? ' ' . $this->params->get('addclasses_sb1') : '';
-$sb2_main_addClass		 = ($sb2_show) ? ' ' . $this->params->get('addclasses_sb2_main') : '';
-$sb1_main_addClass		 = ($sb1_show) ? ' ' . $this->params->get('addclasses_sb1_main') : '';
-$sb2_addClass			 = ($sb2_show) ? ' ' . $this->params->get('addclasses_sb2') : '';
-$sb1_main_addAttr		 = ($sb1_show) ? ' ' . $this->params->get('addattr_sb1_main') : '';
-$sb2_main_addAttr		 = ($sb2_show) ? ' ' . $this->params->get('addattr_sb2_main') : '';
-$sb1_addAttr			 = ($sb1_show) ? ' ' . $this->params->get('addattr_sb1') : '';
-$sb2_addAttr			 = ($sb2_show) ? ' ' . $this->params->get('addattr_sb2') : '';
-$sb1_main_real_width	 = 0; // Учитывает ширину, только, если сайдбар заполнен
+$sb1_show		 = $this->params->get('sidebar-a_show');
+$sb1_tag		 = $this->params->get('sidebar-a_tag');
+$sb1_position	 = $this->params->get('sidebar-a_position');
+$sb1_width		 = ($sb1_show) ? $this->params->get('sidebar-a_width') : 0;
+$sb1_height		 = ($sb1_show) ? $this->params->get('sidebar-a_height') : 1;
+$sb1_addClass	 = ($sb1_show) ? ' ' . $this->params->get('sidebar-a_addclasses') : '';
+$sb1_addAttr	 = ($sb1_show) ? ' ' . $this->params->get('sidebar-a_addattr') : '';
+$sb1_real_width	 = 0; // Учитывает ширину, только, если сайдбар заполнен
+
+$sb2_show		 = $this->params->get('sidebar-b_show');
+$sb2_tag		 = $this->params->get('sidebar-b_tag');
+$sb2_position	 = $this->params->get('sidebar-b_position');
+$sb2_width		 = ($sb2_show) ? $this->params->get('sidebar-b_width') : 0;
+$sb2_height		 = ($sb1_show) ? $this->params->get('sidebar-b_height') : 1;
+$sb2_addClass	 = ($sb2_show) ? ' ' . $this->params->get('sidebar-b_addclasses') : '';
+$sb2_addAttr	 = ($sb2_show) ? ' ' . $this->params->get('sidebar-b_addattr') : '';
+$sb2_real_width	 = 0; // Учитывает ширину, только, если сайдбар заполнен
+
+$sb1_main_show		 = $this->params->get('main-sidebar-a_show');
+$sb1_main_position	 = $this->params->get('main-sidebar-a_position');
+$sb1_main_width		 = ($sb1_main_show) ? $this->params->get('main-sidebar-a_width') : 0;
+$sb1_main_height	 = ($sb1_main_show) ? $this->params->get('main-sidebar-a_height') : 1;
+$sb1_main_real_width = 0; // Учитывает ширину, только, если сайдбар заполнен
+
+$sb2_main_show			 = $this->params->get('main-sidebar-b_show');
+$sb2_main_position		 = $this->params->get('main-sidebar-b_position');
+$sb2_main_width			 = ($sb2_main_show) ? $this->params->get('main-sidebar-b_width') : 0;
+$sb2_main_height		 = ($sb2_main_show) ? $this->params->get('main-sidebar-b_height') : 1;
 $sb2_main_real_width	 = 0; // Учитывает ширину, только, если сайдбар заполнен
-$sb1_real_width			 = 0; // Учитывает ширину, только, если сайдбар заполнен
-$sb2_real_width			 = 0; // Учитывает ширину, только, если сайдбар заполнен
 // Off-canvases
-$offcanvas1_show		 = $this->params->get('offcanvas1_show');
-$offcanvas1_position	 = $this->params->get('offcanvas1_position');
-$offcanvas1_animation	 = $this->params->get('offcanvas1_animation');
-$offcanvas1_position	 = $this->params->get('offcanvas2_position');
+$offcanvas1_show		 = $this->params->get('off-canvas-a_show');
+$offcanvas1_tag			 = $this->params->get('off-canvas-a_tag');
+$offcanvas1_position	 = $this->params->get('off-canvas-a_position');
+$offcanvas1_animation	 = $this->params->get('off-canvas-a_animation');
 $offcanvas1_flip		 = ($offcanvas1_position == '1') ? 'false' : 'true';
-$offcanvas1_overlay		 = $this->params->get('offcanvas1_overlay');
-$offcanvas2_show		 = $this->params->get('offcanvas2_show');
-$offcanvas2_position	 = $this->params->get('offcanvas2_position');
-$offcanvas2_animation	 = $this->params->get('offcanvas2_animation');
-$offcanvas2_position	 = $this->params->get('offcanvas2_position');
-$offcanvas2_flip		 = ($offcanvas2_position == '1') ? 'false' : 'true';
-$offcanvas2_overlay		 = $this->params->get('offcanvas2_overlay');
+$offcanvas1_overlay		 = $this->params->get('off-canvas-a_overlay');
+$offcanvas1_close		 = $this->params->get('off-canvas-a_close_button');
+$offcanvas1_close_large	 = $this->params->get('off-canvas-a_close_button_large');
+$offcanvas1_addclasses	 = $this->params->get('off-canvas-a_addclasses');
+$offcanvas2_show		 = $this->params->get('off-canvas-b_show');
+$offcanvas2_tag			 = $this->params->get('off-canvas-b_tag');
+$offcanvas2_position	 = $this->params->get('off-canvas-b_position');
+$offcanvas2_animation	 = $this->params->get('off-canvas-ab_animation');
+$offcanvas2_flip		 = ($offcanvas1_position == '1') ? 'false' : 'true';
+$offcanvas2_overlay		 = $this->params->get('off-canvas-b_overlay');
+$offcanvas2_close		 = $this->params->get('off-canvas-b_close_button');
+$offcanvas2_close_large	 = $this->params->get('off-canvas-b_close_button_large');
+$offcanvas2_addclasses	 = $this->params->get('off-canvas-b_addclasses');
 
 //Less
 $less_acompile	 = $this->params->get('less_acompile', 0);
@@ -184,7 +206,7 @@ if ($less_acompile == 1) {
 //	$doc->addScript('//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js');
 //	$doc->addCustomTag('<link rel="stylesheet/less" type="text/css" href="' . $less_path . 'template.less" />');
 } else {
-	// CSS including
+// CSS including
 	$css_path	 = JPATH_THEMES . '/' . $this->template . '/css/';
 	$excluded	 = explode(',', $this->params->get('css_exclude_files'));
 	$template	 = 0;
@@ -227,11 +249,13 @@ if ($less_acompile == 1) {
 function _buildPosition($template, $posName, $params, $sections) {
 	$posName		 = strtolower($posName);
 	$suffix			 = str_replace('sb-', '', $posName);
-	$section_class	 = isset($params['addclasses_' . $suffix]) ? ' ' . $params['addclasses_' . $suffix] : '';
-	$section_class	 .= isset($params['color_' . $suffix]) ? ' uk-section-' . $params['color_' . $suffix] : '';
-	$section_attr	 = isset($params['addattr_' . $suffix]) ? ' ' . $params['addattr_' . $suffix] : '';
-	if (isset($params['size_' . $suffix])) {
-		switch ($params['size_' . $suffix]) {
+	$section_class	 = $suffix;
+	$section_class	 .= isset($params[$suffix . '_addclasses']) ? ' ' . $params[$suffix . '_addclasses'] : '';
+	$section_class	 .= isset($params[$suffix . '_color']) ? ' uk-section-' . $params[$suffix . '_color'] : '';
+	$section_attr	 = isset($params[$suffix . '_addattr']) ? ' ' . $params[$suffix . '_addattr'] : '';
+	$section_tag	 = isset($params[$suffix . '_tag']) ? $params[$suffix . '_tag'] : 'section';
+	if (isset($params[$suffix . '_size'])) {
+		switch ($params[$suffix . '_size']) {
 			case 'default':
 				$section_class	 .= '';
 				break;
@@ -239,22 +263,22 @@ function _buildPosition($template, $posName, $params, $sections) {
 				$section_class	 .= ' uk-padding-remove-vertical';
 				break;
 			default:
-				$section_class	 .= ' uk-section-' . $params['size_' . $suffix];
+				$section_class	 .= ' uk-section-' . $params[$suffix . '_size'];
 		}
 	}
-	$section_class	 .= (isset($params['overlap_' . $suffix]) && $params['overlap_' . $suffix] == '1') ? ' uk-section-overlap' : '';
-	$out			 = '<section id="' . $posName . '" class="uk-section' . $section_class . '"' . $section_attr . '>';
+	$section_class	 .= (isset($params[$suffix . '_overlap']) && $params[$suffix . '_overlap'] == '1') ? ' uk-section-overlap' : '';
+	$out			 = '<' . $section_tag . ' id="' . $posName . '" class="' . $section_class . '"' . $section_attr . '>';
 
-	if (isset($params['container_' . $suffix]) && $params['container_' . $suffix] !== '0') {
+	if (isset($params[$suffix . '_container']) && $params[$suffix . '_container'] !== '0') {
 		$out .= '<div class="uk-container';
-		if ($params['container_' . $suffix] == '1') {
+		if ($params[$suffix . '_container'] == '1') {
 			$out .= ' uk-container-center';
 		}
-		switch ($params['container_width_' . $suffix]) {
+		switch ($params[$suffix . '_container_width']) {
 			case 'max':
 				break;
 			default:
-				$out .= ' uk-container-' . $params['container_width_' . $suffix];
+				$out .= ' uk-container-' . $params[$suffix . '_container_width'];
 				break;
 		}
 		$out .= '">';
@@ -265,9 +289,9 @@ function _buildPosition($template, $posName, $params, $sections) {
 				$pos_name = strtolower($section_item["pos-name"]);
 				if ($template->countModules($section_item["pos-name"]) ||
 						(
-						(isset($section_item['pos-navbar']) && ($template->countModules($section_item["pos-name"] . '-left') ||
+						isset($section_item['pos-navbar']) && ($template->countModules($section_item["pos-name"] . '-left') ||
 						$template->countModules($section_item["pos-name"] . '-center') ||
-						$template->countModules($section_item["pos-name"] . '-right') ))
+						$template->countModules($section_item["pos-name"] . '-right') )
 						)
 				) {
 					if (isset($section_item['pos-sticky'])) {
@@ -314,7 +338,6 @@ function _buildPosition($template, $posName, $params, $sections) {
 								$out .= '" uk-navbar="' . $section_item['pos-navbar-params'] . '">';
 							}
 						}
-//                        JBDump($section_item);
 						if (isset($section_item['pos-grid']) && $section_item['pos-grid'] == '1') {
 							$grid_params	 = (isset($section_item['pos-grid-params']) && strlen($section_item['pos-grid-params']) > 0) ? $section_item['pos-grid-params'] : '';
 							$grid_addparams	 = (isset($section_item['pos-grid-addparams']) && strlen($section_item['pos-grid-addparams']) > 0) ? ' ' . $section_item['pos-grid-addparams'] : '';
@@ -375,9 +398,9 @@ function _buildPosition($template, $posName, $params, $sections) {
 	} else {
 		$out .= '<jdoc:include type="modules" name="' . $posName . '" />';
 	}
-	if (isset($params['container_' . $suffix]) && $params['container_' . $suffix] !== '0') {
+	if (isset($params[$suffix . '_container']) && $params[$suffix . '_container'] !== '0') {
 		$out .= '</div>';
 	}
-	$out .= '</section>';
+	$out .= '</' . $section_tag . '>';
 	return $out;
 }

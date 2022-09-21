@@ -72,13 +72,18 @@
             </fieldset>
             <fieldset name="sections" label="TPL_SIMPLE_BLANK_SECTION_LABEL">
                 <field type="spacer" label="TOP-A" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_TOP_A"/>
-                <field name="color_top-a" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
+                <field name="top-a_tag" type="radio" class="btn-group btn-group-yesno" default="section" label="TPL_SIMPLE_BLANK_TAG_LABEL" description="TPL_SIMPLE_BLANK_TAG_DESCRIPTION">
+                    <option value="section">Section</option>
+                    <option value="aside">Aside</option>
+                    <option value="div">Div</option>
+                </field>
+                <field name="top-a_color" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
                     <option value="muted">Muted</option>
                     <option value="secondary">Secondary</option>
                     <option value="primary">Primary</option>
                     <option value="default">Default</option>
                 </field>
-                <field name="size_top-a" type="list" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_PADDING_LABEL" description="TPL_SIMPLE_BLANK_PADDING_DESCRIPTION">
+                <field name="top-a_size" type="list" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_PADDING_LABEL" description="TPL_SIMPLE_BLANK_PADDING_DESCRIPTION">
                     <option value="0">JNONE</option>
                     <option value="xsmall">XSmall</option>
                     <option value="small">Small</option>
@@ -86,16 +91,16 @@
                     <option value="large">Large</option>
                     <option value="xlarge">XLarge</option>
                 </field>
-                <field name="overlap_top-a" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="Some UIkit themes use richer styles, including textured backgrounds and borders. In this case, you can add the .uk-section-overlap class, to apply a border image and a negative offset to the following section. Note that this only works in styles that implement the feature, if there are subsequent sections.">
+                <field name="top-a_overlap" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="Some UIkit themes use richer styles, including textured backgrounds and borders. In this case, you can add the .uk-section-overlap class, to apply a border image and a negative offset to the following section. Note that this only works in styles that implement the feature, if there are subsequent sections.">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
-                <field name="container_top-a" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_CONTAINER_LABEL" description="TPL_SIMPLE_BLANK_SECTION_CONTAINER_DESCRIPTION">
+                <field name="top-a_container" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_CONTAINER_LABEL" description="TPL_SIMPLE_BLANK_SECTION_CONTAINER_DESCRIPTION">
                     <option value="2">TPL_SIMPLE_BLANK_LEFT</option>
                     <option value="1">TPL_SIMPLE_BLANK_CENTER</option>
                     <option value="0">JNONE</option>
                 </field>
-                <field name="container_width_top-a" type="list" default="max" label="" description="">
+                <field name="top-a_container_width" type="list" default="max" label="" description="">
                     <option value="max">Default</option>
                     <option value="expand">Expand</option>
                     <option value="xlarge">XLarge</option>
@@ -103,16 +108,22 @@
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
                 </field>
-                <field name="addclasses_top-a" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default="uk-padding-remove-top"/>
-                <field name="addattr_top-a" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+                <field name="top-a_addclasses" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default="uk-padding-remove-top"/>
+                <field name="top-a_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+
                 <field type="spacer" label="TOP-B" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_TOP_B"/>
-                <field name="color_top-b" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
+                <field name="top-b_tag" type="radio" class="btn-group btn-group-yesno" default="section" label="TPL_SIMPLE_BLANK_TAG_LABEL" description="TPL_SIMPLE_BLANK_TAG_DESCRIPTION">
+                    <option value="section">Section</option>
+                    <option value="aside">Aside</option>
+                    <option value="div">Div</option>
+                </field>
+                <field name="top-b_color" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
                     <option value="muted">Muted</option>
                     <option value="secondary">Secondary</option>
                     <option value="primary">Primary</option>
                     <option value="default">Default</option>
                 </field>
-                <field name="size_top-b" type="list" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_PADDING_LABEL" description="TPL_SIMPLE_BLANK_PADDING_DESCRIPTION">
+                <field name="top-b_size" type="list" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_PADDING_LABEL" description="TPL_SIMPLE_BLANK_PADDING_DESCRIPTION">
                     <option value="0">JNONE</option>
                     <option value="xsmall">XSmall</option>
                     <option value="small">Small</option>
@@ -120,20 +131,20 @@
                     <option value="large">Large</option>
                     <option value="xlarge">XLarge</option>
                 </field>
-                <field name="overlap_top-b" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="Some UIkit themes use richer styles, including textured backgrounds and borders. In this case, you can add the .uk-section-overlap class, to apply a border image and a negative offset to the following section. Note that this only works in styles that implement the feature, if there are subsequent sections.">
+                <field name="top-b_overlap" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="Some UIkit themes use richer styles, including textured backgrounds and borders. In this case, you can add the .uk-section-overlap class, to apply a border image and a negative offset to the following section. Note that this only works in styles that implement the feature, if there are subsequent sections.">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
-                <field name="show_top-b" type="radio" class="btn-group btn-group-yesno" default="1" label="" description="">
+                <field name="top-b_show" type="radio" class="btn-group btn-group-yesno" default="1" label="" description="">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="container_top-b" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_CONTAINER_LABEL" description="TPL_SIMPLE_BLANK_SECTION_CONTAINER_DESCRIPTION">
+                <field name="top-b_container" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_CONTAINER_LABEL" description="TPL_SIMPLE_BLANK_SECTION_CONTAINER_DESCRIPTION">
                     <option value="2">Полный</option>
                     <option value="1">TPL_SIMPLE_BLANK_CENTER</option>
                     <option value="0">JNONE</option>
                 </field>
-                <field name="container_width_top-b" type="list" default="5" label="" description="">
+                <field name="top-b_container_width" type="list" default="5" label="" description="">
                     <option value="max">Default</option>
                     <option value="expand">Expand</option>
                     <option value="xlarge">XLarge</option>
@@ -141,16 +152,22 @@
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
                 </field>
-                <field name="addclasses_top-b" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
+                <field name="top-b_addclasses" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
                 <field name="addattr_top-и" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+
                 <field type="spacer" label="TOP-C" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_TOP_C"/>
-                <field name="color_top-c" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
+                <field name="top-c_tag" type="radio" class="btn-group btn-group-yesno" default="section" label="TPL_SIMPLE_BLANK_TAG_LABEL" description="TPL_SIMPLE_BLANK_TAG_DESCRIPTION">
+                    <option value="section">Section</option>
+                    <option value="aside">Aside</option>
+                    <option value="div">Div</option>
+                </field>
+                <field name="top-c_color" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
                     <option value="muted">Muted</option>
                     <option value="secondary">Secondary</option>
                     <option value="primary">Primary</option>
                     <option value="default">Default</option>
                 </field>
-                <field name="size_top-c" type="list" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_PADDING_LABEL" description="TPL_SIMPLE_BLANK_PADDING_DESCRIPTION">
+                <field name="top-c_size" type="list" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_PADDING_LABEL" description="TPL_SIMPLE_BLANK_PADDING_DESCRIPTION">
                     <option value="0">JNONE</option>
                     <option value="xsmall">XSmall</option>
                     <option value="small">Small</option>
@@ -158,20 +175,20 @@
                     <option value="large">Large</option>
                     <option value="xlarge">XLarge</option>
                 </field>
-                <field name="overlap_top-c" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="">
+                <field name="top-c_overlap" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
-                <field name="show_top-c" type="radio" class="btn-group btn-group-yesno" default="1" label="" description="">
+                <field name="top-c_show" type="radio" class="btn-group btn-group-yesno" default="1" label="" description="">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="container_top-c" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_CONTAINER_LABEL" description="TPL_SIMPLE_BLANK_SECTION_CONTAINER_DESCRIPTION">
+                <field name="top-c_container" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_CONTAINER_LABEL" description="TPL_SIMPLE_BLANK_SECTION_CONTAINER_DESCRIPTION">
                     <option value="2">Полный</option>
                     <option value="1">TPL_SIMPLE_BLANK_CENTER</option>
                     <option value="0">JNONE</option>
                 </field>
-                <field name="container_width_top-c" type="list" default="5" label="" description="">
+                <field name="top-c_container_width" type="list" default="5" label="" description="">
                     <option value="max">Default</option>
                     <option value="expand">Expand</option>
                     <option value="xlarge">XLarge</option>
@@ -179,16 +196,22 @@
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
                 </field>
-                <field name="addclasses_top-c" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
-                <field name="addattr_top-c" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+                <field name="top-c_addclasses" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
+                <field name="top-c_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+
                 <field type="spacer" label="MAIN-TOP" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_MAIN_TOP"/>
-                <field name="color_main-top" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
+                <field name="main-top_tag" type="radio" class="btn-group btn-group-yesno" default="section" label="TPL_SIMPLE_BLANK_TAG_LABEL" description="TPL_SIMPLE_BLANK_TAG_DESCRIPTION">
+                    <option value="section">Section</option>
+                    <option value="aside">Aside</option>
+                    <option value="div">Div</option>
+                </field>
+                <field name="main-top_color" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
                     <option value="muted">Muted</option>
                     <option value="secondary">Secondary</option>
                     <option value="primary">Primary</option>
                     <option value="default">Default</option>
                 </field>
-                <field name="size_main-top" type="list" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_PADDING_LABEL" description="TPL_SIMPLE_BLANK_PADDING_DESCRIPTION">
+                <field name="main-top_size" type="list" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_PADDING_LABEL" description="TPL_SIMPLE_BLANK_PADDING_DESCRIPTION">
                     <option value="0">JNONE</option>
                     <option value="xsmall">XSmall</option>
                     <option value="small">Small</option>
@@ -196,20 +219,20 @@
                     <option value="large">Large</option>
                     <option value="xlarge">XLarge</option>
                 </field>
-                <field name="overlap_main-top" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="">
+                <field name="main-top_overlap" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
-                <field name="show_main-top" type="radio" class="btn-group btn-group-yesno" default="1" label="" description="">
+                <field name="main-top_show" type="radio" class="btn-group btn-group-yesno" default="1" label="" description="">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="container_main-top" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_CONTAINER_LABEL" description="TPL_SIMPLE_BLANK_SECTION_CONTAINER_DESCRIPTION">
+                <field name="main-top_container" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_CONTAINER_LABEL" description="TPL_SIMPLE_BLANK_SECTION_CONTAINER_DESCRIPTION">
                     <option value="2">Полный</option>
                     <option value="1">TPL_SIMPLE_BLANK_CENTER</option>
                     <option value="0">JNONE</option>
                 </field>
-                <field name="container_width_main-top" type="list" default="5" label="" description="">
+                <field name="main-top_container_width" type="list" default="5" label="" description="">
                     <option value="max">Default</option>
                     <option value="expand">Expand</option>
                     <option value="xlarge">XLarge</option>
@@ -217,15 +240,16 @@
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
                 </field>
-                <field name="addclasses_main-top" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
-                <field name="addattr_main-top" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+                <field name="main-top_addclasses" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
+                <field name="main-top_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+
                 <field type="spacer" label="MAIN CONTENT" description="Настройки блока с основным контентом"/>
-                <field name="container_main" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_CONTAINER_LABEL" description="TPL_SIMPLE_BLANK_SECTION_CONTAINER_DESCRIPTION">
+                <field name="main_container" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_CONTAINER_LABEL" description="TPL_SIMPLE_BLANK_SECTION_CONTAINER_DESCRIPTION">
                     <option value="2">Полный</option>
                     <option value="1">TPL_SIMPLE_BLANK_CENTER</option>
                     <option value="0">JNONE</option>
                 </field>
-                <field name="container_width_main" type="list" default="max" label="" description="">
+                <field name="main_container_width" type="list" default="max" label="" description="">
                     <option value="max">Default</option>
                     <option value="expand">Expand</option>
                     <option value="xlarge">XLarge</option>
@@ -233,27 +257,33 @@
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
                 </field>
-                <field name="addclasses_container_main" type="input" label="TPL_SIMPLE_BLANK_CONTAINER_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default=""/>
-                <field name="addattr_container_main" type="input" label="TPL_SIMPLE_BLANK_CONTAINER_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default=""/>
-                <field name="grid_main" type="list" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_GRID_LABEL" description="TPL_SIMPLE_BLANK_GRID_DESCRIPTION">
+                <field name="main_addclasses_container" type="input" label="TPL_SIMPLE_BLANK_CONTAINER_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default=""/>
+                <field name="main_addattr_container" type="input" label="TPL_SIMPLE_BLANK_CONTAINER_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_LESS_CUSTOM_FILE_DESCRIPTION" default=""/>
+                <field name="main_grid" type="list" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_GRID_LABEL" description="TPL_SIMPLE_BLANK_GRID_DESCRIPTION">
                     <option value="4">Small</option>
                     <option value="3">Medium</option>
                     <option value="2">Large</option>
                     <option value="1">Collapse</option>
                     <option value="0">JNONE</option>
                 </field>
-                <field name="gridclasses_main" type="input" label="TPL_SIMPLE_BLANK_GRID_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_GRID_ADD_CLASSES_DESCRIPTION" default=""/>
-                <field name="gridattrs_main" type="input" label="TPL_SIMPLE_BLANK_GRID_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_GRID_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
-                <field name="addclasses_main" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
-                <field name="addattr_main" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+                <field name="main_addclasses_grid" type="input" label="TPL_SIMPLE_BLANK_GRID_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_GRID_ADD_CLASSES_DESCRIPTION" default=""/>
+                <field name="main_addattr_grid" type="input" label="TPL_SIMPLE_BLANK_GRID_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_GRID_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+                <field name="main_addclasses" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
+                <field name="main_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+
                 <field type="spacer" label="MAIN-BOTTOM" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_MAIN_BOTTOM"/>
-                <field name="color_main-bottom" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
+                <field name="main-bottom_tag" type="radio" class="btn-group btn-group-yesno" default="section" label="TPL_SIMPLE_BLANK_TAG_LABEL" description="TPL_SIMPLE_BLANK_TAG_DESCRIPTION">
+                    <option value="section">Section</option>
+                    <option value="aside">Aside</option>
+                    <option value="div">Div</option>
+                </field>
+                <field name="main-bottom_color" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
                     <option value="muted">Muted</option>
                     <option value="secondary">Secondary</option>
                     <option value="primary">Primary</option>
                     <option value="default">Default</option>
                 </field>
-                <field name="size_main-bottom" type="list" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_PADDING_LABEL" description="TPL_SIMPLE_BLANK_PADDING_DESCRIPTION">
+                <field name="main-bottom_size" type="list" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_PADDING_LABEL" description="TPL_SIMPLE_BLANK_PADDING_DESCRIPTION">
                     <option value="0">JNONE</option>
                     <option value="xsmall">XSmall</option>
                     <option value="small">Small</option>
@@ -261,20 +291,20 @@
                     <option value="large">Large</option>
                     <option value="xlarge">XLarge</option>
                 </field>
-                <field name="overlap_main-bottom" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="">
+                <field name="main-bottom_overlap" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
-                <field name="show_main-bottom" type="radio" class="btn-group btn-group-yesno" default="1" label="" description="">
+                <field name="main-bottom_show" type="radio" class="btn-group btn-group-yesno" default="1" label="" description="">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="container_main-bottom" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_CONTAINER_LABEL" description="TPL_SIMPLE_BLANK_SECTION_CONTAINER_DESCRIPTION">
+                <field name="main-bottom_container" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_CONTAINER_LABEL" description="TPL_SIMPLE_BLANK_SECTION_CONTAINER_DESCRIPTION">
                     <option value="2">Полный</option>
                     <option value="1">TPL_SIMPLE_BLANK_CENTER</option>
                     <option value="0">JNONE</option>
                 </field>
-                <field name="container_width_main-bottom" type="list" default="5" label="" description="">
+                <field name="main-bottom_container_width" type="list" default="5" label="" description="">
                     <option value="max">Default</option>
                     <option value="expand">Expand</option>
                     <option value="xlarge">XLarge</option>
@@ -282,18 +312,24 @@
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
                 </field>
-                <field name="addclasses_main-bottom" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
-                <field name="addattr_main-bottom" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+                <field name="main-bottom_addclasses" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+                <field name="main-bottom_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+
                 <field type="spacer" label="TPL_SIMPLE_BLANK_MAIN_SIDEBAR_A_LABEL" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_MAIN_SIDEBAR_A"/>
-                <field name="sb1_main_show" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SHOW_LABEL" description="TPL_SIMPLE_BLANK_SECTION_SHOW_DESCRIPTION">
+                <field name="main-sidebar-a_show" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SHOW_LABEL" description="TPL_SIMPLE_BLANK_SECTION_SHOW_DESCRIPTION">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="sb1_main_position" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SECTION_POSITION_DESCRIPTION">
+                <field name="main-sidebar-a_tag" type="radio" class="btn-group btn-group-yesno" default="aside" label="TPL_SIMPLE_BLANK_TAG_LABEL" description="TPL_SIMPLE_BLANK_TAG_DESCRIPTION">
+                    <option value="section">Section</option>
+                    <option value="aside">Aside</option>
+                    <option value="div">Div</option>
+                </field>
+                <field name="main-sidebar-a_position" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SECTION_POSITION_DESCRIPTION">
                     <option value="1">TPL_SIMPLE_BLANK_LEFT</option>
                     <option value="0">TPL_SIMPLE_BLANK_RIGHT</option>
                 </field>
-                <field name="sb1_main_width" type="list" default="5" label="TPL_SIMPLE_BLANK_WIDTH_LABEL" description="TPL_SIMPLE_BLANK_WIDTH_DESCRIPTION">
+                <field name="main-sidebar-a_width" type="list" default="5" label="TPL_SIMPLE_BLANK_WIDTH_LABEL" description="TPL_SIMPLE_BLANK_WIDTH_DESCRIPTION">
                     <option value="10">17% (1/6)</option>
                     <option value="12">20% (1/5)</option>
                     <option value="15">25% (1/4)</option>
@@ -306,18 +342,30 @@
                     <option value="48">80% (4/5)</option>
                     <option value="50">83% (5/6)</option>
                 </field>
-                <field name="addclasses_sb1_main" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
-                <field name="addattr_sb1_main" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+                <field name="main-sidebar-a_height" type="list" default="5" label="TPL_SIMPLE_BLANK_HEIGHT_LABEL" description="TPL_SIMPLE_BLANK_HEIGHT_DESCRIPTION">
+                    <option value="1">На всю высоту</option>
+                    <option value="2">MAIN</option>
+                    <option value="3">TOP + MAIN</option>
+                    <option value="4">MAIN + BOTTOM</option>
+                </field>
+                <field name="main-sidebar-a_addclasses" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
+                <field name="main-sidebar-a_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+
                 <field type="spacer" label="TPL_SIMPLE_BLANK_MAIN_SIDEBAR_B_LABEL" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_MAIN_SIDEBAR_B"/>
-                <field name="sb2_main_show" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SHOW_LABEL" description="TPL_SIMPLE_BLANK_SECTION_SHOW_DESCRIPTION">
+                <field name="main-sidebar-b_show" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SHOW_LABEL" description="TPL_SIMPLE_BLANK_SECTION_SHOW_DESCRIPTION">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="sb2_main_position" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SECTION_POSITION_DESCRIPTION">
+                <field name="main-sidebar-b_tag" type="radio" class="btn-group btn-group-yesno" default="aside" label="TPL_SIMPLE_BLANK_TAG_LABEL" description="TPL_SIMPLE_BLANK_TAG_DESCRIPTION">
+                    <option value="section">Section</option>
+                    <option value="aside">Aside</option>
+                    <option value="div">Div</option>
+                </field>
+                <field name="main-sidebar-b_position" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SECTION_POSITION_DESCRIPTION">
                     <option value="1">TPL_SIMPLE_BLANK_LEFT</option>
                     <option value="0">TPL_SIMPLE_BLANK_RIGHT</option>
                 </field>
-                <field name="sb2_main_width" type="list" default="5" label="TPL_SIMPLE_BLANK_WIDTH_LABEL" description="TPL_SIMPLE_BLANK_WIDTH_DESCRIPTION">
+                <field name="main-sidebar-b_width" type="list" default="1" label="TPL_SIMPLE_BLANK_WIDTH_LABEL" description="TPL_SIMPLE_BLANK_WIDTH_DESCRIPTION">
                     <option value="10">17% (1/6)</option>
                     <option value="12">20% (1/5)</option>
                     <option value="15">25% (1/4)</option>
@@ -330,16 +378,28 @@
                     <option value="48">80% (4/5)</option>
                     <option value="50">83% (5/6)</option>
                 </field>
-                <field name="addclasses_sb2_main" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
-                <field name="addattr_sb2_main" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+                <field name="main-sidebar-b_height" type="list" default="1" label="TPL_SIMPLE_BLANK_HEIGHT_LABEL" description="TPL_SIMPLE_BLANK_HEIGHT_DESCRIPTION">
+                    <option value="1">На всю высоту</option>
+                    <option value="2">MAIN</option>
+                    <option value="3">TOP + MAIN</option>
+                    <option value="4">MAIN + BOTTOM</option>
+                </field>
+                <field name="main-sidebar-b_addclasses" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
+                <field name="main-sidebar-b_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+
                 <field type="spacer" label="BOTTOM-A" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_BOTTOM_A"/>
-                <field name="color_bottom-a" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
+                <field name="bottom-a_tag" type="radio" class="btn-group btn-group-yesno" default="section" label="TPL_SIMPLE_BLANK_TAG_LABEL" description="TPL_SIMPLE_BLANK_TAG_DESCRIPTION">
+                    <option value="section">Section</option>
+                    <option value="aside">Aside</option>
+                    <option value="div">Div</option>
+                </field>
+                <field name="bottom-a_color" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
                     <option value="muted">Muted</option>
                     <option value="secondary">Secondary</option>
                     <option value="primary">Primary</option>
                     <option value="default">Default</option>
                 </field>
-                <field name="size_bottom-a" type="list" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_PADDING_LABEL" description="TPL_SIMPLE_BLANK_PADDING_DESCRIPTION">
+                <field name="bottom-a_size" type="list" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_PADDING_LABEL" description="TPL_SIMPLE_BLANK_PADDING_DESCRIPTION">
                     <option value="0">JNONE</option>
                     <option value="xsmall">XSmall</option>
                     <option value="small">Small</option>
@@ -347,20 +407,20 @@
                     <option value="large">Large</option>
                     <option value="xlarge">XLarge</option>
                 </field>
-                <field name="overlap_bottom-a" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="">
+                <field name="bottom-a_overlap" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
-                <field name="show_bottom-a" type="radio" class="btn-group btn-group-yesno" default="1" label="" description="">
+                <field name="bottom-a_show" type="radio" class="btn-group btn-group-yesno" default="1" label="" description="">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="container_bottom-a" type="radio" class="btn-group btn-group-yesno" default="1" label="" description="">
+                <field name="bottom-a_container" type="radio" class="btn-group btn-group-yesno" default="1" label="" description="">
                     <option value="2">Полный</option>
                     <option value="1">TPL_SIMPLE_BLANK_CENTER</option>
                     <option value="0">JNONE</option>
                 </field>
-                <field name="container_width_bottom-a" type="list" default="5" label="" description="">
+                <field name="bottom-a_container_width" type="list" default="5" label="" description="">
                     <option value="max">Default</option>
                     <option value="expand">Expand</option>
                     <option value="xlarge">XLarge</option>
@@ -368,16 +428,22 @@
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
                 </field>
-                <field name="addclasses_bottom-a" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
-                <field name="addattr_bottom-a" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+                <field name="bottom-a_addclasses" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
+                <field name="bottom-a_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+
                 <field type="spacer" label="BOTTOM-B" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_BOTTOM_B"/>
-                <field name="color_bottom-b" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
+                <field name="bottom-b_tag" type="radio" class="btn-group btn-group-yesno" default="section" label="TPL_SIMPLE_BLANK_TAG_LABEL" description="TPL_SIMPLE_BLANK_TAG_DESCRIPTION">
+                    <option value="section">Section</option>
+                    <option value="aside">Aside</option>
+                    <option value="div">Div</option>
+                </field>
+                <field name="bottom-b_color" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
                     <option value="muted">Muted</option>
                     <option value="secondary">Secondary</option>
                     <option value="primary">Primary</option>
                     <option value="default">Default</option>
                 </field>
-                <field name="size_bottom-b" type="list" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_PADDING_LABEL" description="TPL_SIMPLE_BLANK_PADDING_DESCRIPTION">
+                <field name="bottom-b_size" type="list" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_PADDING_LABEL" description="TPL_SIMPLE_BLANK_PADDING_DESCRIPTION">
                     <option value="0">JNONE</option>
                     <option value="xsmall">XSmall</option>
                     <option value="small">Small</option>
@@ -385,20 +451,20 @@
                     <option value="large">Large</option>
                     <option value="xlarge">XLarge</option>
                 </field>
-                <field name="overlap_bottom-b" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="">
+                <field name="bottom-b_overlap" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
-                <field name="show_bottom-b" type="radio" class="btn-group btn-group-yesno" default="1" label="" description="">
+                <field name="bottom-b_show" type="radio" class="btn-group btn-group-yesno" default="1" label="" description="">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="container_bottom-b" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_CONTAINER_LABEL" description="TPL_SIMPLE_BLANK_SECTION_CONTAINER_DESCRIPTION">
+                <field name="bottom-b_container" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_CONTAINER_LABEL" description="TPL_SIMPLE_BLANK_SECTION_CONTAINER_DESCRIPTION">
                     <option value="2">Полный</option>
                     <option value="1">TPL_SIMPLE_BLANK_CENTER</option>
                     <option value="0">JNONE</option>
                 </field>
-                <field name="container_width_bottom-b" type="list" default="5" label="" description="">
+                <field name="bottom-b_container_width" type="list" default="5" label="" description="">
                     <option value="max">Default</option>
                     <option value="expand">Expand</option>
                     <option value="xlarge">XLarge</option>
@@ -406,16 +472,22 @@
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
                 </field>
-                <field name="addclasses_bottom-b" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
-                <field name="addattr_bottom-b" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+                <field name="bottom-b_addclasses" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
+                <field name="bottom-b_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+
                 <field type="spacer" label="BOTTOM-C" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_BOTTOM_С"/>
-                <field name="color_bottom-c" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
+                <field name="bottom-c_tag" type="radio" class="btn-group btn-group-yesno" default="section" label="TPL_SIMPLE_BLANK_TAG_LABEL" description="TPL_SIMPLE_BLANK_TAG_DESCRIPTION">
+                    <option value="section">Section</option>
+                    <option value="aside">Aside</option>
+                    <option value="div">Div</option>
+                </field>
+                <field name="bottom-c_color" type="radio" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_COLOR_LABEL" description="TPL_SIMPLE_BLANK_COLOR_BACKGROUND_DESCRIPTION">
                     <option value="muted">Muted</option>
                     <option value="secondary">Secondary</option>
                     <option value="primary">Primary</option>
                     <option value="default">Default</option>
                 </field>
-                <field name="size_bottom-c" type="list" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_PADDING_LABEL" description="TPL_SIMPLE_BLANK_PADDING_DESCRIPTION">
+                <field name="bottom-c_size" type="list" class="btn-group btn-group-yesno" default="default" label="TPL_SIMPLE_BLANK_PADDING_LABEL" description="TPL_SIMPLE_BLANK_PADDING_DESCRIPTION">
                     <option value="0">JNONE</option>
                     <option value="xsmall">XSmall</option>
                     <option value="small">Small</option>
@@ -423,20 +495,20 @@
                     <option value="large">Large</option>
                     <option value="xlarge">XLarge</option>
                 </field>
-                <field name="overlap_bottom-c" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="">
+                <field name="bottom-c_overlap" type="radio" class="btn-group btn-group-yesno" default="0" label="Overlap" description="">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
-                <field name="show_bottom-c" type="radio" class="btn-group btn-group-yesno" default="1" label="" description="">
+                <field name="bottom-c_show" type="radio" class="btn-group btn-group-yesno" default="1" label="" description="">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="container_bottom-c" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_CONTAINER_LABEL" description="TPL_SIMPLE_BLANK_SECTION_CONTAINER_DESCRIPTION">
+                <field name="bottom-c_container" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_CONTAINER_LABEL" description="TPL_SIMPLE_BLANK_SECTION_CONTAINER_DESCRIPTION">
                     <option value="2">Полный</option>
                     <option value="1">TPL_SIMPLE_BLANK_CENTER</option>
                     <option value="0">JNONE</option>
                 </field>
-                <field name="container_width_bottom-c" type="list" default="5" label="" description="">
+                <field name="bottom-c_container_width" type="list" default="5" label="" description="">
                     <option value="max">Default</option>
                     <option value="expand">Expand</option>
                     <option value="xlarge">XLarge</option>
@@ -444,18 +516,24 @@
                     <option value="small">Small</option>
                     <option value="xsmall">XSmall</option>
                 </field>
-                <field name="addclasses_bottom-c" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
-                <field name="addattr_bottom-c" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+                <field name="bottom-c_addclasses" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
+                <field name="bottom-c_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+
                 <field type="spacer" label="TPL_SIMPLE_BLANK_SIDEBAR_A_LABEL" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_SIDEBAR_A"/>
-                <field name="sb1_show" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SHOW_LABEL" description="TPL_SIMPLE_BLANK_SECTION_SHOW_DESCRIPTION">
+                <field name="sidebar-a_show" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SHOW_LABEL" description="TPL_SIMPLE_BLANK_SECTION_SHOW_DESCRIPTION">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="sb1_position" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SECTION_POSITION_DESCRIPTION">
+                <field name="sidebar-a_tag" type="radio" class="btn-group btn-group-yesno" default="aside" label="TPL_SIMPLE_BLANK_TAG_LABEL" description="TPL_SIMPLE_BLANK_TAG_DESCRIPTION">
+                    <option value="section">Section</option>
+                    <option value="aside">Aside</option>
+                    <option value="div">Div</option>
+                </field>
+                <field name="sidebar-a_position" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SECTION_POSITION_DESCRIPTION">
                     <option value="1">TPL_SIMPLE_BLANK_LEFT</option>
                     <option value="0">TPL_SIMPLE_BLANK_RIGHT</option>
                 </field>
-                <field name="sb1_width" type="list" default="5" label="TPL_SIMPLE_BLANK_WIDTH_LABEL" description="TPL_SIMPLE_BLANK_WIDTH_DESCRIPTION">
+                <field name="sidebar-a_width" type="list" default="5" label="TPL_SIMPLE_BLANK_WIDTH_LABEL" description="TPL_SIMPLE_BLANK_WIDTH_DESCRIPTION">
                     <option value="10">17% (1/6)</option>
                     <option value="12">20% (1/5)</option>
                     <option value="15">25% (1/4)</option>
@@ -468,18 +546,30 @@
                     <option value="48">80% (4/5)</option>
                     <option value="50">83% (5/6)</option>
                 </field>
-                <field name="addclasses_sb1" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
-                <field name="addattr_sb1" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+                <field name="sidebar-a_height" type="list" default="5" label="TPL_SIMPLE_BLANK_HEIGHT_LABEL" description="TPL_SIMPLE_BLANK_HEIGHT_DESCRIPTION">
+                    <option value="1">На всю высоту</option>
+                    <option value="2">MAIN</option>
+                    <option value="3">TOP + MAIN</option>
+                    <option value="4">MAIN + BOTTOM</option>
+                </field>
+                <field name="sidebar-a_addclasses" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
+                <field name="sidebar-a_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+
                 <field type="spacer" label="TPL_SIMPLE_BLANK_SIDEBAR_B_LABEL" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_SIDEBAR_B"/>
-                <field name="sb2_show" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SHOW_LABEL" description="TPL_SIMPLE_BLANK_SECTION_SHOW_DESCRIPTION">
+                <field name="sidebar-b_show" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SHOW_LABEL" description="TPL_SIMPLE_BLANK_SECTION_SHOW_DESCRIPTION">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="sb2_position" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SECTION_POSITION_DESCRIPTION">
+                <field name="sidebar-b_tag" type="radio" class="btn-group btn-group-yesno" default="aside" label="TPL_SIMPLE_BLANK_TAG_LABEL" description="TPL_SIMPLE_BLANK_TAG_DESCRIPTION">
+                    <option value="section">Section</option>
+                    <option value="aside">Aside</option>
+                    <option value="div">Div</option>
+                </field>
+                <field name="sidebar-b_position" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SECTION_POSITION_DESCRIPTION">
                     <option value="1">TPL_SIMPLE_BLANK_LEFT</option>
                     <option value="0">TPL_SIMPLE_BLANK_RIGHT</option>
                 </field>
-                <field name="sb2_width" type="list" default="5" label="TPL_SIMPLE_BLANK_WIDTH_LABEL" description="TPL_SIMPLE_BLANK_WIDTH_DESCRIPTION">
+                <field name="sidebar-b_width" type="list" default="5" label="TPL_SIMPLE_BLANK_WIDTH_LABEL" description="TPL_SIMPLE_BLANK_WIDTH_DESCRIPTION">
                     <option value="10">17% (1/6)</option>
                     <option value="12">20% (1/5)</option>
                     <option value="15">25% (1/4)</option>
@@ -492,70 +582,88 @@
                     <option value="48">80% (4/5)</option>
                     <option value="50">83% (5/6)</option>
                 </field>
-                <field name="addclasses_sb2" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
-                <field name="addattr_sb2" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+                <field name="sidebar-b_height" type="list" default="5" label="TPL_SIMPLE_BLANK_HEIGHT_LABEL" description="TPL_SIMPLE_BLANK_HEIGHT_DESCRIPTION">
+                    <option value="1">На всю высоту</option>
+                    <option value="2">MAIN</option>
+                    <option value="3">TOP + MAIN</option>
+                    <option value="4">MAIN + BOTTOM</option>
+                </field>
+                <field name="sidebar-b_addclasses" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
+                <field name="sidebar-b_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+
                 <field type="spacer" label="TPL_SIMPLE_BLANK_OFFCANVAS_A_LABEL" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_OFFCANVAS_A"/>
-                <field name="offcanvas1_show" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SHOW_LABEL" description="TPL_SIMPLE_BLANK_SECTION_SHOW_DESCRIPTION">
+                <field name="off-canvas-a_show" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SHOW_LABEL" description="TPL_SIMPLE_BLANK_SECTION_SHOW_DESCRIPTION">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="offcanvas1_position" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SECTION_POSITION_DESCRIPTION">
+                <field name="off-canvas-a_tag" type="radio" class="btn-group btn-group-yesno" default="aside" label="TPL_SIMPLE_BLANK_TAG_LABEL" description="TPL_SIMPLE_BLANK_TAG_DESCRIPTION">
+                    <option value="section">Section</option>
+                    <option value="aside">Aside</option>
+                    <option value="div">Div</option>
+                </field>
+                <field name="off-canvas-a_position" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SECTION_POSITION_DESCRIPTION">
                     <option value="1">TPL_SIMPLE_BLANK_LEFT</option>
                     <option value="0">TPL_SIMPLE_BLANK_RIGHT</option>
                 </field>
-                <field name="offcanvas1_overlay" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_OVERLAY_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR__OVERLAY_DESCRIPTION">
+                <field name="off-canvas-a_overlay" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_OVERLAY_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR__OVERLAY_DESCRIPTION">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="offcanvas1_close_button" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_CLOSE_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR__CLOSE_DESCRIPTION">
+                <field name="off-canvas-a_close_button" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_CLOSE_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR__CLOSE_DESCRIPTION">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="offcanvas1_close_button_large" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_CLOSE_LARGE_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR_CLOSE_LARGE_DESCRIPTION">
+                <field name="off-canvas-a_close_button_large" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_CLOSE_LARGE_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR_CLOSE_LARGE_DESCRIPTION">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
-                <field name="offcanvas1_animation" type="list" default="none" label="TPL_SIMPLE_BLANK_ANIMATION_LABEL" description="TPL_SIMPLE_BLANK_OFFCANVAS_A_ANIMATION_DESCRIPTION">
+                <field name="off-canvas-a_animation" type="list" default="none" label="TPL_SIMPLE_BLANK_ANIMATION_LABEL" description="TPL_SIMPLE_BLANK_OFFCANVAS_A_ANIMATION_DESCRIPTION">
                     <option value="slide">TPL_SIMPLE_BLANK_ANIMATION_SLIDE_LABEL</option>
                     <option value="push">TPL_SIMPLE_BLANK_ANIMATION_PUSH_LABEL</option>
                     <option value="reveal">TPL_SIMPLE_BLANK_ANIMATION_REVEAL_LABEL</option>
                     <option value="none">JNONE</option>
                 </field>
-                <field name="addclasses_off-canvas-a" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
-                <field name="addattr_off-canvas-a" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+                <field name="off-canvas-a_addclasses" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
+                <field name="off-canvas-a_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+
                 <field type="spacer" label="TPL_SIMPLE_BLANK_OFFCANVAS_B_LABEL" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_OFFCANVAS_B"/>
-                <field name="offcanvas2_show" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SHOW_LABEL" description="TPL_SIMPLE_BLANK_SECTION_SHOW_DESCRIPTION">
+                <field name="off-canvas-b_show" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_SHOW_LABEL" description="TPL_SIMPLE_BLANK_SECTION_SHOW_DESCRIPTION">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="offcanvas2_position" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SECTION_POSITION_DESCRIPTION">
+                <field name="off-canvas-b_tag" type="radio" class="btn-group btn-group-yesno" default="aside" label="TPL_SIMPLE_BLANK_TAG_LABEL" description="TPL_SIMPLE_BLANK_TAG_DESCRIPTION">
+                    <option value="section">Section</option>
+                    <option value="aside">Aside</option>
+                    <option value="div">Div</option>
+                </field>
+                <field name="off-canvas-b_position" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SECTION_POSITION_DESCRIPTION">
                     <option value="1">TPL_SIMPLE_BLANK_LEFT</option>
                     <option value="0">TPL_SIMPLE_BLANK_RIGHT</option>
                 </field>
-                <field name="offcanvas2_animation" type="list" default="none" label="TPL_SIMPLE_BLANK_ANIMATION_LABEL" description="TPL_SIMPLE_BLANK_OFFCANVAS_B_ANIMATION_DESCRIPTION">
+                <field name="off-canvas-b_animation" type="list" default="none" label="TPL_SIMPLE_BLANK_ANIMATION_LABEL" description="TPL_SIMPLE_BLANK_OFFCANVAS_B_ANIMATION_DESCRIPTION">
                     <option value="slide">TPL_SIMPLE_BLANK_ANIMATION_SLIDE_LABEL</option>
                     <option value="push">TPL_SIMPLE_BLANK_ANIMATION_PUSH_LABEL</option>
                     <option value="reveal">TPL_SIMPLE_BLANK_ANIMATION_REVEAL_LABEL</option>
                     <option value="none">JNONE</option>
                 </field>
-                <field name="offcanvas2_flip" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SECTION_POSITION_DESCRIPTION">
+                <field name="off-canvas-b_flip" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SECTION_POSITION_DESCRIPTION">
                     <option value="1">TPL_SIMPLE_BLANK_LEFT</option>
                     <option value="0">TPL_SIMPLE_BLANK_RIGHT</option>
                 </field>
-                <field name="offcanvas2_overlay" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_OVERLAY_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR_OVERLAY_DESCRIPTION">
+                <field name="off-canvas-b_overlay" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_OVERLAY_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR_OVERLAY_DESCRIPTION">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="offcanvas2_close_button" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_CLOSE_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR_CLOSE_DESCRIPTION">
+                <field name="off-canvas-b_close_button" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_CLOSE_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR_CLOSE_DESCRIPTION">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
                 </field>
-                <field name="offcanvas2_close_button_large" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_CLOSE_LARGE_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR_CLOSE_LARGE_DESCRIPTION">
+                <field name="off-canvas-b_close_button_large" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_CLOSE_LARGE_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR_CLOSE_LARGE_DESCRIPTION">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
-                <field name="addclasses_off-canvas-b" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
-                <field name="addattr_off-canvas-b" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+                <field name="off-canvas-b_addclasses" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
+                <field name="off-canvas-b_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
             </fieldset>
             <fieldset name="positions" addfieldpath="/templates/simple_blank/includes/fields" label="Позиции" description="Сгенерируйте позиции шаблона и расставьте их в нужном порядке">
                 <field type="sbcss"/>
@@ -567,6 +675,8 @@
                             <option value="sb-top-b">SB-TOP-B</option>
                             <option value="sb-top-c">SB-TOP-C</option>
                             <option value="sb-main-top">SB-MAIN-TOP</option>
+                            <option value="sb-main-sidebar-a">SB-MAIN-SIDEBAR-A</option>
+                            <option value="sb-main-sidebar-b">SB-MAIN-SIDEBAR-B</option>
                             <option value="sb-main-bottom">SB-MAIN-BOTTOM</option>
                             <option value="sb-bottom-a">SB-BOTTOM-A</option>
                             <option value="sb-bottom-b">SB-BOTTOM-B</option>
