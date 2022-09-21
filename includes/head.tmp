@@ -32,18 +32,7 @@ if ($favicon_mode == 0 && JFile::exists(JPATH_ROOT . '/templates/simple_blank/im
 <meta name="msapplication-TileImage" content="/templates/<?php echo $this->template ?>/images/favicon/mstile-144x144.png">
 <meta name="theme-color" content="#ffffff">
 	<?php
-} else {
-	?>
-<link rel="icon" href="/templates/<?php echo $this->template ?>/images/template_favicon/favicon.svg">
-<link rel="apple-touch-icon" sizes="180x180" href="/templates/<?php echo $this->template ?>/images/template_favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/templates/<?php echo $this->template ?>/images/template_favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/templates/<?php echo $this->template ?>/images/template_favicon/favicon-16x16.png">
-<link rel="manifest" href="/templates/<?php echo $this->template ?>/images/template_favicon/site.webmanifest">
-<link rel="mask-icon" href="/templates/<?php echo $this->template ?>/images/template_favicon/safari-pinned-tab.svg" color="#000000">
-<meta name="msapplication-TileColor" content="#ada8a7">
-<meta name="msapplication-TileImage" content="/templates/<?php echo $this->template ?>/images/template_favicon/mstile-144x144.png">
-<meta name="theme-color" content="#ffffff">
-<?php }
+}
 ?>
 <?php
 if ($qlenable == 1) {
