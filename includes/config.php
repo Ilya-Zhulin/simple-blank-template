@@ -129,30 +129,36 @@ $sb1_main_width		 = ($sb1_main_show) ? $this->params->get('main-sidebar-a_width'
 $sb1_main_height	 = ($sb1_main_show) ? $this->params->get('main-sidebar-a_height') : 1;
 $sb1_main_real_width = 0; // Учитывает ширину, только, если сайдбар заполнен
 
-$sb2_main_show			 = $this->params->get('main-sidebar-b_show');
-$sb2_main_position		 = $this->params->get('main-sidebar-b_position');
-$sb2_main_width			 = ($sb2_main_show) ? $this->params->get('main-sidebar-b_width') : 0;
-$sb2_main_height		 = ($sb2_main_show) ? $this->params->get('main-sidebar-b_height') : 1;
-$sb2_main_real_width	 = 0; // Учитывает ширину, только, если сайдбар заполнен
+$sb2_main_show				 = $this->params->get('main-sidebar-b_show');
+$sb2_main_position			 = $this->params->get('main-sidebar-b_position');
+$sb2_main_width				 = ($sb2_main_show) ? $this->params->get('main-sidebar-b_width') : 0;
+$sb2_main_height			 = ($sb2_main_show) ? $this->params->get('main-sidebar-b_height') : 1;
+$sb2_main_real_width		 = 0; // Учитывает ширину, только, если сайдбар заполнен
 // Off-canvases
-$offcanvas1_show		 = $this->params->get('off-canvas-a_show');
-$offcanvas1_tag			 = $this->params->get('off-canvas-a_tag');
-$offcanvas1_position	 = $this->params->get('off-canvas-a_position');
-$offcanvas1_animation	 = $this->params->get('off-canvas-a_animation');
-$offcanvas1_flip		 = ($offcanvas1_position == '1') ? 'false' : 'true';
-$offcanvas1_overlay		 = $this->params->get('off-canvas-a_overlay');
-$offcanvas1_close		 = $this->params->get('off-canvas-a_close_button');
-$offcanvas1_close_large	 = $this->params->get('off-canvas-a_close_button_large');
-$offcanvas1_addclasses	 = $this->params->get('off-canvas-a_addclasses');
-$offcanvas2_show		 = $this->params->get('off-canvas-b_show');
-$offcanvas2_tag			 = $this->params->get('off-canvas-b_tag');
-$offcanvas2_position	 = $this->params->get('off-canvas-b_position');
-$offcanvas2_animation	 = $this->params->get('off-canvas-ab_animation');
-$offcanvas2_flip		 = ($offcanvas1_position == '1') ? 'false' : 'true';
-$offcanvas2_overlay		 = $this->params->get('off-canvas-b_overlay');
-$offcanvas2_close		 = $this->params->get('off-canvas-b_close_button');
-$offcanvas2_close_large	 = $this->params->get('off-canvas-b_close_button_large');
-$offcanvas2_addclasses	 = $this->params->get('off-canvas-b_addclasses');
+$offcanvas1_show			 = $this->params->get('off-canvas-a_show');
+$offcanvas1_tag				 = $this->params->get('off-canvas-a_tag');
+$offcanvas1_position		 = $this->params->get('off-canvas-a_position');
+$offcanvas1_animation		 = $this->params->get('off-canvas-a_animation');
+$offcanvas1_flip			 = ($offcanvas1_position == '1') ? 'false' : 'true';
+$offcanvas1_overlay			 = $this->params->get('off-canvas-a_overlay');
+$offcanvas1_close			 = $this->params->get('off-canvas-a_close_button');
+$offcanvas1_close_large		 = $this->params->get('off-canvas-a_close_button_large');
+$offcanvas1_addclasses		 = $this->params->get('off-canvas-a_addclasses');
+$offcanvas1_addattr			 = $this->params->get('off-canvas-a_addattr');
+$offcanvas1_bar_addclasses	 = $this->params->get('off-canvas-a_bar_addclasses');
+$offcanvas1_bar_addattr		 = $this->params->get('off-canvas-a_bar_addattr');
+$offcanvas2_show			 = $this->params->get('off-canvas-b_show');
+$offcanvas2_tag				 = $this->params->get('off-canvas-b_tag');
+$offcanvas2_position		 = $this->params->get('off-canvas-b_position');
+$offcanvas2_animation		 = $this->params->get('off-canvas-ab_animation');
+$offcanvas2_flip			 = ($offcanvas1_position == '1') ? 'false' : 'true';
+$offcanvas2_overlay			 = $this->params->get('off-canvas-b_overlay');
+$offcanvas2_close			 = $this->params->get('off-canvas-b_close_button');
+$offcanvas2_close_large		 = $this->params->get('off-canvas-b_close_button_large');
+$offcanvas2_addclasses		 = $this->params->get('off-canvas-b_addclasses');
+$offcanvas2_addattr			 = $this->params->get('off-canvas-b_addattr');
+$offcanvas2_bar_addclasses	 = $this->params->get('off-canvas-b_bar_addclasses');
+$offcanvas2_bar_addattr		 = $this->params->get('off-canvas-b_bar_addattr');
 
 //Less
 $less_acompile	 = $this->params->get('less_acompile', 0);
