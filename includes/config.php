@@ -4,7 +4,7 @@
 defined('_JEXEC') or die;
 /*
  * Если требуется вставить свою секцию в файл,
- * добавте имя позиции в этот массив.
+ * добавьте имя позиции в этот массив.
  * Add your custom section name to this array,
  * if you want to place it between defaoult positions/
  *

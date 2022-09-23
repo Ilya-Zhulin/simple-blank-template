@@ -2,7 +2,7 @@
 
 /*
  * File main.php is programmed
- * specially for Shop by
+ * specially for Simple Blank Template by
  * Ilya A.Zhulin <ilya.zhulin@hotmail.com> 2022
  */
 
