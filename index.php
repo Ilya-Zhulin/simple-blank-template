@@ -5,7 +5,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Language\Text;
 
 include_once JPATH_THEMES . '/' . $this->template . '/includes/config.php';
-if (!file_exists(JPATH_THEMES . '/' . $this->template . '/theme/')) {
+if (!file_exists(JPATH_THEMES . '/' . $this->template . '/themes/')) {
 	?>
 	<div uk-alert class="uk-alert-warning uk-text-center">
 		<?php
