@@ -1,8 +1,19 @@
 <?php
 // no direct access
 defined('_JEXEC') or die;
-include_once JPATH_THEMES . '/' . $this->template . '/includes/config.php';
 
+use Joomla\CMS\Language\Text;
+
+include_once JPATH_THEMES . '/' . $this->template . '/includes/config.php';
+if (!file_exists(JPATH_THEMES . '/' . $this->template . '/theme/')) {
+	?>
+	<div uk-alert class="uk-alert-warning uk-text-center">
+		<?php
+		echo Text::_('TPL_SIMPLE_BLANK_THEME_EXISTS_ALERT');
+		?>
+	</div>
+	<?php
+}
 if (isset($_POST['page_title'])) {
 	$doc = JFactory::getDocument();
 	$doc->setTitle($_POST['page_title']);
@@ -36,7 +47,11 @@ function extParams($tplparams, $param, $value) {
 <html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>" class="">
 
 	<head>
-		<?php include JPATH_THEMES . '/' . $this->template . '/includes/head.php'; ?>
+		<?php
+		if (file_exists(JPATH_THEMES . '/' . $this->template . '/includes/head.php')) {
+			include JPATH_THEMES . '/' . $this->template . '/includes/head.php';
+		}
+		?>
 	<jdoc:include type="head" />
 </head>
 
@@ -63,7 +78,9 @@ function extParams($tplparams, $param, $value) {
 		include_once JPATH_THEMES . '/simple_blank/includes/sections/offcanvas.php';
 		?>
 		<?php
-		include JPATH_THEMES . '/' . $this->template . '/includes/footer.php';
+		if (file_exists(JPATH_THEMES . '/' . $this->template . '/includes/footer.php')) {
+			include JPATH_THEMES . '/' . $this->template . '/includes/footer.php';
+		}
 		?>
 		<jdoc:include type="modules" name="sb-debug" />
 
@@ -83,9 +100,9 @@ function extParams($tplparams, $param, $value) {
 	if ($qlenable == 1) {
 		?>
 		<script>
-	        window.addEventListener('load', () => {
-	            quicklink.listen();
-	        });
+			window.addEventListener('load', () => {
+				quicklink.listen();
+			});
 		</script>
 		<?php
 	}
