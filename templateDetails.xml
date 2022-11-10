@@ -601,10 +601,6 @@
                     <option value="aside">Aside</option>
                     <option value="div">Div</option>
                 </field>
-                <field name="off-canvas-a_position" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SECTION_POSITION_DESCRIPTION">
-                    <option value="1">TPL_SIMPLE_BLANK_LEFT</option>
-                    <option value="0">TPL_SIMPLE_BLANK_RIGHT</option>
-                </field>
                 <field name="off-canvas-a_overlay" type="radio" class="btn-group btn-group-yesno" default="0" label="TPL_SIMPLE_BLANK_OVERLAY_LABEL" description="TPL_SIMPLE_BLANK_SIDEBAR_OVERLAY_DESCRIPTION">
                     <option value="1">JSHOW</option>
                     <option value="0">JHIDE</option>
@@ -623,6 +619,10 @@
                     <option value="reveal">TPL_SIMPLE_BLANK_ANIMATION_REVEAL_LABEL</option>
                     <option value="none">JNONE</option>
                 </field>
+                <field name="off-canvas-a_flip" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SECTION_POSITION_DESCRIPTION">
+                    <option value="1">TPL_SIMPLE_BLANK_LEFT</option>
+                    <option value="0">TPL_SIMPLE_BLANK_RIGHT</option>
+                </field>
                 <field name="off-canvas-a_addclasses" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
                 <field name="off-canvas-a_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
                 <field name="off-canvas-a_bar_addclasses" type="input" label="TPL_SIMPLE_BLANK_OFFCANVAS_BAR_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_OFFCANVAS_BAR_ADD_CLASSES_DESCRIPTION" default=""/>
@@ -637,10 +637,6 @@
                     <option value="section">Section</option>
                     <option value="aside">Aside</option>
                     <option value="div">Div</option>
-                </field>
-                <field name="off-canvas-b_position" type="radio" class="btn-group btn-group-yesno" default="1" label="TPL_SIMPLE_BLANK_POSITION_LABEL" description="TPL_SIMPLE_BLANK_SECTION_POSITION_DESCRIPTION">
-                    <option value="1">TPL_SIMPLE_BLANK_LEFT</option>
-                    <option value="0">TPL_SIMPLE_BLANK_RIGHT</option>
                 </field>
                 <field name="off-canvas-b_animation" type="list" default="none" label="TPL_SIMPLE_BLANK_ANIMATION_LABEL" description="TPL_SIMPLE_BLANK_OFFCANVAS_B_ANIMATION_DESCRIPTION">
                     <option value="slide">TPL_SIMPLE_BLANK_ANIMATION_SLIDE_LABEL</option>
