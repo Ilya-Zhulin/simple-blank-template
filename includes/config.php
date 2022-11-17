@@ -198,7 +198,6 @@ if ($lazysizes == 1) {
 $doc->addScript($tplpath . '/vendor/uikit/js/uikit.min.js');
 $doc->addScript($tplpath . '/vendor/uikit/js/uikit-icons.min.js');
 $doc->addScript($tplpath . '/vendor/uikit/js/uikit-custom-icons.min.js');
-$doc->addScript($tplpath . '/js/marked.js');
 $doc->addScript($tplpath . '/js/theme.js');
 
 // Add site verification (Google, Yandex, Bing)
