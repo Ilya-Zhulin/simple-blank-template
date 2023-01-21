@@ -10,7 +10,7 @@ $html_prefix	 = ($grid_prefix != '') ? $grid_prefix . '-' : '';
 $var_prefix		 = ($grid_prefix != '') ? $grid_prefix . '_' : '';
 $content_width	 = $fraction(60 - ${'sb2_' . $var_prefix . 'width'});
 ?>
-<div uk-grid class="uk-child-width-1-1">
+<div uk-grid class="uk-child-width-1-1 <?php echo $patternclass; ?>">
 	<div>
 		<div uk-grid>
 			<?php if (${'sb1_' . $var_prefix . 'exist'} && ${'sb1_' . $var_prefix . 'position'} == 1) { ?>

@@ -812,6 +812,7 @@
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
+                <field name="patternclass" class="" type="text" default="" label="TPL_SIMPLE_BLANK_PATTERN_CLASS_LABEL" description="TPL_SIMPLE_BLANK_PATTERN_CLASS_DESCRIPTION"/>
                 <field name="googlefontname" class="" type="text" default="Open+Sans" label="Google Font Name" description="Google Font Name"/>
                 <field name="googleid" class="" type="text" default="" label="Google Analytics ID" description="Google Analytics ID"/>
                 <field name="yandexid" class="" type="text" default="" label="Yandex Metrika ID" description="Yandex Metrika ID"/>

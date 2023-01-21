@@ -9,7 +9,7 @@ defined('_JEXEC') or die('Restricted access');
 $html_prefix = ($grid_prefix != '') ? $grid_prefix . '-' : '';
 $var_prefix	 = ($grid_prefix != '') ? $grid_prefix . '_' : '';
 ?>
-<div uk-grid class="uk-child-width-1-1">
+<div uk-grid class="uk-child-width-1-1 <?php echo $patternclass; ?>">
 	<div>
 		<div uk-grid>
 			<?php if (${'sb1_' . $var_prefix . 'exist'} && ${'sb1_' . $var_prefix . 'position'} == 1) { ?>
