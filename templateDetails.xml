@@ -686,6 +686,22 @@
                             <option value="sb-sidebar-a">SB-SIDEBAR-A</option>
                             <option value="sb-sidebar-b">SB-SIDEBAR-B</option>
                         </field>
+                        <field type="spacer" label="Container" description="Модули в этой позиции будут расположены в контейнере (не забудь выключить контейнер в секции)"/>
+                        <field name="pos-container" type="list" class="btn-group btn-group-yesno" default="0" label="Показать" description="Модули в этой позиции будут расположены в контейнере (не забудь выключить контейнер в секции)">
+                            <option value="2">Полный</option>
+                            <option value="1">TPL_SIMPLE_BLANK_CENTER</option>
+                            <option value="0">JNONE</option>
+                        </field>
+                        <field name="pos-container_width" type="list" default="expand" label="Размер" description="Выбрать размер контейнера" class="float-left">
+                            <option value="max">Max</option>
+                            <option value="expand">Expand</option>
+                            <option value="xlarge">Xlarge</option>
+                            <option value="large">Large</option>
+                            <option value="small">Small</option>
+                            <option value="xsmall">XSmall</option>
+                        </field>
+                        <field name="pos-container-addclasses" type="text" label="Классы" description="Классы контейнера"/>
+                        <field name="pos-container-addparams" type="text" label="Атрибуты" description="Атрибуты контейнера"/>
                         <field type="spacer" label="Navbar" description="Модули в этой позиции будут окружены тегами компонента Navbar"/>
                         <field name="pos-navbar" type="radio" class="btn-group btn-group-yesno" default="0" label="" description="Модули в этой позиции будут окружены тегами компонента Navbar">
                             <option value="1">JSHOW</option>

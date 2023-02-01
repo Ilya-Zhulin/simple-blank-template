@@ -297,6 +297,17 @@ function _buildPosition($template, $posName, $params, $sections) {
 		foreach ($sections[$posName] as $section_item) {
 			if (is_array($section_item)) {
 				$pos_name = strtolower($section_item["pos-name"]);
+				if ($template->countModules($pos_name) || (isset($section_item['pos-container']) && $section_item['pos-container'] > 0)) {
+					$out .= '<div class="uk-container';
+					if ($section_item['pos-container'] == 1) {
+						$out .= ' uk-container-center';
+					}
+					$out .= ' uk-container-' . $section_item['pos-container_width'];
+					$out .= strlen(trim($section_item['pos-container-addclasses'])) > 0 ? ' ' . trim($section_item['pos-container-addclasses']) : '';
+					$out .= '"';
+					$out .= strlen(trim($section_item['pos-container-addparams'])) > 0 ? ' ' . trim($section_item['pos-container-addparams']) : '';
+					$out .= '>';
+				}
 				if ($template->countModules($section_item["pos-name"]) ||
 						(
 						isset($section_item['pos-navbar']) && ($template->countModules($section_item["pos-name"] . '-left') ||
@@ -379,6 +390,9 @@ function _buildPosition($template, $posName, $params, $sections) {
 						}
 					}
 					$out .= '<jdoc:include type="modules" name="' . $pos_name . '" />';
+					if ($template->countModules($pos_name) || (isset($section_item['pos-container']) && $section_item['pos-container'] > 0)) {
+						$out .= '</div>';
+					}
 					if (isset($section_item['pos-grid']) && $section_item['pos-grid'] == '1') {
 						$out .= '</div>';
 					}
