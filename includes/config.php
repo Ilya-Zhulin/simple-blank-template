@@ -297,7 +297,7 @@ function _buildPosition($template, $posName, $params, $sections) {
 		foreach ($sections[$posName] as $section_item) {
 			if (is_array($section_item)) {
 				$pos_name = strtolower($section_item["pos-name"]);
-				if ($template->countModules($pos_name) || (isset($section_item['pos-container']) && $section_item['pos-container'] > 0)) {
+				if ($template->countModules($pos_name) && isset($section_item['pos-container']) && $section_item['pos-container'] > 0) {
 					$out .= '<div class="uk-container';
 					if ($section_item['pos-container'] == 1) {
 						$out .= ' uk-container-center';
@@ -390,7 +390,7 @@ function _buildPosition($template, $posName, $params, $sections) {
 						}
 					}
 					$out .= '<jdoc:include type="modules" name="' . $pos_name . '" />';
-					if ($template->countModules($pos_name) || (isset($section_item['pos-container']) && $section_item['pos-container'] > 0)) {
+					if ($template->countModules($pos_name) && isset($section_item['pos-container']) && $section_item['pos-container'] > 0) {
 						$out .= '</div>';
 					}
 					if (isset($section_item['pos-grid']) && $section_item['pos-grid'] == '1') {
