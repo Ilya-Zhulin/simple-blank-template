@@ -10,7 +10,7 @@ $html_prefix	 = ($grid_prefix != '') ? $grid_prefix . '-' : '';
 $var_prefix		 = ($grid_prefix != '') ? $grid_prefix . '_' : '';
 $content_width	 = $fraction(60 - ${'sb2_' . $var_prefix . 'width'});
 ?>
-<div uk-grid class="uk-child-width-1-1">
+<div uk-grid class="uk-child-width-1-1 <?php echo $patternclass; ?>">
 	<?php include_once JPATH_THEMES . '/simple_blank/includes/sections/' . $html_prefix . 'top.php'; ?>
 	<div>
 		<div uk-grid>

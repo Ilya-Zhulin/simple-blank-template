@@ -9,7 +9,7 @@ defined('_JEXEC') or die('Restricted access');
 $html_prefix = ($grid_prefix != '') ? $grid_prefix . '-' : '';
 $var_prefix	 = ($grid_prefix != '') ? $grid_prefix . '_' : '';
 ?>
-<div uk-grid class="uk-child-width-1-1">
+<div uk-grid class="uk-child-width-1-1 <?php echo $patternclass; ?>">
 	<?php include_once JPATH_THEMES . '/simple_blank/includes/sections/' . $html_prefix . 'top.php'; ?>
 	<?php if (${'sb1_' . $var_prefix . 'exist'} && ${'sb1_' . $var_prefix . 'position'} == 1) { ?>
 		<div class="<?php echo $html_prefix; ?>sidebar-a-wrapper left-<?php echo $html_prefix; ?>sidebar-wrapper uk-width-<?php echo $fraction(${'sb1_' . $var_prefix . 'real_width'}); ?>@s">

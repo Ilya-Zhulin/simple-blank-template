@@ -42,6 +42,7 @@ $grid_prefix				 = ''; // For pattern including
 // Parameters
 $hidecomponent				 = $this->params->get('hidecomponent', 0);
 $lazysizes					 = $this->params->get('lazysizes', 0);
+$patternclass				 = $this->params->get('patternclass', "");
 $googlefont					 = $this->params->get('googlefont', 0);
 $googlefontname				 = $this->params->get('googlefontname');
 $googleid					 = $this->params->get('googleid');
@@ -55,10 +56,10 @@ $bodyflex					 = ($this->params->get('bodyflex') > 0) ? ' uk-flex uk-flex-column
 $qlenable					 = $this->params->get('qlenable');
 
 // Sections
-$main_container			 = $this->params->get('main_container');
-$main_container_width	 = $this->params->get('main_container_width');
-$main_grid				 = $this->params->get('main_grid');
-$main_grid_classes		 = $this->params->get('main_gridclasses');
+$main_container			 = $this->params->get('main_container', '');
+$main_container_width	 = $this->params->get('main_container_width', '');
+$main_grid				 = $this->params->get('main_grid', 0);
+$main_grid_classes		 = $this->params->get('main_gridclasses', '');
 switch ($main_grid) {
 	case '1';
 		$main_grid_classes	 = (strlen($main_grid_classes) > 0) ? $main_grid_classes . ' ' : '';
@@ -80,15 +81,15 @@ switch ($main_grid) {
 		break;
 }
 $main_grid_classes				 = (strlen($main_grid_classes) > 0) ? ' class="' . $main_grid_classes . '"' : '';
-$main_grid_attr					 = $this->params->get('main_addattrs_grid');
+$main_grid_attr					 = $this->params->get('main_addattrs_grid', '');
 $main_grid_attr					 = (strlen($main_grid_attr) > 0) ? ' ' . $main_grid_attr : '';
-$main_addclasses				 = $this->params->get('main_addclasses');
+$main_addclasses				 = $this->params->get('main_addclasses', '');
 $main_addclasses				 = (strlen($main_addclasses) > 0) ? ' ' . $main_addclasses : '';
-$main_addattr					 = $this->params->get('main_addattr');
+$main_addattr					 = $this->params->get('main_addattr', '');
 $main_addattr					 = (strlen($main_addattr) > 0) ? ' ' . $main_addattr : '';
-$main_addattr_container			 = $this->params->get('main_addattr_container');
+$main_addattr_container			 = $this->params->get('main_addattr_container', '');
 $main_addattr_container			 = (strlen($main_addattr_container) > 0) ? ' ' . $main_addattr_container : '';
-$main_addclasses_container		 = $this->params->get('main_addclasses_container');
+$main_addclasses_container		 = $this->params->get('main_addclasses_container', '');
 $main_addclasses_container		 = (strlen($main_addclasses_container) > 0) ? ' ' . $main_addclasses_container : '';
 $sections						 = [];
 $sections['sb-main']['isExist']	 = 1;
@@ -198,7 +199,6 @@ if ($lazysizes == 1) {
 $doc->addScript($tplpath . '/vendor/uikit/js/uikit.min.js');
 $doc->addScript($tplpath . '/vendor/uikit/js/uikit-icons.min.js');
 $doc->addScript($tplpath . '/vendor/uikit/js/uikit-custom-icons.min.js');
-$doc->addScript($tplpath . '/js/marked.js');
 $doc->addScript($tplpath . '/js/theme.js');
 
 // Add site verification (Google, Yandex, Bing)
@@ -214,7 +214,7 @@ if ($less_acompile == 1) {
 } else {
 // CSS including
 	$css_path	 = JPATH_THEMES . '/' . $this->template . '/css/';
-	$excluded	 = explode(',', $this->params->get('css_exclude_files'));
+	$excluded	 = explode(',', $this->params->get('css_exclude_files', ''));
 	$template	 = 0;
 	if (is_dir($css_path)) {
 		if ($dh = opendir($css_path)) {
@@ -245,7 +245,11 @@ if ($less_acompile == 1) {
 				}
 			}
 			if ($template == 1) {
-				$doc->addStyleSheet($tplpath . '/css/template.css');
+				if (file_exists($tplpath . '/css/template.min.css')) {
+					$doc->addStyleSheet($tplpath . '/css/template.min.css');
+				} else {
+					$doc->addStyleSheet($tplpath . '/css/template.css');
+				}
 			}
 			closedir($dh);
 		}
@@ -293,6 +297,17 @@ function _buildPosition($template, $posName, $params, $sections) {
 		foreach ($sections[$posName] as $section_item) {
 			if (is_array($section_item)) {
 				$pos_name = strtolower($section_item["pos-name"]);
+				if ($template->countModules($pos_name) && isset($section_item['pos-container']) && $section_item['pos-container'] > 0) {
+					$out .= '<div class="uk-container';
+					if ($section_item['pos-container'] == 1) {
+						$out .= ' uk-container-center';
+					}
+					$out .= ' uk-container-' . $section_item['pos-container_width'];
+					$out .= strlen(trim($section_item['pos-container-addclasses'])) > 0 ? ' ' . trim($section_item['pos-container-addclasses']) : '';
+					$out .= '"';
+					$out .= strlen(trim($section_item['pos-container-addparams'])) > 0 ? ' ' . trim($section_item['pos-container-addparams']) : '';
+					$out .= '>';
+				}
 				if ($template->countModules($section_item["pos-name"]) ||
 						(
 						isset($section_item['pos-navbar']) && ($template->countModules($section_item["pos-name"] . '-left') ||
@@ -375,6 +390,9 @@ function _buildPosition($template, $posName, $params, $sections) {
 						}
 					}
 					$out .= '<jdoc:include type="modules" name="' . $pos_name . '" />';
+					if ($template->countModules($pos_name) && isset($section_item['pos-container']) && $section_item['pos-container'] > 0) {
+						$out .= '</div>';
+					}
 					if (isset($section_item['pos-grid']) && $section_item['pos-grid'] == '1') {
 						$out .= '</div>';
 					}
