@@ -10,5 +10,7 @@ defined('_JEXEC') or die('Restricted access');
 foreach ($sections['sb-main-sidebar-a'] as $sb_main_sidebar_a_position) {
 	if (is_array($sb_main_sidebar_a_position) && strtolower($sb_main_sidebar_a_position['pos-name']) !== 'main-sidebar-a' && $this->countModules($sb_main_sidebar_a_position['pos-name'])) {
 		echo _buildPosition($this, 'sb-main-sidebar-a', $tplparams, $sections);
+	} else {
+		echo '<jdoc:include type="modules" name="sb-main-sidebar-a" style="html5" />';
 	}
 }
