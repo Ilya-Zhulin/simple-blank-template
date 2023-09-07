@@ -76,15 +76,13 @@ class JFormFieldScripter extends JFormFieldHidden {
 			$text = file_get_contents(JPATH_ROOT . '/templates/simple_blank/less/template.tmp');
 			file_put_contents(JPATH_ROOT . '/templates/simple_blank/less/template.less', str_replace('path_to_theme_file', '../themes/' . $params->theme_select . '/less/' . $params->theme_select . '.less', $text));
 
-			$text = file_get_contents(JPATH_ROOT . '/templates/simple_blank/includes/head.tmp');
-			file_put_contents(JPATH_ROOT . '/templates/simple_blank/includes/head.php', str_replace('path_to_theme_file1', '/templates/simple_blank/themes/' . $params->theme_select . '/head_top.php', $text));
-
-			$text = file_get_contents(JPATH_ROOT . '/templates/simple_blank/includes/head.php');
-			file_put_contents(JPATH_ROOT . '/templates/simple_blank/includes/head.php', str_replace('path_to_theme_file2', '/templates/simple_blank/themes/' . $params->theme_select . '/head_bottom.php', $text));
+//			$text = file_get_contents(JPATH_ROOT . '/templates/simple_blank/includes/head.tmp');
+//			file_put_contents(JPATH_ROOT . '/templates/simple_blank/includes/head.php', str_replace('path_to_theme_file1', '/templates/simple_blank/themes/' . $params->theme_select . '/head_top.php', $text));
+//			$text = file_get_contents(JPATH_ROOT . '/templates/simple_blank/includes/head.php');
+//			file_put_contents(JPATH_ROOT . '/templates/simple_blank/includes/head.php', str_replace('path_to_theme_file2', '/templates/simple_blank/themes/' . $params->theme_select . '/head_bottom.php', $text));
 
 			$text = file_get_contents(JPATH_ROOT . '/templates/simple_blank/includes/footer.tmp');
 			file_put_contents(JPATH_ROOT . '/templates/simple_blank/includes/footer.php', str_replace('path_to_theme_file', '/templates/simple_blank/themes/' . $params->theme_select . '/footer.php', $text));
 		}
 	}
-
 }
