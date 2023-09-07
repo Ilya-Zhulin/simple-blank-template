@@ -97,7 +97,7 @@ if (File::exists($favicon_path . DS . 'favicon.ico')) { //если нет ико
 <?php
 if ($qlenable == 1) {
 	?>
-	<script src = "<?php $tmpl_img_path . DS . ?>js/quicklink.js"></script>
+	<script src = "<?php $tmpl_img_path . DS ?>js/quicklink.js"></script>
 	<?php
 }
 ?>
