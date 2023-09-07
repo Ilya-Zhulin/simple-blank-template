@@ -57,7 +57,7 @@ if ($tagId = $params->get('tag_id', '')) {
 
 		if ($item->parent && ($params->get('endLevel') == '0' || ((int) $params->get('endLevel') > (int) $params->get('startLevel')))) {
 			$class .= ' uk-parent';
-			if ($current_item->parent_id == $item->id) {
+			if (isset($current_item->parent_id) && $current_item->parent_id == $item->id) {
 				$class .= ' uk-open';
 			}
 		}

@@ -8,7 +8,7 @@
 defined('_JEXEC') or die('Restricted access');
 if ($hidecomponent == 1) {
 	?>
-	<main id="sb-content" class="uk-width-<?php echo $content_width . $main_addclasses; ?>" role="main"<?php echo $main_addattr; ?>>
+	<main id="sb-content" class="uk-width-expand <?php echo $main_addclasses; ?>" role="main"<?php echo $main_addattr; ?>>
 		<?php if ($main_container > 0) { ?>
 			<div class="uk-container<?php echo ' uk-container-' . $main_container_width . $main_addclasses_container ?>"<?php echo $main_addattr_container ?>>
 				<?php
@@ -21,12 +21,12 @@ if ($hidecomponent == 1) {
 				if ($sb1_main_exist || $sb2_main_exist) {
 					$grid_prefix = 'main';
 					?>
-																						<!-- main-grid-<?php echo $sb1_main_height . '-' . $sb2_main_height; ?> pattern included -->
+																											<!-- main-grid-<?php echo $sb1_main_width . '-' . $sb2_main_width; ?> pattern included -->
 					<?php
-					include JPATH_THEMES . '/simple_blank/includes/patterns/grid-' . $sb1_main_height . '-' . $sb2_main_height . '.php';
-					$grid_prefix = '';
+//					$grid_prefix = '';
 					$html_prefix = ($grid_prefix != '') ? $grid_prefix . '-' : '';
 					$var_prefix	 = ($grid_prefix != '') ? $grid_prefix . '_' : '';
+					include JPATH_THEMES . '/simple_blank/includes/patterns/grid-' . $sb1_main_width . '-' . $sb2_main_width . '.php';
 				} else {
 					include JPATH_THEMES . '/simple_blank/includes/sections/main-top.php';
 					include JPATH_THEMES . '/simple_blank/includes/sections/main-main.php';
