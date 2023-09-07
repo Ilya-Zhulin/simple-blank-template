@@ -11,6 +11,8 @@ jimport('joomla.form.formfield');
 jimport('joomla.form.helper');
 JFormHelper::loadFieldClass('text');
 
+use Joomla\CMS\Filesystem\File;
+
 /**
  * Создаем класс.
  */
@@ -73,8 +75,8 @@ class JFormFieldScripter extends JFormFieldHidden {
 			$app->redirect($uri->toString());
 		}
 		if (isset($params->theme_select) && strlen(trim($params->theme_select)) > 0) {
-			$text = file_get_contents(JPATH_ROOT . '/templates/simple_blank/less/template.tmp');
-			file_put_contents(JPATH_ROOT . '/templates/simple_blank/less/template.less', str_replace('path_to_theme_file', '../themes/' . $params->theme_select . '/less/' . $params->theme_select . '.less', $text));
+			$text = '@import ../themes/' . $params->theme_select . '/less/' . $params->theme_select . '.php';
+			File::append(JPATH_ROOT . '/templates/simple_blank/less/theme.less', $text);
 
 //			$text = file_get_contents(JPATH_ROOT . '/templates/simple_blank/includes/head.tmp');
 //			file_put_contents(JPATH_ROOT . '/templates/simple_blank/includes/head.php', str_replace('path_to_theme_file1', '/templates/simple_blank/themes/' . $params->theme_select . '/head_top.php', $text));
