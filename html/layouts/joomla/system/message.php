@@ -14,7 +14,7 @@ $alert		 = array('error' => 'danger', 'warning' => 'warning', 'notice' => '', 'm
 $icon		 = array('error' => 'close', 'warning' => 'warning', 'notice' => 'info', 'message' => 'check');
 $app		 = JFactory::getApplication();
 $template	 = $app->getTemplate(true);
-$alert_view	 = $template->params->get('alert_layout', 'defaultValue');
+$alert_view	 = $template->params->get('alert_layout', '0');
 $theme		 = $template->params->get('theme_select', 'default_theme');
 $this_path	 = str_replace(JPATH_THEMES . '/simple_blank', '', __FILE__);
 if ($theme !== 'default_theme' && file_exists(JPATH_THEMES . '/simple_blank/themes/' . $theme . $this_path)) {
@@ -42,12 +42,12 @@ if ($theme !== 'default_theme' && file_exists(JPATH_THEMES . '/simple_blank/them
 								foreach ($msgs as $msg) {
 									?>
 									<script>
-							            UIkit.notification({
-							                message: '<div uk-grid><div class="uk-width-expand"><h4 class="uk-light uk-text-center "><?php echo JText::_($type); ?></h4><div uk-grid class="uk-grid-collapse"><div class="uk-width-auto"><span uk-icon="icon: <?php echo $icon[$type]; ?>; ratio: 3" class="uk-icon-left"></span></div><div class="uk-width-expand"><p><?php echo $msg; ?></p></div></div></div><div class="uk-width-auto"><img src="/templates/simple_blank/images/favicon/favicon.svg" style="width:100px;" class="uk-align-right" /></div></div>',
-							                status: '<?php echo $alert[$type]; ?>',
-							                pos: 'bottom-center',
-							                timeout: 15000
-							            });
+										UIkit.notification({
+											message: '<div uk-grid><div class="uk-width-expand"><h4 class="uk-light uk-text-center "><?php echo JText::_($type); ?></h4><div uk-grid class="uk-grid-collapse"><div class="uk-width-auto"><span uk-icon="icon: <?php echo $icon[$type]; ?>; ratio: 3" class="uk-icon-left"></span></div><div class="uk-width-expand"><p><?php echo $msg; ?></p></div></div></div><div class="uk-width-auto"></div></div>',
+											status: '<?php echo $alert[$type]; ?>',
+											pos: 'bottom-center',
+											timeout: 15000
+										});
 									</script>
 									<?php
 								}
