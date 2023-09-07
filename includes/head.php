@@ -23,8 +23,8 @@ $favicon_mode	 = $this->params->get('favicon_mode', 0);
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <?php
-if (file_exists(JPATH_ROOT . '/templates/simple_blank/themes/test_theme/head_top.php')) {
-	include_once JPATH_ROOT . '/templates/simple_blank/themes/test_theme/head_top.php';
+if (file_exists($tmpl_img_path . DS . 'themes' . DS . $theme_name . DS . 'head_top.php')) {
+	include_once $tmpl_img_path . DS . 'themes' . DS . $theme_name . DS . 'head_top.php';
 }
 $files			 = Folder::files($tmpl_img_path . DS . 'template_favicon');
 $favicon_path	 = JPATH_ROOT; // Если всё стереть, будет искать favicon в корне сайта
@@ -47,7 +47,7 @@ if (File::exists($favicon_path . DS . 'favicon.ico')) { //если нет ико
 		$ext = File::getExt($icon);
 		switch ($ext) {
 			case 'svg':
-				$favicon_html	 .= '<link rel="icon" href="' . $favicon_url . '/' . $icon . '" type="image/svg+xml">';
+				$favicon_html	 .= '<link rel = "icon" href = "' . $favicon_url . '/' . $icon . '" type = "image/svg+xml">';
 				break;
 			case 'ico':
 				$sizes			 = 'any';
@@ -55,10 +55,10 @@ if (File::exists($favicon_path . DS . 'favicon.ico')) { //если нет ико
 				if (count($sizes_ar) > 0) {
 					$sizes = $sizes_ar[0];
 				}
-				$favicon_html	 .= '<link rel="icon" href="' . $favicon_url . '/' . $icon . '" sizes="' . $sizes . '">';
+				$favicon_html	 .= '<link rel = "icon" href = "' . $favicon_url . '/' . $icon . '" sizes = "' . $sizes . '">';
 				break;
 			case 'webmanifest':
-				$favicon_html	 .= '<link rel="manifest" href="' . $favicon_url . '/' . $icon . '">';
+				$favicon_html	 .= '<link rel = "manifest" href = "' . $favicon_url . '/' . $icon . '">';
 				break;
 			case 'png':
 				$sizes			 = 'any';
@@ -72,17 +72,17 @@ if (File::exists($favicon_path . DS . 'favicon.ico')) { //если нет ико
 						// подключается в манифесте
 						break;
 					case 'apple':
-						$favicon_html	 .= '<link rel="apple-touch-icon" href="' . $favicon_url . '/' . $icon . '" sizes="' . $sizes . '">';
+						$favicon_html	 .= '<link rel = "apple-touch-icon" href = "' . $favicon_url . '/' . $icon . '" sizes = "' . $sizes . '">';
 						break;
 					case 'apple':
-						$favicon_html	 .= '<link rel="apple-touch-icon" href="' . $favicon_url . '/' . $icon . '" sizes="' . $sizes . '">';
+						$favicon_html	 .= '<link rel = "apple-touch-icon" href = "' . $favicon_url . '/' . $icon . '" sizes = "' . $sizes . '">';
 						break;
 					case 'favicon':
-						$favicon_html	 .= '<link rel="icon" type="image/png" href="' . $favicon_url . '/' . $icon . '" sizes="' . $sizes . '">';
+						$favicon_html	 .= '<link rel = "icon" type = "image/png" href = "' . $favicon_url . '/' . $icon . '" sizes = "' . $sizes . '">';
 						break;
 					case 'safari':
 						// deprecated. Не используется в современных браузерах и системах. Даже на apple.com нету
-						$favicon_html	 .= '<link rel="mask-icon" href="' . $favicon_url . '/' . $icon . '" sizes="' . $sizes . '">';
+						$favicon_html	 .= '<link rel = "mask-icon" href = "' . $favicon_url . '/' . $icon . '" sizes = "' . $sizes . '">';
 						break;
 				}
 				break;
@@ -97,7 +97,7 @@ if (File::exists($favicon_path . DS . 'favicon.ico')) { //если нет ико
 <?php
 if ($qlenable == 1) {
 	?>
-	<script src = "/templates/simple_blank/js/quicklink.js"></script>
+	<script src = "<?php $tmpl_img_path . DS . ?>js/quicklink.js"></script>
 	<?php
 }
 ?>
@@ -111,7 +111,7 @@ if ($less_acompile == 1) {
 }
 ?>
 <?php
-if (file_exists(JPATH_ROOT . '/templates/simple_blank/themes/test_theme/head_bottom.php')) {
-	include_once JPATH_ROOT . '/templates/simple_blank/themes/test_theme/head_bottom.php';
+if (file_exists($tmpl_img_path . DS . 'themes' . DS . $theme_name . DS . 'head_bottom.php')) {
+	include_once $tmpl_img_path . DS . 'themes' . DS . $theme_name . DS . 'head_bottom.php';
 }
 ?>
