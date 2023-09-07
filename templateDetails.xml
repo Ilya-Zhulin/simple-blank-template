@@ -153,7 +153,7 @@
                     <option value="xsmall">XSmall</option>
                 </field>
                 <field name="top-b_addclasses" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
-                <field name="addattr_top-и" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+                 <field name="top-b_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
 
                 <field type="spacer" label="TOP-C" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_TOP_C"/>
                 <field name="top-c_tag" type="radio" class="btn-group btn-group-yesno" default="section" label="TPL_SIMPLE_BLANK_TAG_LABEL" description="TPL_SIMPLE_BLANK_TAG_DESCRIPTION">
