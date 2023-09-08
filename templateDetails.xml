@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE install PUBLIC "-//Joomla! 3.4//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/3.4/template-install.dtd"><extension version="3.1" type="template" client="site" method="upgrade">
     <name>simple_blank</name>
-    <creationDate>25.05.2023</creationDate>
+    <creationDate>07.09.2023</creationDate>
     <author>Ilya A.Zhulin</author>
-    <copyright>Copyright© 2021 www.zhulinia.ru</copyright>
+    <copyright>Copyright© 2023 www.zhulinia.ru</copyright>
     <authorEmail>ilya.zhulin@hotmail.com</authorEmail>
     <authorUrl>http://www.zhulinia.ru</authorUrl>
-    <version>2.2.0</version>
-    <description><![CDATA[
+    <version>2.2.1</version>
+    <description>
+		<![CDATA[
 			<h1>Simple Blank Template</h1>
 			<p>Created by <a href="http://www.zhulinia.ru" target="_blank">Ilya A.Zhulin</a> </br>
 			for <a href="http://www.sebloders.ru" target="_blank">Russian Sebloders</a>.</p>
 			<p>Do you have some troubles with settings? Read our <a href="https://github.com/Ilya-Zhulin/simple-blank-template/wiki" target="_blank">Wiki</a>.</p>
-		]]></description>
+		]]>
+	</description>
+	<scriptfile>install/update/script.php</scriptfile>
     <files>
         <folder>css</folder>
         <folder>fonts</folder>
