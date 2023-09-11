@@ -23,8 +23,8 @@ $favicon_mode	 = $this->params->get('favicon_mode', 0);
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <?php
-if (file_exists($tmpl_img_path . DS . 'themes' . DS . $theme_name . DS . 'head_top.php')) {
-	include_once $tmpl_img_path . DS . 'themes' . DS . $theme_name . DS . 'head_top.php';
+if (file_exists($tmpl_path . DS . 'themes' . DS . $theme_name . DS . 'head_top.php')) {
+	include_once $tmpl_path . DS . 'themes' . DS . $theme_name . DS . 'head_top.php';
 }
 $files			 = Folder::files($tmpl_img_path . DS . 'template_favicon');
 $favicon_path	 = JPATH_ROOT; // Если всё стереть, будет искать favicon в корне сайта
@@ -111,7 +111,9 @@ if ($less_acompile == 1) {
 }
 ?>
 <?php
-if (file_exists($tmpl_img_path . DS . 'themes' . DS . $theme_name . DS . 'head_bottom.php')) {
-	include_once $tmpl_img_path . DS . 'themes' . DS . $theme_name . DS . 'head_bottom.php';
+<?php
+if (file_exists($tmpl_path . DS . 'themes' . DS . $theme_name . DS . 'head_bottom.php')) {
+	include_once $tmpl_path . DS . 'themes' . DS . $theme_name . DS . 'head_bottom.php';
 }
+?>
 ?>
