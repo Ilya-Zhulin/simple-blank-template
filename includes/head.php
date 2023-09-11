@@ -109,11 +109,7 @@ if ($less_acompile == 1) {
 	<script src="templates/<?php echo $this->template ?>/vendor/LessJS/less.min.js" ></script>
 	<?php
 }
-?>
-<?php
-<?php
 if (file_exists($tmpl_path . DS . 'themes' . DS . $theme_name . DS . 'head_bottom.php')) {
 	include_once $tmpl_path . DS . 'themes' . DS . $theme_name . DS . 'head_bottom.php';
 }
-?>
 ?>
