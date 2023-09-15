@@ -24,7 +24,7 @@ $content_width	 = $fraction(60 - ${'sb1_' . $var_prefix . 'real_width'});
 					<?php include_once JPATH_THEMES . '/simple_blank/includes/sections/' . $html_prefix . 'sidebar-a.php'; ?>
 				</div>
 			<?php } ?>
-			<div class="uk-width-<?php echo ${$var_prefix . 'content_width'}; ?>">
+			<div class="uk-width-expand">
 				<?php include_once JPATH_THEMES . '/simple_blank/includes/sections/' . $html_prefix . 'main.php'; ?>
 				<?php include_once JPATH_THEMES . '/simple_blank/includes/sections/' . $html_prefix . 'bottom.php'; ?>
 			</div>

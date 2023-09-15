@@ -25,7 +25,7 @@ $var_prefix	 = ($grid_prefix != '') ? $grid_prefix . '_' : '';
 			<div class="uk-width-expand">
 				<div uk-grid class="uk-child-width-1-1">
 					<?php include_once JPATH_THEMES . '/simple_blank/includes/sections/' . $html_prefix . 'top.php'; ?>
-					<div class="uk-width-<?php echo ${$var_prefix . 'content_width'}; ?>">
+					<div class="uk-width-expand">
 						<?php include_once JPATH_THEMES . '/simple_blank/includes/sections/' . $html_prefix . 'main.php'; ?>
 					</div>
 				</div>

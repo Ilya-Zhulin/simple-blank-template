@@ -25,7 +25,7 @@ $var_prefix	 = ($grid_prefix != '') ? $grid_prefix . '_' : '';
 							<?php include_once JPATH_THEMES . '/simple_blank/includes/sections/' . $html_prefix . 'sidebar-a.php'; ?>
 						</div>
 					<?php } ?>
-					<div class="uk-width-<?php echo ${$var_prefix . 'content_width'}; ?>">
+					<div class="uk-width-expand">
 						<?php include_once JPATH_THEMES . '/simple_blank/includes/sections/' . $html_prefix . 'main.php'; ?>
 					</div>
 					<?php if (${'sb1_' . $var_prefix . 'exist'} && ${'sb1_' . $var_prefix . 'position'} == 0) { ?>

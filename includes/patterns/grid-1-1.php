@@ -20,7 +20,7 @@ $var_prefix	 = ($grid_prefix != '') ? $grid_prefix . '_' : '';
 			<?php include_once JPATH_THEMES . '/simple_blank/includes/sections/' . $html_prefix . 'sidebar-b.php'; ?>
 		</div>
 	<?php } ?>
-	<div class="uk-width-<?php echo ${$var_prefix . 'content_width'}; ?>">
+	<div class="uk-width-expand">
 		<?php include JPATH_THEMES . '/simple_blank/includes/sections/' . $html_prefix . 'top.php'; ?>
 		<?php
 		include JPATH_THEMES . '/simple_blank/includes/sections/' . $html_prefix . 'main.php';
