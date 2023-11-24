@@ -2,6 +2,10 @@
 
 // no direct access
 defined('_JEXEC') or die;
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\Version;
+
 /*
  * Если требуется вставить свою секцию в файл,
  * добавьте имя позиции в этот массив.
@@ -25,9 +29,9 @@ $sb_sidebar_sections_array	 = ['sb-sidebar-a', 'sb-sidebar-b'];
 $sb_inner_sections_array	 = ['sb-main-top', 'sb-main-bottom', 'sb-main-sidebar-a', 'sb-main-sidebar-b'];
 $sb_offcanvas_array			 = ['sb-off-canvas-a', 'sb-off-canvas-b'];
 // Variables
-$app						 = JFactory::getApplication();
-$doc						 = JFactory::getDocument();
-$user						 = JFactory::getUser();
+$app						 = Factory::getApplication();
+$doc						 = Factory::getDocument();
+$user						 = Factory::getUser();
 $view						 = $app->input->get('view', '', 'string');
 $this->language				 = $doc->language;
 $this->direction			 = $doc->direction;
@@ -42,12 +46,7 @@ $grid_prefix				 = ''; // For pattern including
 // Parameters
 $hidecomponent				 = $this->params->get('hidecomponent', 0);
 $lazysizes					 = $this->params->get('lazysizes', 0);
-$bodygrid_gap				 = $this->params->get('bodygrid_gap', "");
-$bodygrid_gap				 = ($bodygrid_gap && strlen($bodygrid_gap) > 0) ? 'uk-grid-' . $bodygrid_gap : '';
-$bodygrid_classes			 = $this->params->get('bodygrid_add_classes', "");
-$bodygrid_classes			 = ($bodygrid_classes && strlen($bodygrid_classes) > 0) ? ' ' . $bodygrid_classes : '';
-$bodygrid_class				 = ' class="' . $bodygrid_gap . $bodygrid_classes . '"';
-$bodygrid_attr				 = $this->params->get('bodygrid_add_attr', "");
+$patternclass				 = $this->params->get('patternclass', "");
 $googlefont					 = $this->params->get('googlefont', 0);
 $googlefontname				 = $this->params->get('googlefontname');
 $googleid					 = $this->params->get('googleid');
@@ -86,7 +85,7 @@ switch ($main_grid) {
 		break;
 }
 $main_grid_classes				 = (strlen($main_grid_classes) > 0) ? ' class="' . $main_grid_classes . '"' : '';
-$main_grid_attr					 = $this->params->get('main_addattrs_grid', 'uk-grid');
+$main_grid_attr					 = $this->params->get('main_addattrs_grid', '');
 $main_grid_attr					 = (strlen($main_grid_attr) > 0) ? ' ' . $main_grid_attr : '';
 $main_addclasses				 = $this->params->get('main_addclasses', '');
 $main_addclasses				 = (strlen($main_addclasses) > 0) ? ' ' . $main_addclasses : '';
@@ -188,9 +187,11 @@ $this->setGenerator(null);
 unset($headdata['metaTags']['http-equiv']);
 
 $doc->setHeadData($headdata);
+if ((int) Version::MAJOR_VERSION < 4) {
 
 // Load jQuery
-JHtml::_('jquery.framework');
+	JHtml::_('jquery.framework');
+}
 
 // Add StyleSheets
 if ($googlefont == 1) {

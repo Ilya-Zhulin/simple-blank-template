@@ -5,10 +5,18 @@
  *
  * @copyright   Copyright (C) 2021 Ilya A.Zhulin for SB Template
  * @license     GNU General Public License version 2 or later
+ *
+ * @version 24.11.2023
  */
 defined('_JEXEC') or die;
 
-$app = JFactory::getApplication();
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Uri\Uri;
+
+$app = Factory::getApplication();
 
 require_once JPATH_ADMINISTRATOR . '/components/com_users/helpers/users.php';
 
@@ -33,38 +41,38 @@ $twofactormethods = UsersHelper::getTwoFactorMethods();
 				<div class="uk-alert">
 					<?php echo $app->get('offline_message'); ?>
 				</div>
-			<?php elseif ($app->get('display_offline_message', 1) == 2 && str_replace(' ', '', JText::_('JOFFLINE_MESSAGE')) != '') : ?>
+			<?php elseif ($app->get('display_offline_message', 1) == 2 && str_replace(' ', '', Text::_('JOFFLINE_MESSAGE')) != '') : ?>
 				<div class="uk-alert">
-					<?php echo JText::_('JOFFLINE_MESSAGE'); ?>
+					<?php echo Text::_('JOFFLINE_MESSAGE'); ?>
 				</div>
 			<?php endif; ?>
-			<form action="<?php echo JRoute::_('index.php', true); ?>" method="post" id="form-login" class="uk-form uk-form-horizontal">
+			<form action="<?php echo Route::_('index.php', true); ?>" method="post" id="form-login" class="uk-form uk-form-horizontal">
 				<fieldset class="uk-fieldset">
 					<div class="uk-margin" id="form-login-username">
-						<label for="username" class="uk-form-label"><?php echo JText::_('JGLOBAL_USERNAME'); ?></label>
+						<label for="username" class="uk-form-label"><?php echo Text::_('JGLOBAL_USERNAME'); ?></label>
 						<div class="uk-form-controls">
-							<input name="username" id="username" type="text" class="uk-input" alt="<?php echo JText::_('JGLOBAL_USERNAME'); ?>" size="18" />
+							<input name="username" id="username" type="text" class="uk-input" alt="<?php echo Text::_('JGLOBAL_USERNAME'); ?>" size="18" />
 						</div>
 					</div>
 					<div class="uk-margin" id="form-login-password">
-						<label for="passwd" class="uk-form-label"><?php echo JText::_('JGLOBAL_PASSWORD'); ?></label>
+						<label for="passwd" class="uk-form-label"><?php echo Text::_('JGLOBAL_PASSWORD'); ?></label>
 						<div class="uk-form-controls">
-							<input type="password" name="password" class="uk-input" size="18" alt="<?php echo JText::_('JGLOBAL_PASSWORD'); ?>" id="passwd" />
+							<input type="password" name="password" class="uk-input" size="18" alt="<?php echo Text::_('JGLOBAL_PASSWORD'); ?>" id="passwd" />
 						</div>
 					</div>
 					<?php if (count($twofactormethods) > 1) : ?>
 						<div class="uk-margin" id="form-login-secretkey">
-							<label for="secretkey" class="uk-form-label"><?php echo JText::_('JGLOBAL_SECRETKEY'); ?></label>
+							<label for="secretkey" class="uk-form-label"><?php echo Text::_('JGLOBAL_SECRETKEY'); ?></label>
 							<div class="uk-form-controls">
-								<input type="text" name="secretkey" class="uk-input" size="18" alt="<?php echo JText::_('JGLOBAL_SECRETKEY'); ?>" id="secretkey" />
+								<input type="text" name="secretkey" class="uk-input" size="18" alt="<?php echo Text::_('JGLOBAL_SECRETKEY'); ?>" id="secretkey" />
 							</div>
 						</div>
 					<?php endif; ?>
-					<input type="submit" name="Submit" class="uk-button uk-button-default uk-width-1-1 login" value="<?php echo JText::_('JLOGIN'); ?>" />
+					<input type="submit" name="Submit" class="uk-button uk-button-default uk-width-1-1 login" value="<?php echo Text::_('JLOGIN'); ?>" />
 					<input type="hidden" name="option" value="com_users" />
 					<input type="hidden" name="task" value="user.login" />
-					<input type="hidden" name="return" value="<?php echo base64_encode(JUri::base()); ?>" />
-					<?php echo JHtml::_('form.token'); ?>
+					<input type="hidden" name="return" value="<?php echo base64_encode(Uri::base()); ?>" />
+					<?php echo HTMLHelper::_('form.token'); ?>
 				</fieldset>
 			</form>
 			<p class="uk-text-center"><img src="templates/simple_blank/images/template_thumbnail.svg" alt="With Simple Blank Template" style="width:150px;"/></p>
