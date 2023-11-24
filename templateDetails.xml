@@ -13,8 +13,8 @@
 			for <a href="http://www.sebloders.ru" target="_blank">Russian Sebloders</a>.</p>
 			<p>Do you have some troubles with settings? Read our <a href="https://github.com/Ilya-Zhulin/simple-blank-template/wiki" target="_blank">Wiki</a>.</p>
 		]]>
-	</description>
-	<scriptfile>install/update/script.php</scriptfile>
+    </description>
+    <scriptfile>install/update/script.php</scriptfile>
     <files>
         <folder>css</folder>
         <folder>fonts</folder>
@@ -156,7 +156,7 @@
                     <option value="xsmall">XSmall</option>
                 </field>
                 <field name="top-b_addclasses" type="input" label="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_ADD_CLASSES_DESCRIPTION" default=""/>
-                 <field name="top-b_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
+                <field name="top-b_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL" description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
 
                 <field type="spacer" label="TOP-C" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_TOP_C"/>
                 <field name="top-c_tag" type="radio" class="btn-group btn-group-yesno" default="section" label="TPL_SIMPLE_BLANK_TAG_LABEL" description="TPL_SIMPLE_BLANK_TAG_DESCRIPTION">
@@ -803,6 +803,22 @@
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
+                <field name="bodygrid_gap" type="list" default="collapse" label="TPL_SIMPLE_BLANK_BODY_GRID_GAP_LABEL" description="TPL_SIMPLE_BLANK_BODY_GRID_GAP_DESCRIPTION">
+                    <option value="collapse">Collapse</option>
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                    <option value="row-collapse">Row collapse</option>
+                    <option value="row-small">Row small</option>
+                    <option value="row-medium">Row medium</option>
+                    <option value="row-large">Row large</option>
+                    <option value="column-collapse">Column collapse</option>
+                    <option value="column-small">Column small</option>
+                    <option value="column-medium">Column medium</option>
+                    <option value="column-large">Column large</option>
+                </field>
+                <field name="bodygrid_add_classes" class="" type="text" default="" label="TPL_SIMPLE_BLANK_BODY_GRID_CLASSES_LABEL" description="TPL_SIMPLE_BLANK_BODY_GRID_CLASSES_DESCRIPTION"/>
+                <field name="bodygrid_add_attr" class="" type="text" default="" label="TPL_SIMPLE_BLANK_BODY_GRID_ATTR_LABEL" description="TPL_SIMPLE_BLANK_BODY_GRID_ATTR_DESCRIPTION"/>
                 <field name="killbootstrap" type="radio" class="btn-group btn-group-yesno" default="1" label="Disable Bootstrap" description="Disable Bootstrap JS included in Joomla!">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
