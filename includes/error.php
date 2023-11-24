@@ -5,13 +5,17 @@
  *
  * Don't change this file!
  * Copy it to your theme for overriding
+ *
+ * @version 24.11.2023
  */
 
 defined('_JEXEC') or die('Restricted access');
 
-$app	 = JFactory::getApplication();
-$user	 = JFactory::getUser();
-$doc	 = JFactory::getDocument();
+use Joomla\CMS\Factory;
+
+$app	 = Factory::getApplication();
+$user	 = Factory::getUser();
+$doc	 = Factory::getDocument();
 
 // Getting params from template
 $params	 = $app->getTemplate(true)->params;
@@ -51,6 +55,7 @@ $doc->addScript($tplpath . '/vendor/uikit/js/uikit.min.js');
 		<link href="<?php echo $tplpath; ?>/css/template.css" rel="stylesheet">
 	</head>
 	<body uk-height-viewport="expand: true" class="uk-flex uk-flex-center uk-flex-middle">
+
 		<div id="center-container" class="uk-text-center">
 			<img src="/templates/<?php echo $this->template ?>/images/template_thumbnail.svg" alt="Simple Blank Template Logo"  class="" />
 			<h1 style="margin: 0!important; margin-top: 50px!important; padding: 0!important;">
@@ -59,10 +64,12 @@ $doc->addScript($tplpath . '/vendor/uikit/js/uikit.min.js');
 		</div>
 		<script>
             document.addEventListener("DOMContentLoaded", () => {
-                setTimeout(function () {
-                    let a = 1 * document.body.style["min-height"].replace("px", ""), b = document.body.getBoundingClientRect().height;
-                    a >= b && (document.querySelector("#center-container img").style.height = .75 * (document.querySelector("#center-container").getBoundingClientRect().height - document.querySelector("h1").getBoundingClientRect().height - 50) + "px")
-                }, 100)
+                let
+                        ar = document.body.style["min-height"].split(','),
+                        a = (ar.length > 1) ? 1 * ar[1].replace(/[\spx\)]/gi, "") : 1 * ar[0].replace(/[\spx\)]/gi, ""),
+                        b = document.body.getBoundingClientRect().height;
+                a /= b;
+                1 > a && (document.querySelector("#center-container img").style.height = .75 * (a * document.querySelector("#center-container").getBoundingClientRect().height - document.querySelector("h1").getBoundingClientRect().height - 50) + "px")
             });
 		</script>
 	</body>
