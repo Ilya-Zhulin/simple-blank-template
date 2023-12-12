@@ -28,7 +28,6 @@ class JFormFieldTheme_select extends JFormFieldList {
 	 * @return    Результат вывода типа
 	 */
 	protected function getOptions() {
-		JBDump(JFolder::files(JPATH_THEMES . '/simple_blank/themes'));
 		$db		 = JFactory::getDbo();
 		$db->setQuery('select extension_id from #__extensions where type="template" and name="simple_blank"');
 		$ext_id	 = $db->loadResult();
