@@ -251,7 +251,7 @@ if ($less_acompile == 1) {
 				}
 			}
 			if ($template == 1) {
-				if (file_exists($tplpath . '/css/template.min.css')) {
+				if (file_exists($css_path . '/template.min.css')) {
 					$doc->addStyleSheet($tplpath . '/css/template.min.css');
 				} else {
 					$doc->addStyleSheet($tplpath . '/css/template.css');
