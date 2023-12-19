@@ -58,6 +58,12 @@ $wrappersenable				 = $this->params->get('wrappersenable');
 $bodyfullheight				 = ($this->params->get('bodyfullheight') > 0) ? ' uk-height-viewport' : '';
 $bodyflex					 = ($this->params->get('bodyflex') > 0) ? ' uk-flex uk-flex-column' : '';
 $qlenable					 = $this->params->get('qlenable');
+$bodygrid_gap				 = $this->params->get('bodygrid_gap');
+$bodygrid_class				 = $this->params->get('bodygrid_class');
+$bodygrid_class				 = (strlen($bodygrid_class) > 0) ? ' ' . $bodygrid_class : '';
+$bodygrid_class				 = ' class="uk-grid-' . $bodygrid_gap . $bodygrid_class . '"';
+$bodygrid_attr				 = $this->params->get('bodygrid_attr');
+$bodygrid_attr				 = (strlen($bodygrid_class) > 0) ? ' ' . $bodygrid_attr : '';
 
 // Sections
 $main_container			 = $this->params->get('main_container', '');
