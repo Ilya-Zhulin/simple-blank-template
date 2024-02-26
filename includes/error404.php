@@ -66,7 +66,7 @@ $doc->addScript($tplpath . '/vendor/uikit/js/uikit.min.js');
             document.addEventListener("DOMContentLoaded", () => {
                 let
                         ar = document.body.style["min-height"].split(','),
-                        a = (ar.length > 1) ? 1 * ar[1].replace(/[\spx\)]/gi, "") : 1 * ar[0].replace(/[\spx\)]/gi, ""),
+                        a = (ar.length > 1) ? 1 * ar[1].replace(/[\spx\)\(calc]/gi, "") : 1 * ar[0].replace(/[\spx\)\(calc]/gi, ""),
                         b = document.body.getBoundingClientRect().height;
                 a /= b;
                 1 > a && (document.querySelector("#center-container img").style.height = .75 * (a * document.querySelector("#center-container").getBoundingClientRect().height - document.querySelector("h1").getBoundingClientRect().height - 50) + "px")
