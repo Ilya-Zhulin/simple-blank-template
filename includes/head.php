@@ -28,13 +28,13 @@ if (file_exists($tmpl_path . DS . 'themes' . DS . $theme_name . DS . 'head_top.p
 }
 $files			 = Folder::files($tmpl_img_path . DS . 'template_favicon');
 $favicon_path	 = JPATH_ROOT; // Если всё стереть, будет искать favicon в корне сайта
-if ($favicon_mode == 1) { // favicon берётся из шаблона
+if ($favicon_mode == '0') { // favicon берётся из шаблона
 	if (File::exists($tmpl_img_path . DS . 'favicon' . DS . 'favicon.ico')) {
 		$favicon_path = $tmpl_img_path . DS . 'favicon';
 	} elseif (File::exists($tmpl_img_path . DS . 'template_favicon' . DS . 'favicon.ico')) {
 		$favicon_path = $tmpl_img_path . DS . 'template_favicon';
 	}
-} elseif ($favicon_mode == 0 && isset($theme_name) && strlen($theme_name) > 0) {// favicon берётся из темы
+} elseif ($favicon_mode == '1' && isset($theme_name) && strlen($theme_name) > 0) {// favicon берётся из темы
 	if (Folder::exists($tmpl_path . DS . 'themes' . DS . $theme_name)) {
 		$favicon_path = $tmpl_path . DS . 'themes' . DS . $theme_name . DS . 'images' . DS . 'favicon';
 	}
