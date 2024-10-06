@@ -11,6 +11,8 @@
 			<h1>Simple Blank Template</h1>
 			<p>Created by <a href="http://www.zhulinia.ru" target="_blank">Ilya A.Zhulin</a> </br>
 			for <a href="http://www.sebloders.ru" target="_blank">Russian Sebloders</a>.</p>
+            <p>Please, resave template settings after udate to apply all changes!!!</p>
+            <p>Пересохраните шаблон после обновления!!!</p>
 			<p>Do you have some troubles with settings? Read our <a href="https://github.com/Ilya-Zhulin/simple-blank-template/wiki" target="_blank">Wiki</a>.</p>
 		]]>
     </description>
@@ -699,7 +701,11 @@
                             <option value="0">JHIDE</option>
                         </field>
                         <field name="pos-navbar-params" type="text" label="Параметры" description="Параметры компонента Navbar"/>
-                        <field name="pos-navbar-transparent" type="checkbox" label="Прозрачный" description="Прозрачный фон компонента Navbar" value="1"/>
+                        <field name="pos-navbar-modifier" type="list" default="none" label="Navbar Modifier" description="Модификатор Navbar">
+                            <option value="none">None</option>
+                            <option value="transparent">Transparent</option>
+                            <option value="primary">Primary</option>
+                        </field>
                         <field name="pos-navbar-container" type="list" default="none" label="Navbar Container" description="Контейнер Navbar">
                             <option value="none">None</option>
                             <option value="max">Default</option>
