@@ -57,7 +57,7 @@ $doc->addScript($tplpath . '/vendor/uikit/js/uikit.min.js');
 	<body uk-height-viewport="expand: true" class="uk-flex uk-flex-center uk-flex-middle">
 
 		<div id="center-container" class="uk-text-center">
-			<img src="/templates/<?php echo $this->template ?>/images/template_thumbnail.svg" alt="Simple Blank Template Logo"  class="" />
+			<img src="/templates/<?php echo $this->template ?>/images/template_thumbnail.svg" alt="Simple Blank Template Logo"  class="" style="max-height: 75vh;" />
 			<h1 style="margin: 0!important; margin-top: 50px!important; padding: 0!important;">
 				<?php echo $this->title; ?> - <?php echo htmlspecialchars($this->error->getMessage(), ENT_QUOTES, 'UTF-8'); ?>
 			</h1>
