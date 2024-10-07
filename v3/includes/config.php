@@ -4,7 +4,7 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
-use Joomla\CMS\Version;
+use Joomla\Filesystem\Folder;
 
 /*
  * Если требуется вставить свою секцию в файл,
@@ -40,7 +40,8 @@ $menu                      = $app->getMenu();
 $active                    = $app->getMenu()->getActive();
 $params                    = $app->getParams();
 $pageclass                 = $params->get('pageclass_sfx');
-$tplpath                   = $this->baseurl . '/templates/' . $this->template;
+$tplpath                   = $this->baseurl . '/' . $this->template;
+$tpl_media_path            = $this->baseurl . '/media/templates/site/' . $this->template;
 $tplparams                 = $this->params->toArray();
 $grid_prefix               = ''; // For pattern including
 // Parameters
@@ -58,12 +59,6 @@ $wrappersenable            = $this->params->get('wrappersenable');
 $bodyfullheight            = ($this->params->get('bodyfullheight') > 0) ? ' uk-height-viewport' : '';
 $bodyflex                  = ($this->params->get('bodyflex') > 0) ? ' uk-flex uk-flex-column' : '';
 $qlenable                  = $this->params->get('qlenable');
-$bodygrid_gap              = $this->params->get('bodygrid_gap');
-$bodygrid_class            = $this->params->get('bodygrid_class', '');
-$bodygrid_class            = (strlen($bodygrid_class) > 0) ? ' ' . $bodygrid_class : '';
-$bodygrid_class            = ' class="uk-grid-' . $bodygrid_gap . $bodygrid_class . '"';
-$bodygrid_attr             = $this->params->get('bodygrid_attr');
-$bodygrid_attr             = (strlen($bodygrid_class) > 0) ? ' ' . $bodygrid_attr : '';
 
 // Sections
 $main_container       = $this->params->get('main_container', '');
@@ -192,13 +187,6 @@ $this->setGenerator(null);
 // Remove deprecated meta-data (HTML5)
 unset($headdata['metaTags']['http-equiv']);
 
-$doc->setHeadData($headdata);
-if ((int) Version::MAJOR_VERSION < 4) {
-
-// Load jQuery
-    JHtml::_('jquery.framework');
-}
-
 // Add StyleSheets
 if ($googlefont == 1) {
     $doc->addStyleSheet('//fonts.googleapis.com/css?family=' . $googlefontname . '&subset=cyrillic,latin');
@@ -208,10 +196,10 @@ if ($googlefont == 1) {
 if ($lazysizes == 1) {
     $doc->addScript($tplpath . '/js/lazysizes.js');
 }
-$doc->addScript($tplpath . '/vendor/uikit/js/uikit.min.js');
-$doc->addScript($tplpath . '/vendor/uikit/js/uikit-icons.min.js');
-$doc->addScript($tplpath . '/vendor/uikit/js/uikit-custom-icons.min.js');
-$doc->addScript($tplpath . '/js/theme.js');
+$doc->addScript($tpl_media_path . '/vendor/uikit/js/uikit.min.js');
+$doc->addScript($tpl_media_path . '/vendor/uikit/js/uikit-icons.min.js');
+$doc->addScript($tpl_media_path . '/vendor/uikit/js/uikit-custom-icons.min.js');
+$doc->addScript($tpl_media_path . '/js/theme.js');
 
 // Add site verification (Google, Yandex, Bing)
 $doc->setMetadata('google-site-verification', $googleverification);
@@ -225,46 +213,27 @@ if ($less_acompile == 1) {
 //	$doc->addCustomTag('<link rel="stylesheet/less" type="text/css" href="' . $less_path . 'template.less" />');
 } else {
 // CSS including
-    $css_path = JPATH_THEMES . '/' . $this->template . '/css/';
+    $css_path = $tpl_media_path . '/css/';
     $excluded = explode(',', $this->params->get('css_exclude_files', ''));
+    $css_urls = [];
     $template = 0;
-    if (is_dir($css_path)) {
-        if ($dh = opendir($css_path)) {
-            while (($file = readdir($dh)) !== false) {
-                if (filetype($css_path . $file) === 'file') {
-                    $ext = (explode('.', $file));
-                    $ext = end($ext);
-                    if ($ext === 'css' && $file !== 'template.css' && !in_array($file, $excluded)) {
-                        $doc->addStyleSheet($tplpath . '/css/' . $file);
-                    } elseif ($file == 'template.css') {
-                        $template = 1;
-                    }
-                } else {
-                    if ($file != '.' && $file != '..') {
-                        if ($dh1 = opendir($css_path . $file)) {
-
-                            while (($file1 = readdir($dh1)) !== false) {
-                                if (filetype($css_path . $file . '/' . $file1) === 'file') {
-                                    $ext1 = (explode('.', $file1));
-                                    $ext1 = end($ext1);
-                                    if ($ext1 === 'css' && !in_array($file1, $excluded)) {
-                                        $doc->addStyleSheet($tplpath . '/css/' . $file . '/' . $file1);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+    $cssFiles = Folder::files(JPATH_ROOT . $css_path, '.', true, true);
+    foreach ($cssFiles as $cssFile) {
+        $cssUrl = str_replace(JPATH_ROOT, '', $cssFile);
+        $file   = end(explode('/', $cssFile));
+        $ext    = end(explode('.', $file));
+        if ($ext === 'css') {
+            if (stripos($file, '.min.css') !== FALSE && !in_array($cssUrl, $css_urls)) {
+                $css_urls[] = $cssUrl;
+            } elseif (file_exists(str_replace('.css', '.min.css', $cssFile)) && !in_array($cssUrl, $css_urls)) {
+                $css_urls[] = str_replace('.css', '.min.css', $cssUrl);
+            } elseif (!in_array($cssUrl, $css_urls)) {
+                $css_urls[] = $cssUrl;
             }
-            if ($template == 1) {
-                if (file_exists($css_path . '/template.min.css')) {
-                    $doc->addStyleSheet($tplpath . '/css/template.min.css');
-                } else {
-                    $doc->addStyleSheet($tplpath . '/css/template.css');
-                }
-            }
-            closedir($dh);
         }
+    }
+    foreach ($css_urls as $css_url) {
+        $doc->addStyleSheet($css_url);
     }
 }
 

@@ -13,8 +13,6 @@ $theme_name      = $this->params->get('theme_select', '');
 //Less
 $less_acompile   = $this->params->get('less_acompile', 0);
 $favicon_mode    = $this->params->get('favicon_mode', 0);
-//$less_custom_files	 = $this->params->get('less_custom_file', 'template.css');
-//$less_custom_files	 = (strpos($less_custom_files, ',') !== FALSE) ? explode(',', $less_custom_files) : $less_custom_files;
 ?>
 
 <meta charset="utf-8">
@@ -98,7 +96,7 @@ if (file_exists($favicon_path . DS . 'favicon.ico')) { //если нет ико�
 <?php
 if ($qlenable == 1) {
     ?>
-    <script src = "/templates/<?php echo $this->template ?>/js/quicklink.jsjs/quicklink.js"></script>
+    <script src = "/media/templates/site/<?php echo $this->template ?>/js/quicklink.jsjs/quicklink.js"></script>
     <?php
 }
 ?>
@@ -107,7 +105,7 @@ if ($less_acompile == 1) {
     $less_path = DS . 'templates/' . $this->template . DS . 'less/';
     ?>
     <link rel="stylesheet/less" href="<?php echo $less_path; ?>template.less" />
-    <script src="templates/<?php echo $this->template ?>/vendor/LessJS/less.min.js" ></script>
+    <script src="/media/templates/site/<?php echo $this->template ?>/vendor/LessJS/less.min.js" ></script>
     <?php
 }
 if (file_exists($tmpl_path . DS . 'themes' . DS . $theme_name . DS . 'head_bottom.php')) {
