@@ -18,15 +18,9 @@
     </description>
     <scriptfile>install/update/script.php</scriptfile>
     <files>
-        <folder>css</folder>
-        <folder>fonts</folder>
         <folder>html</folder>
-        <folder>images</folder>
         <folder>includes</folder>
-        <folder>js</folder>
         <folder>language</folder>
-        <folder>less</folder>
-        <folder>vendor</folder>
         <filename>component.php</filename>
         <filename>error.php</filename>
         <filename>index.php</filename>
@@ -41,6 +35,7 @@
         <folder>fonts</folder>
         <folder>less</folder>
         <folder>images</folder>
+        <folder>vendor</folder>
     </media>
 
     <positions>

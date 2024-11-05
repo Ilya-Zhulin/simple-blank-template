@@ -120,7 +120,6 @@
 
 }
 
-
 /*
  * XLarge
  */
@@ -149,28 +148,35 @@
  */
 
 .uk-section-default {
+    --uk-inverse: @section-default-color-mode;
     background: @section-default-background;
-    --uk-navbar-color: @section-default-color-mode;
     .hook-section-default();
 }
+
+.uk-section-default:not(.uk-preserve-color):extend(.uk-light all) when (@section-default-color-mode = light) {}
+.uk-section-default:not(.uk-preserve-color):extend(.uk-dark all) when (@section-default-color-mode = dark) {}
 
 /*
  * Muted
  */
 
 .uk-section-muted {
+    --uk-inverse: @section-muted-color-mode;
     background: @section-muted-background;
-    --uk-navbar-color: @section-muted-color-mode;
     .hook-section-muted();
 }
+
+.uk-section-muted:not(.uk-preserve-color):extend(.uk-light all) when (@section-muted-color-mode = light) {}
+.uk-section-muted:not(.uk-preserve-color):extend(.uk-dark all) when (@section-muted-color-mode = dark) {}
+
 
 /*
  * Primary
  */
 
 .uk-section-primary {
+    --uk-inverse: @section-primary-color-mode;
     background: @section-primary-background;
-    --uk-navbar-color: @section-primary-color-mode;
     .hook-section-primary();
 }
 
@@ -182,8 +188,8 @@
  */
 
 .uk-section-secondary {
+    --uk-inverse: @section-secondary-color-mode;
     background: @section-secondary-background;
-    --uk-navbar-color: @section-secondary-color-mode;
     .hook-section-secondary();
 }
 
