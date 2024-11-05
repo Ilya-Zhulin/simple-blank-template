@@ -30,7 +30,8 @@ $sb_inner_sections_array   = ['sb-main-top', 'sb-main-bottom', 'sb-main-sidebar-
 $sb_offcanvas_array        = ['sb-off-canvas-a', 'sb-off-canvas-b'];
 // Variables
 $app                       = Factory::getApplication();
-$doc                       = Factory::getDocument();
+$doc                       = $app->getDocument();
+$wa                        = $doc->getWebAssetManager();
 $user                      = Factory::getUser();
 $view                      = $app->input->get('view', '', 'string');
 $this->language            = $doc->language;
@@ -189,7 +190,11 @@ unset($headdata['metaTags']['http-equiv']);
 
 // Add StyleSheets
 if ($googlefont == 1) {
-    $doc->addStyleSheet('//fonts.googleapis.com/css?family=' . $googlefontname . '&subset=cyrillic,latin');
+    $googlefontpath = '//fonts.googleapis.com/css?family=' . $googlefontname . '&subset=cyrillic,latin';
+    $this->getPreloadManager()->preconnect('https://fonts.googleapis.com/', ['crossorigin' => 'anonymous']);
+    $this->getPreloadManager()->preconnect('https://fonts.gstatic.com/', ['crossorigin' => 'anonymous']);
+    $this->getPreloadManager()->preload($googlefontpath, ['as' => 'style', 'crossorigin' => 'anonymous']);
+    $wa->registerAndUseStyle('template.font', $googlefontpath, [], ['rel' => 'lazy-stylesheet', 'crossorigin' => 'anonymous']);
 }
 
 // Add JavaScripts
