@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ @package    simple_blank_template
+  ~ @version    __DEPLOY_VERSION__
+  ~ @author     Ilya A.Zhulin <ilya.zhulin@hotmail.com>
+  ~ @copyright  ©Ilya A.Zhulin, 2026
+  ~ @license    GNU General Public License version 2 or later;
+  ~
+  ~ The last change: 16.03.2026, 14:07
+  -->
+<form>
+    <field name="pos-name" type="text" label="Название"
+           description="TPL_SIMPLE_BLANK_SIDEBAR_A_WIDTH_DESCRIPTION"/>
+    <field name="pos-section" type="list" default="5" label="Секция"
+           description="TPL_SIMPLE_BLANK_SIDEBAR_A_WIDTH_DESCRIPTION">
+        <option value="sb-top-a">SB-TOP-A</option>
+        <option value="sb-top-b">SB-TOP-B</option>
+        <option value="sb-top-c">SB-TOP-C</option>
+        <option value="sb-main-top">SB-MAIN-TOP</option>
+        <option value="sb-main-sidebar-a">SB-MAIN-SIDEBAR-A</option>
+        <option value="sb-main-sidebar-b">SB-MAIN-SIDEBAR-B</option>
+        <option value="sb-main-bottom">SB-MAIN-BOTTOM</option>
+        <option value="sb-bottom-a">SB-BOTTOM-A</option>
+        <option value="sb-bottom-b">SB-BOTTOM-B</option>
+        <option value="sb-bottom-c">SB-BOTTOM-C</option>
+        <option value="sb-off-canvas-a">SB-OFF-CANVAS-A</option>
+        <option value="sb-off-canvas-b">SB-OFF-CANVAS-B</option>
+        <option value="sb-sidebar-a">SB-SIDEBAR-A</option>
+        <option value="sb-sidebar-b">SB-SIDEBAR-B</option>
+    </field>
+    <field type="spacer" label="Container"
+           description="Модули в этой позиции будут расположены в контейнере (не забудь выключить контейнер в секции)"/>
+    <field name="pos-container" type="list" class="btn-group btn-group-yesno" default="0"
+           label="Показать"
+           description="Модули в этой позиции будут расположены в контейнере (не забудь выключить контейнер в секции)">
+        <option value="2">Полный</option>
+        <option value="1">TPL_SIMPLE_BLANK_CENTER</option>
+        <option value="0">JNONE</option>
+    </field>
+    <field name="pos-container_width" type="list" default="expand" label="Размер"
+           description="Выбрать размер контейнера" class="float-left">
+        <option value="max">Max</option>
+        <option value="expand">Expand</option>
+        <option value="xlarge">Xlarge</option>
+        <option value="large">Large</option>
+        <option value="small">Small</option>
+        <option value="xsmall">XSmall</option>
+    </field>
+    <field name="pos-container-addclasses" type="text" label="Классы"
+           description="Классы контейнера"/>
+    <field name="pos-container-addparams" type="text" label="Атрибуты"
+           description="Атрибуты контейнера"/>
+    <field type="spacer" label="Navbar"
+           description="Модули в этой позиции будут окружены тегами компонента Navbar"/>
+    <field name="pos-navbar" type="radio" class="btn-group btn-group-yesno" default="0" label=""
+           description="Модули в этой позиции будут окружены тегами компонента Navbar">
+        <option value="1">JSHOW</option>
+        <option value="0">JHIDE</option>
+    </field>
+    <field name="pos-navbar-params" type="text" label="Параметры"
+           description="Параметры компонента Navbar"/>
+    <field name="pos-navbar-transparent" type="checkbox" label="Прозрачный"
+           description="Прозрачный фон компонента Navbar" value="1"/>
+    <field name="pos-navbar-container" type="list" default="none" label="Navbar Container"
+           description="Контейнер Navbar">
+        <option value="none">None</option>
+        <option value="max">Default</option>
+        <option value="expand">Expand</option>
+        <option value="xlarge">XLarge</option>
+        <option value="large">Large</option>
+        <option value="small">Small</option>
+        <option value="xsmall">XSmall</option>
+    </field>
+    <field name="note21" type="note" class="alert alert-info" label="Внимание"
+           description="Будут также действительны позиции с суффиксами *-left, *-center и *-right для расположения в блоках слева по центру и справа соответственно"/>
+    <field type="spacer" label="Sticky"
+           description="Модули в этой позиции будут окружены тегами компонента Sticky"/>
+    <field name="pos-sticky" type="checkbox" label="Активен" description="" value="1"/>
+    <field name="pos-sticky-params" type="text" label="Параметры"
+           description="Параметры компонента Sticky"/>
+    <field type="spacer" label="Grid"
+           description="Модули в этой позиции будут окружены тегами компонента Grid"/>
+    <field name="pos-grid" type="radio" class="btn-group btn-group-yesno" default="0"
+           label="TPL_SIMPLE_BLANK_SHOW_LABEL"
+           description="Модули в этой позиции будут окружены тегами компонента Grid">
+        <option value="1">JSHOW</option>
+        <option value="0">JHIDE</option>
+    </field>
+    <field name="pos-grid-divider" type="radio" class="btn-group btn-group-yesno" default="0"
+           label="Линии сетки" description="Внутри сетки будут линии разграничения">
+        <option value="1">JSHOW</option>
+        <option value="0">JHIDE</option>
+    </field>
+    <field name="pos-grid-gap-h" type="list" default="medium" label="Отступ по горизонтали"
+           description="Настройка отступов по горизонтали (между столбцами сетки)"
+           class="float-left">
+        <option value="collapse">JNONE</option>
+        <option value="small">Маленький</option>
+        <option value="default">Обычный</option>
+        <option value="medium">Средний</option>
+        <option value="large">Большой</option>
+    </field>
+    <field name="pos-grid-gap-v" type="list" default="medium" label="Отступ по вертикали"
+           description="Настройка отступов по вертикали (между строками сетки)">
+        <option value="collapse">JNONE</option>
+        <option value="small">Маленький</option>
+        <option value="default">Обычный</option>
+        <option value="medium">Средний</option>
+        <option value="large">Большой</option>
+    </field>
+    <field name="pos-grid-params" type="text" label="Параметры" description="Параметры сетки"/>
+    <field name="pos-grid-addparams" type="text" label="Доп. атрибуты"
+           description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL (типа uk-height-match и т.п.)"/>
+    <field name="pos-grid-addclasses" type="text" label="Доп. классы"
+           description="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL"/>
+    <field type="spacer" label="Dropdown"
+           description="Модули в этой позиции будут расположены в общем Dropdown блоке"/>
+    <field name="pos-dropdown" type="radio" class="btn-group btn-group-yesno" default="0"
+           label="TPL_SIMPLE_BLANK_SHOW_LABEL"
+           description="Модули в этой позиции будут окружены тегами компонента Grid">
+        <option value="1">JSHOW</option>
+        <option value="0">JHIDE</option>
+    </field>
+    <field name="pos-grid-divider" type="radio" class="btn-group btn-group-yesno" default="0"
+           label="Линии сетки" description="Внутри сетки будут линии разграничения">
+        <option value="1">JSHOW</option>
+        <option value="0">JHIDE</option>
+    </field>
+    <field name="pos-dropdown-params" type="text" label="Параметры" description="Параметры сетки"/>
+    <field name="pos-dropdown-addparams" type="text" label="Доп. атрибуты"
+           description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL (типа uk-height-match и т.п.)"/>
+    <field name="pos-dropdown-addclasses" type="text" label="Доп. классы"
+           description="TPL_SIMPLE_BLANK_ADD_CLASSES_LABEL"/>
+    <field type="spacer" label="Modal"
+           description="Модули в этой позиции будут расположены в общем модальном окне"/>
+    <field name="pos-modal" type="radio" class="btn-group btn-group-yesno" default="0"
+           label="TPL_SIMPLE_BLANK_SHOW_LABEL"
+           description="Модули в этой позиции будут расположены в модальном окне">
+        <option value="1">JSHOW</option>
+        <option value="0">JHIDE</option>
+    </field>
+    <field name="pos-modal-close" type="radio" class="btn-group btn-group-yesno" default="1"
+           label="Кнопка закрытия" description="Отображать кнопку закрытия">
+        <option value="1">JSHOW</option>
+        <option value="0">JHIDE</option>
+    </field>
+    <field name="pos-modal-close-tag" type="radio" class="btn-group btn-group-yesno"
+           default="button" label="Тег кнопки" description="Каким тегом отображать кнопку">
+        <option value="a">a</option>
+        <option value="button">button</option>
+    </field>
+    <field name="pos-modal-close-pos" type="radio" class="btn-group btn-group-yesno"
+           default="default" label="Позиция" description="Позиция кнопки закрытия">
+        <option value="default">Внутри</option>
+        <option value="outside">Снаружи</option>
+    </field>
+    <field name="pos-modal-close-size" type="radio" class="btn-group btn-group-yesno"
+           default="default" label="Размер" description="Размер кнопки закрытия">
+        <option value="default">Обычная</option>
+        <option value="large">Большая</option>
+    </field>
+    <field name="pos-modal-center" type="radio" class="btn-group btn-group-yesno" default="1"
+           label="Центровать" description="Модал по центру экрана">
+        <option value="1">JSHOW</option>
+        <option value="0">JHIDE</option>
+    </field>
+    <field name="pos-modal-size" type="list" default="default" label="Размер окна"
+           description="Настройка размера модального окна">
+        <option value="default">Default</option>
+        <option value="container">По контейнеру</option>
+        <option value="full">На весь экран</option>
+    </field>
+    <field name="pos-modal-params" type="text" label="Атрибуты"
+           description="Атрибуты настройки модального окна"/>
+    <field name="pos-modal-addparams-modal" type="text" label="Доп. атрибуты для uk-modal"
+           description="Дополнительные атрибуты для внешнего блока uk-modal"/>
+    <field name="pos-modal-addparams-dialog" type="text" label="Доп. атрибуты для modal-dialog"
+           description="Дополнительные атрибуты для внутреннего блока .uk-modal-dialog"/>
+    <field name="pos-modal-addclasses-modal" type="text" label="Доп. классы для uk-modal"
+           description="Дополнительные классы для внешнего блока uk-modal"/>
+    <field name="pos-modal-addclasses-dialog" default="uk-modal-dialog" type="text"
+           label="Доп. классы для modal-dialog"
+           description="Дополнительные классы для внутреннего блока .uk-modal-dialog"/>
+</form>
