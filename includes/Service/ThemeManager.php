@@ -1,7 +1,7 @@
 <?php
 /*
  * @package    simple_blank_template
- * @version    __DEPLOY_VERSION__
+ * @version 3.0.2-dev
  * @author     Ilya A.Zhulin <ilya.zhulin@hotmail.com>
  * @copyright  ©Ilya A.Zhulin, 2026
  * @license    GNU General Public License version 2 or later;
@@ -215,6 +215,47 @@ class ThemeManager
 	public function getActiveTheme(): ?string
 	{
 		return $this->activeThemeName;
+	}
+
+	/**
+	 * Отрендерить секцию-лейаут с учетом приоритетов (Тема -> Глобальный -> Дефолт)
+	 *
+	 * @param   string  $sectionName  Имя секции: 'top', 'main', 'bottom'
+	 * @param   array   $data         Данные для передачи в лейаут (sections, config и т.д.)
+	 *
+	 * @return string             HTML-вывод секции
+	 */
+	public static function renderSection(string $sectionName, array $data = []): string
+	{
+		$manager = self::getInstance();
+
+		// Формируем список путей для поиска в правильном порядке
+		$paths = [];
+
+		// 1. Путь темы (если активна)
+		if ($manager->hasActiveTheme())
+		{
+			$themePath = $manager->getThemeBasePath() . '/html/layouts/section';
+			if (is_dir($themePath))
+			{
+				$paths[] = $themePath;
+			}
+		}
+
+		// 2. Глобальный оверрайд шаблона
+		$globalOverride = JPATH_THEMES . '/simple_blank/html/layouts/section';
+		if (is_dir($globalOverride))
+		{
+			$paths[] = $globalOverride;
+		}
+
+		// 3. Дефолтный путь
+		$paths[] = JPATH_THEMES . '/simple_blank/includes/layouts/section';
+
+		// Инициализируем лейаут с массивом путей
+		$layout = new \Joomla\CMS\Layout\FileLayout($sectionName, $paths);
+
+		return $layout->render($data);
 	}
 
 	/**

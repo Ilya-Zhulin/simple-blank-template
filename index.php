@@ -1,7 +1,7 @@
 <?php
 /*
  * @package    simple_blank_template
- * @version    __DEPLOY_VERSION__
+ * @version 3.0.2-dev
  * @author     Ilya A.Zhulin <ilya.zhulin@hotmail.com>
  * @copyright  ©Ilya A.Zhulin, 2026
  * @license    GNU General Public License version 2 or later;
@@ -12,6 +12,7 @@
 // no direct access
 defined('_JEXEC') or die;
 
+
 use SimpleBlank\Site\Controller\ConfigController;
 use SimpleBlank\Site\Renderer\ThemeAlertRenderer;
 
@@ -19,17 +20,12 @@ use SimpleBlank\Site\Renderer\ThemeAlertRenderer;
 
 // 1. Инициализация контроллера
 $config = new ConfigController();
-
 // 2. Экспорт всех рассчитанных переменных в глобальную область видимости
 // Теперь доступны: $sb1_exist, $sb1_real_width, $content_width, $sections, $fraction и т.д.
 extract($config->data);
-
 // 3. Создаем алиас для функции дроби, чтобы старый код работал без изменений
 // $fraction теперь вызывает метод $config->getFraction()
-$fraction = [$config, 'getFraction'];
-
-// 1. Инициализация контроллера
-$config = new ConfigController();
+//$fraction = [$config, 'getFraction'];
 
 // 3. Инициализация рендерера и вывод (представление)
 $alertRenderer = new ThemeAlertRenderer();
@@ -103,7 +99,7 @@ for ($i = 1;
     if (isset($wrappersenable) && $wrappersenable > 0)
     {
     for ($i = 1;
-    $i < $wrappersenable;
+    $i <= $wrappersenable;
     $i++)
     {
     ?>

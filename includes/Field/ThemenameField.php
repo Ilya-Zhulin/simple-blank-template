@@ -2,7 +2,7 @@
 
 /*
  * @package    simple_blank_template
- * @version    __DEPLOY_VERSION__
+ * @version 3.0.2-dev
  * @author     Ilya A.Zhulin <ilya.zhulin@hotmail.com>
  * @copyright  ©Ilya A.Zhulin, 2026
  * @license    GNU General Public License version 2 or later;

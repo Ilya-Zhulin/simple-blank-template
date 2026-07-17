@@ -10,32 +10,23 @@
 
 
 <extension version="4.0" type="template" client="site" method="upgrade">
-    <!-- Добавь эту секцию -->
     <namespace path="includes">SimpleBlank</namespace>
     <name>simple_blank</name>
-    <!-- остальной код -->
-    <creationDate>17.06.2022</creationDate>
+    <creationDate>April 2026</creationDate>
     <author>Ilya A.Zhulin</author>
-    <copyright>Copyright© 2021 www.zhulinia.ru</copyright>
+    <copyright>Copyright© 2021-2026 www.zhulinia.ru</copyright>
     <authorEmail>ilya.zhulin@hotmail.com</authorEmail>
-    <authorUrl>http://www.zhulinia.ru</authorUrl>
-    <version>20221110</version>
+    <authorUrl>https://www.zhulinia.ru</authorUrl>
+    <version>3.0.2-dev</version>
     <description><![CDATA[
 			<h1>Simple Blank Template</h1>
-			<p>Created by <a href="http://www.zhulinia.ru" target="_blank">Ilya A.Zhulin</a> </br>
-			for <a href="http://www.sebloders.ru" target="_blank">Russian Sebloders</a>.</p>
+			<p>Created by <a href="https://www.zhulinia.ru" target="_blank">Ilya A.Zhulin</a> </br>
+			for <a href="https://www.sebloders.ru" target="_blank">Russian Sebloders</a>.</p>
 			<p>Do you have some troubles with settings? Read our <a href="https://github.com/Ilya-Zhulin/simple-blank-template/wiki" target="_blank">Wiki</a>.</p>
 		]]></description>
     <files>
-        <folder>css</folder>
-        <folder>fonts</folder>
         <folder>html</folder>
-        <folder>images</folder>
         <folder>includes</folder>
-        <folder>js</folder>
-        <folder>language</folder>
-        <folder>less</folder>
-        <folder>vendor</folder>
         <filename>component.php</filename>
         <filename>error.php</filename>
         <filename>index.php</filename>
@@ -44,6 +35,20 @@
         <filename>template_thumbnail.png</filename>
         <filename>templateDetails.xml</filename>
     </files>
+    <media destination="templates/site/simple_blank" folder="media">
+        <folder>js</folder>
+        <folder>css</folder>
+        <folder>fonts</folder>
+        <folder>less</folder>
+        <folder>images</folder>
+        <folder>vendor</folder>
+    </media>
+    <languages folder="language">
+        <language tag="en-GB">en-GB/en-GB.tpl_simple_blank.ini</language>
+        <language tag="en-GB">en-GB/en-GB.tpl_simple_blank.sys.ini</language>
+        <language tag="ru-RU">ru-RU/ru-RU.tpl_simple_blank.ini</language>
+        <language tag="ru-RU">ru-RU/ru-RU.tpl_simple_blank.sys.ini</language>
+    </languages>
     <positions>
         <position>sb-top-a</position>
         <position>sb-top-b</position>
@@ -59,12 +64,6 @@
         <position>sb-sidebar-b</position>
         <position>sb-debug</position>
     </positions>
-    <languages folder="language">
-        <language tag="en-GB">en-GB/en-GB.tpl_simple_blank.ini</language>
-        <language tag="en-GB">en-GB/en-GB.tpl_simple_blank.sys.ini</language>
-        <language tag="ru-RU">ru-RU/ru-RU.tpl_simple_blank.ini</language>
-        <language tag="ru-RU">ru-RU/ru-RU.tpl_simple_blank.sys.ini</language>
-    </languages>
     <changelogurl>https://www.zhulinia.ru/updates/simple_blank_cl.xml</changelogurl>
     <updateservers>
         <server type="extension" name="simple_blank" priority="1">https://www.zhulinia.ru/updates/simple_blank.xml

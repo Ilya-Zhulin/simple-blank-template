@@ -1,12 +1,12 @@
 <?php
 /*
- * @package    simple_blank_template
+ * @package    DEV
  * @version    __DEPLOY_VERSION__
  * @author     Ilya A.Zhulin <ilya.zhulin@hotmail.com>
  * @copyright  ©Ilya A.Zhulin, 2026
  * @license    GNU General Public License version 2 or later;
  *
- * The last change: 16.03.2026, 18:36
+ * The last change: 05.05.2026, 20:30
  */
 
 // File: /templates/simple_blank/includes/Controller/ConfigController.php
@@ -40,6 +40,12 @@ class ConfigController
 		$this->tplpath  = Uri::root() . 'templates/' . $this->template->template;
 
 		$this->init();
+	}
+
+
+	public function getTemplate()
+	{
+		return $this->template;
 	}
 
 	protected function init()
@@ -85,8 +91,6 @@ class ConfigController
 		}
 	}
 
-	// --- ФУНКЦИЯ extParams (перенесена из index.php) ---
-
 	protected function prepareSections()
 	{
 		$sections                       = [];
@@ -112,10 +116,10 @@ class ConfigController
 				$posName = $position['pos-name'];
 				if (strlen($posName) > 0)
 				{
-					$hasModule = $this->template->countModules($posName) > 0
-						|| $this->template->countModules($posName . '-left')
-						|| $this->template->countModules($posName . '-right')
-						|| $this->template->countModules($posName . '-center');
+					$hasModule = $this->doc->countModules($posName) > 0
+						|| $this->doc->countModules($posName . '-left')
+						|| $this->doc->countModules($posName . '-right')
+						|| $this->doc->countModules($posName . '-center');
 
 					if ($hasModule)
 					{
@@ -127,7 +131,7 @@ class ConfigController
 		$this->data['sections'] = $sections;
 	}
 
-	// --- ФУНКЦИЯ getFraction (перенесена из config.php) ---
+	// --- ФУНКЦИЯ extParams (перенесена из index.php) ---
 
 	protected function prepareSidebars()
 	{
@@ -245,19 +249,19 @@ class ConfigController
 	{
 		// 1. Определяем существование сайдбаров
 		$sb1_exist = $this->data['sb1_show'] == 1 &&
-			($this->template->countModules('sb-sidebar-a') ||
+			($this->doc->countModules('sb-sidebar-a') ||
 				(isset($this->data['sections']['sb-sidebar-a']) && $this->data['sections']['sb-sidebar-a']['isExist'] > 0));
 
 		$sb2_exist = $this->data['sb2_show'] == 1 &&
-			($this->template->countModules('sb-sidebar-b') ||
+			($this->doc->countModules('sb-sidebar-b') ||
 				(isset($this->data['sections']['sb-sidebar-b']) && $this->data['sections']['sb-sidebar-b']['isExist'] > 0));
 
 		$sb1_main_exist = $this->data['sb1_main_show'] == 1 &&
-			($this->template->countModules('sb-main-sidebar-a') ||
+			($this->doc->countModules('sb-main-sidebar-a') ||
 				(isset($this->data['sections']['sb-main-sidebar-a']) && $this->data['sections']['sb-main-sidebar-a']['isExist'] > 0));
 
 		$sb2_main_exist = $this->data['sb2_main_show'] == 1 &&
-			($this->template->countModules('sb-main-sidebar-b') ||
+			($this->doc->countModules('sb-main-sidebar-b') ||
 				(isset($this->data['sections']['sb-main-sidebar-b']) && $this->data['sections']['sb-main-sidebar-b']['isExist'] > 0));
 
 		// Сохраняем флаги exist
@@ -290,8 +294,6 @@ class ConfigController
 
 		return $nominator / ($factor = $gcf($nominator, $divider)) . '-' . $divider / $factor;
 	}
-
-	// --- ВСЯ ЛОГИКА РАСЧЕТА ШИРИНЫ ПЕРЕНЕСЕНА СЮДА ---
 
 	protected function manageAssets()
 	{
@@ -398,6 +400,13 @@ class ConfigController
 		}
 	}
 
+	// --- ВСЯ ЛОГИКА РАСЧЕТА ШИРИНЫ ПЕРЕНЕСЕНА СЮДА ---
+
+	public function getDoc()
+	{
+		return $this->doc;
+	}
+
 	public function extParams(&$tplparams, $param, $value)
 	{
 		if (is_array($param))
@@ -418,8 +427,10 @@ class ConfigController
 	// Метод _buildPosition остается здесь или может быть вынесен в Renderer,
 	// но пока оставим его публичным методом контроллера для вызова из index.php или include файлов
 
-	public function _buildPosition($template, $posName, $params, $sections)
+	public function _buildPosition($posName, $sections)
 	{
+		$template      = $this->template;
+		$params        = $this->params;
 		$posName       = strtolower($posName);
 		$suffix        = str_replace('sb-', '', $posName);
 		$section_class = $suffix;
@@ -468,7 +479,7 @@ class ConfigController
 				if (is_array($section_item))
 				{
 					$pos_name = strtolower($section_item["pos-name"]);
-					if ($template->countModules($pos_name) && isset($section_item['pos-container']) && $section_item['pos-container'] > 0)
+					if ($this->doc->countModules($pos_name) && isset($section_item['pos-container']) && $section_item['pos-container'] > 0)
 					{
 						$out .= '<div class="uk-container';
 						if ($section_item['pos-container'] == 1)
@@ -481,11 +492,11 @@ class ConfigController
 						$out .= strlen(trim($section_item['pos-container-addparams'])) > 0 ? ' ' . trim($section_item['pos-container-addparams']) : '';
 						$out .= '>';
 					}
-					if ($template->countModules($section_item["pos-name"]) ||
+					if ($this->doc->countModules($section_item["pos-name"]) ||
 						(
-							isset($section_item['pos-navbar']) && ($template->countModules($section_item["pos-name"] . '-left') ||
-								$template->countModules($section_item["pos-name"] . '-center') ||
-								$template->countModules($section_item["pos-name"] . '-right'))
+							isset($section_item['pos-navbar']) && ($this->doc->countModules($section_item["pos-name"] . '-left') ||
+								$this->doc->countModules($section_item["pos-name"] . '-center') ||
+								$this->doc->countModules($section_item["pos-name"] . '-right'))
 						)
 					)
 					{
@@ -560,19 +571,19 @@ class ConfigController
 								$out            .= $grid_class;
 								$out            .= '>';
 							}
-							if ($template->countModules($section_item["pos-name"] . '-left'))
+							if ($this->doc->countModules($section_item["pos-name"] . '-left'))
 							{
 								$out .= '<div class="uk-navbar-left">';
 								$out .= '<jdoc:include type="modules" name="' . $section_item["pos-name"] . '-left" />';
 								$out .= '</div>';
 							}
-							if ($template->countModules($section_item["pos-name"] . '-center'))
+							if ($this->doc->countModules($section_item["pos-name"] . '-center'))
 							{
 								$out .= '<div class="uk-navbar-center">';
 								$out .= '<jdoc:include type="modules" name="' . $section_item["pos-name"] . '-center" />';
 								$out .= '</div>';
 							}
-							if ($template->countModules($section_item["pos-name"] . '-right'))
+							if ($this->doc->countModules($section_item["pos-name"] . '-right'))
 							{
 								$out .= '<div class="uk-navbar-right">';
 								$out .= '<jdoc:include type="modules" name="' . $section_item["pos-name"] . '-right" />';
@@ -580,7 +591,7 @@ class ConfigController
 							}
 						}
 						$out .= '<jdoc:include type="modules" name="' . $pos_name . '" />';
-						if ($template->countModules($pos_name) && isset($section_item['pos-container']) && $section_item['pos-container'] > 0)
+						if ($this->doc->countModules($pos_name) && isset($section_item['pos-container']) && $section_item['pos-container'] > 0)
 						{
 							$out .= '</div>';
 						}
