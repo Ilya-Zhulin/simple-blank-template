@@ -5,15 +5,14 @@
  * http://sebloders.ru
  *
  * This file for edit. Use .min.js in template
+ * Rewritten for Joomla 4/5 (no jQuery)
  */
 var Base64 = {
     _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
-    //метод для кодировки в base64 на javascript
     encode: function (input) {
         var output = "";
         var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
-        var i = 0
-        //input = Base64._utf8_encode(input);
+        var i = 0;
         while (i < input.length) {
             chr1 = input.charCodeAt(i++);
             chr2 = input.charCodeAt(i++);
@@ -28,12 +27,11 @@ var Base64 = {
                 enc4 = 64;
             }
             output = output +
-                    this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) +
-                    this._keyStr.charAt(enc3) + this._keyStr.charAt(enc4);
+                this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) +
+                this._keyStr.charAt(enc3) + this._keyStr.charAt(enc4);
         }
         return output;
     },
-    //метод для раскодировки из base64
     decode: function (input) {
         var output = "";
         var chr1, chr2, chr3;
@@ -56,86 +54,117 @@ var Base64 = {
                 output = output + String.fromCharCode(chr3);
             }
         }
-        // output = Base64._utf8_decode(output);
         return output;
     }
-}
+};
 
 function sb_width() {
-    var $width_array = [];
-    var $html = '';
-    $this = jQuery('select#jform_params_sb1_width');
-    $width_array = {12: 6, 18: 6, 24: 6, 30: 3, 15: 15, 20: 20};
-    for (var key in $width_array) {
-        if ($this.val() % $width_array[key] === 0) {
-            $html += '<option value="' + key + '">' + Math.floor(key * 100 / 60) + '%</option>'
+    var widthArray = {12: 6, 18: 6, 24: 6, 30: 3, 15: 15, 20: 20};
+    var sb1 = document.getElementById('jform_params_sb1_width');
+    var sb2 = document.getElementById('jform_params_sb2_width');
+    if (!sb1 || !sb2) return;
+    var val = parseInt(sb1.value, 10);
+    var html = '';
+    for (var key in widthArray) {
+        if (val % widthArray[key] === 0) {
+            html += '<option value="' + key + '">' + Math.floor(key * 100 / 60) + '%</option>';
         }
     }
-    jQuery('select#jform_params_sb2_width').html($html);
-    jQuery('select#jform_params_sb2_width').trigger('liszt:updated.chosen');
+    sb2.innerHTML = html;
 }
+
 function ajax_query(a, k, b) {
-    id = jQuery('#jform_params_less_compile_button').attr('data-extension-id');
+    var btn = document.getElementById('jform_params_less_compile_button');
+    var id = btn ? btn.getAttribute('data-extension-id') : '';
     if (k < a.length) {
-        jQuery.ajax({
-            url: '/administrator/index.php',
-            type: 'POST',
-            data: 'option=com_templates&view=template&id=' + id + '&file=' + a[k] + '&task=template.less',
-            dataType: 'html',
-            success: function (data) {
-                var m;
-                var re = /<div id="system-message-container">((\n|.)*)<ul class="nav nav-tabs"/i;
-                k++;
-                if ((m = re.exec(data)) !== null) {
-                    if (m.index === re.lastIndex) {
-                        re.lastIndex++;
-                    }
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/administrator/index.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState !== 4) return;
+            var data = xhr.responseText;
+            var m;
+            var re = /<div id="system-message-container">((\n|.)*)<ul class="nav nav-tabs"/i;
+            k++;
+            if ((m = re.exec(data)) !== null) {
+                if (m.index === re.lastIndex) {
+                    re.lastIndex++;
                 }
-                c = parseInt(b) * parseInt(k);
-                if (c > 100) {
-                    c = 100;
-                }
-                jQuery('#jform_params_less_compile_button').parent().parent().next('.control-group').find('.progress > div').attr('style', 'width:' + c + '%');
-                if (k < a.length) {
-                    jQuery('.bar').html('Processing ' + Base64.decode(a[k]));
-                } else {
-                    jQuery('.bar').html('');
-                }
-                jQuery('#jform_params_less_compile_button').parent().parent().next('.control-group').find('ul.unstyled').append('<li>' + Base64.decode(a[k - 1]) + m[0].replace('<ul class="nav nav-tabs"', '') + '</li>');
-                ajax_query(a, k, c);
             }
-        });
+            var c = parseInt(b) * parseInt(k);
+            if (c > 100) c = 100;
+
+            var progressGroup = btn.parentElement.parentElement.nextElementSibling;
+            if (progressGroup) {
+                var bar = progressGroup.querySelector('.progress > div');
+                if (bar) bar.style.width = c + '%';
+            }
+
+            var barText = document.querySelector('.bar');
+            if (barText) {
+                barText.innerHTML = k < a.length
+                    ? 'Processing ' + Base64.decode(a[k])
+                    : '';
+            }
+
+            if (progressGroup) {
+                var list = progressGroup.querySelector('ul.unstyled');
+                if (list) {
+                    list.innerHTML += '<li>' + Base64.decode(a[k - 1]) + (m ? m[0].replace('<ul class="nav nav-tabs"', '') : '') + '</li>';
+                }
+            }
+            ajax_query(a, k, c);
+        };
+        xhr.send('option=com_templates&view=template&id=' + id + '&file=' + a[k] + '&task=template.less');
     } else {
-        jQuery('#jform_params_less_compile_button').removeAttr('disabled');
-        jQuery('.progress').removeClass('active');
+        if (btn) btn.removeAttribute('disabled');
+        var progress = document.querySelector('.progress');
+        if (progress) progress.classList.remove('active');
     }
 }
+
 function LessCompile() {
-    $files = [Base64.encode('/less/uikit.less')];
-    $custom = jQuery('#jform_params_less_custom_file').val();
-    if ($custom.length > 0) {
-        $custom_files = $custom.split(',');
-        $custom_files.forEach(function ($el) {
-            $files.push(Base64.encode('/less/custom/' + $el.trim()));
+    var files = [Base64.encode('/less/uikit.less')];
+    var customInput = document.getElementById('jform_params_less_custom_file');
+    var custom = customInput ? customInput.value : '';
+    if (custom.length > 0) {
+        var customFiles = custom.split(',');
+        customFiles.forEach(function (el) {
+            files.push(Base64.encode('/less/custom/' + el.trim()));
         });
     }
-    $dif = 100 / $files.length;
-    $html = '<div class="control-group"><div class="control-label"><label title="" class="hasTooltip" title="Processing..."></label></div><div class="controls"><div class="progress progress-success progress-striped active"><div style="width: 0%" class="bar"><span class="text-error">Processing ' + Base64.decode($files[0]) + '...</span></div></div><ul class="unstyled"></ul></div></div>';
-    jQuery('#jform_params_less_compile_button').attr('disabled', 'disabled').parent().parent().after($html);
-    ajax_query($files, 0, $dif);
+    var dif = 100 / files.length;
+    var btn = document.getElementById('jform_params_less_compile_button');
+    if (btn) {
+        btn.setAttribute('disabled', 'disabled');
+        var progressHtml = '<div class="control-group"><div class="control-label"><label title="" class="hasTooltip" title="Processing..."></label></div><div class="controls"><div class="progress progress-success progress-striped active"><div style="width: 0%" class="bar"><span class="text-error">Processing ' + Base64.decode(files[0]) + '...</span></div></div><ul class="unstyled"></ul></div></div>';
+        var container = btn.parentElement.parentElement;
+        if (container) container.insertAdjacentHTML('afterend', progressHtml);
+    }
+    ajax_query(files, 0, dif);
 }
 
-
-jQuery(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function () {
     sb_width();
-    jQuery('select#jform_params_sb1_width').on('change', function () {
-        sb_width();
-    });
-    jQuery('#jform_params_less_compile_button').on('click', function () {
-        jQuery('#jform_params_less_compile_button').parent().parent().next('.control-group').slideUp(300);
-        setTimeout("jQuery('#jform_params_less_compile_button').parent().parent().next('.control-group').remove()", 500);
-        setTimeout(function () {
-            LessCompile();
-        }, 600);
-    });
+    var sb1 = document.getElementById('jform_params_sb1_width');
+    if (sb1) {
+        sb1.addEventListener('change', sb_width);
+    }
+    var compileBtn = document.getElementById('jform_params_less_compile_button');
+    if (compileBtn) {
+        compileBtn.addEventListener('click', function () {
+            var container = compileBtn.parentElement.parentElement;
+            var nextGroup = container ? container.nextElementSibling : null;
+            if (nextGroup) {
+                nextGroup.style.transition = 'max-height 0.3s, opacity 0.3s';
+                nextGroup.style.maxHeight = '0';
+                nextGroup.style.opacity = '0';
+                nextGroup.style.overflow = 'hidden';
+                setTimeout(function () {
+                    if (nextGroup.parentElement) nextGroup.parentElement.removeChild(nextGroup);
+                }, 500);
+            }
+            setTimeout(LessCompile, 600);
+        });
+    }
 });

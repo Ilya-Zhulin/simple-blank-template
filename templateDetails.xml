@@ -842,6 +842,7 @@
             </fieldset>
             <fieldset name="positions" label="Позиции"
                       description="Сгенерируйте позиции шаблона и расставьте их в нужном порядке">
+                <field type="positionnav" hiddenLabel="true"/>
                 <field name="positions-location" type="subform" label="" hiddenLabel="true"
                        description="Сгенерируйте позиции шаблона и расставьте их в нужном порядке" multiple="true"
                        min="1" max="20" formsource="/templates/simple_blank/includes/forms/position_item.xml">
