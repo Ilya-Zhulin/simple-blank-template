@@ -25,8 +25,7 @@ if ($config)
 $topPositions = ['sb-top-a', 'sb-top-b', 'sb-top-c'];
 foreach ($topPositions as $posName)
 {
-	// Проверяем: есть ли эта секция в массиве И активна ли она (isExist > 0)
-	if (isset($sections[$posName]) && $sections[$posName]['isExist'] > 0)
+	if ($config->getDoc()->countModules($posName) || (isset($sections[$posName]) && $sections[$posName]['isExist'] > 0))
 	{
 		echo $config->_buildPosition($posName, $sections);
 	}

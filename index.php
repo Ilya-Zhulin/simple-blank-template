@@ -69,6 +69,7 @@ for ($i = 1;
     }
 
     // Логика выбора паттерна или секций
+    $displayData = ['config' => $config, 'template' => $this];
     if ($sb1_exist || $sb2_exist)
     {
         ?>
@@ -79,11 +80,11 @@ for ($i = 1;
     }
     else
     {
-        include_once JPATH_THEMES . '/simple_blank/includes/sections/top.php';
-        include_once JPATH_THEMES . '/simple_blank/includes/sections/main.php';
-        include_once JPATH_THEMES . '/simple_blank/includes/sections/bottom.php';
+        include_once JPATH_THEMES . '/simple_blank/includes/layouts/section/top.php';
+        include_once JPATH_THEMES . '/simple_blank/includes/layouts/section/main.php';
+        include_once JPATH_THEMES . '/simple_blank/includes/layouts/section/bottom.php';
     }
-    include_once JPATH_THEMES . '/simple_blank/includes/sections/offcanvas.php';
+    include_once JPATH_THEMES . '/simple_blank/includes/layouts/section/offcanvas.php';
 
     if (file_exists(JPATH_THEMES . '/' . $this->template . '/includes/footer.php'))
     {

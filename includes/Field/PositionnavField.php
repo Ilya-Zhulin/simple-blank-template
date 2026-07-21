@@ -18,19 +18,19 @@ use Joomla\CMS\Form\FormField;
  */
 class PositionnavField extends FormField
 {
-    protected $type = 'positionnav';
+	protected $type = 'positionnav';
 
-    protected function getInput()
-    {
-        $doc = Factory::getApplication()->getDocument();
-        $doc->addScript('../templates/simple_blank/includes/Field/jscript.js');
-        $doc->addScript('../templates/simple_blank/includes/Field/position-nav.js');
+	public function renderField($options = array())
+	{
+		return '<div style="display:none">' . $this->getInput() . '</div>';
+	}
 
-        return '<input type="hidden" name="' . $this->name . '" value="1">';
-    }
+	protected function getInput()
+	{
+		$doc = Factory::getApplication()->getDocument();
+		$doc->addScript('../templates/simple_blank/includes/Field/jscript.js');
+		$doc->addScript('../templates/simple_blank/includes/Field/position-nav.js');
 
-    public function renderField($options = array())
-    {
-        return '<div style="display:none">' . $this->getInput() . '</div>';
-    }
+		return '<input type="hidden" name="' . $this->name . '" value="1">';
+	}
 }

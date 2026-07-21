@@ -17,10 +17,11 @@ if ($config)
 {
 	extract($config->data);
 }
-foreach ($sb_bottom_sections_array as $sb_bottom_sections_item)
+$bottomPositions = ['sb-bottom-a', 'sb-bottom-b', 'sb-bottom-c'];
+foreach ($bottomPositions as $posName)
 {
-	if ($config->getDoc()->countModules($sb_bottom_sections_item) || (isset($sections[$sb_bottom_sections_item]) && $sections[$sb_bottom_sections_item]['isExist'] > 0))
+	if ($config->getDoc()->countModules($posName) || (isset($sections[$posName]) && $sections[$posName]['isExist'] > 0))
 	{
-		echo $config->_buildPosition($sb_bottom_sections_item, $sections);
+		echo $config->_buildPosition($posName, $sections);
 	}
 }

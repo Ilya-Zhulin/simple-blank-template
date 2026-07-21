@@ -19,6 +19,6 @@ foreach ($sections['sb-main-sidebar-a'] as $sb_main_sidebar_a_position)
 {
 	if (is_array($sb_main_sidebar_a_position) && strtolower($sb_main_sidebar_a_position['pos-name']) !== 'main-sidebar-a' && $config->getDoc()->countModules($sb_main_sidebar_a_position['pos-name']))
 	{
-		echo $config->_buildPosition($this, 'sb-main-sidebar-a', $tplparams, $sections);
+		echo $config->_buildPosition('sb-main-sidebar-a', $sections);
 	}
 }

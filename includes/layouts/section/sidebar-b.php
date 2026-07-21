@@ -31,6 +31,6 @@ foreach ($sections['sb-sidebar-b'] as $sb_sidebar_b_position)
 	}
 	else
 	{
-		echo '<jdoc:include type="modules" name="' . $sb_sidebar_a_position['pos-name'] . '" style="html5" />';
+		echo '<jdoc:include type="modules" name="' . $sb_sidebar_b_position['pos-name'] . '" style="html5" />';
 	}
 }
