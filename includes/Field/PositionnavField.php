@@ -30,6 +30,7 @@ class PositionnavField extends FormField
 		$doc = Factory::getApplication()->getDocument();
 		$doc->addScript('../templates/simple_blank/includes/Field/jscript.js');
 		$doc->addScript('../templates/simple_blank/includes/Field/position-nav.js');
+		$doc->addScript('../templates/simple_blank/includes/Field/section-nav.js');
 
 		return '<input type="hidden" name="' . $this->name . '" value="1">';
 	}
