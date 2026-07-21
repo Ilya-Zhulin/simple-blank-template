@@ -142,6 +142,7 @@
                 <field name="top-a_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL"
                        description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
 
+                <field type="spacer" hr="true"/>
                 <field type="spacer" label="TOP-B" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_TOP_B"/>
                 <field name="top-b_tag" type="radio" class="btn-group btn-group-yesno" default="section"
                        label="TPL_SIMPLE_BLANK_TAG_LABEL" description="TPL_SIMPLE_BLANK_TAG_DESCRIPTION">
@@ -195,6 +196,7 @@
                 <field name="addattr_top-b" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL"
                        description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
 
+                <field type="spacer" hr="true"/>
                 <field type="spacer" label="TOP-C" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_TOP_C"/>
                 <field name="top-c_tag" type="radio" class="btn-group btn-group-yesno" default="section"
                        label="TPL_SIMPLE_BLANK_TAG_LABEL" description="TPL_SIMPLE_BLANK_TAG_DESCRIPTION">
@@ -248,6 +250,7 @@
                 <field name="top-c_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL"
                        description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
 
+                <field type="spacer" hr="true"/>
                 <field type="spacer" label="MAIN-TOP" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_MAIN_TOP"/>
                 <field name="main-top_tag" type="radio" class="btn-group btn-group-yesno" default="section"
                        label="TPL_SIMPLE_BLANK_TAG_LABEL" description="TPL_SIMPLE_BLANK_TAG_DESCRIPTION">
@@ -301,6 +304,7 @@
                 <field name="main-top_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL"
                        description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
 
+                <field type="spacer" hr="true"/>
                 <field type="spacer" label="MAIN CONTENT" description="Настройки блока с основным контентом"/>
                 <field name="main_container" type="radio" class="btn-group btn-group-yesno" default="1"
                        label="TPL_SIMPLE_BLANK_CONTAINER_LABEL"
@@ -340,6 +344,7 @@
                 <field name="main_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL"
                        description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
 
+                <field type="spacer" hr="true"/>
                 <field type="spacer" label="MAIN-BOTTOM"
                        description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_MAIN_BOTTOM"/>
                 <field name="main-bottom_tag" type="radio" class="btn-group btn-group-yesno" default="section"
@@ -394,6 +399,7 @@
                 <field name="main-bottom_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL"
                        description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
 
+                <field type="spacer" hr="true"/>
                 <field type="spacer" label="TPL_SIMPLE_BLANK_MAIN_SIDEBAR_A_LABEL"
                        description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_MAIN_SIDEBAR_A"/>
                 <field name="main-sidebar-a_show" type="radio" class="btn-group btn-group-yesno" default="1"
@@ -439,6 +445,7 @@
                 <field name="main-sidebar-a_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL"
                        description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
 
+                <field type="spacer" hr="true"/>
                 <field type="spacer" label="TPL_SIMPLE_BLANK_MAIN_SIDEBAR_B_LABEL"
                        description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_MAIN_SIDEBAR_B"/>
                 <field name="main-sidebar-b_show" type="radio" class="btn-group btn-group-yesno" default="1"
@@ -484,6 +491,7 @@
                 <field name="main-sidebar-b_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL"
                        description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
 
+                <field type="spacer" hr="true"/>
                 <field type="spacer" label="BOTTOM-A" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_BOTTOM_A"/>
                 <field name="bottom-a_tag" type="radio" class="btn-group btn-group-yesno" default="section"
                        label="TPL_SIMPLE_BLANK_TAG_LABEL" description="TPL_SIMPLE_BLANK_TAG_DESCRIPTION">
@@ -536,6 +544,7 @@
                 <field name="bottom-a_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL"
                        description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
 
+                <field type="spacer" hr="true"/>
                 <field type="spacer" label="BOTTOM-B" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_BOTTOM_B"/>
                 <field name="bottom-b_tag" type="radio" class="btn-group btn-group-yesno" default="section"
                        label="TPL_SIMPLE_BLANK_TAG_LABEL" description="TPL_SIMPLE_BLANK_TAG_DESCRIPTION">
@@ -589,6 +598,7 @@
                 <field name="bottom-b_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL"
                        description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
 
+                <field type="spacer" hr="true"/>
                 <field type="spacer" label="BOTTOM-C" description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_BOTTOM_С"/>
                 <field name="bottom-c_tag" type="radio" class="btn-group btn-group-yesno" default="section"
                        label="TPL_SIMPLE_BLANK_TAG_LABEL" description="TPL_SIMPLE_BLANK_TAG_DESCRIPTION">
@@ -642,6 +652,7 @@
                 <field name="bottom-c_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL"
                        description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
 
+                <field type="spacer" hr="true"/>
                 <field type="spacer" label="TPL_SIMPLE_BLANK_SIDEBAR_A_LABEL"
                        description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_SIDEBAR_A"/>
                 <field name="sidebar-a_show" type="radio" class="btn-group btn-group-yesno" default="1"
@@ -687,6 +698,7 @@
                 <field name="sidebar-a_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL"
                        description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
 
+                <field type="spacer" hr="true"/>
                 <field type="spacer" label="TPL_SIMPLE_BLANK_SIDEBAR_B_LABEL"
                        description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_SIDEBAR_B"/>
                 <field name="sidebar-b_show" type="radio" class="btn-group btn-group-yesno" default="1"
@@ -732,6 +744,7 @@
                 <field name="sidebar-b_addattr" type="input" label="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_LABEL"
                        description="TPL_SIMPLE_BLANK_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
 
+                <field type="spacer" hr="true"/>
                 <field type="spacer" label="TPL_SIMPLE_BLANK_OFFCANVAS_A_LABEL"
                        description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_OFFCANVAS_A"/>
                 <field name="off-canvas-a_show" type="radio" class="btn-group btn-group-yesno" default="1"
@@ -786,6 +799,7 @@
                        label="TPL_SIMPLE_BLANK_OFFCANVAS_BAR_ADD_ATTRIBUTES_LABEL"
                        description="TPL_SIMPLE_BLANK_OFFCANVAS_BAR_ADD_ATTRIBUTES_DESCRIPTION" default=""/>
 
+                <field type="spacer" hr="true"/>
                 <field type="spacer" label="TPL_SIMPLE_BLANK_OFFCANVAS_B_LABEL"
                        description="TPL_SIMPLE_BLANK_SECTION_DESCRIPTION_OFFCANVAS_B"/>
                 <field name="off-canvas-b_show" type="radio" class="btn-group btn-group-yesno" default="1"
