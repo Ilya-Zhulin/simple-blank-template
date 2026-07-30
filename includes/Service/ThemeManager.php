@@ -385,4 +385,72 @@ class ThemeManager
 
 		return Uri::root() . ltrim($relativeUrlPath, '/');
 	}
+
+	/**
+	 * Проверить, включён ли Production Mode.
+	 * Читает параметр шаблона production_mode.
+	 *
+	 * @return bool True если Production Mode активен
+	 */
+	public function isProductionMode(): bool
+	{
+		$app = Factory::getApplication();
+		$template = $app->getTemplate(true);
+
+		return (bool) $template->params->get('production_mode', 0);
+	}
+
+	/**
+	 * Скопировать CSS активной темы в корневую папку css/ с префиксом темы.
+	 *
+	 * @return bool True если копирование выполнено успешно
+	 */
+	public function productionCopy(): bool
+	{
+		if (!$this->hasActiveTheme())
+		{
+			return false;
+		}
+
+		$themeCssPath = $this->getThemeBasePath() . '/css/';
+		$rootCssPath  = $this->templateBasePath . '/css/';
+		$prefix       = 'theme-' . $this->activeThemeName . '-';
+
+		if (!is_dir($themeCssPath))
+		{
+			return false;
+		}
+
+		$copied = false;
+		$dh     = opendir($themeCssPath);
+
+		while (($file = readdir($dh)) !== false)
+		{
+			if ($file === '.' || $file === '..' || $file === 'index.html')
+			{
+				continue;
+			}
+
+			$ext = pathinfo($file, PATHINFO_EXTENSION);
+			if ($ext !== 'css')
+			{
+				continue;
+			}
+
+			$srcFile  = $themeCssPath . $file;
+			$dstName  = ($file === 'template.css')
+				? 'theme-' . $this->activeThemeName . '.css'
+				: $prefix . $file;
+			$dstFile  = $rootCssPath . $dstName;
+
+			if (copy($srcFile, $dstFile))
+			{
+				$copied = true;
+			}
+		}
+
+		closedir($dh);
+
+		return $copied;
+	}
 }

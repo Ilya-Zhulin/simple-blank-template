@@ -341,6 +341,19 @@ class ConfigController
 		{
 			$themeManager = ThemeManager::getInstance();
 
+			// Production Mode: загружаем скомпилированный CSS из корня
+			if ($themeManager->isProductionMode() && $themeManager->hasActiveTheme())
+			{
+				$prodFile = 'theme-' . $themeManager->getActiveTheme() . '.css';
+
+				if (file_exists(JPATH_THEMES . '/' . $this->template->template . '/css/' . $prodFile))
+				{
+					$this->doc->addStyleSheet($this->tplpath . '/css/' . $prodFile);
+				}
+
+				return;
+			}
+
 			if ($themeManager->hasActiveTheme())
 			{
 				$cssPath = $themeManager->getThemeBasePath() . '/css/';

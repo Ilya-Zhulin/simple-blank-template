@@ -24,6 +24,7 @@ use Joomla\CMS\Uri\Uri;
 use Joomla\Database\ParameterType;
 use Joomla\Filesystem\File;
 use Joomla\Filesystem\Folder;
+use SimpleBlank\Site\Service\ThemeManager;
 
 /**
  * Поле-триггер для создания структуры темы и генерации конфигов
@@ -191,6 +192,13 @@ class ScripterField extends FormField
 				$content = str_replace('path_to_theme_file', $themeFooter, $content);
 				File::write($footerDst, $content);
 			}
+		}
+
+		// --- ЛОГИКА 3: Production Copy при сохранении ---
+		$themeManager = ThemeManager::getInstance();
+		if ($themeManager->isProductionMode() && $themeManager->hasActiveTheme())
+		{
+			$themeManager->productionCopy();
 		}
 
 		// Поле скрытое, ничего не рендерим

@@ -115,6 +115,19 @@ class AssetHelper
 		$themeManager = ThemeManager::getInstance();
 		$template     = Factory::getApplication()->getTemplate();
 
+		// Production Mode: грузим скомпилированный файл из корня
+		if ($themeManager->isProductionMode() && $themeManager->hasActiveTheme())
+		{
+			$prodFile = 'theme-' . $themeManager->getActiveTheme() . '.css';
+
+			if (file_exists(JPATH_THEMES . '/' . $template . '/css/' . $prodFile))
+			{
+				$this->doc->addStyleSheet($this->tplpath . '/css/' . $prodFile);
+			}
+
+			return;
+		}
+
 		if ($themeManager->hasActiveTheme())
 		{
 			$cssPath = $themeManager->getThemeBasePath() . '/css/';
