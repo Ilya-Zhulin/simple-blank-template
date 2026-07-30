@@ -91,6 +91,7 @@ class ScripterField extends FormField
 			// Шаблон контента файлов
 			$lessComment = "/**\n * File created for theme {$themeName}\n * in Simple Blank template\n * Put your less here.\n **/\n";
 			$cssComment  = "/**\n * File created for theme {$themeName}\n * in Simple Blank template\n * Put your css here.\n **/\n";
+			$templateCss  = "@import \"../../../vendor/uikit/css/uikit.css\";\n\n{$cssComment}";
 			$jsComment   = "/**\n * File created for theme {$themeName}\n * in Simple Blank template\n * Put your js here.\n **/\n";
 			$phpComment  = "<?php\n/**\n * File created for theme {$themeName}\n * in Simple Blank template\n * Put your code here.\n **/\n";
 			$blockMsg    = "<h1>&#128683; You are not welcome here</h1>";
@@ -101,6 +102,7 @@ class ScripterField extends FormField
 				'css/index.html'         => $blockMsg,
 				'js/index.html'          => $blockMsg,
 				"less/{$themeName}.less" => $lessComment,
+				'css/template.css'       => $templateCss,
 				"css/{$themeName}.css"   => $cssComment,
 				"js/{$themeName}.js"     => $jsComment,
 				'head_top.php'           => $phpComment,

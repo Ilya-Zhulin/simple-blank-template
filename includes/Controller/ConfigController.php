@@ -339,22 +339,35 @@ class ConfigController
 		}
 		else
 		{
-			$css_path      = JPATH_THEMES . '/' . $this->template->template . '/css/';
+			$themeManager = ThemeManager::getInstance();
+
+			if ($themeManager->hasActiveTheme())
+			{
+				$cssPath = $themeManager->getThemeBasePath() . '/css/';
+				$cssUrl  = $this->tplpath . '/themes/' . $themeManager->getActiveTheme() . '/css/';
+			}
+			else
+			{
+				$cssPath = JPATH_THEMES . '/' . $this->template->template . '/css/';
+				$cssUrl  = $this->tplpath . '/css/';
+			}
+
 			$excluded      = explode(',', $this->params->get('css_exclude_files', ''));
+			$excluded      = array_merge($excluded, ['uikit.css', 'uikit.min.css']);
 			$templateFound = false;
 
-			if (is_dir($css_path))
+			if (is_dir($cssPath))
 			{
-				$dh = opendir($css_path);
+				$dh = opendir($cssPath);
 				while (($file = readdir($dh)) !== false)
 				{
-					if (filetype($css_path . $file) === 'file')
+					if (filetype($cssPath . $file) === 'file')
 					{
 						$extParts = explode('.', $file);
 						$ext      = end($extParts);
 						if ($ext === 'css' && $file !== 'template.css' && !in_array($file, $excluded))
 						{
-							$this->doc->addStyleSheet($this->tplpath . '/css/' . $file);
+							$this->doc->addStyleSheet($cssUrl . $file);
 						}
 						elseif ($file == 'template.css')
 						{
@@ -365,16 +378,16 @@ class ConfigController
 					{
 						if ($file != '.' && $file != '..')
 						{
-							$dh1 = opendir($css_path . $file);
+							$dh1 = opendir($cssPath . $file);
 							while (($file1 = readdir($dh1)) !== false)
 							{
-								if (filetype($css_path . $file . '/' . $file1) === 'file')
+								if (filetype($cssPath . $file . '/' . $file1) === 'file')
 								{
 									$extParts1 = explode('.', $file1);
 									$ext1      = end($extParts1);
 									if ($ext1 === 'css' && !in_array($file1, $excluded))
 									{
-										$this->doc->addStyleSheet($this->tplpath . '/css/' . $file . '/' . $file1);
+										$this->doc->addStyleSheet($cssUrl . $file . '/' . $file1);
 									}
 								}
 							}
@@ -387,15 +400,7 @@ class ConfigController
 
 			if ($templateFound)
 			{
-				$minCssFile = JPATH_ROOT . '/templates/' . $this->template->template . '/css/template.min.css';
-				if (file_exists($minCssFile))
-				{
-					$this->doc->addStyleSheet($this->tplpath . '/css/template.min.css');
-				}
-				else
-				{
-					$this->doc->addStyleSheet($this->tplpath . '/css/template.css');
-				}
+				$this->doc->addStyleSheet($cssUrl . 'template.css');
 			}
 		}
 	}

@@ -14,6 +14,7 @@ namespace SimpleBlank\Site\Helper;
 use DirectoryIterator;
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use SimpleBlank\Site\Service\ThemeManager;
 
 defined('_JEXEC') or die;
 
@@ -111,8 +112,22 @@ class AssetHelper
 
 	protected function loadStylesheets()
 	{
-		$cssPath       = JPATH_THEMES . '/' . Factory::getApplication()->getTemplate() . '/css/';
+		$themeManager = ThemeManager::getInstance();
+		$template     = Factory::getApplication()->getTemplate();
+
+		if ($themeManager->hasActiveTheme())
+		{
+			$cssPath = $themeManager->getThemeBasePath() . '/css/';
+			$cssUrl  = $this->tplpath . '/themes/' . $themeManager->getActiveTheme() . '/css/';
+		}
+		else
+		{
+			$cssPath = JPATH_THEMES . '/' . $template . '/css/';
+			$cssUrl  = $this->tplpath . '/css/';
+		}
+
 		$excluded      = explode(',', $this->params->get('css_exclude_files', ''));
+		$excluded      = array_merge($excluded, ['uikit.css', 'uikit.min.css']);
 		$templateFound = false;
 
 		if (is_dir($cssPath))
@@ -130,12 +145,11 @@ class AssetHelper
 					}
 					if (!in_array($filename, $excluded))
 					{
-						$this->doc->addStyleSheet($this->tplpath . '/css/' . $filename);
+						$this->doc->addStyleSheet($cssUrl . $filename);
 					}
 				}
 				elseif ($file->isDir() && !$file->isDot())
 				{
-					// Рекурсивный обход подпапок если нужно
 					$subFiles = new DirectoryIterator($file->getPathname());
 					foreach ($subFiles as $subFile)
 					{
@@ -143,7 +157,7 @@ class AssetHelper
 						{
 							if (!in_array($subFile->getFilename(), $excluded))
 							{
-								$this->doc->addStyleSheet($this->tplpath . '/css/' . $file->getFilename() . '/' . $subFile->getFilename());
+								$this->doc->addStyleSheet($cssUrl . $file->getFilename() . '/' . $subFile->getFilename());
 							}
 						}
 					}
@@ -153,16 +167,7 @@ class AssetHelper
 
 		if ($templateFound)
 		{
-			$minCss = $this->tplpath . '/css/template.min.css';
-			// Проверка существования файла через file_exists требует полного пути
-			if (file_exists(JPATH_ROOT . '/templates/' . Factory::getApplication()->getTemplate() . '/css/template.min.css'))
-			{
-				$this->doc->addStyleSheet($minCss);
-			}
-			else
-			{
-				$this->doc->addStyleSheet($this->tplpath . '/css/template.css');
-			}
+			$this->doc->addStyleSheet($cssUrl . 'template.css');
 		}
 	}
 
