@@ -91,12 +91,6 @@
                 <field name="themename" type="themename"
                        label="TPL_SIMPLE_BLANK_THEME_NAME_LABEL"
                        description="TPL_SIMPLE_BLANK_THEME_NAME_DESCRIPTION"/>
-                <field name="production_mode" type="radio" class="btn-group btn-group-yesno" default="0"
-                       label="TPL_SIMPLE_BLANK_PRODUCTION_MODE_LABEL"
-                       description="TPL_SIMPLE_BLANK_PRODUCTION_MODE_DESC">
-                    <option value="0">JNO</option>
-                    <option value="1">JYES</option>
-                </field>
                 <field type="scripter" default=""/>
             </fieldset>
             <fieldset name="sections" label="TPL_SIMPLE_BLANK_SECTION_LABEL">
@@ -923,6 +917,23 @@
                        description="Yandex Verification Code"/>
                 <field name="bingverification" class="" type="text" default="" label="Bing Verification Code"
                        description="Bing Verification Code"/>
+            </fieldset>
+<fieldset name="development" label="TPL_SIMPLE_BLANK_DEVELOPMENT_FIELDSET_LABEL">
+                <field name="production_mode" type="radio" class="btn-group btn-group-yesno" default="0"
+                       label="TPL_SIMPLE_BLANK_PRODUCTION_MODE_LABEL"
+                       description="TPL_SIMPLE_BLANK_PRODUCTION_MODE_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field type="spacer" hr="true" label="TPL_SIMPLE_BLANK_DEV_SETTINGS_LABEL"
+                       description="TPL_SIMPLE_BLANK_DEV_SETTINGS_DESCRIPTION"/>
+                <field name="css_versioning" type="radio" class="btn-group btn-group-yesno" default="0"
+                       label="TPL_SIMPLE_BLANK_CSS_VERSIONING_LABEL"
+                       description="TPL_SIMPLE_BLANK_CSS_VERSIONING_DESCRIPTION"
+                       showon="production_mode:0">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
             </fieldset>
         </fields>
     </config>
