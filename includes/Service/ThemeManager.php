@@ -443,9 +443,13 @@ class ThemeManager
 				: $prefix . $file;
 			$dstFile  = $rootCssPath . $dstName;
 
-			if (copy($srcFile, $dstFile))
+			// Копируем только если файла нет или исходник новее собранного
+			if (!file_exists($dstFile) || filemtime($srcFile) > filemtime($dstFile))
 			{
-				$copied = true;
+				if (copy($srcFile, $dstFile))
+				{
+					$copied = true;
+				}
 			}
 		}
 

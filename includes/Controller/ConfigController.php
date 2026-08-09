@@ -341,17 +341,37 @@ class ConfigController
 		{
 			$themeManager = ThemeManager::getInstance();
 
+			// Версионирование CSS: добавляем ?v=<время изменения файла> чтобы избежать кеширования
+			// Не работает в Production Mode
+			$cssVersioning = $themeManager->isProductionMode() ? 0 : (int) $this->params->get('css_versioning', 0);
+			$addCss        = function ($url, $path = '') use ($cssVersioning)
+			{
+				if ($cssVersioning && $path !== '' && file_exists($path))
+				{
+					$url .= '?v=' . filemtime($path);
+				}
+
+				$this->doc->addStyleSheet($url);
+			};
+
 			// Production Mode: загружаем скомпилированный CSS из корня
 			if ($themeManager->isProductionMode() && $themeManager->hasActiveTheme())
 			{
-				$prodFile = 'theme-' . $themeManager->getActiveTheme() . '.css';
+				$prodFile     = 'theme-' . $themeManager->getActiveTheme() . '.css';
+				$prodFilePath = JPATH_THEMES . '/' . $this->template->template . '/css/' . $prodFile;
 
-				if (file_exists(JPATH_THEMES . '/' . $this->template->template . '/css/' . $prodFile))
+				// Скомпилированного файла нет - собираем его из CSS активной темы
+				if (!file_exists($prodFilePath))
 				{
-					$this->doc->addStyleSheet($this->tplpath . '/css/' . $prodFile);
+					$themeManager->productionCopy();
 				}
 
-				return;
+				if (file_exists($prodFilePath))
+				{
+					$addCss($this->tplpath . '/css/' . $prodFile, $prodFilePath);
+
+					return;
+				}
 			}
 
 			if ($themeManager->hasActiveTheme())
@@ -368,6 +388,7 @@ class ConfigController
 			$excluded      = explode(',', $this->params->get('css_exclude_files', ''));
 			$excluded      = array_merge($excluded, ['uikit.css', 'uikit.min.css']);
 			$templateFound = false;
+			$hasMin        = false;
 
 			if (is_dir($cssPath))
 			{
@@ -378,13 +399,17 @@ class ConfigController
 					{
 						$extParts = explode('.', $file);
 						$ext      = end($extParts);
-						if ($ext === 'css' && $file !== 'template.css' && !in_array($file, $excluded))
+						if ($ext === 'css' && $file !== 'template.css' && $file !== 'template.min.css' && !in_array($file, $excluded))
 						{
-							$this->doc->addStyleSheet($cssUrl . $file);
+							$addCss($cssUrl . $file, $cssPath . $file);
 						}
 						elseif ($file == 'template.css')
 						{
 							$templateFound = true;
+						}
+						elseif ($file == 'template.min.css')
+						{
+							$hasMin = true;
 						}
 					}
 					else
@@ -400,7 +425,7 @@ class ConfigController
 									$ext1      = end($extParts1);
 									if ($ext1 === 'css' && !in_array($file1, $excluded))
 									{
-										$this->doc->addStyleSheet($cssUrl . $file . '/' . $file1);
+										$addCss($cssUrl . $file . '/' . $file1, $cssPath . $file . '/' . $file1);
 									}
 								}
 							}
@@ -411,9 +436,13 @@ class ConfigController
 				closedir($dh);
 			}
 
-			if ($templateFound)
+			if ($hasMin)
 			{
-				$this->doc->addStyleSheet($cssUrl . 'template.css');
+				$addCss($cssUrl . 'template.min.css', $cssPath . 'template.min.css');
+			}
+			elseif ($templateFound)
+			{
+				$addCss($cssUrl . 'template.css', $cssPath . 'template.css');
 			}
 		}
 	}

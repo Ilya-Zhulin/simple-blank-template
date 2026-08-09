@@ -118,14 +118,21 @@ class AssetHelper
 		// Production Mode: грузим скомпилированный файл из корня
 		if ($themeManager->isProductionMode() && $themeManager->hasActiveTheme())
 		{
-			$prodFile = 'theme-' . $themeManager->getActiveTheme() . '.css';
+			$prodFile     = 'theme-' . $themeManager->getActiveTheme() . '.css';
+			$prodFilePath = JPATH_THEMES . '/' . $template . '/css/' . $prodFile;
 
-			if (file_exists(JPATH_THEMES . '/' . $template . '/css/' . $prodFile))
+			// Скомпилированного файла нет - собираем его из CSS активной темы
+			if (!file_exists($prodFilePath))
 			{
-				$this->doc->addStyleSheet($this->tplpath . '/css/' . $prodFile);
+				$themeManager->productionCopy();
 			}
 
-			return;
+			if (file_exists($prodFilePath))
+			{
+				$this->doc->addStyleSheet($this->tplpath . '/css/' . $prodFile);
+
+				return;
+			}
 		}
 
 		if ($themeManager->hasActiveTheme())
@@ -142,6 +149,7 @@ class AssetHelper
 		$excluded      = explode(',', $this->params->get('css_exclude_files', ''));
 		$excluded      = array_merge($excluded, ['uikit.css', 'uikit.min.css']);
 		$templateFound = false;
+		$hasMin        = false;
 
 		if (is_dir($cssPath))
 		{
@@ -154,6 +162,11 @@ class AssetHelper
 					if ($filename === 'template.css')
 					{
 						$templateFound = true;
+						continue;
+					}
+					if ($filename === 'template.min.css')
+					{
+						$hasMin = true;
 						continue;
 					}
 					if (!in_array($filename, $excluded))
@@ -178,7 +191,11 @@ class AssetHelper
 			}
 		}
 
-		if ($templateFound)
+		if ($hasMin)
+		{
+			$this->doc->addStyleSheet($cssUrl . 'template.min.css');
+		}
+		elseif ($templateFound)
 		{
 			$this->doc->addStyleSheet($cssUrl . 'template.css');
 		}
