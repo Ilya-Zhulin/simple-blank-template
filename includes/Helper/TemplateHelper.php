@@ -48,7 +48,15 @@ class TemplateHelper
 			foreach ($positions as $posid => $position)
 			{
 				$position = (array) $position;
-				$secName  = strtolower($position['pos-section']);
+				$posName  = (string) ($position['pos-name'] ?? '');
+
+				// Пропускаем позиции, в названии которых нет ни одной буквы
+				if (!preg_match('/\p{L}/u', $posName))
+				{
+					continue;
+				}
+
+				$secName  = strtolower((string) ($position['pos-section'] ?? ''));
 
 				if (!isset($sections[$secName]))
 				{
@@ -58,8 +66,6 @@ class TemplateHelper
 
 				$sections[$secName][] = $position;
 
-				// Проверка наличия модулей для этой позиции
-				$posName = $position['pos-name'];
 				if (strlen($posName) > 0)
 				{
 					$hasModule = $this->template->countModules($posName) > 0
