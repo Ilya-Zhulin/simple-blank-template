@@ -68,6 +68,8 @@ class ConfigController
 		$this->data['qlenable']       = $this->params->get('qlenable', 1);
 		$this->data['less_acompile']  = $this->params->get('less_acompile', 0);
 		$this->data['patternclass']   = $this->params->get('patternclass', '');
+		$this->data['googleid']       = $this->params->get('googleid', '');
+		$this->data['yandexid']       = $this->params->get('yandexid', '');
 
 		// 3. Подготовка данных
 		$this->prepareSections();
@@ -103,7 +105,15 @@ class ConfigController
 			foreach ($positions as $posid => $position)
 			{
 				$position = (array) $position;
-				$secName  = strtolower($position['pos-section']);
+				$posName  = (string) ($position['pos-name'] ?? '');
+
+				// Пропускаем позиции, в названии которых нет ни одной буквы
+				if (!preg_match('/\p{L}/u', $posName))
+				{
+					continue;
+				}
+
+				$secName  = strtolower((string) ($position['pos-section'] ?? ''));
 
 				if (!isset($sections[$secName]))
 				{
@@ -113,7 +123,6 @@ class ConfigController
 
 				$sections[$secName][] = $position;
 
-				$posName = $position['pos-name'];
 				if (strlen($posName) > 0)
 				{
 					$hasModule = $this->doc->countModules($posName) > 0

@@ -8,9 +8,9 @@
   ~ The last change: 16.03.2026, 14:07
   -->
 <form>
-    <field name="pos-name" type="text" label="Название"
+    <field name="pos-name" type="text" label="Название" required="true"
            description="TPL_SIMPLE_BLANK_SIDEBAR_A_WIDTH_DESCRIPTION"/>
-    <field name="pos-section" type="list" default="5" label="Секция"
+    <field name="pos-section" type="list" default="5" label="Секция" required="true"
            description="TPL_SIMPLE_BLANK_SIDEBAR_A_WIDTH_DESCRIPTION">
         <option value="sb-top-a">SB-TOP-A</option>
         <option value="sb-top-b">SB-TOP-B</option>

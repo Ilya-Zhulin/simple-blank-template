@@ -20,7 +20,7 @@ $favicon_mode	 = $this->params->get('favicon_mode', 0);
 if (file_exists(JPATH_ROOT . 'path_to_theme_file1')) {
 	include_once JPATH_ROOT . 'path_to_theme_file1';
 }
-if ($favicon_mode == 0 && JFile::exists(JPATH_ROOT . '/templates/simple_blank/images/favicon/favicon.ico')) {
+if ($favicon_mode == 0 && file_exists(JPATH_ROOT . '/templates/simple_blank/images/favicon/favicon.ico')) {
 	?>
 <link rel="icon" href="/templates/<?php echo $this->template ?>/images/favicon/favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="/templates/<?php echo $this->template ?>/images/favicon/apple-touch-icon.png">
