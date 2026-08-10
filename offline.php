@@ -15,14 +15,11 @@ use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
 $app = Factory::getApplication();
-
-require_once JPATH_ADMINISTRATOR . '/components/com_users/helpers/users.php';
-
-$twofactormethods = UsersHelper::getTwoFactorMethods();
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
+<!DOCTYPE html>
+<html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<jdoc:include type="head" />
 		<link rel="stylesheet" href="<?php echo $this->baseurl; ?>/media/templates/site/simple_blank/css/template.css" type="text/css" />
 	</head>
@@ -49,7 +46,7 @@ $twofactormethods = UsersHelper::getTwoFactorMethods();
 					<div class="uk-margin" id="form-login-username">
 						<label for="username" class="uk-form-label"><?php echo Text::_('JGLOBAL_USERNAME'); ?></label>
 						<div class="uk-form-controls">
-							<input name="username" id="username" type="text" class="uk-input" alt="<?php echo Text::_('JGLOBAL_USERNAME'); ?>" size="18" />
+							<input name="username" id="username" type="text" class="uk-input" alt="<?php echo Text::_('JGLOBAL_USERNAME'); ?>" size="18" autocomplete="off" autocapitalize="none" />
 						</div>
 					</div>
 					<div class="uk-margin" id="form-login-password">
@@ -58,15 +55,9 @@ $twofactormethods = UsersHelper::getTwoFactorMethods();
 							<input type="password" name="password" class="uk-input" size="18" alt="<?php echo Text::_('JGLOBAL_PASSWORD'); ?>" id="passwd" />
 						</div>
 					</div>
-					<?php if (count($twofactormethods) > 1) : ?>
-						<div class="uk-margin" id="form-login-secretkey">
-							<label for="secretkey" class="uk-form-label"><?php echo Text::_('JGLOBAL_SECRETKEY'); ?></label>
-							<div class="uk-form-controls">
-								<input type="text" name="secretkey" class="uk-input" size="18" alt="<?php echo Text::_('JGLOBAL_SECRETKEY'); ?>" id="secretkey" />
-							</div>
-						</div>
-					<?php endif; ?>
-					<input type="submit" name="Submit" class="uk-button uk-button-default uk-width-1-1 login" value="<?php echo Text::_('JLOGIN'); ?>" />
+					<div class="uk-margin">
+						<button type="submit" name="Submit" class="uk-button uk-button-default uk-width-1-1 login"><?php echo Text::_('JLOGIN'); ?></button>
+					</div>
 					<input type="hidden" name="option" value="com_users" />
 					<input type="hidden" name="task" value="user.login" />
 					<input type="hidden" name="return" value="<?php echo base64_encode(Uri::base()); ?>" />

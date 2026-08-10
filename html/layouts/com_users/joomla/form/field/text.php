@@ -71,6 +71,7 @@ $attributes = array(
 	$spellcheck ? '' : 'spellcheck="false"',
 	!empty($inputmode) ? $inputmode : '',
 	!empty($pattern) ? 'pattern="' . $pattern . '"' : '',
+	$dataAttribute,
 );
 ?>
 <input type="text" name="<?php echo $name; ?>" id="<?php echo $id; ?>" <?php echo $dirname; ?> value="<?php echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?>" <?php echo implode(' ', $attributes); ?> />

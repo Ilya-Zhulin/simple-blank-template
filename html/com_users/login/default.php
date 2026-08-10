@@ -44,8 +44,9 @@ if ($themeFile = ThemeManager::checkThemeOverride(__FILE__))
 }
 
 // Дальше стандартный код...
-HTMLHelper::_('behavior.keepalive');
-HTMLHelper::_('behavior.formvalidator');
+$wa = Factory::getApplication()->getDocument()->getWebAssetManager();
+$wa->useScript('keepalive');
+$wa->useScript('form.validate');
 ?>
 <div class="login<?php echo $this->pageclass_sfx; ?> uk-flex uk-flex-middle uk-flex-center" uk-height-viewport>
     <?php if ($this->params->get('show_page_heading')) : ?>

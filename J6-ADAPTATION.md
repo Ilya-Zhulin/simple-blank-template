@@ -29,12 +29,12 @@
 
 ## Этап 2. Переделка оверрайдов (после базиса)
 
-- [ ] `html/layouts/com_users/joomla/form/renderfield.php` — showon через `$wa->useScript('showon')`, inline-help (description)
-- [ ] `html/layouts/com_users/joomla/form/field/password.php` — `field.passwordview`/`field.passwordstrength` (вместо vanilla-lock), data-min-* правила, Text::script
-- [ ] `html/layouts/com_users/joomla/form/field/text.php` — charcounter (`short-and-sweet`), addonBefore/After, aria-describedby
-- [ ] `html/layouts/joomla/system/message.php` — решить: UIkit-вариант или `webcomponent.joomla-alert` + `messages.js` (+noscript-fallback)
-- [ ] `html/com_users/login/*` — keepalive/formvalidator в J6 (`system.keepalive` options), форма под новые поля
-- [ ] `offline.php` — двухфакторная аутентификация J6 (webauthn)
+- [x] `renderfield.php` — showon через `$wa->useScript('showon')` (+`showonEnabled` из поля), inline-help (`description`/`descClass`/`inlineHelp`), hiddenLabel
+- [x] `password.php` — приведён к ядру J6: `field.passwordview` (глазок) + `field.passwordstrength` (`js-password-strength`, `meteredPassword`), `data-min-*`/`data-min-force`, `$rules`-требования, lock через `.input-password-modify.locked` + `Text::script` (J6-скрипт), aria-describedby; собственный inline-JS lock удалён
+- [x] `text.php` — добавлен `$dataAttribute` (совместимость с J6 data-фичами)
+- [x] `message.php` — оставлен UIkit-вариант (осознанный отказ от `webcomponent.joomla-alert`), маппинг типов по константам `CMSApplication` (J6), `aria-live="polite"`
+- [x] `html/com_users/login/*` — `behavior.keepalive`/`behavior.formvalidator` → `$wa->useScript('keepalive')`/`useScript('form.validate')`
+- [x] `offline.php` — приведён к ядру J6: 2FA-блок убран (в ядре J6 секрет-ключ/webauthn в offline нет; `UsersHelper` удалён), autocomplete/autocapitalize, button-submit, viewport
 
 ## Этап 3. Проверка
 
