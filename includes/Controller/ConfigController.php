@@ -362,11 +362,8 @@ class ConfigController
 				$prodFile     = 'theme-' . $themeManager->getActiveTheme() . '.css';
 				$prodFilePath = JPATH_ROOT . '/media/templates/site/' . $this->template->template . '/css/' . $prodFile;
 
-				// Скомпилированного файла нет - собираем его из CSS активной темы
-				if (!file_exists($prodFilePath))
-				{
-					$themeManager->productionCopy();
-				}
+				// Пересобираем продовый бандл: productionCopy() сам решит по mtime, нужно ли копировать
+				$themeManager->productionCopy();
 
 				if (file_exists($prodFilePath))
 				{

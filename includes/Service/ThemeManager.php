@@ -421,6 +421,25 @@ class ThemeManager
 			return false;
 		}
 
+		// Вычищаем продовые бандлы других тем, чтобы в media не копился мусор
+		if (is_dir($rootCssPath))
+		{
+			foreach (scandir($rootCssPath) ?: [] as $file)
+			{
+				if (strpos($file, 'theme-') !== 0)
+				{
+					continue;
+				}
+
+				if (strpos($file, $prefix) === 0 || $file === 'theme-' . $this->activeThemeName . '.css')
+				{
+					continue;
+				}
+
+				@unlink($rootCssPath . $file);
+			}
+		}
+
 		$copied = false;
 		$dh     = opendir($themeCssPath);
 
