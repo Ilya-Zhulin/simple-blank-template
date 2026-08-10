@@ -4,9 +4,8 @@
 defined('_JEXEC') or die;
 //Less
 $less_acompile	 = $this->params->get('less_acompile', 0);
-$favicon_mode	 = $this->params->get('favicon_mode', 0);
-//$less_custom_files	 = $this->params->get('less_custom_file', 'template.css');
-//$less_custom_files	 = (strpos($less_custom_files, ',') !== FALSE) ? explode(',', $less_custom_files) : $less_custom_files;
+$favicon_mode  = $this->params->get('favicon_mode', 0);
+$qlenable      = $this->params->get('qlenable', 0);
 ?>
 
 <meta charset="utf-8">
