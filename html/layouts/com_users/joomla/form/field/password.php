@@ -8,6 +8,12 @@
  */
 defined('_JEXEC') or die;
 
+// J6 REVIEW: переопределение стандартного layout'а с UIkit-разметкой
+// Проверить использование и адаптировать под Joomla 6 API (jQuery-блоки удалены)
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+
 extract($displayData);
 
 /**
@@ -43,49 +49,29 @@ extract($displayData);
  * @var   string   $accept          File types that are accepted.
  * @var   boolean  $lock            Is this field locked.
  */
-if ($meter) {
-	JHtml::_('script', 'system/passwordstrength.js', array('version' => 'auto', 'relative' => true, 'framework' => true));
-
-	// Load script on document load.
-	JFactory::getDocument()->addScriptDeclaration(
-			"
-		jQuery(document).ready(function() {
-			new Form.PasswordStrength('" . $id . "',
-				{
-					threshold: " . $threshold . ",
-					onUpdate: function(element, strength, threshold) {
-						element.set('data-passwordstrength', strength);
-					}
-				});
-		});"
-	);
-}
-
-// Including fallback code for HTML5 non supported browsers.
-JHtml::_('jquery.framework');
-JHtml::_('script', 'system/html5fallback.js', array('version' => 'auto', 'relative' => true, 'conditional' => 'lt IE 9'));
-
 if ($lock) {
 	// Load script on document load.
-	JFactory::getDocument()->addScriptDeclaration(
+	Factory::getApplication()->getDocument()->addScriptDeclaration(
 			"
-		jQuery(document).ready(function() {
-			jQuery('#" . $id . "_lock').on('click', function() {
-				var lockButton = jQuery(this);
-				var passwordInput = jQuery('#" . $id . "');
-				var lock = lockButton.hasClass('active');
+		document.addEventListener('DOMContentLoaded', function() {
+			var lockButton = document.getElementById('" . $id . "_lock');
+			if (lockButton) {
+				lockButton.addEventListener('click', function() {
+					var passwordInput = document.getElementById('" . $id . "');
+					var lock = lockButton.classList.contains('active');
 
-				if (lock === true) {
-					lockButton.html('" . JText::_('JMODIFY', true) . "');
-					passwordInput.attr('disabled', true);
-					passwordInput.val('');
-				}
-				else
-				{
-					lockButton.html('" . JText::_('JCANCEL', true) . "');
-					passwordInput.attr('disabled', false);
-				}
-			});
+					if (lock === true) {
+						lockButton.textContent = '" . Text::_('JMODIFY', true) . "';
+						passwordInput.setAttribute('disabled', 'disabled');
+						passwordInput.value = '';
+					}
+					else
+					{
+						lockButton.textContent = '" . Text::_('JCANCEL', true) . "';
+						passwordInput.removeAttribute('disabled');
+					}
+				});
+			}
 		});"
 	);
 
@@ -117,6 +103,6 @@ $attributes = array(
 <?php echo implode(' ', $attributes); ?>
 		/>
 <?php if ($lock): ?>
-	    <button type="button" id="<?php echo $id; ?>_lock" class="btn btn-info" data-toggle="button"><?php echo JText::_('JMODIFY'); ?></button>
+	    <button type="button" id="<?php echo $id; ?>_lock" class="btn btn-info" data-toggle="button"><?php echo Text::_('JMODIFY'); ?></button>
 	</span>
 		<?php endif; ?>

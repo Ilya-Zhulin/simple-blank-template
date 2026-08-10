@@ -317,8 +317,6 @@ class ConfigController
 		unset($headdata['metaTags']['http-equiv']);
 		$this->doc->setHeadData($headdata);
 
-		HTMLHelper::_('jquery.framework');
-
 		if ($this->data['googlefont'])
 		{
 			$this->doc->addStyleSheet('//fonts.googleapis.com/css?family=' . urlencode($this->data['googlefontname']) . '&subset=cyrillic,latin');

@@ -10,12 +10,13 @@
 
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\Filesystem\File;
 
 defined('_JEXEC') or die('Restricted access');
 if (!isset($this->error))
 {
-	$this->error = JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
+	$this->error = new \RuntimeException(Text::_('JERROR_ALERTNOAUTHOR'), 404);
 	$this->debug = false;
 }
 

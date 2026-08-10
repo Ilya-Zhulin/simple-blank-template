@@ -73,9 +73,6 @@ class AssetHelper
 
 	protected function loadScripts()
 	{
-		// jQuery
-		HTMLHelper::_('jquery.framework');
-
 		if ($this->params->get('lazysizes', 0))
 		{
 			$this->doc->addScript($this->tplpath . '/js/lazysizes.js');

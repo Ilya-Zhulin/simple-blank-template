@@ -8,6 +8,11 @@
  */
 defined('_JEXEC') or die;
 
+// J6 REVIEW: переопределение стандартного layout'а с UIkit-разметкой
+// Проверить использование и адаптировать под Joomla 6 API
+
+use Joomla\CMS\Language\Text;
+
 extract($displayData);
 
 /**
@@ -17,10 +22,6 @@ extract($displayData);
  *    $label           : (string) The html code for the label (not required if $options['hiddenLabel'] is true)
  *    $input           : (string) The input field html code
  */
-if (!empty($options['showonEnabled'])) {
-	JHtml::_('jquery.framework');
-	JHtml::_('script', 'jui/cms.js', array('version' => 'auto', 'relative' => true));
-}
 
 $class	 = empty($options['class']) ? '' : ' ' . $options['class'];
 $rel	 = empty($options['rel']) ? '' : ' ' . $options['rel'];
@@ -45,7 +46,7 @@ $typeOfSpacer	 = (strpos($label, 'spacer-lbl') !== false);
 	<?php if (empty($options['hiddenLabel'])): ?>
 		<?php echo $label; ?>
 		<?php if (!$required && !$typeOfSpacer) : ?>
-			<span class="optional"><?php echo JText::_('COM_USERS_OPTIONAL'); ?></span>
+			<span class="optional"><?php echo Text::_('COM_USERS_OPTIONAL'); ?></span>
 		<?php endif; ?>
 	<?php endif; ?>
 	<div class="uk-form-controls">
