@@ -14,8 +14,9 @@
 ## Этап 1. Архитектура (большое, перед оверрайдами)
 
 - [x] JS-ассеты переведены на **WebAssetManager**: создан `joomla.asset.json` (uikit, uikit-icons, uikit-custom-icons, theme, lazysizes, quicklink), `ConfigController::manageAssets()` использует `$wa->useScript()`; quicklink реально подключается по параметру `qlenable`
-- [ ] CSS-ассеты: перенести сканирование css тем + версионирование `?v=filemtime` из `manageAssets()` в webasset-манифест (`version` / `useStyle`), googlefont уже на `https://`
-- [ ] `index.php` — актуализировать рендер под J6 (head/footer через тему, позиции)
+- [x] CSS-ассеты: **решено оставить рантайм-сканирование** css тем в `manageAssets()` (динамические папки тем/производственный режим не поддаются статическому манифесту), `?v=filemtime` версионирование работает; googlefont на `https://`; `css_versioning` не затрагивается (кроме prod)
+- [x] `index.php` — актуализирован (пустой `class=""` на html убран, `extract($config->data)` оставлен — рабочий вариант), head/footer — условные includes остаются
+- [x] `raw.php`, `component.php`, `error.php` — проверены: legacy-классов нет (grep 0)
 - [x] `script.php` — InstallerScriptInterface, `minimumJoomla = 6.0`, `minimumPhp = 8.3` (J6 требует PHP ^8.3), строки в en-GB/ru-RU (`TPL_SIMPLE_BLANK_INSTALL_*`)
 - [x] **Медиа по стандарту J6**: `js/ css/ fonts/ less/ images/ vendor/` перенесены в `media/` (установка в `/media/templates/site/simple_blank`), `<media destination="site/templates/simple_blank">`; пути обновлены в `ConfigController` (`mediaUrl`, prod/cssPath), `ThemeManager::productionCopy`, `error.php`, `error404.php`, `offline.php`, `head.tmp`, favicon-ссылки, `joomla.asset.json`, less-компилятор (`jscript.js`/`jscript.min.js`), `ScripterField` (два базовых пути: media для less, templates для head/footer)
 - [ ] Компиляцию LESS (запрос `/media/less/...` через com_templates `task=template.less`) проверить на живой J6 (поддержка media-файлов в редакторе шаблонов)

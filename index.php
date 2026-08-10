@@ -39,7 +39,7 @@ echo $alertRenderer->renderThemeAlert(!SB_THEME_HAS_ACTIVE);
 
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>" class="">
+<html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
 
 <head>
     <?php
