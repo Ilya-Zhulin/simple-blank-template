@@ -23,6 +23,7 @@ if ($config)
 {
 	extract($config->data);
 }
+echo \SimpleBlank\Site\Helper\DevHelper::section('sb-sidebar-b', __FILE__);
 foreach ($sections['sb-sidebar-b'] as $sb_sidebar_b_position)
 {
 	if (is_array($sb_sidebar_b_position) && strtolower($sb_sidebar_b_position['pos-name']) !== 'sb-sidebar-b' && $config->getDoc()->countModules($sb_sidebar_b_position['pos-name']))
@@ -31,6 +32,6 @@ foreach ($sections['sb-sidebar-b'] as $sb_sidebar_b_position)
 	}
 	else
 	{
-		echo '<jdoc:include type="modules" name="' . $sb_sidebar_b_position['pos-name'] . '" style="html5" />';
+		echo \SimpleBlank\Site\Helper\DevHelper::modules($sb_sidebar_b_position['pos-name'], __FILE__, 'html5');
 	}
 }

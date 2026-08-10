@@ -15,6 +15,7 @@ if ($config)
 {
 	extract($config->data);
 }
+echo \SimpleBlank\Site\Helper\DevHelper::section('sb-main-sidebar-b', __FILE__);
 foreach ($sections['sb-main-sidebar-b'] as $sb_sidebar_b_position)
 {
 	if (is_array($sb_sidebar_b_position) && strtolower($sb_sidebar_b_position['pos-name']) !== 'main-sidebar-b' && $config->getDoc()->countModules($sb_sidebar_b_position['pos-name']))

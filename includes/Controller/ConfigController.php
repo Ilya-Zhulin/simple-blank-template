@@ -16,6 +16,7 @@ namespace SimpleBlank\Site\Controller;
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
+use SimpleBlank\Site\Helper\DevHelper;
 use SimpleBlank\Site\Service\ThemeManager;
 
 defined('_JEXEC') or die;
@@ -628,23 +629,23 @@ class ConfigController
 							if ($this->doc->countModules($section_item["pos-name"] . '-left'))
 							{
 								$out .= '<div class="uk-navbar-left">';
-								$out .= '<jdoc:include type="modules" name="' . $section_item["pos-name"] . '-left" />';
+								$out .= DevHelper::modules($section_item["pos-name"] . '-left', __FILE__);
 								$out .= '</div>';
 							}
 							if ($this->doc->countModules($section_item["pos-name"] . '-center'))
 							{
 								$out .= '<div class="uk-navbar-center">';
-								$out .= '<jdoc:include type="modules" name="' . $section_item["pos-name"] . '-center" />';
+								$out .= DevHelper::modules($section_item["pos-name"] . '-center', __FILE__);
 								$out .= '</div>';
 							}
 							if ($this->doc->countModules($section_item["pos-name"] . '-right'))
 							{
 								$out .= '<div class="uk-navbar-right">';
-								$out .= '<jdoc:include type="modules" name="' . $section_item["pos-name"] . '-right" />';
+								$out .= DevHelper::modules($section_item["pos-name"] . '-right', __FILE__);
 								$out .= '</div>';
 							}
 						}
-						$out .= '<jdoc:include type="modules" name="' . $pos_name . '" />';
+						$out .= DevHelper::modules($pos_name, __FILE__);
 						if ($this->doc->countModules($pos_name) && isset($section_item['pos-container']) && $section_item['pos-container'] > 0)
 						{
 							$out .= '</div>';
@@ -685,7 +686,7 @@ class ConfigController
 		}
 		else
 		{
-			$out .= '<jdoc:include type="modules" name="' . $posName . '" />';
+			$out .= DevHelper::modules($posName, __FILE__);
 		}
 		if (isset($params[$suffix . '_container']) && $params[$suffix . '_container'] !== '0')
 		{

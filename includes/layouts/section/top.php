@@ -27,6 +27,7 @@ foreach ($topPositions as $posName)
 {
 	if ($config->getDoc()->countModules($posName) || (isset($sections[$posName]) && $sections[$posName]['isExist'] > 0))
 	{
+		echo \SimpleBlank\Site\Helper\DevHelper::section($posName, __FILE__);
 		echo $config->_buildPosition($posName, $sections);
 	}
 }

@@ -7,5 +7,6 @@
  */
 
 defined('_JEXEC') or die('Restricted access');
+echo \SimpleBlank\Site\Helper\DevHelper::section('sb-main-main', __FILE__);
 echo '<jdoc:include type="message" />';
 echo '<jdoc:include type="component" />';

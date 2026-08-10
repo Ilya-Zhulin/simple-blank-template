@@ -92,7 +92,7 @@ for ($i = 1;
     }
     ?>
 
-    <jdoc:include type="modules" name="sb-debug"/>
+    <?php echo \SimpleBlank\Site\Helper\DevHelper::modules('sb-debug', __FILE__); ?>
 
     <?php include JPATH_THEMES . '/' . $this->template . '/includes/analytics.php'; ?>
 

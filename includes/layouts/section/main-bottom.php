@@ -17,5 +17,6 @@ if ($config)
 }
 if ($config->getDoc()->countModules('sb-main-bottom') || (isset($sections['sb-main-bottom']) && $sections['sb-main-bottom']['isExist'] > 0))
 {
+	echo \SimpleBlank\Site\Helper\DevHelper::section('sb-main-bottom', __FILE__);
 	echo $config->_buildPosition('sb-main-bottom', $sections);
 }

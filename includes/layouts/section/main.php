@@ -21,6 +21,7 @@ if ($config)
 if ($hidecomponent == 1): ?>
     <main id="sb-content" class="uk-width-<?php echo $content_width . $main_addclasses; ?>"
           role="main"<?php echo $main_addattr; ?>>
+        <?php echo \SimpleBlank\Site\Helper\DevHelper::section('sb-main', __FILE__); ?>
 
         <?php if ($main_container > 0): ?>
         <div class="uk-container<?php echo ' uk-container-' . $main_container_width . $main_addclasses_container ?>"<?php echo $main_addattr_container ?>>

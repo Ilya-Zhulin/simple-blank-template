@@ -28,6 +28,7 @@ foreach ($sb_offcanvas_array as $i => $sb_offcanvas_item)
     if (${"offcanvas" . ($i + 1) . "_show"} == 1 && ($config->getDoc()->countModules($sb_offcanvas_item) || (isset($sections[$sb_offcanvas_item]) && $sections[$sb_offcanvas_item]['isExist'] > 0)))
     {
         ?>
+        <?php echo \SimpleBlank\Site\Helper\DevHelper::section($sb_offcanvas_item, __FILE__); ?>
         <<?php echo ${"offcanvas" . ($i + 1) . "_tag"}; ?> id="<?php echo $sb_offcanvas_item ?>-wrapper" uk-offcanvas="mode: <?php echo ${"offcanvas" . ($i + 1) . "_animation"}; ?>; overlay: true; flip: <?php echo ${"offcanvas" . ($i + 1) . "_flip"}; ?>" class="<?php echo ${"offcanvas" . ($i + 1) . "_addclasses"} ?>"<?php echo ${"offcanvas" . ($i + 1) . "_addattr"} ?>>
         <div class="uk-offcanvas-bar <?php echo ${"offcanvas" . ($i + 1) . "_bar_addclasses"} ?>"<?php echo ${"offcanvas" . ($i + 1) . "_bar_addattr"} ?>>
             <?php
@@ -53,7 +54,7 @@ foreach ($sb_offcanvas_array as $i => $sb_offcanvas_item)
                     if (is_array($offcanvas_position))
                     {
                         ?>
-                        <jdoc:include type="modules" name="<?php echo $offcanvas_position['pos-name']; ?>"/>
+                        <?php echo \SimpleBlank\Site\Helper\DevHelper::modules($offcanvas_position['pos-name'], __FILE__); ?>
                         <?php
                     }
                 }

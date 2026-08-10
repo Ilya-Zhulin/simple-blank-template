@@ -7,5 +7,6 @@
  */
 
 defined('_JEXEC') or die('Restricted access');
+echo \SimpleBlank\Site\Helper\DevHelper::section('pattern-' . basename(__FILE__, '.php'), __FILE__);
 echo "Пока не придумал, как сделать такую структуру. Выберите другие высоты для сайдбаров.";
 ?>

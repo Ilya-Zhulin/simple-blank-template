@@ -934,6 +934,12 @@
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
+                <field name="devmode" type="radio" class="btn-group btn-group-yesno" default="0"
+                       label="TPL_SIMPLE_BLANK_DEVMODE_LABEL"
+                       description="TPL_SIMPLE_BLANK_DEVMODE_DESCRIPTION">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
             </fieldset>
         </fields>
     </config>

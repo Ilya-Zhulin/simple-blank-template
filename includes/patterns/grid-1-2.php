@@ -6,6 +6,7 @@
  */
 
 defined('_JEXEC') or die('Restricted access');
+echo \SimpleBlank\Site\Helper\DevHelper::section('pattern-' . basename(__FILE__, '.php'), __FILE__);
 $html_prefix	 = ($grid_prefix != '') ? $grid_prefix . '-' : '';
 $var_prefix		 = ($grid_prefix != '') ? $grid_prefix . '_' : '';
 $content_width	 = $fraction(60 - ${'sb2_' . $var_prefix . 'real_width'});
