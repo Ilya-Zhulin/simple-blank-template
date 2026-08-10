@@ -413,7 +413,7 @@ class ThemeManager
 		}
 
 		$themeCssPath = $this->getThemeBasePath() . '/css/';
-		$rootCssPath  = $this->templateBasePath . '/css/';
+		$rootCssPath  = JPATH_ROOT . '/media/templates/site/' . $this->templateName . '/css/';
 		$prefix       = 'theme-' . $this->activeThemeName . '-';
 
 		if (!is_dir($themeCssPath))

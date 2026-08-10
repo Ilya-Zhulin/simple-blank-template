@@ -35,7 +35,7 @@
         <filename>template_thumbnail.png</filename>
         <filename>templateDetails.xml</filename>
     </files>
-    <media destination="templates/site/simple_blank" folder="media">
+    <media destination="site/templates/simple_blank" folder="media">
         <folder>js</folder>
         <folder>css</folder>
         <folder>fonts</folder>

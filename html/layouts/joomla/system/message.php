@@ -60,7 +60,7 @@ else
                         ?>
                             <script>
                                 UIkit.notification({
-                                    message: '<div uk-grid><div class="uk-width-expand"><h4 class="uk-light uk-text-center "><?php echo Text::_($type); ?></h4><div uk-grid class="uk-grid-collapse"><div class="uk-width-auto"><span uk-icon="icon: <?php echo $icon[$type]; ?>; ratio: 3" class="uk-icon-left"></span></div><div class="uk-width-expand"><p><?php echo $msg; ?></p></div></div></div><div class="uk-width-auto"><img src="/templates/simple_blank/images/favicon/favicon.svg" style="width:100px;" class="uk-align-right" /></div></div>',
+                                    message: '<div uk-grid><div class="uk-width-expand"><h4 class="uk-light uk-text-center "><?php echo Text::_($type); ?></h4><div uk-grid class="uk-grid-collapse"><div class="uk-width-auto"><span uk-icon="icon: <?php echo $icon[$type]; ?>; ratio: 3" class="uk-icon-left"></span></div><div class="uk-width-expand"><p><?php echo $msg; ?></p></div></div></div><div class="uk-width-auto"><img src="/media/templates/site/simple_blank/images/favicon/favicon.svg" style="width:100px;" class="uk-align-right" /></div></div>',
                                     status: '<?php echo $alert[$type]; ?>',
                                     pos: 'bottom-center',
                                     timeout: 15000

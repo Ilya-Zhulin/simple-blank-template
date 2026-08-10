@@ -17,7 +17,7 @@ $doc  = $app->getDocument();
 
 // Getting params from template
 $params  = $app->getTemplate(true)->params;
-$tplpath = $this->baseurl . '/templates/' . $this->template;
+$tplpath = $this->baseurl . '/media/templates/site/' . $this->template;
 
 // Detecting Active Variables
 $option   = $app->input->getCmd('option', '');
@@ -41,26 +41,26 @@ $doc->addScript($tplpath . '/vendor/uikit/js/uikit.min.js');
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <title><?php echo $this->title; ?>
         - <?php echo htmlspecialchars($this->error->getMessage(), ENT_QUOTES, 'UTF-8'); ?></title>
-    <link rel="icon" href="/templates/<?php echo $this->template ?>/images/template_favicon/favicon.svg">
+    <link rel="icon" href="/media/templates/site/<?php echo $this->template ?>/images/template_favicon/favicon.svg">
     <link rel="apple-touch-icon" sizes="180x180"
-          href="/templates/<?php echo $this->template ?>/images/template_favicon/apple-touch-icon.png">
+          href="/media/templates/site/<?php echo $this->template ?>/images/template_favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32"
-          href="/templates/<?php echo $this->template ?>/images/template_favicon/favicon-32x32.png">
+          href="/media/templates/site/<?php echo $this->template ?>/images/template_favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16"
-          href="/templates/<?php echo $this->template ?>/images/template_favicon/favicon-16x16.png">
-    <link rel="manifest" href="/templates/<?php echo $this->template ?>/images/template_favicon/site.webmanifest">
-    <link rel="mask-icon" href="/templates/<?php echo $this->template ?>/images/template_favicon/safari-pinned-tab.svg"
+          href="/media/templates/site/<?php echo $this->template ?>/images/template_favicon/favicon-16x16.png">
+    <link rel="manifest" href="/media/templates/site/<?php echo $this->template ?>/images/template_favicon/site.webmanifest">
+    <link rel="mask-icon" href="/media/templates/site/<?php echo $this->template ?>/images/template_favicon/safari-pinned-tab.svg"
           color="#000000">
     <meta name="msapplication-TileColor" content="#ada8a7">
     <meta name="msapplication-TileImage"
-          content="/templates/<?php echo $this->template ?>/images/template_favicon/mstile-144x144.png">
+          content="/media/templates/site/<?php echo $this->template ?>/images/template_favicon/mstile-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <script src="<?php echo $tplpath; ?>/vendor/uikit/js/uikit.min.js"></script>
     <link href="<?php echo $tplpath; ?>/css/template.css" rel="stylesheet">
 </head>
 <body uk-height-viewport="expand: true" class="uk-flex uk-flex-center uk-flex-middle">
 <div id="center-container" class="uk-text-center">
-    <img src="/templates/<?php echo $this->template ?>/images/template_thumbnail.svg" alt="Simple Blank Template Logo"
+    <img src="/media/templates/site/<?php echo $this->template ?>/images/template_thumbnail.svg" alt="Simple Blank Template Logo"
          class=""/>
     <h1 style="margin: 0!important; margin-top: 50px!important; padding: 0!important;">
         <?php echo $this->title; ?> - <?php echo htmlspecialchars($this->error->getMessage(), ENT_QUOTES, 'UTF-8'); ?>

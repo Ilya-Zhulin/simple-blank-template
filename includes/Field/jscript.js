@@ -124,13 +124,13 @@ function ajax_query(a, k, b) {
 }
 
 function LessCompile() {
-    var files = [Base64.encode('/less/uikit.less')];
+    var files = [Base64.encode('/media/less/uikit.less')];
     var customInput = document.getElementById('jform_params_less_custom_file');
     var custom = customInput ? customInput.value : '';
     if (custom.length > 0) {
         var customFiles = custom.split(',');
         customFiles.forEach(function (el) {
-            files.push(Base64.encode('/less/custom/' + el.trim()));
+            files.push(Base64.encode('/media/less/custom/' + el.trim()));
         });
     }
     var dif = 100 / files.length;

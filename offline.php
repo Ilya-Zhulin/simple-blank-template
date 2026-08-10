@@ -24,7 +24,7 @@ $twofactormethods = UsersHelper::getTwoFactorMethods();
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
 	<head>
 		<jdoc:include type="head" />
-		<link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/simple_blank/css/template.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo $this->baseurl; ?>/media/templates/site/simple_blank/css/template.css" type="text/css" />
 	</head>
 	<body class="uk-height-viewport uk-flex uk-flex-middle uk-flex-center">
 		<div id="frame" class="uk-width-auto">
@@ -73,7 +73,7 @@ $twofactormethods = UsersHelper::getTwoFactorMethods();
 					<?php echo HTMLHelper::_('form.token'); ?>
 				</fieldset>
 			</form>
-			<p class="uk-text-center"><img src="templates/simple_blank/images/template_thumbnail.svg" alt="With Simple Blank Template" style="width:150px;"/></p>
+			<p class="uk-text-center"><img src="media/templates/site/simple_blank/images/template_thumbnail.svg" alt="With Simple Blank Template" style="width:150px;"/></p>
 		</div>
 	</body>
 </html>

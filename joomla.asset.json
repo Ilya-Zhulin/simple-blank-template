@@ -6,12 +6,12 @@
     {
       "name": "uikit",
       "type": "script",
-      "uri": "templates/simple_blank/vendor/uikit/js/uikit.min.js"
+      "uri": "media/templates/site/simple_blank/vendor/uikit/js/uikit.min.js"
     },
     {
       "name": "uikit-icons",
       "type": "script",
-      "uri": "templates/simple_blank/vendor/uikit/js/uikit-icons.min.js",
+      "uri": "media/templates/site/simple_blank/vendor/uikit/js/uikit-icons.min.js",
       "dependencies": [
         "uikit"
       ]
@@ -19,7 +19,7 @@
     {
       "name": "uikit-custom-icons",
       "type": "script",
-      "uri": "templates/simple_blank/vendor/uikit/js/uikit-custom-icons.min.js",
+      "uri": "media/templates/site/simple_blank/vendor/uikit/js/uikit-custom-icons.min.js",
       "dependencies": [
         "uikit"
       ]
@@ -27,7 +27,7 @@
     {
       "name": "theme",
       "type": "script",
-      "uri": "templates/simple_blank/js/theme.js",
+      "uri": "media/templates/site/simple_blank/js/theme.js",
       "dependencies": [
         "uikit",
         "uikit-icons"
@@ -36,12 +36,12 @@
     {
       "name": "lazysizes",
       "type": "script",
-      "uri": "templates/simple_blank/js/lazysizes.js"
+      "uri": "media/templates/site/simple_blank/js/lazysizes.js"
     },
     {
       "name": "quicklink",
       "type": "script",
-      "uri": "templates/simple_blank/js/quicklink.min.js"
+      "uri": "media/templates/site/simple_blank/js/quicklink.min.js"
     }
   ]
 }

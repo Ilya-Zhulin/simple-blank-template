@@ -30,6 +30,7 @@ class ConfigController
 
 	// Публичный массив данных для экспорта в index.php
 	protected $tplpath;
+	protected $mediaUrl;
 
 	public function __construct()
 	{
@@ -38,6 +39,7 @@ class ConfigController
 		$this->params   = $this->template->params;
 		$this->doc      = $this->app->getDocument();
 		$this->tplpath  = Uri::root() . 'templates/' . $this->template->template;
+		$this->mediaUrl = Uri::root() . 'media/templates/site/' . $this->template->template;
 
 		$this->init();
 	}
@@ -364,7 +366,7 @@ class ConfigController
 			if ($themeManager->isProductionMode() && $themeManager->hasActiveTheme())
 			{
 				$prodFile     = 'theme-' . $themeManager->getActiveTheme() . '.css';
-				$prodFilePath = JPATH_THEMES . '/' . $this->template->template . '/css/' . $prodFile;
+				$prodFilePath = JPATH_ROOT . '/media/templates/site/' . $this->template->template . '/css/' . $prodFile;
 
 				// Скомпилированного файла нет - собираем его из CSS активной темы
 				if (!file_exists($prodFilePath))
@@ -374,7 +376,7 @@ class ConfigController
 
 				if (file_exists($prodFilePath))
 				{
-					$addCss($this->tplpath . '/css/' . $prodFile, $prodFilePath);
+					$addCss($this->mediaUrl . '/css/' . $prodFile, $prodFilePath);
 
 					return;
 				}
@@ -387,8 +389,8 @@ class ConfigController
 			}
 			else
 			{
-				$cssPath = JPATH_THEMES . '/' . $this->template->template . '/css/';
-				$cssUrl  = $this->tplpath . '/css/';
+				$cssPath = JPATH_ROOT . '/media/templates/site/' . $this->template->template . '/css/';
+				$cssUrl  = $this->mediaUrl . '/css/';
 			}
 
 			$excluded      = explode(',', $this->params->get('css_exclude_files', ''));
