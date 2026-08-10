@@ -306,35 +306,34 @@ class ConfigController
 
 	protected function manageAssets()
 	{
-		$headdata = $this->doc->getHeadData();
+		$wa = $this->doc->getWebAssetManager();
 
-		if ($this->params->get('killbootstrap', 1) == '1')
-		{
-			unset($headdata['scripts']['/media/jui/js/bootstrap.min.js']);
-		}
-
-		$this->doc->setGenerator(null);
-		unset($headdata['metaTags']['http-equiv']);
-		$this->doc->setHeadData($headdata);
-
-		if ($this->data['googlefont'])
-		{
-			$this->doc->addStyleSheet('//fonts.googleapis.com/css?family=' . urlencode($this->data['googlefontname']) . '&subset=cyrillic,latin');
-		}
-
-		if ($this->data['lazysizes'])
-		{
-			$this->doc->addScript($this->tplpath . '/js/lazysizes.js');
-		}
-		$this->doc->addScript($this->tplpath . '/vendor/uikit/js/uikit.min.js');
-		$this->doc->addScript($this->tplpath . '/vendor/uikit/js/uikit-icons.min.js');
+		$wa->useScript('template.simple_blank.uikit');
+		$wa->useScript('template.simple_blank.uikit-icons');
 
 		if (file_exists(JPATH_ROOT . '/templates/' . $this->template->template . '/vendor/uikit/js/uikit-custom-icons.min.js'))
 		{
-			$this->doc->addScript($this->tplpath . '/vendor/uikit/js/uikit-custom-icons.min.js');
+			$wa->useScript('template.simple_blank.uikit-custom-icons');
 		}
 
-		$this->doc->addScript($this->tplpath . '/js/theme.js');
+		$wa->useScript('template.simple_blank.theme');
+
+		if ($this->data['lazysizes'])
+		{
+			$wa->useScript('template.simple_blank.lazysizes');
+		}
+
+		if ($this->params->get('qlenable', 1))
+		{
+			$wa->useScript('template.simple_blank.quicklink');
+		}
+
+		$this->doc->setGenerator(null);
+
+		if ($this->data['googlefont'])
+		{
+			$this->doc->addStyleSheet('https://fonts.googleapis.com/css?family=' . urlencode($this->data['googlefontname']) . '&subset=cyrillic,latin');
+		}
 
 		$this->doc->setMetadata('google-site-verification', $this->params->get('googleverification'));
 		$this->doc->setMetadata('yandex-verification', $this->params->get('yandexverification'));
