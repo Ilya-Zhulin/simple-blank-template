@@ -34,11 +34,6 @@
       ]
     },
     {
-      "name": "lazysizes",
-      "type": "script",
-      "uri": "media/templates/site/simple_blank/js/lazysizes.js"
-    },
-    {
       "name": "quicklink",
       "type": "script",
       "uri": "media/templates/site/simple_blank/js/quicklink.min.js"

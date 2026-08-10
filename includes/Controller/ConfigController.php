@@ -61,7 +61,6 @@ class ConfigController
 
 		// 2. Глобальные настройки
 		$this->data['hidecomponent']  = $this->params->get('hidecomponent', 0);
-		$this->data['lazysizes']      = $this->params->get('lazysizes', 0);
 		$this->data['googlefont']     = $this->params->get('googlefont', 0);
 		$this->data['googlefontname'] = $this->params->get('googlefontname', 'Open+Sans');
 		$this->data['wrappersenable'] = $this->params->get('wrappersenable', 0);
@@ -319,11 +318,6 @@ class ConfigController
 		}
 
 		$wa->useScript('template.simple_blank.theme');
-
-		if ($this->data['lazysizes'])
-		{
-			$wa->useScript('template.simple_blank.lazysizes');
-		}
 
 		if ($this->params->get('qlenable', 1))
 		{

@@ -73,11 +73,6 @@ class AssetHelper
 
 	protected function loadScripts()
 	{
-		if ($this->params->get('lazysizes', 0))
-		{
-			$this->doc->addScript($this->tplpath . '/js/lazysizes.js');
-		}
-
 		// UIKit
 		$this->doc->addScript($this->tplpath . '/vendor/uikit/js/uikit.min.js');
 		$this->doc->addScript($this->tplpath . '/vendor/uikit/js/uikit-icons.min.js');

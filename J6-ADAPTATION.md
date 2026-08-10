@@ -13,7 +13,7 @@
 
 ## Этап 1. Архитектура (большое, перед оверрайдами)
 
-- [x] JS-ассеты переведены на **WebAssetManager**: создан `joomla.asset.json` (uikit, uikit-icons, uikit-custom-icons, theme, lazysizes, quicklink), `ConfigController::manageAssets()` использует `$wa->useScript()`; quicklink реально подключается по параметру `qlenable`
+- [x] JS-ассеты переведены на **WebAssetManager**: создан `joomla.asset.json` (uikit, uikit-icons, uikit-custom-icons, theme, quicklink), `ConfigController::manageAssets()` использует `$wa->useScript()`; quicklink реально подключается по параметру `qlenable`
 - [x] CSS-ассеты: **решено оставить рантайм-сканирование** css тем в `manageAssets()` (динамические папки тем/производственный режим не поддаются статическому манифесту), `?v=filemtime` версионирование работает; googlefont на `https://`; `css_versioning` не затрагивается (кроме prod)
 - [x] `index.php` — актуализирован (пустой `class=""` на html убран, `extract($config->data)` оставлен — рабочий вариант), head/footer — условные includes остаются
 - [x] `raw.php`, `component.php`, `error.php` — проверены: legacy-классов нет (grep 0)
@@ -26,7 +26,7 @@
 - [ ] Проверить `raw.php`, `error.php` (Throwable-объект), `offline.php` (2FA/webauthn в J6)
 - [ ] `AssetHelper.php` + `TemplateHelper.php` — дубликаты без вызовов в репо; удалить на этапе релиза (могут вызываться из `includes/head.php`/`footer.php` на живых сайтах)
 - [ ] Удалён мёртвый `killbootstrap` (jui/bootstrap в J6 нет)
-- [ ] `lazysizes.js` отсутствует в `js/` — файл доложить или убрать параметр
+- [x] `lazysizes` удалён (не поставлялся в файлах, параметра в XML не было; нативный `loading="lazy"` Joomla его покрывает)
 
 ## Этап 2. Переделка оверрайдов (после базиса)
 
