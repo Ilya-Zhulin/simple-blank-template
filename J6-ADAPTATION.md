@@ -13,16 +13,16 @@
 
 ## Этап 1. Архитектура (большое, перед оверрайдами)
 
-- [ ] Перевод подключения ассетов на **WebAssetManager**:
-  - UIKit (css/js: `uikit.min.js`, `uikit-icons.min.js`, `uikit-custom-icons.min.js`, css темы с версионированием)
-  - `js/theme.js`, `js/lazysizes.js`, quicklink
-  - favicon/мета-данные — через регистрацию ассетов
-- [ ] `index.php` — актуализировать рендер под J6 (head/footer через тему, позиции, откат от старых практик)
+- [x] JS-ассеты переведены на **WebAssetManager**: создан `joomla.asset.json` (uikit, uikit-icons, uikit-custom-icons, theme, lazysizes, quicklink), `ConfigController::manageAssets()` использует `$wa->useScript()`; quicklink реально подключается по параметру `qlenable`
+- [ ] CSS-ассеты: перенести сканирование css тем + версионирование `?v=filemtime` из `manageAssets()` в webasset-манифест (`version` / `useStyle`), googlefont уже на `https://`
+- [ ] `index.php` — актуализировать рендер под J6 (head/footer через тему, позиции)
+- [x] `script.php` — InstallerScriptInterface, `minimumJoomla = 6.0`, `minimumPhp = 8.3` (J6 требует PHP ^8.3), строки в en-GB/ru-RU (`TPL_SIMPLE_BLANK_INSTALL_*`)
 - [ ] Админ-поля конфигуратора на J6-API: `ThemeselectField`, `ThemenameField`, `PositionnavField`, `SectionnavField`, `LesscompilerField`, `ScripterField`
-- [ ] `script.php` — install/uninstall/update под J6
-- [ ] `templateDetails.xml` — поля/медиа/версии под J6, решение по `less_compile_button` (LESS в браузере устарел)
+- [ ] `templateDetails.xml` — версия extension `6.0`; **перенос ассетов в `/media/templates/site/simple_blank`** (отдельной задачей: поменять `<media destination>` и пути в `manageAssets`/полях — сейчас файлы живут в папке шаблона и destination в J3-формате)
 - [ ] Проверить `raw.php`, `error.php` (Throwable-объект), `offline.php` (2FA/webauthn в J6)
-- [ ] `includes/Helper/AssetHelper.php` — убрать `setHeadData`-манипуляции под новые webassets
+- [ ] `AssetHelper.php` + `TemplateHelper.php` — дубликаты без вызовов в репо; удалить на этапе релиза (могут вызываться из `includes/head.php`/`footer.php` на живых сайтах)
+- [ ] Удалён мёртвый `killbootstrap` (jui/bootstrap в J6 нет)
+- [ ] `lazysizes.js` отсутствует в `js/` — файл доложить или убрать параметр
 
 ## Этап 2. Переделка оверрайдов (после базиса)
 
