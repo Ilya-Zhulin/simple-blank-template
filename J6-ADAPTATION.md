@@ -19,8 +19,9 @@
 - [x] `script.php` — InstallerScriptInterface, `minimumJoomla = 6.0`, `minimumPhp = 8.3` (J6 требует PHP ^8.3), строки в en-GB/ru-RU (`TPL_SIMPLE_BLANK_INSTALL_*`)
 - [x] **Медиа по стандарту J6**: `js/ css/ fonts/ less/ images/ vendor/` перенесены в `media/` (установка в `/media/templates/site/simple_blank`), `<media destination="site/templates/simple_blank">`; пути обновлены в `ConfigController` (`mediaUrl`, prod/cssPath), `ThemeManager::productionCopy`, `error.php`, `error404.php`, `offline.php`, `head.tmp`, favicon-ссылки, `joomla.asset.json`, less-компилятор (`jscript.js`/`jscript.min.js`), `ScripterField` (два базовых пути: media для less, templates для head/footer)
 - [ ] Компиляцию LESS (запрос `/media/less/...` через com_templates `task=template.less`) проверить на живой J6 (поддержка media-файлов в редакторе шаблонов)
-- [ ] Админ-поля конфигуратора на J6-API: `ThemeselectField`, `ThemenameField`, `PositionnavField`, `SectionnavField`, `LesscompilerField`, `ScripterField`
-- [ ] `templateDetails.xml` — версия extension `6.0` (media destination уже в J6-формате)
+- [x] Админ-поля: `PositionnavField` переведён на WebAssetManager, `ScripterField` — `DatabaseInterface::class`; `jscript.php`/`grid.php` (J3-классы `JFormField`, не используются) удалены; `ThemeselectField`/`ThemenameField`/`LesscompilerField` — уже на J4/J6-API
+- [x] `templateDetails.xml` — версия extension `6.0` (media destination уже в J6-формате)
+- [x] Grep по всему репо: `JFactory/JText/JRoute/JUri/JHtml/jimport/JString/JError` — 0 совпадений
 - [ ] Проверить `raw.php`, `error.php` (Throwable-объект), `offline.php` (2FA/webauthn в J6)
 - [ ] `AssetHelper.php` + `TemplateHelper.php` — дубликаты без вызовов в репо; удалить на этапе релиза (могут вызываться из `includes/head.php`/`footer.php` на живых сайтах)
 - [ ] Удалён мёртвый `killbootstrap` (jui/bootstrap в J6 нет)

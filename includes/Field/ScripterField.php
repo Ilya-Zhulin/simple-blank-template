@@ -59,7 +59,7 @@ class ScripterField extends FormField
 			return '';
 		}
 
-		$db = Factory::getContainer()->get('DatabaseDriver');
+		$db = Factory::getContainer()->get(DatabaseInterface::class);
 		// 1. Безопасный запрос параметров шаблона
 		$query = $db->getQuery(true)
 			->select($db->quoteName('params'))

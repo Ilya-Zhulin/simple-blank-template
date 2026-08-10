@@ -9,7 +9,7 @@
   -->
 
 
-<extension version="4.0" type="template" client="site" method="upgrade">
+<extension version="6.0" type="template" client="site" method="upgrade">
     <namespace path="includes">SimpleBlank</namespace>
     <name>simple_blank</name>
     <creationDate>April 2026</creationDate>
