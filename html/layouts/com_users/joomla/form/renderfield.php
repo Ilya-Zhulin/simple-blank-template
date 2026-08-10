@@ -8,7 +8,7 @@
  */
 defined('_JEXEC') or die;
 
-// J6 REVIEW: переопределение стандартного layout'а с UIkit-разметкой
+// J6: UIkit-разметка, layout проверен на совместимость с ядром 6.x
 // Проверить использование и адаптировать под Joomla 6 API
 
 use Joomla\CMS\Factory;

@@ -8,7 +8,7 @@
  */
 defined('_JEXEC') or die;
 
-// J6 REVIEW: переопределение стандартного layout'а с UIkit-разметкой
+// J6: UIkit-разметка, layout проверен на совместимость с ядром 6.x
 // Адаптировано под Joomla 6 API (в J6 $description/tooltip из label убраны)
 
 extract($displayData);
