@@ -41,6 +41,16 @@ class ThemeManager
 	private string $templateBasePath;
 
 	/**
+	 * @var string Базовый путь к media-папке шаблона (JPATH_ROOT/media/templates/site/...)
+	 */
+	private string $mediaBasePath;
+
+	/**
+	 * Типы ресурсов, которые в Production Mode берутся из media-зеркала темы.
+	 */
+	private const ASSET_TYPES = ['css', 'js', 'image', 'font'];
+
+	/**
 	 * @var ?string Имя активной темы (из параметра theme_select)
 	 */
 	private ?string $activeThemeName = null;
@@ -55,6 +65,7 @@ class ThemeManager
 		// Получаем имя шаблона
 		$this->templateName     = $app->getTemplate();
 		$this->templateBasePath = JPATH_THEMES . '/' . $this->templateName;
+		$this->mediaBasePath    = JPATH_ROOT . '/media/templates/site/' . $this->templateName;
 
 		// Получаем параметры шаблона (нужен объект template с params)
 		$templateObject = $app->getTemplate(true);
@@ -165,6 +176,46 @@ class ThemeManager
 		$themeName = is_null($name) ? $this->activeThemeName : $name;
 
 		return Folder::exists($this->templateBasePath . '/themes/' . $themeName) ? $this->templateBasePath . '/themes/' . $themeName : null;
+	}
+
+	/**
+	 * База активной темы для ассетов (css/js/image/font) с учётом режима.
+	 * DEV: папка темы в шаблоне. PROD: зеркало в media (фолбэк на тему делает findFile).
+	 *
+	 * @return string|null Путь или null, если тема не активна
+	 */
+	public function getThemeAssetBasePath(): ?string
+	{
+		if (!$this->hasActiveTheme())
+		{
+			return null;
+		}
+
+		if ($this->isProductionMode())
+		{
+			return $this->mediaBasePath . '/themes/' . $this->activeThemeName;
+		}
+
+		return $this->getThemeBasePath();
+	}
+
+	/**
+	 * URL базы активной темы для ассетов с учётом режима.
+	 *
+	 * @return string|null URL или null, если тема не активна
+	 */
+	public function getThemeAssetBaseUrl(): ?string
+	{
+		$basePath = $this->getThemeAssetBasePath();
+
+		if (!$basePath)
+		{
+			return null;
+		}
+
+		$relative = str_replace(JPATH_ROOT, '', $basePath);
+
+		return Uri::root() . ltrim(str_replace('\\', '/', $relative), '/');
 	}
 
 	/**
@@ -294,17 +345,22 @@ class ThemeManager
 			'css'    => [
 				'theme'    => '/css',
 				'override' => null, // Для CSS обычно нет глобального html оверрайда
-				'default'  => '/css'
+				'default'  => $this->mediaBasePath . '/css'
 			],
 			'js'     => [
 				'theme'    => '/js',
 				'override' => null,
-				'default'  => '/js'
+				'default'  => $this->mediaBasePath . '/js'
 			],
 			'image'  => [
 				'theme'    => '/images',
 				'override' => null,
-				'default'  => '/images'
+				'default'  => $this->mediaBasePath . '/images'
+			],
+			'font'   => [
+				'theme'    => '/fonts',
+				'override' => null,
+				'default'  => $this->mediaBasePath . '/fonts'
 			]
 		];
 
@@ -315,13 +371,30 @@ class ThemeManager
 
 		$config = $pathsConfig[$type];
 
-		// 1. Проверка в папке ТЕМЫ
+		// 1. Проверка в папке ТЕМЫ.
+		// В Production Mode активной темы приоритет за media-зеркалом, при отсутствии файла
+		// там — фолбэк на первоисточник в папке темы (без копирования).
 		if ($this->activeThemeName && isset($config['theme']))
 		{
-			$path = $this->getThemeBasePath() . $config['theme'] . '/' . $normalizedPath;
-			if (file_exists($path))
+			$bases = [$this->getThemeAssetBasePath()];
+
+			if ($this->isProductionMode() && in_array($type, self::ASSET_TYPES, true))
 			{
-				return $path;
+				$bases[] = $this->getThemeBasePath();
+			}
+
+			foreach ($bases as $base)
+			{
+				if (!$base)
+				{
+					continue;
+				}
+
+				$path = $base . $config['theme'] . '/' . $normalizedPath;
+				if (file_exists($path))
+				{
+					return $path;
+				}
 			}
 		}
 
@@ -387,6 +460,83 @@ class ThemeManager
 	}
 
 	/**
+	 * Список относительных путей файлов темы по типу (с учётом media-зеркала в PROD).
+	 * Объединение зеркала и папки темы без дублей (приоритет зеркала) — вывод фолбэка
+	 * на тему при неполном зеркале.
+	 *
+	 * @param   string  $type     Тип ресурса: 'css' или 'js'
+	 * @param   array   $excluded Имена файлов, которые нужно пропустить
+	 *
+	 * @return array Относительные пути (например, 'style.css', 'sub/theme.css')
+	 */
+	public function getThemeFiles(string $type, array $excluded = []): array
+	{
+		$extension = ($type === 'js') ? 'js' : 'css';
+		$map       = [];
+
+		// theme.js грузит WebAssetManager (шаблонный), тема его не дублирует
+		if ($type === 'js')
+		{
+			$excluded = array_merge($excluded, ['theme.js', 'theme.min.js']);
+		}
+
+		$bases = [$this->getThemeAssetBasePath()];
+
+		if ($this->isProductionMode() && $this->activeThemeName && in_array($type, self::ASSET_TYPES, true))
+		{
+			$bases[] = $this->getThemeBasePath();
+		}
+
+		foreach ($bases as $base)
+		{
+			if (!$base)
+			{
+				continue;
+			}
+
+			$this->collectThemeFiles($base . '/' . $extension, '', $extension, $excluded, $map);
+		}
+
+		ksort($map);
+
+		return array_keys($map);
+	}
+
+	/**
+	 * Рекурсивный обход каталога для сбора относительных путей файлов.
+	 */
+	private function collectThemeFiles(string $dir, string $prefix, string $extension, array $excluded, array &$map): void
+	{
+		if (!is_dir($dir))
+		{
+			return;
+		}
+
+		foreach (scandir($dir) ?: [] as $item)
+		{
+			if ($item === '.' || $item === '..' || $item === 'index.html')
+			{
+				continue;
+			}
+
+			$path = $dir . '/' . $item;
+
+			if (is_dir($path))
+			{
+				$this->collectThemeFiles($path, $prefix . $item . '/', $extension, $excluded, $map);
+				continue;
+			}
+
+			if (pathinfo($item, PATHINFO_EXTENSION) !== $extension || in_array($item, $excluded, true))
+			{
+				continue;
+			}
+
+			$map[$prefix . $item] = true;
+		}
+	}
+
+	/**
 	 * Проверить, включён ли Production Mode.
 	 * Читает параметр шаблона production_mode.
 	 *
@@ -401,9 +551,12 @@ class ThemeManager
 	}
 
 	/**
-	 * Скопировать CSS активной темы в корневую папку css/ с префиксом темы.
+	 * Зеркалировать статику активной темы (css, js, images, fonts) в media-папку.
+	 * Вызывается ТОЛЬКО по явной команде пользователя (кнопка в админке).
+	 * Копируются только изменившиеся файлы (mtime); файлы, удалённые из темы,
+	 * вычищаются из зеркала.
 	 *
-	 * @return bool True если копирование выполнено успешно
+	 * @return bool True если хотя бы один файл скопирован
 	 */
 	public function productionCopy(): bool
 	{
@@ -412,68 +565,128 @@ class ThemeManager
 			return false;
 		}
 
-		$themeCssPath = $this->getThemeBasePath() . '/css/';
-		$rootCssPath  = JPATH_ROOT . '/media/templates/site/' . $this->templateName . '/css/';
-		$prefix       = 'theme-' . $this->activeThemeName . '-';
-
-		if (!is_dir($themeCssPath))
-		{
-			return false;
-		}
-
-		// Вычищаем продовые бандлы других тем, чтобы в media не копился мусор
-		if (is_dir($rootCssPath))
-		{
-			foreach (scandir($rootCssPath) ?: [] as $file)
-			{
-				if (strpos($file, 'theme-') !== 0)
-				{
-					continue;
-				}
-
-				if (strpos($file, $prefix) === 0 || $file === 'theme-' . $this->activeThemeName . '.css')
-				{
-					continue;
-				}
-
-				@unlink($rootCssPath . $file);
-			}
-		}
+		$srcBase = $this->getThemeBasePath();
+		$dstBase = $this->mediaBasePath . '/themes/' . $this->activeThemeName;
 
 		$copied = false;
-		$dh     = opendir($themeCssPath);
 
-		while (($file = readdir($dh)) !== false)
+		foreach (self::ASSET_TYPES as $dir)
 		{
-			if ($file === '.' || $file === '..' || $file === 'index.html')
+			if (is_dir($srcBase . '/' . $dir))
 			{
-				continue;
+				$copied = $this->mirrorDir($srcBase . '/' . $dir, $dstBase . '/' . $dir) || $copied;
 			}
+		}
 
-			$ext = pathinfo($file, PATHINFO_EXTENSION);
-			if ($ext !== 'css')
+		// Чистим устаревшие продовые бандлы старых версий (бандл-схема theme-*.css)
+		$legacyCssPath = $this->mediaBasePath . '/css';
+
+		if (is_dir($legacyCssPath))
+		{
+			foreach (scandir($legacyCssPath) ?: [] as $file)
 			{
-				continue;
-			}
-
-			$srcFile  = $themeCssPath . $file;
-			$dstName  = ($file === 'template.css')
-				? 'theme-' . $this->activeThemeName . '.css'
-				: $prefix . $file;
-			$dstFile  = $rootCssPath . $dstName;
-
-			// Копируем только если файла нет или исходник новее собранного
-			if (!file_exists($dstFile) || filemtime($srcFile) > filemtime($dstFile))
-			{
-				if (copy($srcFile, $dstFile))
+				if (strpos($file, 'theme-') === 0)
 				{
-					$copied = true;
+					@unlink($legacyCssPath . '/' . $file);
 				}
 			}
 		}
 
-		closedir($dh);
+		return $copied;
+	}
+
+	/**
+	 * Рекурсивно скопировать содержимое каталога-источника в каталог-назначение.
+	 *
+	 * @param   string  $src   Каталог-источник (в теме)
+	 * @param   string  $dst   Каталог-назначение (в media-зеркале)
+	 *
+	 * @return bool True если хотя бы один файл скопирован
+	 */
+	private function mirrorDir(string $src, string $dst): bool
+	{
+		Folder::create($dst);
+
+		$srcFiles    = [];
+		$mirrorFiles = [];
+		$copied      = false;
+
+		foreach (scandir($src) ?: [] as $item)
+		{
+			if ($item === '.' || $item === '..')
+			{
+				continue;
+			}
+
+			$srcPath = $src . '/' . $item;
+			$dstPath = $dst . '/' . $item;
+
+			if (is_dir($srcPath))
+			{
+				$copied = $this->mirrorDir($srcPath, $dstPath) || $copied;
+				continue;
+			}
+
+			$srcFiles[] = $item;
+
+			// Копируем только если файла нет или исходник новее собранного
+			if (file_exists($dstPath) && filemtime($srcPath) <= filemtime($dstPath))
+			{
+				continue;
+			}
+
+			if ($this->copyFile($srcPath, $dstPath, $item))
+			{
+				$copied = true;
+			}
+		}
+
+		// Вычищаем файлы, удалённые из темы
+		foreach (scandir($dst) ?: [] as $item)
+		{
+			if ($item === '.' || $item === '..')
+			{
+				continue;
+			}
+
+			if (is_file($dst . '/' . $item) && !in_array($item, $srcFiles, true))
+			{
+				@unlink($dst . '/' . $item);
+			}
+		}
 
 		return $copied;
+	}
+
+	/**
+	 * Скопировать файл темы в зеркало.
+	 * Для css/template.css темы относительный импорт uikit заменяется на абсолютный,
+	 * т.к. из media-зеркала относительный путь не резолвится.
+	 *
+	 * @param   string  $src      Полный путь к исходному файлу
+	 * @param   string  $dst      Полный путь к файлу-назначению
+	 * @param   string  $fileName Имя файла
+	 *
+	 * @return bool True если копирование успешно
+	 */
+	private function copyFile(string $src, string $dst, string $fileName): bool
+	{
+		if ($fileName === 'template.css')
+		{
+			$content = file_get_contents($src);
+
+			if ($content !== false)
+			{
+				$content = str_replace(
+					'../../../../../media/templates/site/' . $this->templateName . '/',
+					'/media/templates/site/' . $this->templateName . '/',
+					$content
+				);
+
+				return file_put_contents($dst, $content) !== false;
+			}
+		}
+
+		return copy($src, $dst);
 	}
 }

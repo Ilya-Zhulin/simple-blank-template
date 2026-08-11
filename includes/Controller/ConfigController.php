@@ -356,92 +356,129 @@ class ConfigController
 				$this->doc->addStyleSheet($url);
 			};
 
-			// Production Mode: загружаем скомпилированный CSS из корня
-			if ($themeManager->isProductionMode() && $themeManager->hasActiveTheme())
-			{
-				$prodFile     = 'theme-' . $themeManager->getActiveTheme() . '.css';
-				$prodFilePath = JPATH_ROOT . '/media/templates/site/' . $this->template->template . '/css/' . $prodFile;
-
-				// Пересобираем продовый бандл: productionCopy() сам решит по mtime, нужно ли копировать
-				$themeManager->productionCopy();
-
-				if (file_exists($prodFilePath))
-				{
-					$addCss($this->mediaUrl . '/css/' . $prodFile, $prodFilePath);
-
-					return;
-				}
-			}
+			$excluded      = explode(',', $this->params->get('css_exclude_files', ''));
+			$excluded      = array_merge($excluded, ['uikit.css', 'uikit.min.css']);
 
 			if ($themeManager->hasActiveTheme())
 			{
-				$cssPath = $themeManager->getThemeBasePath() . '/css/';
-				$cssUrl  = $this->tplpath . '/themes/' . $themeManager->getActiveTheme() . '/css/';
+				// CSS и JS активной темы: в DEV — прямо из темы, в PROD — из media-зеркала.
+				// Базой управляет ThemeManager (по режиму), при отсутствии файла в зеркале —
+				// фолбэк на первоисточник в теме (без копирования).
+				$cssFiles = $themeManager->getThemeFiles('css', $excluded);
+
+				// template.css/template.min.css темы (базовый стиль) грузим последним
+				$baseCss = null;
+
+				if (in_array('template.min.css', $cssFiles, true))
+				{
+					$baseCss = 'template.min.css';
+				}
+				elseif (in_array('template.css', $cssFiles, true))
+				{
+					$baseCss = 'template.css';
+				}
+
+				if ($baseCss !== null)
+				{
+					$cssFiles   = array_values(array_diff($cssFiles, ['template.css', 'template.min.css']));
+					$cssFiles[] = $baseCss;
+				}
+
+				foreach ($cssFiles as $relFile)
+				{
+					$path = ThemeManager::getPath('css', $relFile);
+
+					if (!$path)
+					{
+						continue;
+					}
+
+					$relativeUrl = str_replace(JPATH_ROOT, '', $path);
+					$url         = Uri::root() . ltrim(str_replace('\\', '/', $relativeUrl), '/');
+
+					$addCss($url, $path);
+				}
+
+				$jsFiles = $themeManager->getThemeFiles('js');
+
+				foreach ($jsFiles as $relFile)
+				{
+					$path = ThemeManager::getPath('js', $relFile);
+
+					if (!$path)
+					{
+						continue;
+					}
+
+					$relativeUrl = str_replace(JPATH_ROOT, '', $path);
+					$url         = Uri::root() . ltrim(str_replace('\\', '/', $relativeUrl), '/');
+
+					$this->doc->addScript($url);
+				}
 			}
 			else
 			{
+				// Дефолтные ассеты шаблона из media-дистрибутива
 				$cssPath = JPATH_ROOT . '/media/templates/site/' . $this->template->template . '/css/';
 				$cssUrl  = $this->mediaUrl . '/css/';
-			}
 
-			$excluded      = explode(',', $this->params->get('css_exclude_files', ''));
-			$excluded      = array_merge($excluded, ['uikit.css', 'uikit.min.css']);
-			$templateFound = false;
-			$hasMin        = false;
+				$templateFound = false;
+				$hasMin        = false;
 
-			if (is_dir($cssPath))
-			{
-				$dh = opendir($cssPath);
-				while (($file = readdir($dh)) !== false)
+				if (is_dir($cssPath))
 				{
-					if (filetype($cssPath . $file) === 'file')
+					$dh = opendir($cssPath);
+					while (($file = readdir($dh)) !== false)
 					{
-						$extParts = explode('.', $file);
-						$ext      = end($extParts);
-						if ($ext === 'css' && $file !== 'template.css' && $file !== 'template.min.css' && !in_array($file, $excluded))
+						if (filetype($cssPath . $file) === 'file')
 						{
-							$addCss($cssUrl . $file, $cssPath . $file);
-						}
-						elseif ($file == 'template.css')
-						{
-							$templateFound = true;
-						}
-						elseif ($file == 'template.min.css')
-						{
-							$hasMin = true;
-						}
-					}
-					else
-					{
-						if ($file != '.' && $file != '..')
-						{
-							$dh1 = opendir($cssPath . $file);
-							while (($file1 = readdir($dh1)) !== false)
+							$extParts = explode('.', $file);
+							$ext      = end($extParts);
+							if ($ext === 'css' && $file !== 'template.css' && $file !== 'template.min.css' && !in_array($file, $excluded))
 							{
-								if (filetype($cssPath . $file . '/' . $file1) === 'file')
+								$addCss($cssUrl . $file, $cssPath . $file);
+							}
+							elseif ($file == 'template.css')
+							{
+								$templateFound = true;
+							}
+							elseif ($file == 'template.min.css')
+							{
+								$hasMin = true;
+							}
+						}
+						else
+						{
+							if ($file != '.' && $file != '..')
+							{
+								$dh1 = opendir($cssPath . $file);
+								while (($file1 = readdir($dh1)) !== false)
 								{
-									$extParts1 = explode('.', $file1);
-									$ext1      = end($extParts1);
-									if ($ext1 === 'css' && !in_array($file1, $excluded))
+									if (filetype($cssPath . $file . '/' . $file1) === 'file')
 									{
-										$addCss($cssUrl . $file . '/' . $file1, $cssPath . $file . '/' . $file1);
+										$extParts1 = explode('.', $file1);
+										$ext1      = end($extParts1);
+										if ($ext1 === 'css' && !in_array($file1, $excluded))
+										{
+											$addCss($cssUrl . $file . '/' . $file1, $cssPath . $file . '/' . $file1);
+										}
 									}
 								}
+								closedir($dh1);
 							}
-							closedir($dh1);
 						}
 					}
+					closedir($dh);
 				}
-				closedir($dh);
-			}
 
-			if ($hasMin)
-			{
-				$addCss($cssUrl . 'template.min.css', $cssPath . 'template.min.css');
-			}
-			elseif ($templateFound)
-			{
-				$addCss($cssUrl . 'template.css', $cssPath . 'template.css');
+				if ($hasMin)
+				{
+					$addCss($cssUrl . 'template.min.css', $cssPath . 'template.min.css');
+				}
+				elseif ($templateFound)
+				{
+					$addCss($cssUrl . 'template.css', $cssPath . 'template.css');
+				}
 			}
 		}
 	}

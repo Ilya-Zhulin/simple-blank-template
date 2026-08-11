@@ -25,7 +25,6 @@ use Joomla\Database\DatabaseInterface;
 use Joomla\Database\ParameterType;
 use Joomla\Filesystem\File;
 use Joomla\Filesystem\Folder;
-use SimpleBlank\Site\Service\ThemeManager;
 
 /**
  * Поле-триггер для создания структуры темы и генерации конфигов
@@ -89,6 +88,9 @@ class ScripterField extends FormField
 			Folder::create($themePath . '/less');
 			Folder::create($themePath . '/css');
 			Folder::create($themePath . '/js');
+			Folder::create($themePath . '/images');
+			Folder::create($themePath . '/fonts');
+			Folder::create($themePath . '/html');
 
 			// Шаблон контента файлов
 			$lessComment = "/**\n * File created for theme {$themeName}\n * in Simple Blank template\n * Put your less here.\n **/\n";
@@ -103,6 +105,9 @@ class ScripterField extends FormField
 				'less/index.html'        => $blockMsg,
 				'css/index.html'         => $blockMsg,
 				'js/index.html'          => $blockMsg,
+				'images/index.html'      => $blockMsg,
+				'fonts/index.html'       => $blockMsg,
+				'html/index.html'        => $blockMsg,
 				"less/{$themeName}.less" => $lessComment,
 				'css/template.css'       => $templateCss,
 				"css/{$themeName}.css"   => $cssComment,
@@ -194,13 +199,6 @@ class ScripterField extends FormField
 				$content = str_replace('path_to_theme_file', $themeFooter, $content);
 				File::write($footerDst, $content);
 			}
-		}
-
-		// --- ЛОГИКА 3: Production Copy при сохранении ---
-		$themeManager = ThemeManager::getInstance();
-		if ($themeManager->isProductionMode() && $themeManager->hasActiveTheme())
-		{
-			$themeManager->productionCopy();
 		}
 
 		// Поле скрытое, ничего не рендерим

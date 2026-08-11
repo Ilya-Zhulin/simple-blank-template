@@ -934,6 +934,10 @@
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
+                <field name="production_sync" type="productionsync"
+                       label="TPL_SIMPLE_BLANK_PRODUCTION_SYNC_LABEL"
+                       description="TPL_SIMPLE_BLANK_PRODUCTION_SYNC_DESCRIPTION"
+                       showon="production_mode:1"/>
             </fieldset>
         </fields>
     </config>
