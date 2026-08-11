@@ -1,7 +1,7 @@
 <?php
 /*
  * @package    simple_blank_template
- * @version 3.0.2-dev
+ * @version 6.0.0-dev
  * @author     Ilya A.Zhulin <ilya.zhulin@hotmail.com>
  * @copyright  ©Ilya A.Zhulin, 2026
  * @license    GNU General Public License version 2 or later;
@@ -39,7 +39,7 @@ echo $alertRenderer->renderThemeAlert(!SB_THEME_HAS_ACTIVE);
 
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>" class="">
+<html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
 
 <head>
     <?php

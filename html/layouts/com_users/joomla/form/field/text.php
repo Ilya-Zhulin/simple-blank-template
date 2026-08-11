@@ -8,7 +8,7 @@
  */
 defined('_JEXEC') or die;
 
-// J6 REVIEW: переопределение стандартного layout'а с UIkit-разметкой
+// J6: UIkit-разметка, layout проверен на совместимость с ядром 6.x
 // Проверить использование и адаптировать под Joomla 6 API
 
 extract($displayData);
@@ -71,6 +71,7 @@ $attributes = array(
 	$spellcheck ? '' : 'spellcheck="false"',
 	!empty($inputmode) ? $inputmode : '',
 	!empty($pattern) ? 'pattern="' . $pattern . '"' : '',
+	$dataAttribute,
 );
 ?>
 <input type="text" name="<?php echo $name; ?>" id="<?php echo $id; ?>" <?php echo $dirname; ?> value="<?php echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?>" <?php echo implode(' ', $attributes); ?> />

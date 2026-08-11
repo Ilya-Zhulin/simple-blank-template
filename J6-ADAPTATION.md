@@ -13,25 +13,30 @@
 
 ## Этап 1. Архитектура (большое, перед оверрайдами)
 
-- [ ] Перевод подключения ассетов на **WebAssetManager**:
-  - UIKit (css/js: `uikit.min.js`, `uikit-icons.min.js`, `uikit-custom-icons.min.js`, css темы с версионированием)
-  - `js/theme.js`, `js/lazysizes.js`, quicklink
-  - favicon/мета-данные — через регистрацию ассетов
-- [ ] `index.php` — актуализировать рендер под J6 (head/footer через тему, позиции, откат от старых практик)
-- [ ] Админ-поля конфигуратора на J6-API: `ThemeselectField`, `ThemenameField`, `PositionnavField`, `SectionnavField`, `LesscompilerField`, `ScripterField`
-- [ ] `script.php` — install/uninstall/update под J6
-- [ ] `templateDetails.xml` — поля/медиа/версии под J6, решение по `less_compile_button` (LESS в браузере устарел)
+- [x] JS-ассеты переведены на **WebAssetManager**: создан `joomla.asset.json` (uikit, uikit-icons, uikit-custom-icons, theme, quicklink), `ConfigController::manageAssets()` использует `$wa->useScript()`; quicklink реально подключается по параметру `qlenable`
+- [x] CSS-ассеты: **решено оставить рантайм-сканирование** css тем в `manageAssets()` (динамические папки тем/производственный режим не поддаются статическому манифесту), `?v=filemtime` версионирование работает; googlefont на `https://`; `css_versioning` не затрагивается (кроме prod)
+- [x] `index.php` — актуализирован (пустой `class=""` на html убран, `extract($config->data)` оставлен — рабочий вариант), head/footer — условные includes остаются
+- [x] `raw.php`, `component.php`, `error.php` — проверены: legacy-классов нет (grep 0)
+- [x] `script.php` — InstallerScriptInterface, `minimumJoomla = 6.0`, `minimumPhp = 8.3` (J6 требует PHP ^8.3), строки в en-GB/ru-RU (`TPL_SIMPLE_BLANK_INSTALL_*`)
+- [x] **Медиа по стандарту J6**: `js/ css/ fonts/ less/ images/ vendor/` перенесены в `media/` (установка в `/media/templates/site/simple_blank`), `<media destination="site/templates/simple_blank">`; пути обновлены в `ConfigController` (`mediaUrl`, prod/cssPath), `ThemeManager::productionCopy`, `error.php`, `error404.php`, `offline.php`, `head.tmp`, favicon-ссылки, `joomla.asset.json`, less-компилятор (`jscript.js`/`jscript.min.js`), `ScripterField` (два базовых пути: media для less, templates для head/footer)
+- [ ] Компиляцию LESS (запрос `/media/less/...` через com_templates `task=template.less`) проверить на живой J6 (поддержка media-файлов в редакторе шаблонов)
+- [x] Админ-поля: `PositionnavField` переведён на WebAssetManager, `ScripterField` — `DatabaseInterface::class`; `jscript.php`/`grid.php` (J3-классы `JFormField`, не используются) удалены; `ThemeselectField`/`ThemenameField`/`LesscompilerField` — уже на J4/J6-API
+- [x] `templateDetails.xml` — версия extension `6.0` (media destination уже в J6-формате)
+- [x] Grep по всему репо: `JFactory/JText/JRoute/JUri/JHtml/jimport/JString/JError` — 0 совпадений
 - [ ] Проверить `raw.php`, `error.php` (Throwable-объект), `offline.php` (2FA/webauthn в J6)
-- [ ] `includes/Helper/AssetHelper.php` — убрать `setHeadData`-манипуляции под новые webassets
+- [ ] `AssetHelper.php` + `TemplateHelper.php` — дубликаты без вызовов в репо; удалить на этапе релиза (могут вызываться из `includes/head.php`/`footer.php` на живых сайтах)
+- [ ] Удалён мёртвый `killbootstrap` (jui/bootstrap в J6 нет)
+- [x] `lazysizes` удалён (не поставлялся в файлах, параметра в XML не было; нативный `loading="lazy"` Joomla его покрывает)
+- [x] **Production Mode переделан на явную выкладку**: тема — первоисточник (`templates/simple_blank/themes/<имя>/`), media-зеркало (`media/.../themes/<имя>/` — css/js/images/fonts) собирается ТОЛЬКО кнопкой `productionsync` в админке; автоматические копирования убраны (ни при рендере формы, ни при выводе). `ThemeManager::findFile`/`getThemeFiles` — единый провайдер путей по режиму с фолбэком-чтением на тему при отсутствии файла в зеркале; JS темы наконец подключены (dev — из темы, prod — из зеркала); `productionCopy` — рекурсивное зеркало с mtime, чисткой удалённых и фиксом относительного импорта uikit в `template.css` темы; скелет темы дополнен папками `images/`, `fonts/`, `html/`; устаревшие бандлы `theme-*.css` в `media/css` чистятся при сборке
 
 ## Этап 2. Переделка оверрайдов (после базиса)
 
-- [ ] `html/layouts/com_users/joomla/form/renderfield.php` — showon через `$wa->useScript('showon')`, inline-help (description)
-- [ ] `html/layouts/com_users/joomla/form/field/password.php` — `field.passwordview`/`field.passwordstrength` (вместо vanilla-lock), data-min-* правила, Text::script
-- [ ] `html/layouts/com_users/joomla/form/field/text.php` — charcounter (`short-and-sweet`), addonBefore/After, aria-describedby
-- [ ] `html/layouts/joomla/system/message.php` — решить: UIkit-вариант или `webcomponent.joomla-alert` + `messages.js` (+noscript-fallback)
-- [ ] `html/com_users/login/*` — keepalive/formvalidator в J6 (`system.keepalive` options), форма под новые поля
-- [ ] `offline.php` — двухфакторная аутентификация J6 (webauthn)
+- [x] `renderfield.php` — showon через `$wa->useScript('showon')` (+`showonEnabled` из поля), inline-help (`description`/`descClass`/`inlineHelp`), hiddenLabel
+- [x] `password.php` — приведён к ядру J6: `field.passwordview` (глазок) + `field.passwordstrength` (`js-password-strength`, `meteredPassword`), `data-min-*`/`data-min-force`, `$rules`-требования, lock через `.input-password-modify.locked` + `Text::script` (J6-скрипт), aria-describedby; собственный inline-JS lock удалён
+- [x] `text.php` — добавлен `$dataAttribute` (совместимость с J6 data-фичами)
+- [x] `message.php` — оставлен UIkit-вариант (осознанный отказ от `webcomponent.joomla-alert`), маппинг типов по константам `CMSApplication` (J6), `aria-live="polite"`
+- [x] `html/com_users/login/*` — `behavior.keepalive`/`behavior.formvalidator` → `$wa->useScript('keepalive')`/`useScript('form.validate')`
+- [x] `offline.php` — приведён к ядру J6: 2FA-блок убран (в ядре J6 секрет-ключ/webauthn в offline нет; `UsersHelper` удалён), autocomplete/autocapitalize, button-submit, viewport
 
 ## Этап 3. Проверка
 

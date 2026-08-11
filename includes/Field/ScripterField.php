@@ -1,7 +1,7 @@
 <?php
 /*
  * @package    simple_blank_template
- * @version 3.0.2-dev
+ * @version 6.0.0-dev
  * @author     Ilya A.Zhulin <ilya.zhulin@hotmail.com>
  * @copyright  ©Ilya A.Zhulin, 2026
  * @license    GNU General Public License version 2 or later;
@@ -21,13 +21,14 @@ defined('_JEXEC') or die('Restricted access');
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
 use Joomla\CMS\Uri\Uri;
+use Joomla\Database\DatabaseInterface;
 use Joomla\Database\ParameterType;
 use Joomla\Filesystem\File;
 use Joomla\Filesystem\Folder;
-use SimpleBlank\Site\Service\ThemeManager;
 
 /**
  * Поле-триггер для создания структуры темы и генерации конфигов
+ * @since   6.0.0
  */
 class ScripterField extends FormField
 {
@@ -59,7 +60,7 @@ class ScripterField extends FormField
 			return '';
 		}
 
-		$db = Factory::getContainer()->get('DatabaseDriver');
+		$db = Factory::getContainer()->get(DatabaseInterface::class);
 		// 1. Безопасный запрос параметров шаблона
 		$query = $db->getQuery(true)
 			->select($db->quoteName('params'))
@@ -88,11 +89,14 @@ class ScripterField extends FormField
 			Folder::create($themePath . '/less');
 			Folder::create($themePath . '/css');
 			Folder::create($themePath . '/js');
+			Folder::create($themePath . '/images');
+			Folder::create($themePath . '/fonts');
+			Folder::create($themePath . '/html');
 
 			// Шаблон контента файлов
 			$lessComment = "/**\n * File created for theme {$themeName}\n * in Simple Blank template\n * Put your less here.\n **/\n";
 			$cssComment  = "/**\n * File created for theme {$themeName}\n * in Simple Blank template\n * Put your css here.\n **/\n";
-			$templateCss  = "@import \"../../../vendor/uikit/css/uikit.css\";\n\n{$cssComment}";
+			$templateCss  = "@import \"../../../../../media/templates/site/simple_blank/vendor/uikit/css/uikit.css\";\n\n{$cssComment}";
 			$jsComment   = "/**\n * File created for theme {$themeName}\n * in Simple Blank template\n * Put your js here.\n **/\n";
 			$phpComment  = "<?php\n/**\n * File created for theme {$themeName}\n * in Simple Blank template\n * Put your code here.\n **/\n";
 			$blockMsg    = "<h1>&#128683; You are not welcome here</h1>";
@@ -102,6 +106,9 @@ class ScripterField extends FormField
 				'less/index.html'        => $blockMsg,
 				'css/index.html'         => $blockMsg,
 				'js/index.html'          => $blockMsg,
+				'images/index.html'      => $blockMsg,
+				'fonts/index.html'       => $blockMsg,
+				'html/index.html'        => $blockMsg,
 				"less/{$themeName}.less" => $lessComment,
 				'css/template.css'       => $templateCss,
 				"css/{$themeName}.css"   => $cssComment,
@@ -143,10 +150,11 @@ class ScripterField extends FormField
 		if (!empty($params->theme_select) && strlen(trim($params->theme_select)) > 0)
 		{
 			$selectedTheme = trim($params->theme_select);
-			$rootPath      = JPATH_ROOT . '/templates/simple_blank/';
+			$rootPath      = JPATH_ROOT . '/media/templates/site/simple_blank/';
+			$tplRootPath   = JPATH_ROOT . '/templates/simple_blank/';
 
 			// Пути к файлам темы
-			$themeLessPath = '../themes/' . $selectedTheme . '/less/' . $selectedTheme . '.less';
+			$themeLessPath = '../../../../../templates/simple_blank/themes/' . $selectedTheme . '/less/' . $selectedTheme . '.less';
 			$themeHeadTop  = '/templates/simple_blank/themes/' . $selectedTheme . '/head_top.php';
 			$themeHeadBot  = '/templates/simple_blank/themes/' . $selectedTheme . '/head_bottom.php';
 			$themeFooter   = '/templates/simple_blank/themes/' . $selectedTheme . '/footer.php';
@@ -167,8 +175,8 @@ class ScripterField extends FormField
 			// Затем читался head.php -> заменялся bottom -> сохранялся в head.php
 			// Сделаем это аккуратнее:
 
-			$headTmpSrc = $rootPath . 'includes/head.tmp';
-			$headDst    = $rootPath . 'includes/head.php';
+			$headTmpSrc = $tplRootPath . 'includes/head.tmp';
+			$headDst    = $tplRootPath . 'includes/head.php';
 
 			if (File::exists($headTmpSrc))
 			{
@@ -183,8 +191,8 @@ class ScripterField extends FormField
 			}
 
 			// 3. Генерация footer.php
-			$footerTmpSrc = $rootPath . 'includes/footer.tmp';
-			$footerDst    = $rootPath . 'includes/footer.php';
+			$footerTmpSrc = $tplRootPath . 'includes/footer.tmp';
+			$footerDst    = $tplRootPath . 'includes/footer.php';
 
 			if (File::exists($footerTmpSrc))
 			{
@@ -192,13 +200,6 @@ class ScripterField extends FormField
 				$content = str_replace('path_to_theme_file', $themeFooter, $content);
 				File::write($footerDst, $content);
 			}
-		}
-
-		// --- ЛОГИКА 3: Production Copy при сохранении ---
-		$themeManager = ThemeManager::getInstance();
-		if ($themeManager->isProductionMode() && $themeManager->hasActiveTheme())
-		{
-			$themeManager->productionCopy();
 		}
 
 		// Поле скрытое, ничего не рендерим

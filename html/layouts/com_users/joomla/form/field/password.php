@@ -1,15 +1,15 @@
 <?php
 /**
  * @package     Joomla.Site
- * @subpackage  Layout
+ * @subpackage  Template.simple_blank
  *
  * @copyright   Copyright (C) 2005 - 2020 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 defined('_JEXEC') or die;
 
-// J6 REVIEW: переопределение стандартного layout'а с UIkit-разметкой
-// Проверить использование и адаптировать под Joomla 6 API (jQuery-блоки удалены)
+// J6: layout приведён к ядру Joomla 6 (field.passwordview / field.passwordstrength, data-min-*),
+// разметка UIkit (uk-input, uk-button)
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
@@ -38,6 +38,9 @@ extract($displayData);
  * @var   boolean  $readonly        Is this field read only?
  * @var   boolean  $repeat          Allows extensions to duplicate elements.
  * @var   boolean  $required        Is this field required?
+ * @var   boolean  $rules           Are the rules to be displayed?
+ * @var   boolean  $meter           Is the password strength meter to be displayed?
+ * @var   boolean  $forcePassword   Are the password rules to be enforced?
  * @var   integer  $size            Size attribute of the input.
  * @var   boolean  $spellcheck      Spellcheck state for the form field.
  * @var   string   $validate        Validation rules to apply.
@@ -47,62 +50,111 @@ extract($displayData);
  * @var   array    $options         Options available for this field.
  * @var   array    $inputType       Options available for this field.
  * @var   string   $accept          File types that are accepted.
+ * @var   string   $dataAttribute   Miscellaneous data attributes preprocessed for HTML output
  * @var   boolean  $lock            Is this field locked.
  */
-if ($lock) {
-	// Load script on document load.
-	Factory::getApplication()->getDocument()->addScriptDeclaration(
-			"
-		document.addEventListener('DOMContentLoaded', function() {
-			var lockButton = document.getElementById('" . $id . "_lock');
-			if (lockButton) {
-				lockButton.addEventListener('click', function() {
-					var passwordInput = document.getElementById('" . $id . "');
-					var lock = lockButton.classList.contains('active');
 
-					if (lock === true) {
-						lockButton.textContent = '" . Text::_('JMODIFY', true) . "';
-						passwordInput.setAttribute('disabled', 'disabled');
-						passwordInput.value = '';
-					}
-					else
-					{
-						lockButton.textContent = '" . Text::_('JCANCEL', true) . "';
-						passwordInput.removeAttribute('disabled');
-					}
-				});
-			}
-		});"
-	);
+$document = Factory::getApplication()->getDocument();
 
-	$disabled	 = true;
-	$hint		 = str_repeat('*', strlen($value));
-	$value		 = '';
+/** @var Joomla\CMS\WebAsset\WebAssetManager $wa */
+$wa = $document->getWebAssetManager();
+
+if ($meter) {
+	$wa->useScript('field.passwordstrength');
+
+	$class = 'js-password-strength ' . $class;
+
+	if ($forcePassword) {
+		$class .= ' meteredPassword';
+	}
 }
+
+$wa->useScript('field.passwordview');
+
+Text::script('JFIELD_PASSWORD_INDICATE_INCOMPLETE');
+Text::script('JFIELD_PASSWORD_INDICATE_COMPLETE');
+Text::script('JFIELD_PASSWORD_SPACES_IN_PASSWORD');
+Text::script('JSHOWPASSWORD');
+Text::script('JHIDEPASSWORD');
+
+if ($lock) {
+	Text::script('JMODIFY');
+	Text::script('JCANCEL');
+
+	$disabled = true;
+	$hint = str_repeat('•', 10);
+	$value = '';
+}
+
+$ariaDescribedBy = $rules ? $name . '-rules ' : '';
+$ariaDescribedBy .= !empty($description) ? (($id ?: $name) . '-desc') : '';
 
 $attributes = array(
 	strlen($hint) ? 'placeholder="' . htmlspecialchars($hint, ENT_COMPAT, 'UTF-8') . '"' : '',
-	!$autocomplete ? 'autocomplete="off"' : '',
-	'class="uk-input ' . $class . '"',
+	!empty($autocomplete) ? 'autocomplete="' . $autocomplete . '"' : '',
+	!empty($class) ? 'class="uk-input ' . $class . '"' : 'class="uk-input"',
+	!empty($ariaDescribedBy) ? 'aria-describedby="' . trim($ariaDescribedBy) . '"' : '',
 	$readonly ? 'readonly' : '',
 	$disabled ? 'disabled' : '',
 	!empty($size) ? 'size="' . $size . '"' : '',
 	!empty($maxLength) ? 'maxlength="' . $maxLength . '"' : '',
-	$required ? 'required aria-required="true"' : '',
+	$required ? 'required' : '',
 	$autofocus ? 'autofocus' : '',
+	!empty($minLength) ? 'data-min-length="' . $minLength . '"' : '',
+	!empty($minIntegers) ? 'data-min-integers="' . $minIntegers . '"' : '',
+	!empty($minSymbols) ? 'data-min-symbols="' . $minSymbols . '"' : '',
+	!empty($minUppercase) ? 'data-min-uppercase="' . $minUppercase . '"' : '',
+	!empty($minLowercase) ? 'data-min-lowercase="' . $minLowercase . '"' : '',
+	!empty($forcePassword) ? 'data-min-force="' . $forcePassword . '"' : '',
+	$dataAttribute,
 );
+
+if ($rules) {
+	$requirements = array();
+
+	if ($minLength) {
+		$requirements[] = Text::sprintf('JFIELD_PASSWORD_RULES_CHARACTERS', $minLength);
+	}
+
+	if ($minIntegers) {
+		$requirements[] = Text::sprintf('JFIELD_PASSWORD_RULES_DIGITS', $minIntegers);
+	}
+
+	if ($minSymbols) {
+		$requirements[] = Text::sprintf('JFIELD_PASSWORD_RULES_SYMBOLS', $minSymbols);
+	}
+
+	if ($minUppercase) {
+		$requirements[] = Text::sprintf('JFIELD_PASSWORD_RULES_UPPERCASE', $minUppercase);
+	}
+
+	if ($minLowercase) {
+		$requirements[] = Text::sprintf('JFIELD_PASSWORD_RULES_LOWERCASE', $minLowercase);
+	}
+}
 ?>
-<?php if ($lock): ?>
-	<span class="input-append">
+<?php if ($rules) : ?>
+	<div id="<?php echo $name . '-rules'; ?>" class="uk-text-small uk-text-muted">
+		<?php echo Text::sprintf('JFIELD_PASSWORD_RULES_MINIMUM_REQUIREMENTS', implode(', ', $requirements)); ?>
+	</div>
 <?php endif; ?>
-	<input
-		type="password"
-		name="<?php echo $name; ?>"
-		id="<?php echo $id; ?>"
-		value="<?php echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?>"
-<?php echo implode(' ', $attributes); ?>
-		/>
-<?php if ($lock): ?>
-	    <button type="button" id="<?php echo $id; ?>_lock" class="btn btn-info" data-toggle="button"><?php echo Text::_('JMODIFY'); ?></button>
-	</span>
+
+<div class="uk-form-controls password-group">
+	<div class="uk-inline uk-width-1-1">
+		<input
+			type="password"
+			name="<?php echo $name; ?>"
+			id="<?php echo $id; ?>"
+			value="<?php echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?>"
+			<?php echo implode(' ', $attributes); ?>>
+		<?php if (!$lock) : ?>
+		<button type="button" class="uk-button uk-button-default input-password-toggle" tabindex="-1">
+			<span><?php echo Text::_('JSHOWPASSWORD'); ?></span>
+		</button>
+		<?php else : ?>
+		<button type="button" id="<?php echo $id; ?>_lock" class="uk-button uk-button-default input-password-modify locked">
+			<?php echo Text::_('JMODIFY'); ?>
+		</button>
 		<?php endif; ?>
+	</div>
+</div>

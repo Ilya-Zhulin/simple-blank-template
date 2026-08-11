@@ -9,7 +9,7 @@
   -->
 
 
-<extension version="4.0" type="template" client="site" method="upgrade">
+<extension version="6.0" type="template" client="site" method="upgrade">
     <namespace path="includes">SimpleBlank</namespace>
     <name>simple_blank</name>
     <creationDate>April 2026</creationDate>
@@ -17,7 +17,7 @@
     <copyright>Copyright© 2021-2026 www.zhulinia.ru</copyright>
     <authorEmail>ilya.zhulin@hotmail.com</authorEmail>
     <authorUrl>https://www.zhulinia.ru</authorUrl>
-    <version>3.0.2-dev</version>
+    <version>6.0.0-dev</version>
     <description><![CDATA[
 			<h1>Simple Blank Template</h1>
 			<p>Created by <a href="https://www.zhulinia.ru" target="_blank">Ilya A.Zhulin</a> </br>
@@ -35,7 +35,7 @@
         <filename>template_thumbnail.png</filename>
         <filename>templateDetails.xml</filename>
     </files>
-    <media destination="templates/site/simple_blank" folder="media">
+    <media destination="site/templates/simple_blank" folder="media">
         <folder>js</folder>
         <folder>css</folder>
         <folder>fonts</folder>
@@ -940,6 +940,10 @@
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
+                <field name="production_sync" type="productionsync"
+                       label="TPL_SIMPLE_BLANK_PRODUCTION_SYNC_LABEL"
+                       description="TPL_SIMPLE_BLANK_PRODUCTION_SYNC_DESCRIPTION"
+                       showon="production_mode:1"/>
             </fieldset>
         </fields>
     </config>
