@@ -1,7 +1,7 @@
 <?php
 /*
  * @package    simple_blank_template
- * @version 3.0.2-dev
+ * @version 6.0.0-dev
  * @author     Ilya A.Zhulin <ilya.zhulin@hotmail.com>
  * @copyright  ©Ilya A.Zhulin, 2026
  * @license    GNU General Public License version 2 or later;
@@ -20,6 +20,7 @@ use SimpleBlank\Site\Service\ThemeManager;
  * Поле-кнопка «Собрать прод-копию темы в media».
  * Действие выполняется ТОЛЬКО по явному переходу по ссылке кнопки
  * (параметр productionsync в запросе) — никаких автоматических копирований.
+ * @since   6.0.0
  */
 class ProductionSyncField extends FormField
 {

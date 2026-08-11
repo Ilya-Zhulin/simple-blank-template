@@ -1,7 +1,7 @@
 <?php
 /*
  * @package    simple_blank_template
- * @version 3.0.2-dev
+ * @version 6.0.0-dev
  * @author     Ilya A.Zhulin <ilya.zhulin@hotmail.com>
  * @copyright  ©Ilya A.Zhulin, 2026
  * @license    GNU General Public License version 2 or later;
@@ -22,6 +22,7 @@ defined('_JEXEC') or die;
  * Class ThemeManager
  *
  * Центральный сервис для управления темами шаблона, путями и переопределениями.
+ * @since   6.0.0
  */
 class ThemeManager
 {

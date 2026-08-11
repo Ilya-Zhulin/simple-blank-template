@@ -1,7 +1,7 @@
 <?php
 /*
  * @package    simple_blank_template
- * @version    3.0.2-dev
+ * @version    6.0.0-dev
  * @author     Ilya A.Zhulin <ilya.zhulin@hotmail.com>
  * @copyright  ©Ilya A.Zhulin, 2026
  * @license    GNU General Public License version 2 or later;
@@ -15,6 +15,7 @@ use Joomla\CMS\Form\FormField;
 
 /**
  * Скрытое поле для загрузки JS админки (LESS компиляция, ширины, навигация по позициям)
+ * @since   6.0.0
  */
 class PositionnavField extends FormField
 {
