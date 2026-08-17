@@ -21,7 +21,7 @@ $app = Factory::getApplication();
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<jdoc:include type="head" />
-		<link rel="stylesheet" href="<?php echo $this->baseurl; ?>/media/templates/site/simple_blank/css/template.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo $this->baseurl; ?>/media/templates/site/<?php echo $this->template; ?>/css/template.css" type="text/css" />
 	</head>
 	<body class="uk-height-viewport uk-flex uk-flex-middle uk-flex-center">
 		<div id="frame" class="uk-width-auto">
@@ -64,7 +64,7 @@ $app = Factory::getApplication();
 					<?php echo HTMLHelper::_('form.token'); ?>
 				</fieldset>
 			</form>
-			<p class="uk-text-center"><img src="media/templates/site/simple_blank/images/template_thumbnail.svg" alt="With Simple Blank Template" style="width:150px;"/></p>
+			<p class="uk-text-center"><img src="media/templates/site/<?php echo $this->template; ?>/images/template_thumbnail.svg" alt="With Simple Blank Template" style="width:150px;"/></p>
 		</div>
 	</body>
 </html>

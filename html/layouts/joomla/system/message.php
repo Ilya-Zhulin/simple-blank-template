@@ -34,10 +34,10 @@ $app        = Factory::getApplication();
 $template   = $app->getTemplate(true);
 $alert_view = $template->params->get('alert_layout', 'defaultValue');
 $theme      = $template->params->get('theme_select', 'default_theme');
-$this_path  = str_replace(JPATH_THEMES . '/simple_blank', '', __FILE__);
-if ($theme !== 'default_theme' && file_exists(JPATH_THEMES . '/simple_blank/themes/' . $theme . $this_path))
+$this_path  = str_replace(JPATH_THEMES . '/' . $template->template, '', __FILE__);
+if ($theme !== 'default_theme' && file_exists(JPATH_THEMES . '/' . $template->template . '/themes/' . $theme . $this_path))
 {
-    include_once JPATH_THEMES . '/simple_blank/themes/' . $theme . $this_path;
+    include_once JPATH_THEMES . '/' . $template->template . '/themes/' . $theme . $this_path;
 }
 else
 {
@@ -71,7 +71,7 @@ else
                         ?>
                             <script>
                                 UIkit.notification({
-                                    message: '<div uk-grid><div class="uk-width-expand"><h4 class="uk-light uk-text-center "><?php echo Text::_($type); ?></h4><div uk-grid class="uk-grid-collapse"><div class="uk-width-auto"><span uk-icon="icon: <?php echo $icon[$type]; ?>; ratio: 3" class="uk-icon-left"></span></div><div class="uk-width-expand"><p><?php echo $msg; ?></p></div></div></div><div class="uk-width-auto"><img src="/media/templates/site/simple_blank/images/favicon/favicon.svg" style="width:100px;" class="uk-align-right" /></div></div>',
+                                    message: '<div uk-grid><div class="uk-width-expand"><h4 class="uk-light uk-text-center "><?php echo Text::_($type); ?></h4><div uk-grid class="uk-grid-collapse"><div class="uk-width-auto"><span uk-icon="icon: <?php echo $icon[$type]; ?>; ratio: 3" class="uk-icon-left"></span></div><div class="uk-width-expand"><p><?php echo $msg; ?></p></div></div></div><div class="uk-width-auto"><img src="/media/templates/site/<?php echo $template->template; ?>/images/favicon/favicon.svg" style="width:100px;" class="uk-align-right" /></div></div>',
                                     status: '<?php echo $alert[$type]; ?>',
                                     pos: 'bottom-center',
                                     timeout: 15000

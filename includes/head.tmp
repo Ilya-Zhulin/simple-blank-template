@@ -36,7 +36,7 @@ if ($favicon_mode == 0 && file_exists(JPATH_ROOT . '/media/templates/site/' . $t
 <?php
 if ($qlenable == 1) {
 	?>
-<script src = "/media/templates/site/simple_blank/js/quicklink.js"></script>
+<script src = "/media/templates/site/<?php echo $this->template ?>/js/quicklink.js"></script>
 	<?php
 }
 ?>
