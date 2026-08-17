@@ -1,7 +1,7 @@
 <?php
 /*
  * @package    DEV
- * @version    __DEPLOY_VERSION__
+ * @version    6.0.0-dev+build.20260814.2331
  * @author     Ilya A.Zhulin <ilya.zhulin@hotmail.com>
  * @copyright  ©Ilya A.Zhulin, 2026
  * @license    GNU General Public License version 2 or later;
