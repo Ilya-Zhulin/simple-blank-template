@@ -17,8 +17,10 @@ defined('_JEXEC') or die;
  * Помощник режима разработки шаблона.
  *
  * Включается параметром шаблона devmode или параметром ?sb_dev=1 в URL.
- * В режиме разработки в разметку добавляются скрытые HTML-теги с данными
- * о позициях модулей и файлах, которые выводят соответствующие блоки контента.
+ * В режиме разработки в разметку добавляются невидимые HTML-комментарии
+ * с названиями секций и позиций модулей, количеством модулей и файлами,
+ * которые выводят соответствующие блоки контента. На отображение сайта
+ * они никак не влияют: ни стилей, ни элементов, ни скриптов.
  */
 class DevHelper
 {
@@ -36,7 +38,7 @@ class DevHelper
 	}
 
 	/**
-	 * Скрытый HTML-тег секции (области макета) с данными для разработчика.
+	 * HTML-комментарий секции (области макета) с данными для разработчика.
 	 *
 	 * @param   string  $posName  Название секции/позиции
 	 * @param   string  $file     Абсолютный путь к файлу, который выводит секцию (обычно __FILE__)
@@ -50,16 +52,19 @@ class DevHelper
 			return '';
 		}
 
-		$fileAttr = $file !== '' ? ' data-file="' . htmlspecialchars(self::relFile($file), ENT_QUOTES) . '"' : '';
+		$comment = 'section: ' . $posName;
 
-		return "\n"
-			. '<div class="sb-dev sb-dev--section" data-section="' . htmlspecialchars($posName, ENT_QUOTES) . '"' . $fileAttr . ' hidden></div>'
-			. "\n";
+		if ($file !== '')
+		{
+			$comment .= ' (' . self::relFile($file) . ')';
+		}
+
+		return "\n<!-- " . $comment . " -->\n";
 	}
 
 	/**
 	 * Возвращает вставку <jdoc:include type="modules"> для позиции.
-	 * В режиме разработки перед ней добавляется скрытый HTML-тег
+	 * В режиме разработки она обрамляется HTML-комментариями начала и конца
 	 * с названием позиции, количеством модулей и файлом-исходником.
 	 *
 	 * @param   string  $posName  Название позиции модулей
@@ -79,14 +84,17 @@ class DevHelper
 			return $jdoc;
 		}
 
-		$count    = Factory::getApplication()->getDocument()->countModules($posName);
-		$fileAttr = $file !== '' ? ' data-file="' . htmlspecialchars(self::relFile($file), ENT_QUOTES) . '"' : '';
+		$count   = Factory::getApplication()->getDocument()->countModules($posName);
+		$comment = 'position: ' . $posName . ' [' . (int) $count . ']';
 
-		return "\n"
-			. '<span class="sb-dev sb-dev--position" data-position="' . htmlspecialchars($posName, ENT_QUOTES) . '" data-modules="' . (int) $count . '"' . $fileAttr . ' hidden></span>'
-			. "\n"
+		if ($file !== '')
+		{
+			$comment .= ' (' . self::relFile($file) . ')';
+		}
+
+		return "\n<!-- " . $comment . " -->\n"
 			. $jdoc
-			. "\n";
+			. "\n<!-- /position: " . $posName . " -->\n";
 	}
 
 	/**
