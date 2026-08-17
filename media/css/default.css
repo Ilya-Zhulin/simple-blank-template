@@ -1,0 +1,16 @@
+/*
+ * @package    simple_blank
+ * @version    6.0.0-dev
+ * @copyright  ©Ilya A.Zhulin, 2026
+ * @license    GNU General Public License version 2 or later;
+ *
+ * ЗАРЕЗЕРВИРОВАННЫЙ ФАЙЛ — ДЕФОЛТНЫЙ CSS ШАБЛОНА.
+ *
+ * НЕ УДАЛЯТЬ и НЕ ПЕРЕЗАПИСЫВАТЬ.
+ * Файл грузится только тогда, когда не выбрана активная тема.
+ * При активной теме он просто лежит в папке и игнорируется.
+ * Если его удалить — шаблон без темы останется без стилей
+ * (будет подключён только вендорный uikit).
+ */
+@import "../vendor/uikit/css/uikit.css";
+@import "theme.css";

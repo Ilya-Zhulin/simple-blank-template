@@ -16,6 +16,9 @@ namespace SimpleBlank\Site\Controller;
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use FilesystemIterator;
 use SimpleBlank\Site\Helper\DevHelper;
 use SimpleBlank\Site\Service\ThemeManager;
 
@@ -31,7 +34,6 @@ class ConfigController
 
 	// Публичный массив данных для экспорта в index.php
 	protected $tplpath;
-	protected $mediaUrl;
 
 	public function __construct()
 	{
@@ -40,7 +42,6 @@ class ConfigController
 		$this->params   = $this->template->params;
 		$this->doc      = $this->app->getDocument();
 		$this->tplpath  = Uri::root() . 'templates/' . $this->template->template;
-		$this->mediaUrl = Uri::root() . 'media/templates/site/' . $this->template->template;
 
 		$this->init();
 	}
@@ -308,178 +309,142 @@ class ConfigController
 
 	protected function manageAssets()
 	{
-		$wa = $this->doc->getWebAssetManager();
+		$wa     = $this->doc->getWebAssetManager();
+		$prefix = 'template.' . $this->template->template . '.';
 
-		$wa->useScript('template.simple_blank.uikit');
-		$wa->useScript('template.simple_blank.uikit-icons');
+		$wa->useScript($prefix . 'uikit');
+		$wa->useScript($prefix . 'uikit-icons');
 
-		if (file_exists(JPATH_ROOT . '/templates/' . $this->template->template . '/vendor/uikit/js/uikit-custom-icons.min.js'))
+		if (file_exists(JPATH_ROOT . '/media/templates/site/' . $this->template->template . '/vendor/uikit/js/uikit-custom-icons.min.js'))
 		{
-			$wa->useScript('template.simple_blank.uikit-custom-icons');
+			$wa->useScript($prefix . 'uikit-custom-icons');
 		}
 
-		$wa->useScript('template.simple_blank.theme');
+		$wa->useScript($prefix . 'theme');
 
 		if ($this->params->get('qlenable', 1))
 		{
-			$wa->useScript('template.simple_blank.quicklink');
+			$wa->useScript($prefix . 'quicklink');
 		}
 
 		$this->doc->setGenerator(null);
 
 		if ($this->data['googlefont'])
 		{
-			$this->doc->addStyleSheet('https://fonts.googleapis.com/css?family=' . urlencode($this->data['googlefontname']) . '&subset=cyrillic,latin');
+			$wa->registerAndUseStyle($prefix . 'googlefont', 'https://fonts.googleapis.com/css?family=' . urlencode($this->data['googlefontname']) . '&subset=cyrillic,latin');
 		}
 
 		$this->doc->setMetadata('google-site-verification', $this->params->get('googleverification'));
 		$this->doc->setMetadata('yandex-verification', $this->params->get('yandexverification'));
 		$this->doc->setMetadata('msvalidate.01', $this->params->get('bingverification'));
 
-		if ($this->data['less_acompile'])
+		$themeManager = ThemeManager::getInstance();
+		$reserved     = ThemeManager::RESERVED_ASSET_NAMES;
+		$excludedCss  = array_merge(explode(',', $this->params->get('css_exclude_files', '')), ['uikit.css', 'uikit.min.css'], $reserved);
+		$excludedJs   = array_merge(['uikit.min.js', 'uikit.js', 'uikit-icons.min.js', 'uikit-custom-icons.min.js', 'theme.js', 'theme.min.js', 'quicklink.min.js', 'quicklink.js'], $reserved);
+
+		if ($themeManager->hasActiveTheme())
 		{
-			// Логика Live Compile (закомментирована)
+			// Активная тема уже содержит все стили (в т.ч. UIkit) — вендорный uikit НЕ нужен.
+			// DEV — из папки темы, PROD — из корня media-папки шаблона (короткие пути).
+			$basePath = $themeManager->getThemeAssetBasePath();
+
+			if ($basePath)
+			{
+				$this->loadAssetsFromDir($basePath . '/css', 'css', $excludedCss);
+				$this->loadAssetsFromDir($basePath . '/js', 'js', $excludedJs);
+			}
 		}
 		else
 		{
-			$themeManager = ThemeManager::getInstance();
+			// Темы нет — зарезервированный дефолтный CSS (default.css) либо фолбэк на прежнее поведение.
+			$mediaRoot     = 'media/templates/site/' . $this->template->template;
+			$defaultCssRel = $mediaRoot . '/css/default.css';
 
-			// Версионирование CSS: добавляем ?v=<время изменения файла> чтобы избежать кеширования
-			// Не работает в Production Mode
-			$cssVersioning = $themeManager->isProductionMode() ? 0 : (int) $this->params->get('css_versioning', 0);
-			$addCss        = function ($url, $path = '') use ($cssVersioning)
+			if (is_file(JPATH_ROOT . '/' . $defaultCssRel))
 			{
-				if ($cssVersioning && $path !== '' && file_exists($path))
-				{
-					$url .= '?v=' . filemtime($path);
-				}
-
-				$this->doc->addStyleSheet($url);
-			};
-
-			$excluded      = explode(',', $this->params->get('css_exclude_files', ''));
-			$excluded      = array_merge($excluded, ['uikit.css', 'uikit.min.css']);
-
-			if ($themeManager->hasActiveTheme())
-			{
-				// CSS и JS активной темы: в DEV — прямо из темы, в PROD — из media-зеркала.
-				// Базой управляет ThemeManager (по режиму), при отсутствии файла в зеркале —
-				// фолбэк на первоисточник в теме (без копирования).
-				$cssFiles = $themeManager->getThemeFiles('css', $excluded);
-
-				// template.css/template.min.css темы (базовый стиль) грузим последним
-				$baseCss = null;
-
-				if (in_array('template.min.css', $cssFiles, true))
-				{
-					$baseCss = 'template.min.css';
-				}
-				elseif (in_array('template.css', $cssFiles, true))
-				{
-					$baseCss = 'template.css';
-				}
-
-				if ($baseCss !== null)
-				{
-					$cssFiles   = array_values(array_diff($cssFiles, ['template.css', 'template.min.css']));
-					$cssFiles[] = $baseCss;
-				}
-
-				foreach ($cssFiles as $relFile)
-				{
-					$path = ThemeManager::getPath('css', $relFile);
-
-					if (!$path)
-					{
-						continue;
-					}
-
-					$relativeUrl = str_replace(JPATH_ROOT, '', $path);
-					$url         = Uri::root() . ltrim(str_replace('\\', '/', $relativeUrl), '/');
-
-					$addCss($url, $path);
-				}
-
-				$jsFiles = $themeManager->getThemeFiles('js');
-
-				foreach ($jsFiles as $relFile)
-				{
-					$path = ThemeManager::getPath('js', $relFile);
-
-					if (!$path)
-					{
-						continue;
-					}
-
-					$relativeUrl = str_replace(JPATH_ROOT, '', $path);
-					$url         = Uri::root() . ltrim(str_replace('\\', '/', $relativeUrl), '/');
-
-					$this->doc->addScript($url);
-				}
+				// default.css — агрегатор базовых стилей шаблона (uikit + theme.css)
+				$wa->registerAndUseStyle($prefix . 'default-css', $defaultCssRel, $this->cssVersionOption());
 			}
 			else
 			{
-				// Дефолтные ассеты шаблона из media-дистрибутива
-				$cssPath = JPATH_ROOT . '/media/templates/site/' . $this->template->template . '/css/';
-				$cssUrl  = $this->mediaUrl . '/css/';
+				// default.css удалён/не установлен — вендорный uikit + остальной CSS из media/css
+				$uikitRel = $mediaRoot . '/vendor/uikit/css/uikit.css';
 
-				$templateFound = false;
-				$hasMin        = false;
-
-				if (is_dir($cssPath))
+				if (is_file(JPATH_ROOT . '/' . $uikitRel))
 				{
-					$dh = opendir($cssPath);
-					while (($file = readdir($dh)) !== false)
-					{
-						if (filetype($cssPath . $file) === 'file')
-						{
-							$extParts = explode('.', $file);
-							$ext      = end($extParts);
-							if ($ext === 'css' && $file !== 'template.css' && $file !== 'template.min.css' && !in_array($file, $excluded))
-							{
-								$addCss($cssUrl . $file, $cssPath . $file);
-							}
-							elseif ($file == 'template.css')
-							{
-								$templateFound = true;
-							}
-							elseif ($file == 'template.min.css')
-							{
-								$hasMin = true;
-							}
-						}
-						else
-						{
-							if ($file != '.' && $file != '..')
-							{
-								$dh1 = opendir($cssPath . $file);
-								while (($file1 = readdir($dh1)) !== false)
-								{
-									if (filetype($cssPath . $file . '/' . $file1) === 'file')
-									{
-										$extParts1 = explode('.', $file1);
-										$ext1      = end($extParts1);
-										if ($ext1 === 'css' && !in_array($file1, $excluded))
-										{
-											$addCss($cssUrl . $file . '/' . $file1, $cssPath . $file . '/' . $file1);
-										}
-									}
-								}
-								closedir($dh1);
-							}
-						}
-					}
-					closedir($dh);
+					$wa->registerAndUseStyle($prefix . 'default-css', $uikitRel, $this->cssVersionOption());
 				}
 
-				if ($hasMin)
-				{
-					$addCss($cssUrl . 'template.min.css', $cssPath . 'template.min.css');
-				}
-				elseif ($templateFound)
-				{
-					$addCss($cssUrl . 'template.css', $cssPath . 'template.css');
-				}
+				$this->loadAssetsFromDir(JPATH_ROOT . '/' . $mediaRoot . '/css', 'css', $excludedCss);
+			}
+
+			// Прочие JS шаблона (базовый uikit/theme/quicklink уже через WebAsset)
+			$this->loadAssetsFromDir(JPATH_ROOT . '/' . $mediaRoot . '/js', 'js', $excludedJs);
+		}
+	}
+
+	/**
+	 * Опции WAM для подключения CSS с учётом параметра «Версионирование CSS».
+	 * Версия не добавляется в Production Mode (стили стабильны между сборками).
+	 *
+	 * @return array
+	 */
+	protected function cssVersionOption(): array
+	{
+		if (!$this->params->get('css_versioning', 1) || $this->params->get('production_mode', 0))
+		{
+			return [];
+		}
+
+		return ['version' => 'auto'];
+	}
+
+	/**
+	 * Рекурсивно подключает все css/js файлы из папки через WAM.
+	 *
+	 * @param   string  $dir       Абсолютный путь к папке (серверный)
+	 * @param   string  $type      'css' или 'js'
+	 * @param   array   $excluded  Имена файлов, которые пропустить
+	 *
+	 * @return  void
+	 */
+	protected function loadAssetsFromDir(string $dir, string $type, array $excluded = []): void
+	{
+		if (!is_dir($dir))
+		{
+			return;
+		}
+
+		$wa     = $this->doc->getWebAssetManager();
+		$prefix = 'template.' . $this->template->template . '.';
+
+		$iterator = new RecursiveIteratorIterator(
+			new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS)
+		);
+
+		foreach ($iterator as $file)
+		{
+			if (!$file->isFile() || strtolower($file->getExtension()) !== $type)
+			{
+				continue;
+			}
+
+			if (in_array($file->getFilename(), $excluded, true))
+			{
+				continue;
+			}
+
+			$rel  = ltrim(str_replace('\\', '/', str_replace(JPATH_ROOT, '', $file->getPathname())), '/');
+			$name = $prefix . $type . '.' . md5($rel);
+
+			if ($type === 'css')
+			{
+				$wa->registerAndUseStyle($name, $rel, $this->cssVersionOption());
+			}
+			else
+			{
+				$wa->registerAndUseScript($name, $rel);
 			}
 		}
 	}

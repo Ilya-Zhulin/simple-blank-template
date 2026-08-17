@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ @package    simple_blank_template
+  ~ @package    simple_blank
   ~ @version    __DEPLOY_VERSION__
   ~ @author     Ilya A.Zhulin <ilya.zhulin@hotmail.com>
   ~ @copyright  ©Ilya A.Zhulin, 2026
@@ -31,11 +31,12 @@
         <filename>error.php</filename>
         <filename>index.php</filename>
         <filename>offline.php</filename>
+        <filename>joomla.asset.json</filename>
         <filename>template_preview.png</filename>
         <filename>template_thumbnail.png</filename>
         <filename>templateDetails.xml</filename>
     </files>
-    <media destination="site/templates/simple_blank" folder="media">
+    <media destination="templates/site/simple_blank" folder="media">
         <folder>js</folder>
         <folder>css</folder>
         <folder>fonts</folder>
@@ -918,7 +919,7 @@
                 <field name="bingverification" class="" type="text" default="" label="Bing Verification Code"
                        description="Bing Verification Code"/>
             </fieldset>
-<fieldset name="development" label="TPL_SIMPLE_BLANK_DEVELOPMENT_FIELDSET_LABEL">
+            <fieldset name="development" label="TPL_SIMPLE_BLANK_DEVELOPMENT_FIELDSET_LABEL">
                 <field name="production_mode" type="radio" class="btn-group btn-group-yesno" default="0"
                        label="TPL_SIMPLE_BLANK_PRODUCTION_MODE_LABEL"
                        description="TPL_SIMPLE_BLANK_PRODUCTION_MODE_DESC">
@@ -927,7 +928,7 @@
                 </field>
                 <field type="spacer" hr="true" label="TPL_SIMPLE_BLANK_DEV_SETTINGS_LABEL"
                        description="TPL_SIMPLE_BLANK_DEV_SETTINGS_DESCRIPTION"/>
-                <field name="css_versioning" type="radio" class="btn-group btn-group-yesno" default="0"
+                <field name="css_versioning" type="radio" class="btn-group btn-group-yesno" default="1"
                        label="TPL_SIMPLE_BLANK_CSS_VERSIONING_LABEL"
                        description="TPL_SIMPLE_BLANK_CSS_VERSIONING_DESCRIPTION"
                        showon="production_mode:0">
@@ -940,10 +941,6 @@
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
-                <field name="production_sync" type="productionsync"
-                       label="TPL_SIMPLE_BLANK_PRODUCTION_SYNC_LABEL"
-                       description="TPL_SIMPLE_BLANK_PRODUCTION_SYNC_DESCRIPTION"
-                       showon="production_mode:1"/>
             </fieldset>
         </fields>
     </config>

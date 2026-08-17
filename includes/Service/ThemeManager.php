@@ -52,6 +52,14 @@ class ThemeManager
 	private const ASSET_TYPES = ['css', 'js', 'image', 'font'];
 
 	/**
+	 * Резервированные имена файлов, которые никогда не копируются в media
+	 * и не попадают в сканирование ассетов:
+	 * default.css — дефолтный CSS шаблона (грузится только при отсутствии темы),
+	 * index.html   — Joomla-заглушка для пустых папок.
+	 */
+	public const RESERVED_ASSET_NAMES = ['default.css', 'index.html'];
+
+	/**
 	 * @var ?string Имя активной темы (из параметра theme_select)
 	 */
 	private ?string $activeThemeName = null;
@@ -157,6 +165,26 @@ class ThemeManager
 	}
 
 	/**
+	 * Переопределить контекст шаблона/темы для работы вне site-контекста
+	 * (например, из системного плагина при сохранении стиля в админке, где
+	 * Factory::getApplication()->getTemplate() возвращает админ-шаблон).
+	 *
+	 * @param   string       $templateName    Имя шаблона (например, 'simple_blank')
+	 * @param   string|null  $activeThemeName Имя активной темы (theme_select) или null
+	 *
+	 * @return  $this
+	 */
+	public function setContext(string $templateName, ?string $activeThemeName): self
+	{
+		$this->templateName     = $templateName;
+		$this->templateBasePath = JPATH_THEMES . '/' . $templateName;
+		$this->mediaBasePath    = JPATH_ROOT . '/media/templates/site/' . $templateName;
+		$this->activeThemeName  = $activeThemeName;
+
+		return $this;
+	}
+
+	/**
 	 * Проверить, активна ли какая-либо тема
 	 *
 	 * @return bool True если тема выбрана
@@ -181,7 +209,8 @@ class ThemeManager
 
 	/**
 	 * База активной темы для ассетов (css/js/image/font) с учётом режима.
-	 * DEV: папка темы в шаблоне. PROD: зеркало в media (фолбэк на тему делает findFile).
+	 * DEV: папка темы в шаблоне. PROD: корень media-папки шаблона (короткие пути,
+	 * дефолты и стили темы лежат рядом; default.css остаётся зарезервированным).
 	 *
 	 * @return string|null Путь или null, если тема не активна
 	 */
@@ -194,7 +223,7 @@ class ThemeManager
 
 		if ($this->isProductionMode())
 		{
-			return $this->mediaBasePath . '/themes/' . $this->activeThemeName;
+			return $this->mediaBasePath;
 		}
 
 		return $this->getThemeBasePath();
@@ -528,7 +557,7 @@ class ThemeManager
 				continue;
 			}
 
-			if (pathinfo($item, PATHINFO_EXTENSION) !== $extension || in_array($item, $excluded, true))
+			if (pathinfo($item, PATHINFO_EXTENSION) !== $extension || in_array($item, $excluded, true) || in_array($item, self::RESERVED_ASSET_NAMES, true))
 			{
 				continue;
 			}
@@ -553,9 +582,9 @@ class ThemeManager
 
 	/**
 	 * Зеркалировать статику активной темы (css, js, images, fonts) в media-папку.
-	 * Вызывается ТОЛЬКО по явной команде пользователя (кнопка в админке).
+	 * Вызывается по переходу в Production Mode (авто, на сохранении стиля шаблона).
 	 * Копируются только изменившиеся файлы (mtime); файлы, удалённые из темы,
-	 * вычищаются из зеркала.
+	 * вычищаются из media. Резервированные имена (default.css, index.html) не трогаются.
 	 *
 	 * @return bool True если хотя бы один файл скопирован
 	 */
@@ -567,7 +596,7 @@ class ThemeManager
 		}
 
 		$srcBase = $this->getThemeBasePath();
-		$dstBase = $this->mediaBasePath . '/themes/' . $this->activeThemeName;
+		$dstBase = $this->mediaBasePath;
 
 		$copied = false;
 
@@ -628,6 +657,12 @@ class ThemeManager
 				continue;
 			}
 
+			// Резервированные имена не копируются (default.css, index.html)
+			if (in_array($item, self::RESERVED_ASSET_NAMES, true))
+			{
+				continue;
+			}
+
 			$srcFiles[] = $item;
 
 			// Копируем только если файла нет или исходник новее собранного
@@ -650,7 +685,7 @@ class ThemeManager
 				continue;
 			}
 
-			if (is_file($dst . '/' . $item) && !in_array($item, $srcFiles, true))
+			if (is_file($dst . '/' . $item) && !in_array($item, $srcFiles, true) && !in_array($item, self::RESERVED_ASSET_NAMES, true))
 			{
 				@unlink($dst . '/' . $item);
 			}

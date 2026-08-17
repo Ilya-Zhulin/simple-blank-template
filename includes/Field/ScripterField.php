@@ -20,11 +20,13 @@ defined('_JEXEC') or die('Restricted access');
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Uri\Uri;
 use Joomla\Database\DatabaseInterface;
 use Joomla\Database\ParameterType;
 use Joomla\Filesystem\File;
 use Joomla\Filesystem\Folder;
+use SimpleBlank\Site\Service\ThemeManager;
 
 /**
  * Поле-триггер для создания структуры темы и генерации конфигов
@@ -200,6 +202,26 @@ class ScripterField extends FormField
 				$content = file_get_contents($footerTmpSrc);
 				$content = str_replace('path_to_theme_file', $themeFooter, $content);
 				File::write($footerDst, $content);
+			}
+		}
+
+		// --- ЛОГИКА 3: Прод-копия темы при включённом Production Mode ---
+		// Срабатывает на перезагрузке формы после сохранения (как и создание темы):
+		// если production_mode включён и выбрана тема — синхронизируем её статику
+		// (css, js, images, fonts) в media-папку (короткие стандартные пути).
+		// Копируются только изменившиеся файлы, поэтому повторные загрузки/сохранения
+		// ничего не делают; сообщение показывается только при фактическом копировании.
+		$prodMode = (int) ($params->production_mode ?? 0);
+		$selTheme = trim((string) ($params->theme_select ?? ''));
+
+		if ($prodMode === 1 && $selTheme !== '')
+		{
+			$manager = ThemeManager::getInstance();
+			$manager->setContext($tplName, $selTheme);
+
+			if ($manager->productionCopy())
+			{
+				$app->enqueueMessage(Text::_('TPL_SIMPLE_BLANK_PRODUCTION_MODE_COPIED'), 'success');
 			}
 		}
 
