@@ -28,12 +28,18 @@ class PositionnavField extends FormField
 
 	protected function getInput()
 	{
-		$wa = Factory::getApplication()->getDocument()->getWebAssetManager();
-		$tplName = Factory::getApplication()->getTemplate();
+		$tplName = $this->form ? $this->form->getValue('template') : '';
 
-		$wa->registerAndUseScript('tpl.jscript', '/templates/' . $tplName . '/includes/Field/jscript.js');
-		$wa->registerAndUseScript('tpl.positionnav', '/templates/' . $tplName . '/includes/Field/position-nav.js');
-		$wa->registerAndUseScript('tpl.sectionnav', '/templates/' . $tplName . '/includes/Field/section-nav.js');
+		if (!$tplName)
+		{
+			return '<input type="hidden" name="' . $this->name . '" value="1">';
+		}
+
+		$wa = Factory::getApplication()->getDocument()->getWebAssetManager();
+
+		$wa->registerAndUseScript('tpl.jscript', 'templates/' . $tplName . '/includes/Field/jscript.js');
+		$wa->registerAndUseScript('tpl.positionnav', 'templates/' . $tplName . '/includes/Field/position-nav.js');
+		$wa->registerAndUseScript('tpl.sectionnav', 'templates/' . $tplName . '/includes/Field/section-nav.js');
 
 		return '<input type="hidden" name="' . $this->name . '" value="1">';
 	}

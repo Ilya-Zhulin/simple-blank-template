@@ -101,7 +101,7 @@
         panel.id = 'sb-section-nav';
         document.body.appendChild(panel);
 
-        var html = '<div class="sb-nav-title">\u041f\u043e\u0437\u0438\u0446\u0438\u0438 (' + sections.length + ')</div>';
+        var html = '<div class="sb-nav-title">\u0421\u0435\u043a\u0446\u0438\u0438 (' + sections.length + ')</div>';
         for (var i = 0; i < sections.length; i++) {
             html += '<button type="button" class="sb-nav-btn" data-index="' + i + '">'
                 + '<span class="sb-nav-btn-name">' + sections[i].name.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</span>'
