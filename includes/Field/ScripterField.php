@@ -54,11 +54,11 @@ class ScripterField extends FormField
 	{
 		$app   = Factory::getApplication();
 		$input = $app->input;
-		$tplName = $app->getTemplate();
+		$tplName = $this->form ? $this->form->getValue('template') : '';
 
 		// Получаем ID стиля (шаблона)
 		$styleId = $input->getInt('id', 0);
-		if (!$styleId)
+		if (!$styleId || !$tplName)
 		{
 			return '';
 		}
@@ -97,7 +97,16 @@ class ScripterField extends FormField
 			Folder::create($themePath . '/html');
 
 			// Шаблон контента файлов
-			$lessComment = "/**\n * File created for theme {$themeName}\n * in Simple Blank template\n * Put your less here.\n **/\n";
+			$lessTheme = "/**\n * File created for theme {$themeName}\n * in Simple Blank template\n * Put your less here.\n **/\n"
+				. "\n@import \"../../../../../media/templates/site/{$tplName}/vendor/uikit/less/uikit.less\";\n"
+				. "\n/**\n    Internal Icons\n*/\n"
+				. "@internal-form-select-image:                 \"../../../../../media/templates/site/{$tplName}/vendor/uikit/images/backgrounds/form-select.svg\";\n"
+				. "@internal-form-radio-image:                  \"../../../../../media/templates/site/{$tplName}/vendor/uikit/images/backgrounds/form-radio.svg\";\n"
+				. "@internal-form-checkbox-image:               \"../../../../../media/templates/site/{$tplName}/vendor/uikit/images/backgrounds/form-checkbox.svg\";\n"
+				. "@internal-form-checkbox-indeterminate-image: \"../../../../../media/templates/site/{$tplName}/vendor/uikit/images/backgrounds/form-checkbox-indeterminate.svg\";\n"
+				. "@internal-form-datalist-image:               \"../../../../../media/templates/site/{$tplName}/vendor/uikit/images/backgrounds/form-datalist.svg\";\n"
+				. "@internal-list-bullet-image:                 \"../../../../../media/templates/site/{$tplName}/vendor/uikit/images/backgrounds/list-bullet.svg\";\n"
+				. "@internal-divider-icon-image:                \"../../../../../media/templates/site/{$tplName}/vendor/uikit/images/backgrounds/divider-icon.svg\";\n";
 			$cssComment  = "/**\n * File created for theme {$themeName}\n * in Simple Blank template\n * Put your css here.\n **/\n";
 			$templateCss  = "@import \"../../../../../media/templates/site/{$tplName}/vendor/uikit/css/uikit.css\";\n\n{$cssComment}";
 			$jsComment   = "/**\n * File created for theme {$themeName}\n * in Simple Blank template\n * Put your js here.\n **/\n";
@@ -112,7 +121,7 @@ class ScripterField extends FormField
 				'images/index.html'      => $blockMsg,
 				'fonts/index.html'       => $blockMsg,
 				'html/index.html'        => $blockMsg,
-				"less/{$themeName}.less" => $lessComment,
+				"less/{$themeName}.less" => $lessTheme,
 				'css/template.css'       => $templateCss,
 				"css/{$themeName}.css"   => $cssComment,
 				"js/{$themeName}.js"     => $jsComment,

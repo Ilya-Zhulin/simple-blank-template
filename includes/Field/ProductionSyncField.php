@@ -61,8 +61,11 @@ class ProductionSyncField extends FormField
 		}
 
 		// Проверяем наличие зеркала для предупреждения
-		$mirrorBase = JPATH_ROOT . '/media/templates/site/' . $app->getTemplate() . '/themes/' . $themeManager->getActiveTheme();
-		$hasMirror  = is_dir($mirrorBase) && (count(glob($mirrorBase . '/css/*.css')) > 0 || count(glob($mirrorBase . '/js/*.js')) > 0);
+		$tplName    = $this->form ? $this->form->getValue('template') : '';
+		$mirrorBase = $tplName
+			? JPATH_ROOT . '/media/templates/site/' . $tplName . '/themes/' . $themeManager->getActiveTheme()
+			: '';
+		$hasMirror  = $mirrorBase && is_dir($mirrorBase) && (count(glob($mirrorBase . '/css/*.css')) > 0 || count(glob($mirrorBase . '/js/*.js')) > 0);
 
 		$html = '<div>';
 
